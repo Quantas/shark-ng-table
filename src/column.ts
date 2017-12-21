@@ -1,5 +1,5 @@
 import { PipeTransform, Type } from '@angular/core';
-import { SortType } from './sort.type';
+import { SharkSortType } from './sort.type';
 import { SharkTableCellContents } from './table.cell.contents';
 
 export interface SharkColumn {
@@ -9,6 +9,6 @@ export interface SharkColumn {
   pipeConstructorArgs?: any[];
   component?: Type<SharkTableCellContents>;
   pipeArgs?: any[];
-  sortType?: SortType;
+  sortType?: SharkSortType;
   alignRight?: boolean;
 }

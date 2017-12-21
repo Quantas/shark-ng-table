@@ -1,10 +1,10 @@
-export enum SortType {
+export enum SharkSortType {
   NONE,
   ASC,
   DESC
 }
 
-export class CurrentSort {
+export class SharkCurrentSort {
   property: string;
-  sortType: SortType;
+  sortType: SharkSortType;
 }

@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Page, Sort } from './page';
 import { SharkColumn } from './column';
 import { SharkPageChangeEvent } from './page.change.event';
-import { CurrentSort, SortType } from './sort.type';
+import { SharkCurrentSort, SharkSortType } from './sort.type';
 import { NgForm } from '@angular/forms';
 import { SharkTableUtils } from './table.utils';
 
@@ -198,7 +198,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  changeSort(columnProperty: string, sortType: SortType): void {
+  changeSort(columnProperty: string, sortType: SharkSortType): void {
     if (this.sortable) {
       this.columns.forEach((column: SharkColumn) => {
 
@@ -206,20 +206,20 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           // State Machine
           // ASC -> DESC -> NONE -> ASC
           switch (sortType) {
-            case SortType.ASC: {
+            case SharkSortType.ASC: {
               // -> DESC
-              column.sortType = SortType.DESC;
+              column.sortType = SharkSortType.DESC;
               break;
             }
-            case SortType.DESC: {
+            case SharkSortType.DESC: {
               // -> NONE
-              column.sortType = SortType.NONE;
+              column.sortType = SharkSortType.NONE;
               break;
             }
-            case SortType.NONE:
+            case SharkSortType.NONE:
             default: {
               // -> ASC
-              column.sortType = SortType.ASC;
+              column.sortType = SharkSortType.ASC;
               break;
             }
           }
@@ -233,14 +233,14 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         this.page.content.sort((a, b) => {
           let result = 0;
 
-          sorts.forEach((sort: CurrentSort) => {
+          sorts.forEach((sort: SharkCurrentSort) => {
             if ( result === 0 ) {
               const aVal = this.tableUtils.findValue(a, sort.property);
               const bVal = this.tableUtils.findValue(b, sort.property);
 
               result = (aVal < bVal) ? -1 : (aVal > bVal) ? 1 : 0;
 
-              result *= (sort.sortType === SortType.DESC) ? -1 : 1;
+              result *= (sort.sortType === SharkSortType.DESC) ? -1 : 1;
             }
           });
 
@@ -268,15 +268,15 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
     this.columns.forEach((column: SharkColumn) => {
       switch (column.sortType) {
-        case SortType.ASC: {
+        case SharkSortType.ASC: {
           sortString += '' + column.property + ';';
           break;
         }
-        case SortType.DESC: {
+        case SharkSortType.DESC: {
           sortString += '-' + column.property + ';';
           break;
         }
-        case SortType.NONE: {
+        case SharkSortType.NONE: {
           break;
         }
       }
@@ -285,13 +285,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     return sortString;
   }
 
-  private generateSortArray(): CurrentSort[] {
-    const currentSorts: CurrentSort[] = [];
+  private generateSortArray(): SharkCurrentSort[] {
+    const currentSorts: SharkCurrentSort[] = [];
 
     this.columns.forEach((column: SharkColumn) => {
       switch (column.sortType) {
-        case SortType.ASC:
-        case SortType.DESC: {
+        case SharkSortType.ASC:
+        case SharkSortType.DESC: {
           currentSorts.push({property: column.property, sortType: column.sortType});
           break;
         }
@@ -346,14 +346,14 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       sorts.forEach((sort: string) => {
         this.columns.forEach((column: SharkColumn) => {
-          let type = SortType.NONE;
+          let type = SharkSortType.NONE;
           let property = sort;
 
           if (sort.startsWith('-')) {
-            type = SortType.DESC;
+            type = SharkSortType.DESC;
             property = property.substr(1);
           } else {
-            type = SortType.ASC;
+            type = SharkSortType.ASC;
           }
 
           if (property === column.property) {
@@ -371,12 +371,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
         this.page.sorts.forEach((sort: Sort) => {
           if (column.property === sort.property) {
-            column.sortType = SortType.NONE;
+            column.sortType = SharkSortType.NONE;
 
             if (sort.ascending) {
-              column.sortType = SortType.ASC;
+              column.sortType = SharkSortType.ASC;
             } else if (sort.descending) {
-              column.sortType = SortType.DESC;
+              column.sortType = SharkSortType.DESC;
             }
           }
         });

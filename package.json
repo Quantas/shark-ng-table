@@ -1,13 +1,14 @@
 {
   "name": "shark-ng-table",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Table for Angular that supports filtering/sorting/pagination",
   "main": "index.js",
   "scripts": {
     "transpile": "ngc",
     "package": "rollup -c",
     "minify": "uglifyjs dist/bundles/sharktable.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/sharktable.umd.min.js",
-    "build": "npm run transpile && npm run package && npm run minify"
+    "build": "npm run transpile && npm run package && npm run minify",
+    "test": "echo true"
   },
   "repository": {
     "type": "git",
