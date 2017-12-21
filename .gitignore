@@ -33,6 +33,7 @@ bower_components
 build/Release
 dist/bundles/
 dist/src/
+dist/README.md
 
 # Dependency directories
 node_modules/
