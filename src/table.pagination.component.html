@@ -1,0 +1,9 @@
+<div class="pagination-wrapper">
+  <div class="pagination" *ngIf="pageCount.length > 1">
+    <a *ngIf="0 !== page.number" (click)="!!changePage(0)">First</a>
+    <ng-container *ngFor="let num of pageCount">
+      <a [ngClass]="{'active': num === page.number}" (click)="!!changePage(num)" href>{{ num + 1 }}</a>
+    </ng-container>
+    <a *ngIf="pageCount.length - 1 !== page.number" (click)="!!changePage(pageCount.length - 1)">Last</a>
+  </div>
+</div>
