@@ -1,10 +1,10 @@
-import { Column } from './column';
+import { SharkColumn } from './column';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TableUtils {
+export class SharkTableUtils {
 
-  public retrieveCell(row: Object, column: Column): string {
+  public retrieveCell(row: Object, column: SharkColumn): string {
     const cell = this.findValue(row, column.property);
 
     if (column.pipe) {

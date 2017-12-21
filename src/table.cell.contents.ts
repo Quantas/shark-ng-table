@@ -1,3 +1,3 @@
-export interface TableCellContents {
+export interface SharkTableCellContents {
   data: any;
 }

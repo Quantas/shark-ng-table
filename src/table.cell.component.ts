@@ -1,33 +1,41 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, Input, ViewChild } from '@angular/core';
-import { Column } from './column';
-import { TableUtils } from './table.utils';
-import { TableCellContentsDirective } from './table.cell.contents.directive';
-import { TableCellContents } from './table.cell.contents';
+import { SharkColumn } from './column';
+import { SharkTableUtils } from './table.utils';
+import { SharkTableCellContentsDirective } from './table.cell.contents.directive';
+import { SharkTableCellContents } from './table.cell.contents';
 
 @Component({
-  selector: 'app-table-cell',
-  templateUrl: 'table.cell.component.html'
+  selector: 'shark-table-cell',
+  template: `
+      <ng-container *ngIf="column.component">
+          <ng-template sharkTableCellContents></ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="noComponentContents">
+          {{ noComponentContents }}
+      </ng-container>
+  `
 })
-export class TableCellComponent implements AfterViewInit {
+export class SharkTableCellComponent implements AfterViewInit {
 
   @Input()
-  column: Column;
+  column: SharkColumn;
 
   @Input()
   row: any[];
 
-  @ViewChild(TableCellContentsDirective)
-  tableCellContentsDirective: TableCellContentsDirective;
+  @ViewChild(SharkTableCellContentsDirective)
+  tableCellContentsDirective: SharkTableCellContentsDirective;
 
   noComponentContents: any;
 
-  constructor(private tableUtils: TableUtils, private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) {}
+  constructor(private tableUtils: SharkTableUtils, private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     this.loadComponent();
   }
 
-  private retrieveCell(row: Object, column: Column): string {
+  private retrieveCell(row: Object, column: SharkColumn): string {
     return this.tableUtils.retrieveCell(row, column);
   }
 
@@ -41,7 +49,7 @@ export class TableCellComponent implements AfterViewInit {
       viewContainerRef.clear();
 
       const componentRef = viewContainerRef.createComponent(componentFactory);
-      (<TableCellContents>componentRef.instance).data = contents;
+      (<SharkTableCellContents>componentRef.instance).data = contents;
     } else {
       this.noComponentContents = this.retrieveCell(this.row, this.column);
     }

@@ -1,6 +1,6 @@
 import { CurrentSort } from './sort.type';
 
-export interface PageChangeEvent {
+export interface SharkPageChangeEvent {
   pageNo: number;
   filter?: string;
   sorts?: CurrentSort[];

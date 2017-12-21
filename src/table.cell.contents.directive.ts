@@ -1,8 +1,8 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[appTableCellContents]'
+  selector: '[sharkTableCellContents]'
 })
-export class TableCellContentsDirective {
+export class SharkTableCellContentsDirective {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }

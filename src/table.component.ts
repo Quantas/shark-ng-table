@@ -8,16 +8,101 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Page, Sort } from './page';
-import { Column } from './column';
-import { PageChangeEvent } from './page.change.event';
+import { SharkColumn } from './column';
+import { SharkPageChangeEvent } from './page.change.event';
 import { CurrentSort, SortType } from './sort.type';
 import { NgForm } from '@angular/forms';
-import { TableUtils } from './table.utils';
+import { SharkTableUtils } from './table.utils';
 
 @Component({
   selector: 'shark-table',
-  templateUrl: 'table.component.html',
-  styleUrls: [ 'table.component.less' ]
+  template: `
+      <div class="table-wrapper">
+          <div class="controls">
+              <form #filterForm="ngForm">
+                  <input *ngIf="filterable" type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
+              </form>
+              <button *ngIf="serverSide" (click)="refreshPage()">&#x21bb;</button>
+          </div>
+          <table *ngIf="page">
+              <thead>
+              <tr>
+                  <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }" *ngFor="let column of columns" (click)="changeSort(column.property, column.sortType)" (keyup.enter)="changeSort(column.property, column.sortType)">
+                      {{ column.header }} <span [ngClass]="{ 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
+                  </th>
+              </tr>
+              </thead>
+              <tbody>
+              <ng-container *ngIf="page.content">
+                  <tr *ngFor="let row of page.content | localfilter:columns:localFilter:filter" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" tabindex="0" [ngClass]="{ rowLink: linkTarget }">
+                      <ng-container *ngFor="let column of columns">
+                          <td [ngClass]="{'right': column.alignRight }" >
+                              <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
+                          </td>
+                      </ng-container>
+                  </tr>
+              </ng-container>
+              <ng-container *ngIf="!page.content || page.content.length == 0">
+                  <tr><td [attr.colspan]="columns.length">This table contains no rows</td></tr>
+              </ng-container>
+              </tbody>
+          </table>
+          <shark-table-pagination [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
+      </div>
+  `,
+  styles: [`
+      .rowLink:hover {
+          background-color: #ddd;
+          cursor: pointer;
+      }
+
+      .table-wrapper {
+          overflow: auto;
+      }
+
+      .controls {
+          margin-bottom: 0.5rem;
+          overflow: auto;
+      }
+
+      .controls button,
+      .controls form {
+          float: left;
+      }
+
+      .controls button {
+          margin-left: 0.25rem;
+      }
+
+      .controls:after {
+          clear: both;
+      }
+
+      table {
+          margin-bottom: 0.5rem;
+      }
+
+      table .right {
+          text-align: right;
+      }
+
+      table th,
+      table td {
+          padding: 0.25rem;
+      }
+
+      .pointer {
+          cursor: pointer;
+      }
+
+      .asc:after {
+          content: '\\25B2';
+      }
+
+      .desc:after {
+          content: '\\25BC';
+      }
+  `]
 })
 export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -28,7 +113,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   data: Page | Observable<Page | any[]> | any[];
 
   @Input()
-  columns: Column[];
+  columns: SharkColumn[];
 
   @Input()
   linkTarget: string;
@@ -52,7 +137,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   initialSort: string;
 
   @Output()
-  pageChange = new EventEmitter<PageChangeEvent>();
+  pageChange = new EventEmitter<SharkPageChangeEvent>();
 
   page: Page;
 
@@ -61,7 +146,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   private dataSubscription: Subscription;
 
-  constructor(private router: Router, private tableUtils: TableUtils) {}
+  constructor(private router: Router, private tableUtils: SharkTableUtils) {}
 
   ngOnInit(): void {
     this.updatePage();
@@ -115,7 +200,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   changeSort(columnProperty: string, sortType: SortType): void {
     if (this.sortable) {
-      this.columns.forEach((column: Column) => {
+      this.columns.forEach((column: SharkColumn) => {
 
         if (column.property === columnProperty) {
           // State Machine
@@ -181,7 +266,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private generateSortString(): string {
     let sortString = '';
 
-    this.columns.forEach((column: Column) => {
+    this.columns.forEach((column: SharkColumn) => {
       switch (column.sortType) {
         case SortType.ASC: {
           sortString += '' + column.property + ';';
@@ -203,7 +288,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private generateSortArray(): CurrentSort[] {
     const currentSorts: CurrentSort[] = [];
 
-    this.columns.forEach((column: Column) => {
+    this.columns.forEach((column: SharkColumn) => {
       switch (column.sortType) {
         case SortType.ASC:
         case SortType.DESC: {
@@ -260,7 +345,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
       const sorts = this.initialSort.split(';');
 
       sorts.forEach((sort: string) => {
-        this.columns.forEach((column: Column) => {
+        this.columns.forEach((column: SharkColumn) => {
           let type = SortType.NONE;
           let property = sort;
 
@@ -282,7 +367,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
 
     if (this.page.sorts && this.page.sorts.length > 0) {
-      this.columns.forEach((column: Column) => {
+      this.columns.forEach((column: SharkColumn) => {
 
         this.page.sorts.forEach((sort: Sort) => {
           if (column.property === sort.property) {

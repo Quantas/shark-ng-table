@@ -6,9 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { SharkTablePaginationComponent } from './table.pagination.component';
 import { SharkTableComponent } from './table.component';
 import { LocalFilterPipe } from './localfilter.pipe';
-import { TableUtils } from './table.utils';
-import { TableCellComponent } from './table.cell.component';
-import { TableCellContentsDirective } from './table.cell.contents.directive';
+import { SharkTableUtils } from './table.utils';
+import { SharkTableCellComponent } from './table.cell.component';
+import { SharkTableCellContentsDirective } from './table.cell.contents.directive';
 
 @NgModule({
   imports: [
@@ -18,8 +18,8 @@ import { TableCellContentsDirective } from './table.cell.contents.directive';
   ],
   declarations: [
     SharkTableComponent,
-    TableCellComponent,
-    TableCellContentsDirective,
+    SharkTableCellComponent,
+    SharkTableCellContentsDirective,
     SharkTablePaginationComponent,
     LocalFilterPipe
   ],
@@ -28,7 +28,7 @@ import { TableCellContentsDirective } from './table.cell.contents.directive';
     SharkTablePaginationComponent
   ],
   providers: [
-    TableUtils
+    SharkTableUtils
   ]
 })
 export class SharkTableModule { }
