@@ -12,8 +12,8 @@
 A Table for Angular that supports filtering/sorting/pagination
 
 
-[david-badge]: https://david-dm.org/angular/angular-cli.svg
-[david-badge-url]: https://david-dm.org/angular/angular-cli
-[david-dev-badge]: https://david-dm.org/angular/angular-cli/dev-status.svg
-[david-dev-badge-url]: https://david-dm.org/angular/angular-cli?type=dev
+[david-badge]: https://david-dm.org/quantas/shark-ng-table.svg
+[david-badge-url]: https://david-dm.org/quantas/shark-ng-table
+[david-dev-badge]: https://david-dm.org/quantas/shark-ng-table/dev-status.svg
+[david-dev-badge-url]: https://david-dm.org/quantas/shark-ng-table?type=dev
 [npm-badge-url]: https://www.npmjs.com/package/shark-ng-table
