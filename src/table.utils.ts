@@ -15,6 +15,21 @@ export class SharkTableUtils {
     return cell;
   }
 
+  public filter(items: any, cols: SharkColumn[], filterText: string) {
+    return items.filter((row) => {
+      let found = false;
+
+      cols.forEach((col: SharkColumn) => {
+        const value: string = this.retrieveCell(row, col) + '';
+        if (value && (value.toLowerCase().indexOf(filterText.toLowerCase()) !== -1)) {
+          found = true;
+        }
+      });
+
+      return found;
+    });
+  }
+
   public findValue(input: Object, key: string): any {
     const arr = key.split('.');
     while (arr.length && (input = input[arr.shift()])) {};

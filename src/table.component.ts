@@ -34,7 +34,7 @@ import { SharkTableUtils } from './table.utils';
               </thead>
               <tbody>
               <ng-container *ngIf="page.content">
-                  <tr *ngFor="let row of page.content | localfilter:columns:localFilter:filter" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" tabindex="0" [ngClass]="{ rowLink: linkTarget }">
+                  <tr *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" tabindex="0" [ngClass]="{ rowLink: linkTarget }">
                       <ng-container *ngFor="let column of columns">
                           <td [ngClass]="{'right': column.alignRight }" >
                               <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
@@ -131,6 +131,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   localFilter = false;
 
   @Input()
+  localPaging = false;
+
+  @Input()
+  localPagingSize = 10;
+
+  @Input()
   serverSide = true;
 
   @Input()
@@ -152,7 +158,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     this.updatePage();
 
     this.filterForm.valueChanges.subscribe((data) => {
-      if (data.filter !== undefined && this.page && this.filterable && !this.localFilter) {
+      if (data.filter !== undefined && this.page && this.filterable) {
         this.updateFilter();
       }
     });
@@ -230,22 +236,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       // sort internally
       if (!this.serverSide) {
-        this.page.content.sort((a, b) => {
-          let result = 0;
-
-          sorts.forEach((sort: SharkCurrentSort) => {
-            if ( result === 0 ) {
-              const aVal = this.tableUtils.findValue(a, sort.property);
-              const bVal = this.tableUtils.findValue(b, sort.property);
-
-              result = (aVal < bVal) ? -1 : (aVal > bVal) ? 1 : 0;
-
-              result *= (sort.sortType === SharkSortType.DESC) ? -1 : 1;
-            }
-          });
-
-          return result;
-        });
+        this.sort(this.page.content, sorts);
       }
 
       this.pageChange.emit({
@@ -301,6 +292,25 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     return currentSorts;
   }
 
+  private sort(content: any[], sorts: SharkCurrentSort[]): void {
+    content.sort((a, b) => {
+      let result = 0;
+
+      sorts.forEach((sort: SharkCurrentSort) => {
+        if ( result === 0 ) {
+          const aVal = this.tableUtils.findValue(a, sort.property);
+          const bVal = this.tableUtils.findValue(b, sort.property);
+
+          result = (aVal < bVal) ? -1 : (aVal > bVal) ? 1 : 0;
+
+          result *= (sort.sortType === SharkSortType.DESC) ? -1 : 1;
+        }
+      });
+
+      return result;
+    });
+  }
+
   private updatePage(): void {
     if (this.data) {
 
@@ -320,8 +330,64 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  private copyData(obj: any): any {
+    return Object.assign({}, obj);
+  }
+
   private setupPageArray(): void {
-    this.page = {content: this.data as any[]};
+    if (this.localPaging) {
+        const total = (this.data as any[]).length;
+        const pageCount = Math.ceil(total / this.localPagingSize);
+
+        this.page = {
+          number: 0,
+          totalPages: pageCount,
+          totalElements: total,
+          first: true,
+          last: false,
+          numberOfElements: this.localPagingSize,
+          content: (this.data as any[]).map(this.copyData).splice(0, this.localPagingSize)
+        };
+
+        this.pageChange.subscribe((event) => this.calculateLocalPage(event));
+    } else {
+      this.page = {content: this.data as any[]};
+    }
+  }
+
+  private calculateLocalPage(event: SharkPageChangeEvent): void {
+    if (this.localFilter && event.filter && event.filter.length > 0) {
+      const filteredContent = this.tableUtils.filter(this.data, this.columns, event.filter);
+      const filteredTotal = filteredContent.length;
+
+      this.sort(filteredContent, this.generateSortArray());
+
+      this.page = {
+        number: 0,
+        totalPages: 1,
+        totalElements: filteredTotal,
+        first: false,
+        last: false,
+        numberOfElements: filteredTotal,
+        content: filteredContent
+      };
+
+    } else {
+      this.sort(this.data as any[], this.generateSortArray());
+
+      const content = (this.data as any[]).map(this.copyData).splice((this.localPagingSize * event.pageNo), this.localPagingSize);
+      const total = (this.data as any[]).length;
+      const pageCount = Math.ceil(total / this.localPagingSize);
+      this.page = {
+        number: event.pageNo,
+        totalPages: pageCount,
+        totalElements: total,
+        first: event.pageNo === 0,
+        last: event.pageNo === pageCount,
+        numberOfElements: this.localPagingSize,
+        content: content
+      };
+    }
   }
 
   private setupPageSubscription(): void {
