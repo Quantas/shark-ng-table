@@ -1,0 +1,87 @@
+.rowLink:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.table-wrapper {
+  overflow: auto;
+}
+
+.controls {
+  margin-bottom: 0.5rem;
+  overflow: auto;
+}
+
+.controls button,
+.controls form {
+  float: left;
+}
+
+.controls button {
+  margin-left: 0.25rem;
+}
+
+.controls:after {
+  clear: both;
+}
+
+table {
+  margin-bottom: 0.5rem;
+  border-collapse: collapse;
+}
+
+table .right {
+  text-align: right;
+}
+
+th, td {
+  padding: 0.25rem 1rem 0.25rem 1rem;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.asc:after {
+  content: '\25B2';
+}
+
+.desc:after {
+  content: '\25BC';
+}
+
+/* Pagination */
+.pagination-wrapper {
+  float: left;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  transition: background-color .3s;
+}

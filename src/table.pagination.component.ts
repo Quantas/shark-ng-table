@@ -6,37 +6,14 @@ import { Page } from './page';
   template: `
       <div class="pagination-wrapper">
           <div class="pagination" *ngIf="pageCount.length > 1">
-              <a *ngIf="0 !== page.number" (click)="!!changePage(0)">First</a>
+              <a *ngIf="0 !== page.number" (click)="!!changePage(0)" role="button">First</a>
               <ng-container *ngFor="let num of pageCount">
-                  <a [ngClass]="{'active': num === page.number}" (click)="!!changePage(num)" href>{{ num + 1 }}</a>
+                  <a [ngClass]="{'active': num === page.number}" (click)="!!changePage(num)" role="button" href>{{ num + 1 }}</a>
               </ng-container>
-              <a *ngIf="pageCount.length - 1 !== page.number" (click)="!!changePage(pageCount.length - 1)">Last</a>
+              <a *ngIf="pageCount.length - 1 !== page.number" (click)="!!changePage(pageCount.length - 1)" role="button">Last</a>
           </div>
       </div>
-  `,
-  styles: [`
-      .pagination-wrapper {
-          float: left;
-      }
-      .pagination {
-          display: inline-block;
-      }
-      .pagination a:hover:not(.active) {
-          background-color: #ddd;
-      }
-      .pagination a.active {
-          background-color: #4CAF50;
-          color: white;
-      }
-      .pagination a {
-          color: black;
-          float: left;
-          padding: 8px 16px;
-          text-decoration: none;
-          border: 1px solid #ddd;
-          transition: background-color .3s;
-      }
-  `]
+  `
 })
 export class SharkTablePaginationComponent implements OnChanges {
 

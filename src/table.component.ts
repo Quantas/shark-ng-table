@@ -26,17 +26,17 @@ import { SharkTableUtils } from './table.utils';
           </div>
           <table *ngIf="page">
               <thead>
-              <tr>
-                  <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }" *ngFor="let column of columns" (click)="changeSort(column.property, column.sortType)" (keyup.enter)="changeSort(column.property, column.sortType)">
-                      {{ column.header }} <span [ngClass]="{ 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
-                  </th>
-              </tr>
+                <tr>
+                    <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }" *ngFor="let column of columns" (click)="changeSort(column.property, column.sortType)" (keyup.enter)="changeSort(column.property, column.sortType)" role="button" tabindex="0">
+                        {{ column.header }} <span [ngClass]="{ 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
+                    </th>
+                </tr>
               </thead>
               <tbody>
               <ng-container *ngIf="page.content">
                   <tr *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" tabindex="0" [ngClass]="{ rowLink: linkTarget }">
                       <ng-container *ngFor="let column of columns">
-                          <td [ngClass]="{'right': column.alignRight }" >
+                          <td [ngClass]="{'right': column.alignRight }" tabindex="0">
                               <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
                           </td>
                       </ng-container>
@@ -49,60 +49,7 @@ import { SharkTableUtils } from './table.utils';
           </table>
           <shark-table-pagination [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
       </div>
-  `,
-  styles: [`
-      .rowLink:hover {
-          background-color: #ddd;
-          cursor: pointer;
-      }
-
-      .table-wrapper {
-          overflow: auto;
-      }
-
-      .controls {
-          margin-bottom: 0.5rem;
-          overflow: auto;
-      }
-
-      .controls button,
-      .controls form {
-          float: left;
-      }
-
-      .controls button {
-          margin-left: 0.25rem;
-      }
-
-      .controls:after {
-          clear: both;
-      }
-
-      table {
-          margin-bottom: 0.5rem;
-      }
-
-      table .right {
-          text-align: right;
-      }
-
-      table th,
-      table td {
-          padding: 0.25rem;
-      }
-
-      .pointer {
-          cursor: pointer;
-      }
-
-      .asc:after {
-          content: '\\25B2';
-      }
-
-      .desc:after {
-          content: '\\25BC';
-      }
-  `]
+  `
 })
 export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -356,38 +303,40 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private calculateLocalPage(event: SharkPageChangeEvent): void {
-    if (this.localFilter && event.filter && event.filter.length > 0) {
-      const filteredContent = this.tableUtils.filter(this.data, this.columns, event.filter);
-      const filteredTotal = filteredContent.length;
+      if (this.localFilter && event.filter && event.filter.length > 0) {
+        const filteredContent = this.tableUtils.filter(this.data, this.columns, event.filter);
+        const pageNo = filteredContent.length < this.localPagingSize ? 0 : event.pageNo;
+        const displayedContent = filteredContent.map(this.copyData).splice(this.localPagingSize * pageNo, this.localPagingSize);
+        const filteredTotal = filteredContent.length;
+        const filteredPageCount = Math.ceil(filteredTotal / this.localPagingSize);
+        this.sort(filteredContent, this.generateSortArray());
 
-      this.sort(filteredContent, this.generateSortArray());
+        this.page = {
+          number: pageNo,
+          totalPages: filteredPageCount,
+          totalElements: filteredTotal,
+          first: pageNo === 0,
+          last: pageNo === filteredPageCount,
+          numberOfElements: this.localPagingSize,
+          content: displayedContent
+        };
 
-      this.page = {
-        number: 0,
-        totalPages: 1,
-        totalElements: filteredTotal,
-        first: false,
-        last: false,
-        numberOfElements: filteredTotal,
-        content: filteredContent
-      };
+      } else {
+        this.sort(this.data as any[], this.generateSortArray());
 
-    } else {
-      this.sort(this.data as any[], this.generateSortArray());
-
-      const content = (this.data as any[]).map(this.copyData).splice((this.localPagingSize * event.pageNo), this.localPagingSize);
-      const total = (this.data as any[]).length;
-      const pageCount = Math.ceil(total / this.localPagingSize);
-      this.page = {
-        number: event.pageNo,
-        totalPages: pageCount,
-        totalElements: total,
-        first: event.pageNo === 0,
-        last: event.pageNo === pageCount,
-        numberOfElements: this.localPagingSize,
-        content: content
-      };
-    }
+        const content = (this.data as any[]).map(this.copyData).splice((this.localPagingSize * event.pageNo), this.localPagingSize);
+        const total = (this.data as any[]).length;
+        const pageCount = Math.ceil(total / this.localPagingSize);
+        this.page = {
+          number: event.pageNo,
+          totalPages: pageCount,
+          totalElements: total,
+          first: event.pageNo === 0,
+          last: event.pageNo === pageCount,
+          numberOfElements: this.localPagingSize,
+          content: content
+        };
+      }
   }
 
   private setupPageSubscription(): void {
@@ -430,7 +379,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       this.changeSort('', undefined);
     }
-
 
     if (this.page.sorts && this.page.sorts.length > 0) {
       this.columns.forEach((column: SharkColumn) => {
