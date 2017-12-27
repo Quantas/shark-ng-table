@@ -72,12 +72,14 @@ tr:nth-child(even) {
   background-color: #ddd;
 }
 
-.pagination a.active {
+.pagination a.active,
+.pagination span.active {
   background-color: #4CAF50;
   color: white;
 }
 
-.pagination a {
+.pagination a,
+.pagination span {
   color: black;
   float: left;
   padding: 8px 16px;

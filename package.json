@@ -1,6 +1,6 @@
 {
   "name": "shark-ng-table",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A Table for Angular that supports filtering/sorting/pagination",
   "main": "index.js",
   "scripts": {
@@ -22,16 +22,16 @@
   },
   "homepage": "https://github.com/Quantas/shark-ng-table#readme",
   "dependencies": {
-    "@angular/common": "^5.0.0",
-    "@angular/core": "^5.0.0",
-    "@angular/forms": "^5.0.0",
-    "@angular/router": "^5.0.0",
+    "@angular/common": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/router": "^4.0.0",
     "core-js": "^2.4.0",
-    "rxjs": "^5.5.0"
+    "rxjs": "^5.4.0"
   },
   "devDependencies": {
-    "@angular/compiler": "^5.0.0",
-    "@angular/compiler-cli": "^5.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
     "copyfiles": "^1.2.0",
     "rollup": "^0.52.3",
     "typescript": "2.4.2",

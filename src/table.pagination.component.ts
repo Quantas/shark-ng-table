@@ -8,7 +8,8 @@ import { Page } from './page';
           <div class="pagination" *ngIf="pageCount.length > 1">
               <a *ngIf="0 !== page.number" (click)="!!changePage(0)" role="button">First</a>
               <ng-container *ngFor="let num of pageCount">
-                  <a [ngClass]="{'active': num === page.number}" (click)="!!changePage(num)" role="button" href>{{ num + 1 }}</a>
+                <span *ngIf="num === page.number" [ngClass]="{'active': true}">{{ num + 1 }}</span>
+                <a *ngIf="num !== page.number" (click)="!!changePage(num)" role="button" href>{{ num + 1 }}</a>
               </ng-container>
               <a *ngIf="pageCount.length - 1 !== page.number" (click)="!!changePage(pageCount.length - 1)" role="button">Last</a>
           </div>
