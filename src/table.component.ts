@@ -22,7 +22,7 @@ import { SharkTableUtils } from './table.utils';
               <form #filterForm="ngForm">
                   <input *ngIf="filterable" type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
               </form>
-              <button *ngIf="serverSide" (click)="refreshPage()">&#x21bb;</button>
+              <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
           </div>
           <table *ngIf="page">
               <thead>
@@ -56,44 +56,90 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('filterForm')
   filterForm: NgForm;
 
+  /**
+   * The raw table data
+   */
   @Input()
   data: Page | Observable<Page | any[]> | any[];
 
+  /**
+   * The table column definitions
+   */
   @Input()
   columns: SharkColumn[];
 
+  /**
+   * The destination page for the call to `router.navigate` when the row is clicked.
+   */
   @Input()
   linkTarget: string;
 
+  /**
+   * The property name from the data object to pass to `router.navigate` when the rows is clicked.
+   */
   @Input()
   linkKey: string;
 
+  /**
+   * Enables the sorting headers
+   * @type {boolean}
+   */
   @Input()
   sortable = true;
 
+  /**
+   * Enables the global filter text box
+   * @type {boolean}
+   */
   @Input()
   filterable = true;
 
+  /**
+   * Enables client-side filtering as opposed to just emitting a `SharkPageChangeEvent`
+   * @type {boolean}
+   */
   @Input()
   localFilter = false;
 
+  /**
+   * Enables client-side pagination as opposed to just emitting a `SharkPageChangeEvent`
+   * @type {boolean}
+   */
   @Input()
   localPaging = false;
 
+  /**
+   * The size of each page
+   * @type {number}
+   */
   @Input()
   localPagingSize = 10;
 
+  /**
+   * Shows a button that when clicked, emits a `SharkPageChangeEvent`
+   * @type {boolean}
+   */
   @Input()
-  serverSide = true;
+  refreshButton = false;
 
+  /**
+   * The initial sortString
+   */
   @Input()
   initialSort: string;
 
+  /**
+   * {@link SharkPageChangeEvent} events are emitted from here
+   * @type {EventEmitter<SharkPageChangeEvent>}
+   */
   @Output()
   pageChange = new EventEmitter<SharkPageChangeEvent>();
 
   page: Page;
 
+  /**
+   * The current filter value
+   */
   @Input()
   filter: string;
 
@@ -106,7 +152,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
     this.filterForm.valueChanges.subscribe((data) => {
       if (data.filter !== undefined && this.page && this.filterable) {
-        this.updateFilter();
+        this.emitCurrent();
       }
     });
   }
@@ -124,16 +170,11 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  updateFilter(): void {
-    this.pageChange.emit({
-      pageNo: this.page.number,
-      sortString: this.generateSortString(),
-      sorts: this.generateSortArray(),
-      filter: this.filter
-    });
-  }
-
-  refreshPage(): void {
+  /**
+   * Emits a {@link SharkPageChangeEvent} with the current information. This event should be consumed by the host
+   * component and sent to a REST endpoint to update the data.
+   */
+  emitCurrent(): void {
     this.pageChange.emit({
       pageNo: this.page.number,
       sortString: this.generateSortString(),
@@ -181,8 +222,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       const sorts = this.generateSortArray();
 
-      // sort internally
-      if (!this.serverSide) {
+      if (!this.refreshButton) {
+        // sort internally
         this.sort(this.page.content, sorts);
       }
 
@@ -248,7 +289,11 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           const aVal = this.tableUtils.findValue(a, sort.property);
           const bVal = this.tableUtils.findValue(b, sort.property);
 
-          result = (aVal < bVal) ? -1 : (aVal > bVal) ? 1 : 0;
+          if (!isNaN(Number(aVal)) && !isNaN(Number(bVal))) {
+            result = aVal - bVal;
+          } else {
+            result = (aVal < bVal) ? -1 : (aVal > bVal) ? 1 : 0;
+          }
 
           result *= (sort.sortType === SharkSortType.DESC) ? -1 : 1;
         }

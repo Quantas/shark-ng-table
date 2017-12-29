@@ -61,11 +61,7 @@ export class TableTestComponent {
     {col1: '7', col2: 'b', col3: 'c' },
     {col1: '8', col2: 'b', col3: 'c' },
     {col1: '9', col2: 'b', col3: 'c' },
-    {col1: '10', col2: 'b', col3: 'c' },
-    {col1: '11', col2: 'b', col3: 'c' },
-    {col1: '12', col2: 'b', col3: 'c' },
-    {col1: '13', col2: 'b', col3: 'c' },
-    {col1: '14', col2: 'b', col3: 'c' }
+    {col1: '10', col2: 'b', col3: 'c' }
   ];
 
   tableColumns: SharkColumn[] = [
@@ -81,7 +77,6 @@ Then in your HTML for your component add the following:
 ```html
 <shark-table
   [data]="testData"
-  [serverSide]="false"
   [localFilter]="true"
   [columns]="tableColumns"
   [localPaging]="true"
@@ -91,6 +86,35 @@ Then in your HTML for your component add the following:
 ```
 
 This will create the table with the `tableColumns` definitions and the `testData` as the source.
+
+## shark-table options
+
+* data - `any[]` or `Observable<Page>` or `Observable<any[]>`
+    * The raw table data
+* columns - `SharkColumn[]`
+    * The table column definitions
+* linkTarget - `string`
+    * The destination page for the call to `router.navigate` when the row is clicked.
+* linkKey - `string`
+    * The property name from the data object to pass to `router.navigate` when the rows is clicked.
+* sortable - `boolean`
+    * Enables the sorting headers
+* filterable - `boolean`
+    * Enables the global filter text box
+* localFilter - `boolean`
+    * Enables client-side filtering as opposed to just emitting a `SharkPageChangeEvent`
+* localPaging - `boolean`
+    * Enables client-side pagination as opposed to just emitting a `SharkPageChangeEvent`
+* localPagingSize - `Number`
+    * The size of each page
+* refreshButton - `boolean`
+    * Shows a button that when clicked, emits a `SharkPageChangeEvent`
+* initialSort - `string`
+    * The initial sortString
+* pageChange - `EventEmitter<SharkPageChangeEvent>`
+    * `SharkPageChangeEvent` events are emitted from here
+* filter - `string`
+    * The current filter value
 
 ## TODO - More Documentation!
 
