@@ -1,46 +1,46 @@
 .rowLink:hover {
-  background-color: #ddd;
-  cursor: pointer;
+    background-color: #ddd;
+    cursor: pointer;
 }
 
 .table-wrapper {
-  overflow: auto;
+    overflow: auto;
 }
 
 .controls {
-  margin-bottom: 0.5rem;
-  overflow: auto;
+    margin-bottom: 0.5rem;
+    overflow: auto;
 }
 
 .controls button,
 .controls form {
-  float: left;
+    float: left;
 }
 
 .controls button {
-  margin-left: 0.25rem;
+    margin-left: 0.25rem;
 }
 
 .controls:after {
-  clear: both;
+    clear: both;
 }
 
 table {
-  margin-bottom: 0.5rem;
-  border-collapse: collapse;
+    margin-bottom: 0.5rem;
+    border-collapse: collapse;
 }
 
 table .right {
-  text-align: right;
+    text-align: right;
 }
 
 th, td {
-  padding: 0.25rem 1rem 0.25rem 1rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
 }
 
 th {
-  background-color: #4CAF50;
-  color: white;
+    background-color: #4CAF50;
+    color: white;
 }
 
 .even {
@@ -64,42 +64,42 @@ th {
 }
 
 .pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .asc:after {
-  content: '\25B2';
+    content: '\25B2';
 }
 
 .desc:after {
-  content: '\25BC';
+    content: '\25BC';
 }
 
 /* Pagination */
 .pagination-wrapper {
-  float: left;
+    float: left;
 }
 
 .pagination {
-  display: inline-block;
+    display: inline-block;
 }
 
 .pagination a:hover:not(.active) {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .pagination a.active,
 .pagination span.active {
-  background-color: #4CAF50;
-  color: white;
+    background-color: #4CAF50;
+    color: white;
 }
 
 .pagination a,
 .pagination span {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  transition: background-color .3s;
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    transition: background-color .3s;
 }
