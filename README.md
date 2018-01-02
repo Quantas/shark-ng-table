@@ -11,6 +11,10 @@
 
 A Table for Angular that supports filtering/sorting/pagination
 
+## Demo
+
+We have a running example over on [Plunker](https://embed.plnkr.co/Po2EwbBCAMXbmphV4LSB/)
+
 ## Installing
 
 ```bash
