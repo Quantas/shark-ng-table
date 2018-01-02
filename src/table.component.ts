@@ -322,10 +322,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private copyData(obj: any): any {
-    return Object.assign({}, obj);
-  }
-
   private setupPageArray(): void {
     if (this.localPaging) {
         const total = (this.data as any[]).length;
@@ -338,7 +334,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           first: true,
           last: false,
           numberOfElements: this.localPagingSize,
-          content: (this.data as any[]).map(this.copyData).splice(0, this.localPagingSize)
+          content: (this.data as any[]).slice(0, this.localPagingSize)
         };
 
         this.pageChange.subscribe((event) => this.calculateLocalPage(event));
@@ -350,8 +346,10 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private calculateLocalPage(event: SharkPageChangeEvent): void {
       if (this.localFilter && event.filter && event.filter.length > 0) {
         const filteredContent = this.tableUtils.filter(this.data, this.columns, event.filter);
-        const pageNo = filteredContent.length < this.localPagingSize ? 0 : event.pageNo;
-        const displayedContent = filteredContent.map(this.copyData).splice(this.localPagingSize * pageNo, this.localPagingSize);
+        const currentPage = this.localPagingSize * event.pageNo;
+        const pageNo = currentPage > this.localPagingSize || filteredContent.length < this.localPagingSize ? 0 : event.pageNo;
+        const sliceRange = this.localPagingSize * pageNo + this.localPagingSize;
+        const displayedContent = filteredContent.slice(this.localPagingSize * pageNo, sliceRange);
         const filteredTotal = filteredContent.length;
         const filteredPageCount = Math.ceil(filteredTotal / this.localPagingSize);
         this.sort(filteredContent, this.generateSortArray());
@@ -369,7 +367,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
       } else {
         this.sort(this.data as any[], this.generateSortArray());
 
-        const content = (this.data as any[]).map(this.copyData).splice((this.localPagingSize * event.pageNo), this.localPagingSize);
+        const sliceRange = this.localPagingSize * event.pageNo + this.localPagingSize;
+        const content = (this.data as any[]).slice((this.localPagingSize * event.pageNo), sliceRange);
         const total = (this.data as any[]).length;
         const pageCount = Math.ceil(total / this.localPagingSize);
         this.page = {
