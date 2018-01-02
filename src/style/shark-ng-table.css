@@ -43,8 +43,24 @@ th {
   color: white;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.even {
+    background-color: #f2f2f2;
+}
+
+.rowOpen {
+    background-color: #e8e8e8;
+}
+
+.childButton {
+    font-size: 0.85rem;
+}
+
+.childButton:after {
+    content: '\25b6';
+}
+
+.open:after {
+    content: '\25bc'
 }
 
 .pointer {

@@ -9,6 +9,8 @@ import { LocalFilterPipe } from './localfilter.pipe';
 import { SharkTableUtils } from './table.utils';
 import { SharkTableCellComponent } from './table.cell.component';
 import { SharkTableCellContentsDirective } from './table.cell.contents.directive';
+import { SharkChildComponent } from './child/child.component';
+import { SharkChildContentsDirective } from './child/child.component.directive';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { SharkTableCellContentsDirective } from './table.cell.contents.directive
   ],
   declarations: [
     SharkTableComponent,
+    SharkChildComponent,
+    SharkChildContentsDirective,
     SharkTableCellComponent,
     SharkTableCellContentsDirective,
     SharkTablePaginationComponent,

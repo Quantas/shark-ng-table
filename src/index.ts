@@ -1,3 +1,5 @@
+export { SharkChildComponent } from './child/child.component';
+export { SharkChildContents } from './child/child.component.contents';
 export { SharkColumn } from './column';
 export { SharkPageChangeEvent } from './page.change.event';
 export { SharkCurrentSort } from './sort.type';

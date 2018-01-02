@@ -1,7 +1,8 @@
 import {
-  Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges,
+  Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, Type,
   ViewChild
 } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -11,8 +12,8 @@ import { Page, Sort } from './page';
 import { SharkColumn } from './column';
 import { SharkPageChangeEvent } from './page.change.event';
 import { SharkCurrentSort, SharkSortType } from './sort.type';
-import { NgForm } from '@angular/forms';
 import { SharkTableUtils } from './table.utils';
+import { SharkChildContents } from './child/child.component.contents';
 
 @Component({
   selector: 'shark-table',
@@ -27,6 +28,7 @@ import { SharkTableUtils } from './table.utils';
           <table *ngIf="page">
               <thead>
                 <tr>
+                    <th *ngIf="childRows"></th>
                     <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }" *ngFor="let column of columns" (click)="changeSort(column.property, column.sortType)" (keyup.enter)="changeSort(column.property, column.sortType)" role="button" tabindex="0">
                         {{ column.header }} <span [ngClass]="{ 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
                     </th>
@@ -34,13 +36,23 @@ import { SharkTableUtils } from './table.utils';
               </thead>
               <tbody>
               <ng-container *ngIf="page.content">
-                  <tr *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" tabindex="0" [ngClass]="{ rowLink: linkTarget }">
-                      <ng-container *ngFor="let column of columns">
-                          <td [ngClass]="{'right': column.alignRight }" tabindex="0">
-                              <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
+                  <ng-container *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter; let i = index; let e = even; let o = odd;">
+                      <tr [ngClass]="{ odd: o, even: e, rowLink: linkTarget, rowOpen: childShown(i) }" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" [attr.tabindex]="linkTarget ? 0 : ''">
+                          <td class="childButton pointer" *ngIf="childRows" [ngClass]="{ open: childShown(i) }" (click)="toggleChild(i, row)" (keyup.enter)="toggleChild(i, row)" tabindex="0">
                           </td>
-                      </ng-container>
-                  </tr>
+                          <ng-container *ngFor="let column of columns">
+                              <td [ngClass]="{'right': column.alignRight }" tabindex="0">
+                                  <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
+                              </td>
+                          </ng-container>
+                      </tr>
+                      <tr *ngIf="childRows" [ngClass]="{ odd: o, even: e, rowOpen: childShown(i) }" [hidden]="!childShown(i)">
+                        <td></td>
+                        <td [attr.colspan]="columns.length">
+                          <shark-child [component]="childComponent" [row]="row"></shark-child>
+                        </td>
+                      </tr>
+                  </ng-container>
               </ng-container>
               <ng-container *ngIf="!page.content || page.content.length == 0">
                   <tr><td [attr.colspan]="columns.length">This table contains no rows</td></tr>
@@ -129,6 +141,42 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   initialSort: string;
 
   /**
+   * Enables children rows
+   * @type {boolean}
+   */
+  @Input()
+  childRows = false;
+
+  /**
+   * Your custom component which extends {@link SharkChildContents} that will be used
+   * to render each child row. Your custom component needs to be registered in your NgModule
+   * as an `entryComponent` and in the `declarations` section.
+   *
+   * The easiest way to specify this component in your HTML template is to create an instance variable
+   * and assign it, eg:
+   *
+   * ```typescript
+   * @Component({
+   *    template: `
+   *      <shark-table
+   *          [data]="testData"
+   *          [columns]="tableColumns"
+   *          [childRows]="true"
+   *          [childComponent]="childComponent"
+   *      >
+   *      </shark-table>
+   *    `
+   * })
+   * export class MyComponent {
+   *    childComponent = MyChildComponent
+   * }
+   *
+   * ```
+   */
+  @Input()
+  childComponent?: Type<SharkChildContents>;
+
+  /**
    * {@link SharkPageChangeEvent} events are emitted from here
    * @type {EventEmitter<SharkPageChangeEvent>}
    */
@@ -144,6 +192,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   filter: string;
 
   private dataSubscription: Subscription;
+
+  private openChildren: number[] = [];
 
   constructor(private router: Router, private tableUtils: SharkTableUtils) {}
 
@@ -193,6 +243,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   changeSort(columnProperty: string, sortType: SharkSortType): void {
+    this.closeChildren();
+
     if (this.sortable) {
       this.columns.forEach((column: SharkColumn) => {
 
@@ -240,6 +292,24 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     if (this.linkTarget && this.linkKey) {
       this.router.navigate([this.linkTarget, this.tableUtils.findValue(row, this.linkKey)]);
     }
+  }
+
+  toggleChild(index: number, row: Object): void {
+    const arrayIndex = this.openChildren.indexOf(index);
+
+    if (arrayIndex > -1) {
+      this.openChildren.splice(arrayIndex, 1);
+    } else {
+      this.openChildren.push(index);
+    }
+  }
+
+  childShown(rowIndex: number): boolean {
+    return this.openChildren.indexOf(rowIndex) > -1;
+  }
+
+  private closeChildren(): void {
+    this.openChildren = [];
   }
 
   private generateSortString(): string {
@@ -306,6 +376,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private updatePage(): void {
     if (this.data) {
 
+      this.closeChildren();
+
       if (this.data.constructor === Array) {
         this.setupPageArray();
       } else if (this.data.constructor === Observable) {
@@ -344,6 +416,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private calculateLocalPage(event: SharkPageChangeEvent): void {
+      this.closeChildren();
+
       if (this.localFilter && event.filter && event.filter.length > 0) {
         const filteredContent = this.tableUtils.filter(this.data, this.columns, event.filter);
         const currentPage = this.localPagingSize * event.pageNo;
