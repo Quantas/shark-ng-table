@@ -10,7 +10,8 @@
     "minify-css": "minify --output dist/shark-ng-table.min.css src/style/shark-ng-table.css",
     "copy": "copyfiles README.md dist/ && copyfiles -f src/style/shark-ng-table.css dist/",
     "build": "npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
-    "test": "echo true"
+    "test": "karma start --single-run",
+    "test:always": "karma start"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/Quantas/shark-ng-table/issues"
   },
-  "homepage": "https://github.com/Quantas/shark-ng-table#readme",
+  "homepage": "https://github.com/Quantas/shark-ng-table",
   "dependencies": {
     "@angular/common": "^4.0.0",
     "@angular/core": "^4.0.0",
@@ -33,10 +34,23 @@
   "devDependencies": {
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@types/jasmine": "^2.8.3",
     "copyfiles": "^1.2.0",
+    "jasmine-core": "~2.6.2",
+    "jasmine-spec-reporter": "~4.1.0",
+    "karma": "~1.7.0",
+    "karma-cli": "~1.0.1",
+    "karma-jasmine": "~1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-typescript": "^3.0.9",
+    "karma-typescript-angular2-transform": "^1.0.2",
     "minifier": "^0.8.1",
+    "phantomjs-prebuilt": "^2.1.16",
     "rollup": "^0.52.3",
     "typescript": "2.4.2",
-    "uglify-js": "^3.2.2"
+    "uglify-js": "^3.2.2",
+    "zone.js": "^0.8.19"
   }
 }
