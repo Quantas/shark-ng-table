@@ -1,11 +1,24 @@
-import {TestBed, async, ComponentFixture} from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharkTableComponent } from './table.component';
 import { SharkTableModule } from './table.module';
-import {Component, ViewChild} from '@angular/core';
-import {SharkColumn} from './column';
+import { Component, ViewChild } from '@angular/core';
+import { SharkColumn } from './column';
 
 describe('SharkTableComponent', () => {
+
+    const testPage = [
+            {col1: '1', col2: 'b', col3: 'c' },
+            {col1: '2', col2: 'b', col3: 'c' },
+            {col1: '3', col2: 'b', col3: 'c' },
+            {col1: '4', col2: 'b', col3: 'c' },
+            {col1: '5', col2: 'b', col3: 'c' },
+            {col1: '6', col2: 'b', col3: 'c' },
+            {col1: '7', col2: 'b', col3: 'c' },
+            {col1: '8', col2: 'b', col3: 'c' },
+            {col1: '9', col2: 'b', col3: 'c' },
+            {col1: '10', col2: 'b', col3: 'c' }
+        ];
 
     let fixture: ComponentFixture<TableTestComponent>;
     let component: TableTestComponent;
@@ -32,13 +45,33 @@ describe('SharkTableComponent', () => {
         expect(component.sharkTable.page.totalElements).toEqual(10);
     }));
 
-    it('should  Navigate to the Second Page', async(() => {
+    it('should navigate to the Second Page', async(() => {
         expect(component.sharkTable.page.number).toEqual(0);
 
         component.sharkTable.changePage(1);
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(1);
+    }));
+
+    it('should filter results down to 1', async(() => {
+        expect(component.sharkTable.page.number).toEqual(0);
+
+        component.sharkTable.filterForm.setValue({filter: '10'});
+        fixture.detectChanges();
+
+        expect(component.sharkTable.page.number).toEqual(0);
+        expect(component.sharkTable.page.content).toEqual([{col1: '10', col2: 'b', col3: 'c' }]);
+    }));
+
+    it('should filter the same', async(() => {
+        expect(component.sharkTable.page.number).toEqual(0);
+
+        component.sharkTable.filterForm.setValue({filter: 'c'});
+        fixture.detectChanges();
+
+        expect(component.sharkTable.page.number).toEqual(0);
+        expect(component.sharkTable.page.content).toEqual(testPage);
     }));
 
 });
