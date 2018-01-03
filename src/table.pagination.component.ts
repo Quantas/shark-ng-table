@@ -27,7 +27,7 @@ export class SharkTablePaginationComponent implements OnChanges {
   paginationChange = new EventEmitter<number>();
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('page')) {
+    if (changes.hasOwnProperty('page') && this.page) {
       this.pageCount = Array.from(Array(this.page.totalPages), (x, i) => i);
     }
   }
