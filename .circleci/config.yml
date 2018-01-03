@@ -33,13 +33,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # Run Build
-
-      - run: npm run build
-
-      - store_artifacts:
-          path: ~/repo/dist
-
       # run tests!
       - run: npm test
 
@@ -50,3 +43,9 @@ jobs:
           path: ~/repo/coverage
 
       - run: npm run upload-coverage
+
+      # Run Build
+      - run: npm run build
+
+      - store_artifacts:
+          path: ~/repo/dist
