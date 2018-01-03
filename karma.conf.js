@@ -27,11 +27,17 @@ module.exports = function (config) {
         },
 
         coverageReporter: {
-            type: 'lcov',
+            type: 'lcovonly',
             dir: './coverage/'
         },
 
-        reporters: ['progress', 'karma-typescript', 'coverage'],
+        reporters: ['progress', 'karma-typescript', 'coverage', 'junit'],
+
+        junitReporter: {
+            outputDir: 'coverage/junit',
+            outputFile: 'test-results.xml',
+            useBrowserName: false
+        },
 
         browsers: ['PhantomJS']
     });

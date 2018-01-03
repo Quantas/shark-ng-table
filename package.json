@@ -11,7 +11,8 @@
     "copy": "copyfiles README.md dist/ && copyfiles -f src/style/shark-ng-table.css dist/",
     "build": "npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
     "test": "karma start --single-run",
-    "test:always": "karma start"
+    "test:always": "karma start",
+    "upload-coverage": "codecov"
   },
   "repository": {
     "type": "git",
@@ -37,12 +38,14 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@types/jasmine": "^2.8.3",
+    "codecov": "^3.0.0",
     "copyfiles": "^1.2.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
     "karma-cli": "~1.0.1",
     "karma-jasmine": "~1.1.0",
+    "karma-junit-reporter": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-typescript": "^3.0.9",
     "karma-typescript-angular2-transform": "^1.0.2",
