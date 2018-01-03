@@ -47,7 +47,6 @@
     "karma-typescript": "^3.0.9",
     "karma-typescript-angular2-transform": "^1.0.2",
     "minifier": "^0.8.1",
-    "phantomjs-prebuilt": "^2.1.16",
     "rollup": "^0.52.3",
     "typescript": "2.4.2",
     "uglify-js": "^3.2.2",
