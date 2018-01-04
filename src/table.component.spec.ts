@@ -4,21 +4,9 @@ import { SharkTableComponent } from './table.component';
 import { SharkTableModule } from './table.module';
 import { Component, ViewChild } from '@angular/core';
 import { SharkColumn } from './column';
+import {SharkSortType} from "./sort.type";
 
 describe('SharkTableComponent', () => {
-
-    const testPage = [
-            {col1: '1', col2: 'b', col3: 'c' },
-            {col1: '2', col2: 'b', col3: 'c' },
-            {col1: '3', col2: 'b', col3: 'c' },
-            {col1: '4', col2: 'b', col3: 'c' },
-            {col1: '5', col2: 'b', col3: 'c' },
-            {col1: '6', col2: 'b', col3: 'c' },
-            {col1: '7', col2: 'b', col3: 'c' },
-            {col1: '8', col2: 'b', col3: 'c' },
-            {col1: '9', col2: 'b', col3: 'c' },
-            {col1: '10', col2: 'b', col3: 'c' }
-        ];
 
     let fixture: ComponentFixture<TableTestComponent>;
     let component: TableTestComponent;
@@ -61,16 +49,127 @@ describe('SharkTableComponent', () => {
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);
-        expect(component.sharkTable.page.content).toEqual([{col1: '10', col2: 'b', col3: 'c' }]);
+        expect(component.sharkTable.page.content).toEqual([{col1: '10', col2: 'j', col3: 'c' }]);
     }));
 
     it('should filter the same', async(() => {
+
+        const testPage = [
+            {col1: '1', col2: 'a', col3: 'c' },
+            {col1: '2', col2: 'b', col3: 'c' },
+            {col1: '3', col2: 'c', col3: 'c' },
+            {col1: '4', col2: 'd', col3: 'c' },
+            {col1: '5', col2: 'e', col3: 'c' },
+            {col1: '6', col2: 'f', col3: 'c' },
+            {col1: '7', col2: 'g', col3: 'c' },
+            {col1: '8', col2: 'h', col3: 'c' },
+            {col1: '9', col2: 'i', col3: 'c' },
+            {col1: '10', col2: 'j', col3: 'c' }
+        ];
+
         expect(component.sharkTable.page.number).toEqual(0);
 
         component.sharkTable.filterForm.setValue({filter: 'c'});
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);
+        expect(component.sharkTable.page.content).toEqual(testPage);
+    }));
+
+    it('should change sorts', async(() => {
+        const testPage = [
+            {col1: '1', col2: 'a', col3: 'c' },
+            {col1: '2', col2: 'b', col3: 'c' },
+            {col1: '3', col2: 'c', col3: 'c' },
+            {col1: '4', col2: 'd', col3: 'c' },
+            {col1: '5', col2: 'e', col3: 'c' },
+            {col1: '6', col2: 'f', col3: 'c' },
+            {col1: '7', col2: 'g', col3: 'c' },
+            {col1: '8', col2: 'h', col3: 'c' },
+            {col1: '9', col2: 'i', col3: 'c' },
+            {col1: '10', col2: 'j', col3: 'c' }
+        ];
+
+        component.sharkTable.changeSort('col1', SharkSortType.NONE);
+        fixture.detectChanges();
+        expect(component.sharkTable.page.content).toEqual(testPage);
+
+        component.sharkTable.changeSort('col1', SharkSortType.ASC);
+        fixture.detectChanges();
+        expect(component.sharkTable.page.content).toEqual(testPage.reverse());
+
+        component.sharkTable.changeSort('col1', SharkSortType.DESC);
+        fixture.detectChanges();
+        expect(component.sharkTable.page.content).toEqual(testPage);
+    }));
+
+    it('should sort ASC', async(() => {
+        const testPage = [
+            {col1: '1', col2: 'a', col3: 'c' },
+            {col1: '2', col2: 'b', col3: 'c' },
+            {col1: '3', col2: 'c', col3: 'c' },
+            {col1: '4', col2: 'd', col3: 'c' },
+            {col1: '5', col2: 'e', col3: 'c' },
+            {col1: '6', col2: 'f', col3: 'c' },
+            {col1: '7', col2: 'g', col3: 'c' },
+            {col1: '8', col2: 'h', col3: 'c' },
+            {col1: '9', col2: 'i', col3: 'c' },
+            {col1: '10', col2: 'j', col3: 'c' }
+        ];
+
+        // NONE -> ASC
+        component.sharkTable.changeSort('col1', SharkSortType.NONE);
+        fixture.detectChanges();
+
+        expect(component.sharkTable.page.content).toEqual(testPage);
+    }));
+
+    it('should sort DESC', async(() => {
+        const testPage = [
+            {col1: '1', col2: 'a', col3: 'c' },
+            {col1: '2', col2: 'b', col3: 'c' },
+            {col1: '3', col2: 'c', col3: 'c' },
+            {col1: '4', col2: 'd', col3: 'c' },
+            {col1: '5', col2: 'e', col3: 'c' },
+            {col1: '6', col2: 'f', col3: 'c' },
+            {col1: '7', col2: 'g', col3: 'c' },
+            {col1: '8', col2: 'h', col3: 'c' },
+            {col1: '9', col2: 'i', col3: 'c' },
+            {col1: '10', col2: 'j', col3: 'c' }
+        ];
+
+        // ASC -> DESC
+        component.sharkTable.changeSort('col1', SharkSortType.ASC);
+        fixture.detectChanges();
+        expect(component.sharkTable.page.content).toEqual(testPage.slice().reverse());
+
+        component.sharkTable.changeSort('col1', SharkSortType.DESC);
+        component.sharkTable.changeSort('col2', SharkSortType.ASC);
+        fixture.detectChanges();
+        expect(component.sharkTable.page.content).toEqual(testPage.reverse());
+    }));
+
+    it('should sort NONE', async(() => {
+        const testPage = [
+            {col1: '1', col2: 'a', col3: 'c' },
+            {col1: '2', col2: 'b', col3: 'c' },
+            {col1: '3', col2: 'c', col3: 'c' },
+            {col1: '4', col2: 'd', col3: 'c' },
+            {col1: '5', col2: 'e', col3: 'c' },
+            {col1: '6', col2: 'f', col3: 'c' },
+            {col1: '7', col2: 'g', col3: 'c' },
+            {col1: '8', col2: 'h', col3: 'c' },
+            {col1: '9', col2: 'i', col3: 'c' },
+            {col1: '10', col2: 'j', col3: 'c' }
+        ];
+
+        // DESC -> NONE
+        component.sharkTable.changeSort('col1', SharkSortType.DESC);
+        fixture.detectChanges();
+        expect(component.sharkTable.page.content).toEqual(testPage);
+
+        component.sharkTable.changeSort('col2', SharkSortType.DESC);
+        fixture.detectChanges();
         expect(component.sharkTable.page.content).toEqual(testPage);
     }));
 
@@ -90,16 +189,16 @@ describe('SharkTableComponent', () => {
 export class TableTestComponent {
 
     testData = [
-        {col1: '1', col2: 'b', col3: 'c' },
+        {col1: '1', col2: 'a', col3: 'c' },
         {col1: '2', col2: 'b', col3: 'c' },
-        {col1: '3', col2: 'b', col3: 'c' },
-        {col1: '4', col2: 'b', col3: 'c' },
-        {col1: '5', col2: 'b', col3: 'c' },
-        {col1: '6', col2: 'b', col3: 'c' },
-        {col1: '7', col2: 'b', col3: 'c' },
-        {col1: '8', col2: 'b', col3: 'c' },
-        {col1: '9', col2: 'b', col3: 'c' },
-        {col1: '10', col2: 'b', col3: 'c' }
+        {col1: '3', col2: 'c', col3: 'c' },
+        {col1: '4', col2: 'd', col3: 'c' },
+        {col1: '5', col2: 'e', col3: 'c' },
+        {col1: '6', col2: 'f', col3: 'c' },
+        {col1: '7', col2: 'g', col3: 'c' },
+        {col1: '8', col2: 'h', col3: 'c' },
+        {col1: '9', col2: 'i', col3: 'c' },
+        {col1: '10', col2: 'j', col3: 'c' }
     ];
 
     tableColumns: SharkColumn[] = [
