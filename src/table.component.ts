@@ -14,6 +14,7 @@ import { SharkPageChangeEvent } from './page.change.event';
 import { SharkCurrentSort, SharkSortType } from './sort.type';
 import { SharkTableUtils } from './table.utils';
 import { SharkChildContents } from './child/child.component.contents';
+import {SharkTablePaginationComponent} from "./table.pagination.component";
 
 @Component({
   selector: 'shark-table',
@@ -59,7 +60,7 @@ import { SharkChildContents } from './child/child.component.contents';
               </ng-container>
               </tbody>
           </table>
-          <shark-table-pagination [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
+          <shark-table-pagination #paginationComponent [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
       </div>
   `
 })
@@ -67,6 +68,9 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   @ViewChild('filterForm')
   filterForm: NgForm;
+
+  @ViewChild('paginationComponent')
+  paginationComponent: SharkTablePaginationComponent;
 
   /**
    * The raw table data

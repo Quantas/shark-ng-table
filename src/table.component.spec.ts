@@ -42,6 +42,15 @@ describe('SharkTableComponent', () => {
         expect(component.sharkTable.page.number).toEqual(1);
     }));
 
+    it('should navigate to the Second Page via the pagination component', async(() => {
+        expect(component.sharkTable.page.number).toEqual(0);
+
+        component.sharkTable.paginationComponent.changePage(1);
+        fixture.detectChanges();
+
+        expect(component.sharkTable.page.number).toEqual(1);
+    }));
+
     it('should filter results down to 1', async(() => {
         expect(component.sharkTable.page.number).toEqual(0);
 
