@@ -14,10 +14,11 @@ import { SharkPageChangeEvent } from './page.change.event';
 import { SharkCurrentSort, SharkSortType } from './sort.type';
 import { SharkTableUtils } from './table.utils';
 import { SharkChildContents } from './child/child.component.contents';
-import {SharkTablePaginationComponent} from "./table.pagination.component";
+import { SharkTablePaginationComponent } from "./table.pagination.component";
 
 @Component({
   selector: 'shark-table',
+
   template: `
       <div class="table-wrapper">
           <div class="controls">
@@ -35,30 +36,22 @@ import {SharkTablePaginationComponent} from "./table.pagination.component";
                     </th>
                 </tr>
               </thead>
-              <tbody>
               <ng-container *ngIf="page.content">
-                  <ng-container *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter; let i = index; let e = even; let o = odd;">
-                      <tr [ngClass]="{ odd: o, even: e, rowLink: linkTarget, rowOpen: childShown(i) }" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" [attr.tabindex]="linkTarget ? 0 : ''">
-                          <td class="childButton pointer" *ngIf="childRows" [ngClass]="{ open: childShown(i) }" (click)="toggleChild(i, row)" (keyup.enter)="toggleChild(i, row)" tabindex="0">
-                          </td>
-                          <ng-container *ngFor="let column of columns">
-                              <td [ngClass]="{'right': column.alignRight }" tabindex="0">
-                                  <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
-                              </td>
-                          </ng-container>
-                      </tr>
-                      <tr *ngIf="childRows" [ngClass]="{ odd: o, even: e, rowOpen: childShown(i) }" [hidden]="!childShown(i)">
-                        <td></td>
-                        <td [attr.colspan]="columns.length">
-                          <shark-child [component]="childComponent" [row]="row"></shark-child>
-                        </td>
-                      </tr>
+                  <ng-container *ngIf="childRows">
+                      <tbody shark-table-row *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter; let e = even; let o = odd;"
+                             [columns]="columns"
+                             [childRows]="childRows"
+                             [childComponent]="childComponent"
+                             [linkTarget]="linkTarget" [linkKey]="linkKey"
+                             [row]="row" [odd]="o" [even]="e"
+                      ></tbody>
                   </ng-container>
               </ng-container>
               <ng-container *ngIf="!page.content || page.content.length == 0">
-                  <tr><td [attr.colspan]="columns.length">This table contains no rows</td></tr>
+                  <tbody>
+                    <tr><td [attr.colspan]="columns.length">This table contains no rows</td></tr>
+                  </tbody>
               </ng-container>
-              </tbody>
           </table>
           <shark-table-pagination #paginationComponent [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
       </div>
@@ -197,8 +190,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   private dataSubscription: Subscription;
 
-  private openChildren: number[] = [];
-
   constructor(private router: Router, private tableUtils: SharkTableUtils) {}
 
   ngOnInit(): void {
@@ -247,8 +238,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   changeSort(columnProperty: string, sortType: SharkSortType): void {
-    this.closeChildren();
-
     if (this.sortable) {
       this.columns.forEach((column: SharkColumn) => {
 
@@ -290,30 +279,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         filter: this.filter
       });
     }
-  }
-
-  rowClick(row: Object): void {
-    if (this.linkTarget && this.linkKey) {
-      this.router.navigate([this.linkTarget, this.tableUtils.findValue(row, this.linkKey)]);
-    }
-  }
-
-  toggleChild(index: number, row: Object): void {
-    const arrayIndex = this.openChildren.indexOf(index);
-
-    if (arrayIndex > -1) {
-      this.openChildren.splice(arrayIndex, 1);
-    } else {
-      this.openChildren.push(index);
-    }
-  }
-
-  childShown(rowIndex: number): boolean {
-    return this.openChildren.indexOf(rowIndex) > -1;
-  }
-
-  private closeChildren(): void {
-    this.openChildren = [];
   }
 
   private generateSortString(): string {
@@ -380,8 +345,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private updatePage(): void {
     if (this.data) {
 
-      this.closeChildren();
-
       if (this.data.constructor === Array) {
         this.setupPageArray();
       } else if (this.data.constructor === Observable) {
@@ -420,8 +383,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private calculateLocalPage(event: SharkPageChangeEvent): void {
-      this.closeChildren();
-
       if (this.localFilter && event.filter && event.filter.length > 0) {
         const filteredContent = this.tableUtils.filter(this.data, this.columns, event.filter);
         const currentPage = this.localPagingSize * event.pageNo;
