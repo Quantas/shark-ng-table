@@ -11,6 +11,10 @@
 
 A Table for Angular that supports filtering/sorting/pagination
 
+## Changelog
+
+[CHANGELOG](CHANGELOG.md)
+
 ## Demo
 
 We have a running example over on [Plunker](https://embed.plnkr.co/Xus5zm/)
