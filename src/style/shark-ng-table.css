@@ -56,23 +56,27 @@ th {
 }
 
 .childButton:after {
-    content: '\25b6';
+    content: '\25B6';
 }
 
 .open:after {
-    content: '\25bc'
+    content: '\25BC'
 }
 
 .pointer {
     cursor: pointer;
 }
 
-.asc:after {
+.sorting.asc:after {
     content: '\25B2';
 }
 
-.desc:after {
+.sorting.desc:after {
     content: '\25BC';
+}
+
+.sorting:after {
+    content: '\21D5'
 }
 
 /* Pagination */

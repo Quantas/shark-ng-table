@@ -30,7 +30,7 @@ import { SharkChildContents } from './child/child.component.contents';
                 <tr>
                     <th *ngIf="childRows"></th>
                     <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }" *ngFor="let column of columns" (click)="changeSort(column.property, column.sortType)" (keyup.enter)="changeSort(column.property, column.sortType)" role="button" tabindex="0">
-                        {{ column.header }} <span [ngClass]="{ 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
+                        {{ column.header }} <span class="sorting" [ngClass]="{ 'none': column.sortType === 0, 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
                     </th>
                 </tr>
               </thead>
