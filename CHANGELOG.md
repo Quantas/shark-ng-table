@@ -1,3 +1,21 @@
+<a name="0.0.17"></a>
+## [0.0.17](https://github.com/Quantas/shark-ng-table/compare/0.0.16...0.0.17) (2018-01-04)
+
+
+### Bug Fixes
+
+* Add SharkTableCellContents to index.ts ([7e3e015](https://github.com/Quantas/shark-ng-table/commit/7e3e015)), closes [#21](https://github.com/Quantas/shark-ng-table/issues/21)
+
+
+### Features
+
+* **style:** Add Style Info to README and update arrows ([37ccf1c](https://github.com/Quantas/shark-ng-table/commit/37ccf1c))
+* Create Initial CHANGELOG.md and setup plugin ([8b62adb](https://github.com/Quantas/shark-ng-table/commit/8b62adb)), closes [#18](https://github.com/Quantas/shark-ng-table/issues/18)
+* Create Table Row Component ([de10f95](https://github.com/Quantas/shark-ng-table/commit/de10f95)), closes [#22](https://github.com/Quantas/shark-ng-table/issues/22)
+* Unit testing for the shark-table-pagination component ([fbe4f12](https://github.com/Quantas/shark-ng-table/commit/fbe4f12))
+
+
+
 <a name="0.0.16"></a>
 ## [0.0.16](https://github.com/Quantas/shark-ng-table/compare/0.0.15...0.0.16) (2018-01-03)
 
