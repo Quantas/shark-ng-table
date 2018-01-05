@@ -1,3 +1,21 @@
+<a name="0.0.18"></a>
+## [0.0.18](https://github.com/Quantas/shark-ng-table/compare/0.0.17...0.0.18) (2018-01-05)
+
+
+### Bug Fixes
+
+* **accessibility:** Update role attrs, tabindex and click handlers ([ede10b5](https://github.com/Quantas/shark-ng-table/commit/ede10b5)), closes [#24](https://github.com/Quantas/shark-ng-table/issues/24) [#25](https://github.com/Quantas/shark-ng-table/issues/25) [#26](https://github.com/Quantas/shark-ng-table/issues/26)
+* **rows:** Make sure rows are shown regardless of childRows var ([974c73d](https://github.com/Quantas/shark-ng-table/commit/974c73d)), closes [#23](https://github.com/Quantas/shark-ng-table/issues/23)
+
+
+### Features
+
+* extract header into separate component ([d56610c](https://github.com/Quantas/shark-ng-table/commit/d56610c))
+* starting the developer documentation ([4fa0af9](https://github.com/Quantas/shark-ng-table/commit/4fa0af9))
+* Switch to Coveralls, Use CircleCI Only ([e25b226](https://github.com/Quantas/shark-ng-table/commit/e25b226))
+
+
+
 <a name="0.0.17"></a>
 ## [0.0.17](https://github.com/Quantas/shark-ng-table/compare/0.0.16...0.0.17) (2018-01-04)
 

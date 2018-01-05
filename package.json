@@ -1,6 +1,6 @@
 {
   "name": "shark-ng-table",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A Table for Angular that supports filtering/sorting/pagination",
   "main": "index.js",
   "scripts": {
