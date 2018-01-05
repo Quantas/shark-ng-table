@@ -11,8 +11,7 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            '**/!(*.spec).ts': ['karma-typescript', 'coverage'],
-            '**/**.spec.ts': ['karma-typescript']
+            '**/*.ts': ['karma-typescript']
         },
 
         karmaTypescriptConfig: {
@@ -24,15 +23,17 @@ module.exports = function (config) {
             },
             compilerOptions: {
                 lib: ['ES2015', 'DOM']
+            },
+            reports: {
+                "text-summary": "",
+                "lcovonly": {
+                    "directory": "coverage",
+                    "filename": "lcov.info"
+                }
             }
         },
 
-        coverageReporter: {
-            type: 'lcovonly',
-            dir: './coverage/'
-        },
-
-        reporters: ['progress', 'karma-typescript', 'coverage', 'junit'],
+        reporters: ['progress', 'karma-typescript', 'coverage', 'coveralls', 'junit'],
 
         junitReporter: {
             outputDir: 'coverage/junit',

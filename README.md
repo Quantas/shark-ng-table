@@ -1,13 +1,12 @@
-[![Build Status](https://travis-ci.org/Quantas/shark-ng-table.svg?branch=master)](https://travis-ci.org/Quantas/shark-ng-table)
+# shark-ng-table
+
 [![CircleCI](https://circleci.com/gh/Quantas/shark-ng-table.svg?style=shield)](https://circleci.com/gh/Quantas/shark-ng-table)
+[![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
 [![Dependency Status][david-badge]][david-badge-url]
-[![codecov](https://codecov.io/gh/Quantas/shark-ng-table/branch/master/graph/badge.svg)](https://codecov.io/gh/Quantas/shark-ng-table)
 
 [![npm version](https://badge.fury.io/js/shark-ng-table.svg)][npm-badge-url]
 [![npm](https://img.shields.io/npm/l/shark-ng-table.svg)][npm-badge-url]
 [![npm](https://img.shields.io/npm/dm/shark-ng-table.svg)][npm-badge-url]
-
-# shark-ng-table
 
 A Table for Angular that supports filtering/sorting/pagination
 

@@ -33,7 +33,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
+      # Run Tests!
       - run: npm test
 
       - store_test_results:
@@ -42,9 +42,7 @@ jobs:
       - store_artifacts:
           path: ~/repo/coverage
 
-      - run: npm run upload-coverage
-
-      # Run Build
+      # Run Build!
       - run: npm run build
 
       - store_artifacts:
