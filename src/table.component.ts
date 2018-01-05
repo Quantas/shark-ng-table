@@ -27,13 +27,31 @@ import { SharkTablePaginationComponent } from "./table.pagination.component";
               </form>
               <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
           </div>
-          <table *ngIf="page">
+          <table *ngIf="page" role="grid">
               <thead>
-                <tr>
+                <tr role="row">
                     <th *ngIf="childRows"></th>
-                    <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }" *ngFor="let column of columns" (click)="changeSort(column.property, column.sortType)" (keyup.enter)="changeSort(column.property, column.sortType)" role="button" tabindex="0">
-                        {{ column.header }} <span class="sorting" [ngClass]="{ 'none': column.sortType === 0, 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
-                    </th>
+                    <ng-container *ngIf="sortable">
+                        <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }"
+                            *ngFor="let column of columns"
+                            (click)="changeSort(column.property, column.sortType)"
+                            (keyup.enter)="changeSort(column.property, column.sortType)"
+                            scope="col"
+                            role="columnheader"
+                            tabindex="0"
+                        >
+                            {{ column.header }} <span class="sorting" [ngClass]="{ 'none': column.sortType === 0, 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
+                        </th>    
+                    </ng-container>
+                    <ng-container *ngIf="!sortable">
+                        <th [ngClass]="{'right': column.alignRight }"
+                            *ngFor="let column of columns"
+                            scope="col"
+                            role="columnheader"
+                        >
+                            {{ column.header }}
+                        </th>
+                    </ng-container>
                 </tr>
               </thead>
               <ng-container *ngIf="page.content">

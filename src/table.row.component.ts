@@ -9,19 +9,19 @@ import { SharkTableUtils } from './table.utils';
  */
 @Component({
     selector: '[shark-table-row]',
-    template: `
-        <tr [ngClass]="{ odd: odd, even: even, rowLink: linkTarget, rowOpen: childShown }" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" [attr.tabindex]="linkTarget ? 0 : ''">
-            <td class="childButton pointer" *ngIf="childRows" [ngClass]="{ open: childShown }" (click)="toggleChild()" (keyup.enter)="toggleChild()" tabindex="0">
+    template: `        
+        <tr role="row" [ngClass]="{ odd: odd, even: even, rowLink: linkTarget, rowOpen: childShown }" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" [attr.tabindex]="linkTarget ? 0 : ''">
+            <td role="gridcell" class="childButton pointer" *ngIf="childRows" [ngClass]="{ open: childShown }" (click)="toggleChild()" (keyup.enter)="toggleChild()" tabindex="0">
             </td>
             <ng-container *ngFor="let column of columns">
-                <td [ngClass]="{'right': column.alignRight }" tabindex="0">
+                <td role="gridcell" [ngClass]="{'right': column.alignRight }">
                     <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
                 </td>
             </ng-container>
         </tr>
         <tr *ngIf="childRows" [ngClass]="{ odd: odd, even: even, rowOpen: childShown }" [hidden]="!childShown">
             <td></td>
-            <td [attr.colspan]="columns.length">
+            <td [attr.colspan]="columns.length" role="gridcell">
                 <shark-child [component]="childComponent" [row]="row"></shark-child>
             </td>
         </tr>
