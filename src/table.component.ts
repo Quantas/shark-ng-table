@@ -14,7 +14,7 @@ import { SharkPageChangeEvent } from './page.change.event';
 import { SharkCurrentSort, SharkSortType } from './sort.type';
 import { SharkTableUtils } from './table.utils';
 import { SharkChildContents } from './child/child.component.contents';
-import { SharkTablePaginationComponent } from "./table.pagination.component";
+import { SharkTablePaginationComponent } from './table.pagination.component';
 
 @Component({
   selector: 'shark-table',
@@ -28,32 +28,15 @@ import { SharkTablePaginationComponent } from "./table.pagination.component";
               <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
           </div>
           <table *ngIf="page" role="grid">
-              <thead>
-                <tr role="row">
-                    <th *ngIf="childRows"></th>
-                    <ng-container *ngIf="sortable">
-                        <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }"
-                            *ngFor="let column of columns"
-                            (click)="changeSort(column.property, column.sortType)"
-                            (keyup.enter)="changeSort(column.property, column.sortType)"
-                            scope="col"
-                            role="columnheader"
-                            tabindex="0"
-                        >
-                            {{ column.header }} <span class="sorting" [ngClass]="{ 'none': column.sortType === 0, 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
-                        </th>    
-                    </ng-container>
-                    <ng-container *ngIf="!sortable">
-                        <th [ngClass]="{'right': column.alignRight }"
-                            *ngFor="let column of columns"
-                            scope="col"
-                            role="columnheader"
-                        >
-                            {{ column.header }}
-                        </th>
-                    </ng-container>
-                </tr>
-              </thead>
+              <thead shark-table-header #sharkTableHeader
+                     [sortable]="sortable"
+                     [columns]="columns"
+                     [childRows]="childRows"
+                     [refreshButton]="refreshButton"
+                     [page]="page"
+                     [filter]="filter"
+                     (sortChange)="changeSort($event.property, $event.sortType)"
+              ></thead>
               <ng-container *ngIf="page.content">
                   <tbody shark-table-row *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter; let e = even; let o = odd"
                          [columns]="columns"
