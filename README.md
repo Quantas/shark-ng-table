@@ -2,11 +2,13 @@
 
 [![CircleCI](https://circleci.com/gh/Quantas/shark-ng-table.svg?style=shield)](https://circleci.com/gh/Quantas/shark-ng-table)
 [![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
-[![Dependency Status][david-badge]][david-badge-url]
+[![Dependency Status](https://david-dm.org/quantas/shark-ng-table.svg)](https://david-dm.org/quantas/shark-ng-table)
 
 [![npm version](https://badge.fury.io/js/shark-ng-table.svg)][npm-badge-url]
 [![npm](https://img.shields.io/npm/l/shark-ng-table.svg)][npm-badge-url]
 [![npm](https://img.shields.io/npm/dm/shark-ng-table.svg)][npm-badge-url]
+
+[npm-badge-url]: https://www.npmjs.com/package/shark-ng-table
 
 A Table for Angular that supports filtering/sorting/pagination
 
@@ -196,8 +198,25 @@ export class MyComponent {
 }
 ```
 
-## TODO - More Documentation!
+## shark-ng-table Development
 
-[david-badge]: https://david-dm.org/quantas/shark-ng-table.svg
-[david-badge-url]: https://david-dm.org/quantas/shark-ng-table
-[npm-badge-url]: https://www.npmjs.com/package/shark-ng-table
+Typically we generate a new project with the Angular CLI and then link the `dist` directory into it as follows:
+
+```bash
+npm link ../shark-ng-table/dist
+```
+
+Additionally, in the .angular-cli.json file you need to make sure `defaults.build.preserveSymlinks` is set to `true` as in this example:
+
+```json
+  "defaults": {
+    "styleExt": "css",
+    "component": {},
+    "build": {
+      "preserveSymlinks": true
+    }
+```
+
+Using NPM link on the dist directory means your test application will only receive updates after you run `npm run build` from the shark-ng-table project.
+
+## TODO - More Documentation!
