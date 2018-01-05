@@ -37,15 +37,13 @@ import { SharkTablePaginationComponent } from "./table.pagination.component";
                 </tr>
               </thead>
               <ng-container *ngIf="page.content">
-                  <ng-container *ngIf="childRows">
-                      <tbody shark-table-row *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter; let e = even; let o = odd;"
-                             [columns]="columns"
-                             [childRows]="childRows"
-                             [childComponent]="childComponent"
-                             [linkTarget]="linkTarget" [linkKey]="linkKey"
-                             [row]="row" [odd]="o" [even]="e"
-                      ></tbody>
-                  </ng-container>
+                  <tbody shark-table-row *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter; let e = even; let o = odd"
+                         [columns]="columns"
+                         [childRows]="childRows"
+                         [childComponent]="childComponent"
+                         [linkTarget]="linkTarget" [linkKey]="linkKey"
+                         [row]="row" [odd]="o" [even]="e"
+                  ></tbody>
               </ng-container>
               <ng-container *ngIf="!page.content || page.content.length == 0">
                   <tbody>
