@@ -19,7 +19,7 @@ export class SharkTableUtils {
     return items.filter((row) => {
       let found = false;
 
-      if (columnFiltering) {
+      if (columnFiltering && this.hasFilter(cols)) {
           let rowFound = false;
 
           cols.forEach((col: SharkColumn) => {
@@ -35,11 +35,12 @@ export class SharkTableUtils {
           });
 
           found = rowFound;
-      } else {
+      } else if (columnFiltering && !this.hasFilter(cols)) {
+          return true;
+      } else if (filterText) {
           cols.forEach((col: SharkColumn) => {
               const value: string = this.retrieveCell(row, col) + '';
-              const search = filterText;
-              if (search && value && (value.toLowerCase().indexOf(search.toLowerCase()) !== -1)) {
+              if (filterText && value && (value.toLowerCase().indexOf(filterText.toLowerCase()) !== -1)) {
                   found = true;
               }
           });
