@@ -1,69 +1,74 @@
-import {async} from '@angular/core/testing';
-import {SharkColumn} from './column';
-import {SharkTableUtils} from './table.utils';
-import {UpperCasePipe} from '@angular/common';
+import { async } from '@angular/core/testing';
+import { SharkColumn } from './column';
+import { SharkTableUtils } from './table.utils';
+import { UpperCasePipe } from '@angular/common';
 
 describe('SharkTableUtils', () => {
 
-    xit('should apply a pipe', async(() => {
+  // FIXME: Type disappears during karma testing in this context
+  xit('should apply a pipe', async(() => {
 
-        const data = [
-            { col1: 'a', col2: '1'},
-            { col1: 'b', col2: '2'},
-            { col1: 'c', col2: '3'}
-        ];
+    const data = [
+      {col1: 'a', col2: '1'},
+      {col1: 'b', col2: '2'},
+      {col1: 'c', col2: '3'}
+    ];
 
-        const columns: SharkColumn[] = [
-            {
-                header: 'Column 1',
-                property: 'col1',
-                pipe: UpperCasePipe,
-                filter: ''
-            },
-            {
-                header: 'Column 2',
-                property: 'col2',
-                filter: ''
-            }
-        ];
+    const columns: SharkColumn[] = [
+      {
+        header: 'Column 1',
+        property: 'col1',
+        pipe: UpperCasePipe,
+        filter: ''
+      },
+      {
+        header: 'Column 2',
+        property: 'col2',
+        filter: ''
+      }
+    ];
 
-        const tableUtils = new SharkTableUtils();
+    const tableUtils = new SharkTableUtils();
 
-        console.log(tableUtils.filter(data, columns, true, ''));
+    expect(tableUtils.filter(data, columns, true, ''))
+      .toEqual([
+        {col1: 'A', col2: '1'},
+        {col1: 'B', col2: '2'},
+        {col1: 'C', col2: '3'}
+      ]);
 
-        expect(tableUtils.filter(data, columns, true, '')).toEqual(data);
+  }));
 
-    }));
+  it('should filter by column', async(() => {
 
-    it('should filter by column', async(() => {
+    const data = [
+      {col1: '1', col2: 'a', col3: 'z'},
+      {col1: '2', col2: 'b', col3: 'y'},
+      {col1: '3', col2: 'c', col3: 'x'}
+    ];
 
-        const data = [
-            { col1: '1', col2: 'a', col3: 'z'},
-            { col1: '2', col2: 'b', col3: 'y'},
-            { col1: '3', col2: 'c', col3: 'x'}
-        ];
+    const columns: SharkColumn[] = [
+      {
+        header: 'Column 1',
+        property: 'col1',
+        filter: '2'
+      },
+      {
+        header: 'Column 2',
+        property: 'col2',
+        filter: ''
+      },
+      {
+        header: 'Column 3',
+        property: 'col3',
+        filter: ''
+      }
+    ];
 
-        const columns: SharkColumn[] = [
-            {
-                header: 'Column 1',
-                property: 'col1',
-                filter: '2'
-            },
-            {
-                header: 'Column 2',
-                property: 'col2',
-                filter: ''
-            },
-            {
-                header: 'Column 3',
-                property: 'col3',
-                filter: ''
-            }
-        ];
+    const tableUtils = new SharkTableUtils();
 
-        const tableUtils = new SharkTableUtils();
-
-        expect(tableUtils.filter(data, columns, true, '')).toEqual([{ col1: '2', col2: 'b', col3: 'y'}]);
-    }));
+    expect(tableUtils.filter(data, columns, true, ''))
+      .toEqual([ {col1: '2', col2: 'b', col3: 'y'} ]);
+  }));
 
 });
