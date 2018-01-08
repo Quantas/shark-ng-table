@@ -6,6 +6,15 @@ import {Page} from './page';
 @Component({
     selector: '[shark-table-header]',
     template: `
+        <tr role="row" *ngIf="columnFiltering && filterable">
+            <th *ngIf="childRows"></th>
+            <th *ngFor="let column of columns; let i = index"
+                scope="col"
+                role="columnheader"
+                >
+                <input type="text" [name]="columns[i]" [id]="columns[i]" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
+            </th>
+        </tr>
         <tr role="row">
             <th *ngIf="childRows"></th>
             <ng-container *ngIf="sortable">
@@ -50,7 +59,10 @@ export class SharkTableHeaderComponent {
     page: Page;
 
     @Input()
-    filter: string;
+    filterable: boolean;
+
+    @Input()
+    columnFiltering;
 
     /**
      * {@link SharkSortChangeEvent} events are emitted from here
@@ -59,11 +71,18 @@ export class SharkTableHeaderComponent {
     @Output()
     sortChange = new EventEmitter<SharkSortChangeEvent>();
 
+    @Output()
+    filterChange = new EventEmitter<SharkColumn[]>();
+
     changeSort(property: string, sortType: SharkSortType): void {
         this.sortChange.emit({
             property: property,
             sortType: sortType
         })
+    }
+
+    fireFilterChange(): void {
+        this.filterChange.emit(this.columns);
     }
 }
 

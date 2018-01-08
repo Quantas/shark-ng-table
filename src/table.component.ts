@@ -18,12 +18,11 @@ import { SharkTablePaginationComponent } from './table.pagination.component';
 
 @Component({
   selector: 'shark-table',
-
   template: `
       <div class="table-wrapper">
           <div class="controls">
               <form #filterForm="ngForm">
-                  <input *ngIf="filterable" type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
+                  <input *ngIf="filterable && !columnFiltering" type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
               </form>
               <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
           </div>
@@ -34,11 +33,13 @@ import { SharkTablePaginationComponent } from './table.pagination.component';
                      [childRows]="childRows"
                      [refreshButton]="refreshButton"
                      [page]="page"
-                     [filter]="filter"
+                     [filterable]="filterable"
+                     [columnFiltering]="columnFiltering"
                      (sortChange)="changeSort($event.property, $event.sortType)"
+                     (filterChange)="columnFilteringChange()"
               ></thead>
               <ng-container *ngIf="page.content">
-                  <tbody shark-table-row *ngFor="let row of page.content | localfilter:columns:localFilter:localPaging:filter; let e = even; let o = odd"
+                  <tbody shark-table-row *ngFor="let row of (page.content | localfilter:columns:localFilter:localPaging:columnFiltering:filter); let e = even; let o = odd"
                          [columns]="columns"
                          [childRows]="childRows"
                          [childComponent]="childComponent"
@@ -101,6 +102,9 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   filterable = true;
+
+  @Input()
+  columnFiltering = false;
 
   /**
    * Enables client-side filtering as opposed to just emitting a `SharkPageChangeEvent`
@@ -202,9 +206,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const change = changes['data'];
-    if (change && !change.isFirstChange()) {
+    const dataChange = changes['data'];
+    const columnChange = changes['columns'];
+
+    if (dataChange && !dataChange.isFirstChange()) {
       this.updatePage();
+    } else if (columnChange && !columnChange.isFirstChange()) {
+        this.emitCurrent();
     }
   }
 
@@ -221,6 +229,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   emitCurrent(): void {
     this.pageChange.emit({
       pageNo: this.page.number,
+      columns: this.columns,
       sortString: this.generateSortString(),
       sorts: this.generateSortArray(),
       filter: this.filter
@@ -230,6 +239,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   changePage(pageNo: number): void {
     this.pageChange.emit({
       pageNo: pageNo,
+      columns: this.columns,
       sortString: this.generateSortString(),
       sorts: this.generateSortArray(),
       filter: this.filter
@@ -273,11 +283,22 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       this.pageChange.emit({
         pageNo: this.page.number,
+        columns: this.columns,
         sortString: this.generateSortString(),
         sorts: sorts,
         filter: this.filter
       });
     }
+  }
+
+  columnFilteringChange(): void {
+      this.pageChange.emit({
+         pageNo: this.page.number,
+         columns: this.columns,
+         sortString: this.generateSortString(),
+         sorts: this.generateSortArray(),
+         filter: this.filter
+      });
   }
 
   private generateSortString(): string {
@@ -382,8 +403,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private calculateLocalPage(event: SharkPageChangeEvent): void {
-      if (this.localFilter && event.filter && event.filter.length > 0) {
-        const filteredContent = this.tableUtils.filter(this.data, this.columns, event.filter);
+      if (this.localFilter && ((event.filter && event.filter.length > 0)) || this.tableUtils.hasFilter(event.columns)) {
+        const filteredContent = this.tableUtils.filter(this.data, this.columns, this.columnFiltering, event.filter);
         const currentPage = this.localPagingSize * event.pageNo;
         const pageNo = currentPage > this.localPagingSize || filteredContent.length < this.localPagingSize ? 0 : event.pageNo;
         const sliceRange = this.localPagingSize * pageNo + this.localPagingSize;

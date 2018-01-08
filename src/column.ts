@@ -11,4 +11,5 @@ export interface SharkColumn {
   pipeArgs?: any[];
   sortType?: SharkSortType;
   alignRight?: boolean;
+  filter?: string;
 }
