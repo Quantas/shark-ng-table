@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, Input, ViewChild } from '@angular/core';
-import { SharkColumn } from './column';
-import { SharkTableUtils } from './table.utils';
+import { SharkColumn } from '../column';
+import { SharkTableUtils } from '../table.utils';
 import { SharkTableCellContentsDirective } from './table.cell.contents.directive';
 import { SharkTableCellContents } from './table.cell.contents';
 

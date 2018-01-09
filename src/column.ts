@@ -1,6 +1,6 @@
 import { PipeTransform, Type } from '@angular/core';
 import { SharkSortType } from './sort.type';
-import { SharkTableCellContents } from './table.cell.contents';
+import { SharkTableCellContents } from './cell/table.cell.contents';
 
 /**
  * A column definition for shark-ng-table
