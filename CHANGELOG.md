@@ -1,3 +1,21 @@
+<a name="0.0.19"></a>
+## [0.0.19](https://github.com/Quantas/shark-ng-table/compare/0.0.18...0.0.19) (2018-01-09)
+
+
+### Bug Fixes
+
+* **filtering:** Correct bug in multiple column filtering  ([a8c0bb6](https://github.com/Quantas/shark-ng-table/commit/a8c0bb6)), closes [#30](https://github.com/Quantas/shark-ng-table/issues/30)
+
+
+### Features
+
+* **filtering:** Add Column Specific Filtering ([12402b9](https://github.com/Quantas/shark-ng-table/commit/12402b9)), closes [#27](https://github.com/Quantas/shark-ng-table/issues/27)
+* **footer:** Add some table footer elements ([3bf6294](https://github.com/Quantas/shark-ng-table/commit/3bf6294)), closes [#28](https://github.com/Quantas/shark-ng-table/issues/28)
+* Make local filtering and local paging default ([109fe11](https://github.com/Quantas/shark-ng-table/commit/109fe11))
+* Refactor table cell classes into a folder ([3de9341](https://github.com/Quantas/shark-ng-table/commit/3de9341))
+
+
+
 <a name="0.0.18"></a>
 ## [0.0.18](https://github.com/Quantas/shark-ng-table/compare/0.0.17...0.0.18) (2018-01-05)
 
