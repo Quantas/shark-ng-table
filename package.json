@@ -4,12 +4,13 @@
   "description": "A Table for Angular that supports filtering/sorting/pagination",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf dist/bundles dist/src dist/README.md dist/shark-ng-table.css dist/shark-ng-table.min.css",
     "transpile": "ngc",
     "package": "rollup -c",
     "minify": "uglifyjs dist/bundles/sharktable.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/sharktable.umd.min.js",
     "minify-css": "minify --output dist/shark-ng-table.min.css src/style/shark-ng-table.css",
     "copy": "copyfiles README.md dist/ && copyfiles -f src/style/shark-ng-table.css dist/",
-    "build": "npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
+    "build": "npm run clean && npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
     "test": "karma start --single-run",
     "test:always": "karma start",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
@@ -51,6 +52,7 @@
     "karma-typescript": "^3.0.9",
     "karma-typescript-angular2-transform": "^1.0.2",
     "minifier": "^0.8.1",
+    "rimraf": "^2.6.2",
     "rollup": "^0.52.3",
     "typescript": "2.4.2",
     "uglify-js": "^3.2.2",
