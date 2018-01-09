@@ -13,6 +13,7 @@ import { SharkChildComponent } from './child/child.component';
 import { SharkChildContentsDirective } from './child/child.component.directive';
 import { SharkTableRowComponent } from './table.row.component';
 import { SharkTableHeaderComponent } from './table.header.component';
+import { SharkTableFooterComponent } from './table.footer.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { SharkTableHeaderComponent } from './table.header.component';
     SharkTableCellComponent,
     SharkTableCellContentsDirective,
     SharkTableHeaderComponent,
+    SharkTableFooterComponent,
     SharkTablePaginationComponent,
     SharkTableRowComponent,
     LocalFilterPipe

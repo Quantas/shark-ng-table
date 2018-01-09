@@ -8,11 +8,9 @@ import {Page} from './page';
     template: `
         <tr role="row" *ngIf="columnFiltering && filterable">
             <th *ngIf="childRows"></th>
-            <th *ngFor="let column of columns; let i = index"
-                scope="col"
-                role="columnheader"
-                >
-                <input type="text" [name]="columns[i]" [id]="columns[i]" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
+            <th *ngFor="let column of columns; let i = index" scope="col" role="columnheader">
+                <label [for]="'column' + i" class="screen-reader">{{ column.header }} filter</label>
+                <input type="text" name="column{{i}}" [id]="'column' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
             </th>
         </tr>
         <tr role="row">
@@ -22,19 +20,12 @@ import {Page} from './page';
                     *ngFor="let column of columns"
                     (click)="changeSort(column.property, column.sortType)"
                     (keyup.enter)="changeSort(column.property, column.sortType)"
-                    scope="col"
-                    role="columnheader"
-                    tabindex="0"
-                >
+                    scope="col" role="columnheader" tabindex="0">
                     {{ column.header }} <span class="sorting" [ngClass]="{ 'none': column.sortType === 0, 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
                 </th>
             </ng-container>
             <ng-container *ngIf="!sortable">
-                <th [ngClass]="{'right': column.alignRight }"
-                    *ngFor="let column of columns"
-                    scope="col"
-                    role="columnheader"
-                >
+                <th [ngClass]="{'right': column.alignRight }" *ngFor="let column of columns" scope="col" role="columnheader">
                     {{ column.header }}
                 </th>
             </ng-container>

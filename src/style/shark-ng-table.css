@@ -107,3 +107,13 @@ th {
     border: 1px solid #ddd;
     transition: background-color .3s;
 }
+
+/* Accessibility */
+.screen-reader {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

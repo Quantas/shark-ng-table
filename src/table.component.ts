@@ -22,6 +22,7 @@ import { SharkTablePaginationComponent } from './table.pagination.component';
       <div class="table-wrapper">
           <div class="controls">
               <form #filterForm="ngForm">
+                  <label for="filter" class="screen-reader">Filter Results (all column search)</label>
                   <input *ngIf="filterable && !columnFiltering" type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
               </form>
               <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
@@ -52,6 +53,18 @@ import { SharkTablePaginationComponent } from './table.pagination.component';
                     <tr><td [attr.colspan]="columns.length">This table contains no rows</td></tr>
                   </tbody>
               </ng-container>
+              <tfoot shark-table-footer *ngIf="footer" [page]="page" [columns]="columns" [filter]="filter" [childRows]="childRows"></tfoot>
+              <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
+                     [sortable]="sortable"
+                     [columns]="columns"
+                     [childRows]="childRows"
+                     [refreshButton]="refreshButton"
+                     [page]="page"
+                     [filterable]="filterable"
+                     [columnFiltering]="columnFiltering && footerColumnFiltering"
+                     (sortChange)="changeSort($event.property, $event.sortType)"
+                     (filterChange)="columnFilteringChange()"
+              ></tfoot>
           </table>
           <shark-table-pagination #paginationComponent [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
       </div>
@@ -183,13 +196,37 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @Output()
   pageChange = new EventEmitter<SharkPageChangeEvent>();
 
-  page: Page;
-
   /**
    * The current filter value
    */
   @Input()
   filter: string;
+
+  /**
+   * Show the footer with 'Showing x through y of z rows`
+   *
+   * @type {boolean}
+   */
+  @Input()
+  footer = true;
+
+  /**
+   * Repeat the headers in the footer
+   *
+   * @type {boolean}
+   */
+  @Input()
+  headersInFooter = false;
+
+  /**
+   * Show the columnFiltering elements in the footer
+   *
+   * @type {boolean}
+   */
+  @Input()
+  footerColumnFiltering = false;
+
+  page: Page;
 
   private dataSubscription: Subscription;
 
