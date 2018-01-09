@@ -3,5 +3,9 @@
  * child row.
  */
 export interface SharkChildContents {
-    data: any;
+
+  /**
+   * All of the data for this row
+   */
+  data: any;
 }
