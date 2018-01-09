@@ -116,6 +116,10 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   filterable = true;
 
+  /**
+   * Enables column specific filter boxes
+   * @type {boolean}
+   */
   @Input()
   columnFiltering = false;
 
