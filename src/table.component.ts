@@ -128,14 +128,14 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    * @type {boolean}
    */
   @Input()
-  localFilter = false;
+  localFilter = true;
 
   /**
    * Enables client-side pagination as opposed to just emitting a `SharkPageChangeEvent`
    * @type {boolean}
    */
   @Input()
-  localPaging = false;
+  localPaging = true;
 
   /**
    * The size of each page
