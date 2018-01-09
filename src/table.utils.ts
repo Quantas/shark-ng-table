@@ -22,24 +22,27 @@ export class SharkTableUtils {
       if (columnFiltering && this.hasFilter(cols)) {
           let rowFound = false;
 
-          cols.forEach((col: SharkColumn) => {
-              const value: string = this.retrieveCell(row, col) + '';
-              const search = col.filter ? col.filter : '';
-              if (search.length > 0) {
-                  if (value && (value.toLowerCase().indexOf(search.toLowerCase()) !== -1)) {
-                      rowFound = true;
-                  } else {
-                      rowFound = false;
-                  }
+          // Not using forEach here because we needed to break when a false match occurs during column filtering
+          for (const col of cols) {
+            const value = this.retrieveCell(row, col) + '';
+            const search = col.filter ? col.filter : '';
+
+            if (search.length > 0) {
+              if (value && (value.toLowerCase().indexOf(search.toLowerCase()) !== -1)) {
+                rowFound = true;
+              } else {
+                rowFound = false;
+                break;
               }
-          });
+            }
+          }
 
           found = rowFound;
       } else if (columnFiltering && !this.hasFilter(cols)) {
           return true;
       } else if (filterText) {
           cols.forEach((col: SharkColumn) => {
-              const value: string = this.retrieveCell(row, col) + '';
+              const value = this.retrieveCell(row, col) + '';
               if (filterText && value && (value.toLowerCase().indexOf(filterText.toLowerCase()) !== -1)) {
                   found = true;
               }
