@@ -1,3 +1,18 @@
+<a name="0.0.20"></a>
+## [0.0.20](https://github.com/Quantas/shark-ng-table/compare/0.0.19...0.0.20) (2018-01-10)
+
+
+### Bug Fixes
+
+* **filtering:** Fix bug where a filtered table would not sort ([f38b8d7](https://github.com/Quantas/shark-ng-table/commit/f38b8d7)), closes [#31](https://github.com/Quantas/shark-ng-table/issues/31)
+
+
+### Features
+
+* Swap Unicode icons with Font Awesome classes ([c161790](https://github.com/Quantas/shark-ng-table/commit/c161790)), closes [#32](https://github.com/Quantas/shark-ng-table/issues/32)
+
+
+
 <a name="0.0.19"></a>
 ## [0.0.19](https://github.com/Quantas/shark-ng-table/compare/0.0.18...0.0.19) (2018-01-09)
 
