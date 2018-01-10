@@ -452,7 +452,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         const displayedContent = filteredContent.slice(this.localPagingSize * pageNo, sliceRange);
         const filteredTotal = filteredContent.length;
         const filteredPageCount = Math.ceil(filteredTotal / this.localPagingSize);
-        this.sort(filteredContent, this.generateSortArray());
+        this.sort(displayedContent, this.generateSortArray());
 
         this.page = {
           number: pageNo,
