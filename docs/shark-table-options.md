@@ -26,8 +26,8 @@
     * The initial sortString
 * childRows - `boolean` - `false`
     * Enables child rows
-* childComponent - `SharkChildContents`
-    * A custom component, which extends `SharkChildContents`, that will be used to render each child row. Your custom component needs to be registered in your NgModule as an `entryComponent` and in the `declarations` section.
+* childComponent - `SharkDynamicContents`
+    * A custom component, which extends `SharkDynamicContents`, that will be used to render each child row. Your custom component needs to be registered in your NgModule as an `entryComponent` and in the `declarations` section.
 * pageChange - `EventEmitter<SharkPageChangeEvent>`
     * `SharkPageChangeEvent` events are emitted from here
 * filter - `string`

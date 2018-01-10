@@ -1,8 +1,8 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[sharkChildContents]'
+  selector: '[sharkDynamicContents]'
 })
-export class SharkChildContentsDirective {
+export class SharkDynamicContentsDirective {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }

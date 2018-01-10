@@ -10,7 +10,7 @@
   * Any arguments for the pipe
 * pipeArgs - `any[]`
   * Arguments to pass to the pipe
-* component - `Type<SharkTableCellContents>`
+* component - `Type<SharkDynamicContents>`
   * A Component to use for rendering the column.
 * sortType - `SharkSortType`
   * The current sort type for this column

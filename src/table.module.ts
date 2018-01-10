@@ -7,13 +7,12 @@ import { SharkTablePaginationComponent } from './table.pagination.component';
 import { SharkTableComponent } from './table.component';
 import { LocalFilterPipe } from './localfilter.pipe';
 import { SharkTableUtils } from './table.utils';
-import { SharkTableCellComponent } from './cell/table.cell.component';
-import { SharkTableCellContentsDirective } from './cell/table.cell.contents.directive';
-import { SharkChildComponent } from './child/child.component';
-import { SharkChildContentsDirective } from './child/child.component.directive';
+import { SharkTableCellComponent } from './table.cell.component';
+import { SharkChildComponent } from './child.component';
 import { SharkTableRowComponent } from './table.row.component';
 import { SharkTableHeaderComponent } from './table.header.component';
 import { SharkTableFooterComponent } from './table.footer.component';
+import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
 
 @NgModule({
   imports: [
@@ -24,9 +23,8 @@ import { SharkTableFooterComponent } from './table.footer.component';
   declarations: [
     SharkTableComponent,
     SharkChildComponent,
-    SharkChildContentsDirective,
+    SharkDynamicContentsDirective,
     SharkTableCellComponent,
-    SharkTableCellContentsDirective,
     SharkTableHeaderComponent,
     SharkTableFooterComponent,
     SharkTablePaginationComponent,

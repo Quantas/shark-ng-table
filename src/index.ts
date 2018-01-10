@@ -1,12 +1,11 @@
-export { SharkChildComponent } from './child/child.component';
-export { SharkChildContents } from './child/child.component.contents';
+export { SharkChildComponent } from './child.component';
 export { SharkColumn } from './column';
+export { SharkDynamicContents } from './dynamic/dynamic.contents';
 export { SharkPageChangeEvent } from './page.change.event';
 export { SharkCurrentSort } from './sort.type';
 export { SharkSortType } from './sort.type';
 export { SharkTableModule } from './table.module';
-export { SharkTableCellComponent } from './cell/table.cell.component';
-export { SharkTableCellContents } from './cell/table.cell.contents';
+export { SharkTableCellComponent } from './table.cell.component';
 export { SharkTableComponent } from './table.component';
 export { SharkTablePaginationComponent } from './table.pagination.component';
 export { SharkTableUtils } from './table.utils';

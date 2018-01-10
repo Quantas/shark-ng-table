@@ -13,8 +13,8 @@ import { SharkColumn } from './column';
 import { SharkPageChangeEvent } from './page.change.event';
 import { SharkCurrentSort, SharkSortType } from './sort.type';
 import { SharkTableUtils } from './table.utils';
-import { SharkChildContents } from './child/child.component.contents';
 import { SharkTablePaginationComponent } from './table.pagination.component';
+import { SharkDynamicContents } from './dynamic/dynamic.contents';
 
 @Component({
   selector: 'shark-table',
@@ -165,7 +165,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   childRows = false;
 
   /**
-   * Your custom component which extends {@link SharkChildContents} that will be used
+   * Your custom component which extends {@link SharkDynamicContents} that will be used
    * to render each child row. Your custom component needs to be registered in your NgModule
    * as an `entryComponent` and in the `declarations` section.
    *
@@ -191,7 +191,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    * ```
    */
   @Input()
-  childComponent?: Type<SharkChildContents>;
+  childComponent?: Type<SharkDynamicContents>;
 
   /**
    * {@link SharkPageChangeEvent} events are emitted from here

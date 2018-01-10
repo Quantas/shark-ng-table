@@ -1,10 +1,10 @@
 # Child Row Setup and Usage
 
-Child rows are rendered with a user-provided custom Component that implements `SharkChildContents`. An example of a custom component could be as simple as:
+Child rows are rendered with a user-provided custom Component that implements `SharkDynamicContents`. An example of a custom component could be as simple as:
 
 ```typescript
 import { Component } from '@angular/core';
-import { SharkChildContents } from '../table';
+import { SharkDynamicContents } from 'shark-ng-table';
 
 @Component({
   template: `
@@ -17,7 +17,7 @@ import { SharkChildContents } from '../table';
     </table>
   `
 })
-export class ChildDataComponent implements SharkChildContents {
+export class ChildDataComponent implements SharkDynamicContents {
   data: any;
 }
 ```

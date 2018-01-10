@@ -1,14 +1,14 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, Input, ViewChild } from '@angular/core';
-import { SharkColumn } from '../column';
-import { SharkTableUtils } from '../table.utils';
-import { SharkTableCellContentsDirective } from './table.cell.contents.directive';
-import { SharkTableCellContents } from './table.cell.contents';
+import { SharkColumn } from './column';
+import { SharkTableUtils } from './table.utils';
+import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
+import { SharkDynamicContents } from './dynamic/dynamic.contents';
 
 @Component({
   selector: 'shark-table-cell',
   template: `
       <ng-container *ngIf="column.component">
-          <ng-template sharkTableCellContents></ng-template>
+          <ng-template sharkDynamicContents></ng-template>
       </ng-container>
 
       <ng-container *ngIf="noComponentContents">
@@ -22,10 +22,10 @@ export class SharkTableCellComponent implements AfterViewInit {
   column: SharkColumn;
 
   @Input()
-  row: any[];
+  row: any;
 
-  @ViewChild(SharkTableCellContentsDirective)
-  tableCellContentsDirective: SharkTableCellContentsDirective;
+  @ViewChild(SharkDynamicContentsDirective)
+  tableCellContentsDirective: SharkDynamicContentsDirective;
 
   noComponentContents: any;
 
@@ -49,7 +49,7 @@ export class SharkTableCellComponent implements AfterViewInit {
       viewContainerRef.clear();
 
       const componentRef = viewContainerRef.createComponent(componentFactory);
-      (<SharkTableCellContents>componentRef.instance).data = contents;
+      (<SharkDynamicContents>componentRef.instance).data = contents;
     } else {
       this.noComponentContents = this.retrieveCell(this.row, this.column);
     }

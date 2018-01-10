@@ -1,6 +1,6 @@
 import { PipeTransform, Type } from '@angular/core';
 import { SharkSortType } from './sort.type';
-import { SharkTableCellContents } from './cell/table.cell.contents';
+import { SharkDynamicContents } from './dynamic/dynamic.contents';
 
 /**
  * A column definition for shark-ng-table
@@ -35,7 +35,7 @@ export interface SharkColumn {
   /**
    * A Component to use for rendering the column.
    */
-  component?: Type<SharkTableCellContents>;
+  component?: Type<SharkDynamicContents>;
 
   /**
    * The current sort type for this column

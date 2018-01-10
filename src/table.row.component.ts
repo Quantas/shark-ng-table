@@ -1,8 +1,8 @@
 import { Component, Input, Type } from '@angular/core';
 import { SharkColumn } from './column';
-import { SharkChildContents } from './child/child.component.contents';
 import { Router } from '@angular/router';
 import { SharkTableUtils } from './table.utils';
+import { SharkDynamicContents } from './dynamic/dynamic.contents';
 
 /**
  * This component controls each row in the table.
@@ -36,7 +36,7 @@ export class SharkTableRowComponent {
     childRows: boolean;
 
     @Input()
-    childComponent: Type<SharkChildContents>;
+    childComponent: Type<SharkDynamicContents>;
 
     @Input()
     row: any;
