@@ -1,3 +1,18 @@
+<a name="0.0.21"></a>
+## [0.0.21](https://github.com/Quantas/shark-ng-table/compare/0.0.20...0.0.21) (2018-01-10)
+
+
+### Features
+
+* Replace *Contents interfaces with single interface/directive ([f6efb9a](https://github.com/Quantas/shark-ng-table/commit/f6efb9a)), closes [#33](https://github.com/Quantas/shark-ng-table/issues/33)
+
+
+### BREAKING CHANGES
+
+* SharkTableCellContents and SharkChildContents have both been replaced with SharkDynamicContents
+
+
+
 <a name="0.0.20"></a>
 ## [0.0.20](https://github.com/Quantas/shark-ng-table/compare/0.0.19...0.0.20) (2018-01-10)
 
