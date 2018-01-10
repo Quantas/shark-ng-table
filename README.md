@@ -33,3 +33,7 @@ This will install the latest version of `shark-ng-table`.
  - [Child Rows](docs/child-rows.md)
  - [Developer Guide](docs/developers.md)
  - [Change Log](CHANGELOG.md)
+ 
+## Attribution
+
+We use the classes provided by [Font Awesome](https://fontawesome.com/) to add icons to a few parts of the table, their License is [here](https://fontawesome.com/license).

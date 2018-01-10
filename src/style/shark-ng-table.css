@@ -51,32 +51,8 @@ th {
     background-color: #e8e8e8;
 }
 
-.childButton {
-    font-size: 0.85rem;
-}
-
-.childButton:after {
-    content: '\25B6';
-}
-
-.open:after {
-    content: '\25BC'
-}
-
 .pointer {
     cursor: pointer;
-}
-
-.sorting.asc:after {
-    content: '\25B2';
-}
-
-.sorting.desc:after {
-    content: '\25BC';
-}
-
-.sorting:after {
-    content: '\21D5'
 }
 
 /* Pagination */

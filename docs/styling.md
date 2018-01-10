@@ -11,6 +11,12 @@ body {
 }
 ```
 
+We provide Font Awesome classes in the table, if you would like them to show up you will need to add the following to `index.html`:
+
+```html
+<link href="https://use.fontawesome.com/releases/v5.0.3/css/all.css" rel="stylesheet">
+```
+
 If you choose to use Open Sans, you will also need to add this line to index.html:
 
 ```html

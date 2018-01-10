@@ -16,12 +16,19 @@ import {Page} from './page';
         <tr role="row">
             <th *ngIf="childRows"></th>
             <ng-container *ngIf="sortable">
-                <th [ngClass]="{'pointer': sortable, 'right': column.alignRight }"
+                <th class="pointer" [ngClass]="{'right': column.alignRight }"
                     *ngFor="let column of columns"
                     (click)="changeSort(column.property, column.sortType)"
                     (keyup.enter)="changeSort(column.property, column.sortType)"
                     scope="col" role="columnheader" tabindex="0">
-                    {{ column.header }} <span class="sorting" [ngClass]="{ 'none': column.sortType === 0, 'asc': column.sortType === 1, 'desc': column.sortType === 2 }"></span>
+                    {{ column.header }} <i class="sorting fas fa-fw" [ngClass]="{ 
+                      'none': !column.sortType || column.sortType === 0,
+                      'fa-sort': !column.sortType || column.sortType === 0, 
+                      'asc': column.sortType === 1, 
+                      'fa-sort-up': column.sortType === 1,                       
+                      'desc': column.sortType === 2,
+                      'fa-sort-down': column.sortType === 2  
+                    }"></i>
                 </th>
             </ng-container>
             <ng-container *ngIf="!sortable">
