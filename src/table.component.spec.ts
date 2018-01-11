@@ -191,7 +191,8 @@ describe('SharkTableComponent', () => {
              [localFilter]='true'
              [columns]='tableColumns'
              [localPaging]='true'
-             [localPagingSize]='50'
+             [localPagingSize]='50' 
+             [initialSort]="'col1'"
         ></shark-table>
     `
 })
