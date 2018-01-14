@@ -24,6 +24,9 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
               <form #filterForm="ngForm">
                   <label for="filter" class="screen-reader">Filter Results (all column search)</label>
                   <input *ngIf="filterable && !columnFiltering" type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
+                  <select *ngIf="localPaging && showLocalPagingOptions" [(ngModel)]="localPagingSize" (change)="emitCurrent()" name="localPagingSize">
+                    <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
+                  </select>
               </form>
               <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
           </div>
@@ -142,7 +145,21 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    * @type {number}
    */
   @Input()
-  localPagingSize = 10;
+  localPagingSize: number = 10;
+
+  /**
+   * The supported page sizes
+   * @type {number[]}
+   */
+  @Input()
+  localPagingOptions: number[] = [ 10, 20, 100 ];
+
+  /**
+   * Enables the drop down for changing the page size
+   * @type {boolean}
+   */
+  @Input()
+  showLocalPagingOptions = true;
 
   /**
    * Shows a button that when clicked, emits a `SharkPageChangeEvent`
@@ -233,6 +250,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   page: Page;
 
   private dataSubscription: Subscription;
+
+  private localSubscription: Subscription;
 
   constructor(private router: Router, private tableUtils: SharkTableUtils) {}
 
@@ -437,7 +456,11 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           content: (this.data as any[]).slice(0, this.localPagingSize)
         };
 
-        this.pageChange.subscribe((event) => this.calculateLocalPage(event));
+        if (this.localSubscription) {
+          this.localSubscription.unsubscribe();
+        }
+
+        this.localSubscription = this.pageChange.subscribe((event) => this.calculateLocalPage(event));
     } else {
       this.page = {content: this.data as any[]};
     }
@@ -446,12 +469,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private calculateLocalPage(event: SharkPageChangeEvent): void {
       if (this.localFilter && ((event.filter && event.filter.length > 0)) || this.tableUtils.hasFilter(event.columns)) {
         const filteredContent = this.tableUtils.filter(this.data, this.columns, this.columnFiltering, event.filter);
-        const currentPage = this.localPagingSize * event.pageNo;
-        const pageNo = currentPage > this.localPagingSize || filteredContent.length < this.localPagingSize ? 0 : event.pageNo;
-        const sliceRange = this.localPagingSize * pageNo + this.localPagingSize;
-        const displayedContent = filteredContent.slice(this.localPagingSize * pageNo, sliceRange);
+        const pageSize: number = (this.localPagingSize > filteredContent.length ? filteredContent.length : this.localPagingSize) * 1;
+        const currentPage = pageSize * event.pageNo;
+        const pageNo = currentPage > pageSize || filteredContent.length <= pageSize ? 0 : event.pageNo;
+        const sliceRange = pageSize * pageNo + pageSize;
+        const displayedContent = filteredContent.slice(pageSize * pageNo, sliceRange);
         const filteredTotal = filteredContent.length;
-        const filteredPageCount = Math.ceil(filteredTotal / this.localPagingSize);
+        const filteredPageCount = Math.ceil(filteredTotal / pageSize);
         this.sort(displayedContent, this.generateSortArray());
 
         this.page = {
@@ -460,24 +484,27 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           totalElements: filteredTotal,
           first: pageNo === 0,
           last: pageNo === filteredPageCount,
-          numberOfElements: this.localPagingSize,
+          numberOfElements: pageSize,
           content: displayedContent
         };
 
       } else {
-        this.sort(this.data as any[], this.generateSortArray());
+        const displayedContent = (this.data as any[]);
+        this.sort(displayedContent, this.generateSortArray());
+        const pageSize: number = (this.localPagingSize > displayedContent.length ? displayedContent.length : this.localPagingSize) * 1;
+        const pageNo = event.pageNo > pageSize || displayedContent.length <= pageSize ? 0 : event.pageNo;
+        const sliceRange = pageSize * pageNo + pageSize;
+        const content = displayedContent.slice((pageSize * pageNo), sliceRange);
+        const total = displayedContent.length;
+        const pageCount = Math.ceil(total / pageSize);
 
-        const sliceRange = this.localPagingSize * event.pageNo + this.localPagingSize;
-        const content = (this.data as any[]).slice((this.localPagingSize * event.pageNo), sliceRange);
-        const total = (this.data as any[]).length;
-        const pageCount = Math.ceil(total / this.localPagingSize);
         this.page = {
-          number: event.pageNo,
+          number: pageNo,
           totalPages: pageCount,
           totalElements: total,
-          first: event.pageNo === 0,
-          last: event.pageNo === pageCount,
-          numberOfElements: this.localPagingSize,
+          first: pageNo === 0,
+          last: pageNo === pageCount,
+          numberOfElements: pageSize,
           content: content
         };
       }

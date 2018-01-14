@@ -20,6 +20,10 @@
     * Enables client-side pagination as opposed to just emitting a `SharkPageChangeEvent`
 * localPagingSize - `Number` - `10`
     * The size of each page
+* localPagingOptions - `Number[]` - `[10, 20, 100]`
+    * The supported page sizes
+* showLocalPagingOptions - `boolean`
+    * Enables the drop down for changing the page size
 * refreshButton - `boolean` - `false`
     * Shows a button that when clicked, emits a `SharkPageChangeEvent`
 * initialSort - `string`

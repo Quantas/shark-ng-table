@@ -54,7 +54,7 @@ describe('SharkTableComponent', () => {
     it('should filter results down to 1', async(() => {
         expect(component.sharkTable.page.number).toEqual(0);
 
-        component.sharkTable.filterForm.setValue({filter: '10'});
+        component.sharkTable.filterForm.setValue({filter: '10', localPagingSize: 5});
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);
@@ -68,17 +68,12 @@ describe('SharkTableComponent', () => {
             {col1: '2', col2: 'b', col3: 'c' },
             {col1: '3', col2: 'c', col3: 'c' },
             {col1: '4', col2: 'd', col3: 'c' },
-            {col1: '5', col2: 'e', col3: 'c' },
-            {col1: '6', col2: 'f', col3: 'c' },
-            {col1: '7', col2: 'g', col3: 'c' },
-            {col1: '8', col2: 'h', col3: 'c' },
-            {col1: '9', col2: 'i', col3: 'c' },
-            {col1: '10', col2: 'j', col3: 'c' }
+            {col1: '5', col2: 'e', col3: 'c' }
         ];
 
         expect(component.sharkTable.page.number).toEqual(0);
 
-        component.sharkTable.filterForm.setValue({filter: 'c'});
+        component.sharkTable.filterForm.setValue({filter: 'c', localPagingSize: 5});
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);
@@ -101,15 +96,15 @@ describe('SharkTableComponent', () => {
 
         component.sharkTable.changeSort('col1', SharkSortType.NONE);
         fixture.detectChanges();
-        expect(component.sharkTable.page.content).toEqual(testPage);
+        expect(component.sharkTable.page.content).toEqual(testPage.slice(0, 5));
 
         component.sharkTable.changeSort('col1', SharkSortType.ASC);
         fixture.detectChanges();
-        expect(component.sharkTable.page.content).toEqual(testPage.reverse());
+        expect(component.sharkTable.page.content).toEqual(testPage.reverse().slice(0, 5));
 
         component.sharkTable.changeSort('col1', SharkSortType.DESC);
         fixture.detectChanges();
-        expect(component.sharkTable.page.content).toEqual(testPage);
+        expect(component.sharkTable.page.content).toEqual(testPage.slice(0, 5));
     }));
 
     it('should sort ASC', async(() => {
@@ -118,12 +113,7 @@ describe('SharkTableComponent', () => {
             {col1: '2', col2: 'b', col3: 'c' },
             {col1: '3', col2: 'c', col3: 'c' },
             {col1: '4', col2: 'd', col3: 'c' },
-            {col1: '5', col2: 'e', col3: 'c' },
-            {col1: '6', col2: 'f', col3: 'c' },
-            {col1: '7', col2: 'g', col3: 'c' },
-            {col1: '8', col2: 'h', col3: 'c' },
-            {col1: '9', col2: 'i', col3: 'c' },
-            {col1: '10', col2: 'j', col3: 'c' }
+            {col1: '5', col2: 'e', col3: 'c' }
         ];
 
         // NONE -> ASC
@@ -135,11 +125,6 @@ describe('SharkTableComponent', () => {
 
     it('should sort DESC', async(() => {
         const testPage = [
-            {col1: '1', col2: 'a', col3: 'c' },
-            {col1: '2', col2: 'b', col3: 'c' },
-            {col1: '3', col2: 'c', col3: 'c' },
-            {col1: '4', col2: 'd', col3: 'c' },
-            {col1: '5', col2: 'e', col3: 'c' },
             {col1: '6', col2: 'f', col3: 'c' },
             {col1: '7', col2: 'g', col3: 'c' },
             {col1: '8', col2: 'h', col3: 'c' },
@@ -164,12 +149,7 @@ describe('SharkTableComponent', () => {
             {col1: '2', col2: 'b', col3: 'c' },
             {col1: '3', col2: 'c', col3: 'c' },
             {col1: '4', col2: 'd', col3: 'c' },
-            {col1: '5', col2: 'e', col3: 'c' },
-            {col1: '6', col2: 'f', col3: 'c' },
-            {col1: '7', col2: 'g', col3: 'c' },
-            {col1: '8', col2: 'h', col3: 'c' },
-            {col1: '9', col2: 'i', col3: 'c' },
-            {col1: '10', col2: 'j', col3: 'c' }
+            {col1: '5', col2: 'e', col3: 'c' }
         ];
 
         // DESC -> NONE
@@ -188,11 +168,10 @@ describe('SharkTableComponent', () => {
     template: `
         <shark-table #sharkTable
              [data]='testData'
-             [localFilter]='true'
              [columns]='tableColumns'
-             [localPaging]='true'
-             [localPagingSize]='50' 
              [initialSort]="'col1'"
+             [localPagingSize]="5"
+             [localPagingOptions]="[ 5, 10 ]"
         ></shark-table>
     `
 })
