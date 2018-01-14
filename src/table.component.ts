@@ -280,6 +280,10 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
+
+    if (this.localSubscription) {
+      this.localSubscription.unsubscribe();
+    }
   }
 
   /**
