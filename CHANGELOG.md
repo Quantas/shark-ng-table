@@ -1,3 +1,13 @@
+<a name="0.0.23"></a>
+## [0.0.23](https://github.com/Quantas/shark-ng-table/compare/0.0.22...0.0.23) (2018-01-15)
+
+
+### Features
+
+* **pagination:** Only show a maximum of 3 pages at once ([4e6ec48](https://github.com/Quantas/shark-ng-table/commit/4e6ec48)), closes [#12](https://github.com/Quantas/shark-ng-table/issues/12)
+
+
+
 <a name="0.0.22"></a>
 ## [0.0.22](https://github.com/Quantas/shark-ng-table/compare/0.0.21...0.0.22) (2018-01-15)
 
