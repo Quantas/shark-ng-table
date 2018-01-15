@@ -539,13 +539,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         };
 
       } else {
-        const displayedContent = (this.data as any[]);
-        this.sort(displayedContent, this.generateSortArray());
-        const pageSize: number = (this.localPagingSize > displayedContent.length ? displayedContent.length : this.localPagingSize) * 1;
-        const pageNo = event.pageNo > pageSize || displayedContent.length <= pageSize ? 0 : event.pageNo;
+        const content = (this.data as any[]);
+        this.sort(content, this.generateSortArray());
+        const pageSize: number = (this.localPagingSize > content.length ? content.length : this.localPagingSize) * 1;
+        const pageNo = event.pageNo > pageSize || content.length <= pageSize ? 0 : event.pageNo;
         const sliceRange = pageSize * pageNo + pageSize;
-        const content = displayedContent.slice((pageSize * pageNo), sliceRange);
-        const total = displayedContent.length;
+        const displayedContent = content.slice((pageSize * pageNo), sliceRange);
+        const total = content.length;
         const pageCount = Math.ceil(total / pageSize);
 
         this.page = {
@@ -555,7 +555,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           first: pageNo === 0,
           last: pageNo === pageCount,
           numberOfElements: pageSize,
-          content: content
+          content: displayedContent
         };
       }
   }
