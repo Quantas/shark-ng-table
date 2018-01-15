@@ -116,6 +116,10 @@ th {
     transition: background-color .3s;
 }
 
+.pagination .inactive {
+  color: gray;
+}
+
 /* Accessibility */
 .screen-reader {
   position: absolute;

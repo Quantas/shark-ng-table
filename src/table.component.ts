@@ -523,47 +523,32 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private calculateLocalPage(event: SharkPageChangeEvent): void {
+      let content;
+
       if (this.localFilter && ((event.filter && event.filter.length > 0)) || this.tableUtils.hasFilter(event.columns)) {
-        const filteredContent = this.tableUtils.filter(this.data, this.columns, this.columnFiltering, event.filter);
-        const pageSize: number = (this.localPagingSize > filteredContent.length ? filteredContent.length : this.localPagingSize) * 1;
-        const currentPage = pageSize * event.pageNo;
-        const pageNo = currentPage > pageSize || filteredContent.length <= pageSize ? 0 : event.pageNo;
-        const sliceRange = pageSize * pageNo + pageSize;
-        const displayedContent = filteredContent.slice(pageSize * pageNo, sliceRange);
-        const filteredTotal = filteredContent.length;
-        const filteredPageCount = Math.ceil(filteredTotal / pageSize);
-        this.sort(displayedContent, this.generateSortArray());
-
-        this.page = {
-          number: pageNo,
-          totalPages: filteredPageCount,
-          totalElements: filteredTotal,
-          first: pageNo === 0,
-          last: pageNo === filteredPageCount,
-          numberOfElements: pageSize,
-          content: displayedContent
-        };
-
+        content = this.tableUtils.filter(this.data, this.columns, this.columnFiltering, event.filter);
       } else {
-        const content = (this.data as any[]);
-        this.sort(content, this.generateSortArray());
-        const pageSize: number = (this.localPagingSize > content.length ? content.length : this.localPagingSize) * 1;
-        const pageNo = event.pageNo > pageSize || content.length <= pageSize ? 0 : event.pageNo;
-        const sliceRange = pageSize * pageNo + pageSize;
-        const displayedContent = content.slice((pageSize * pageNo), sliceRange);
-        const total = content.length;
-        const pageCount = Math.ceil(total / pageSize);
-
-        this.page = {
-          number: pageNo,
-          totalPages: pageCount,
-          totalElements: total,
-          first: pageNo === 0,
-          last: pageNo === pageCount,
-          numberOfElements: pageSize,
-          content: displayedContent
-        };
+        content = (this.data as any[]);
       }
+
+      this.sort(content, this.generateSortArray());
+      const total = content.length;
+      // IntelliJ claims this * 1 call is useless, but we need to make sure it's a number
+      const pageSize: number = (this.localPagingSize > content.length ? content.length : this.localPagingSize) * 1;
+      const pageCount = Math.ceil(total / pageSize);
+      const pageNo = event.pageNo > pageCount || content.length <= pageSize ? 0 : event.pageNo;
+      const sliceRange = pageSize * pageNo + pageSize;
+      const displayedContent = content.slice((pageSize * pageNo), sliceRange);
+
+      this.page = {
+        number: pageNo,
+        totalPages: pageCount,
+        totalElements: total,
+        first: pageNo === 0,
+        last: pageNo === pageCount,
+        numberOfElements: pageSize,
+        content: displayedContent
+      };
   }
 
   private setupPageSubscription(): void {
