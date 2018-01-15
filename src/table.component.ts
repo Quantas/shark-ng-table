@@ -616,6 +616,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           }
         });
       });
+
+      this.changeSort('', undefined);
     }
   }
 }
