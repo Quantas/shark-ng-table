@@ -12,9 +12,13 @@
 
 A Table for Angular that supports filtering/sorting/pagination
 
-## Demo
+## Samples
 
-We have a running example over on [Plunker](https://embed.plnkr.co/Xus5zm/)
+There are a number of samples available in our test project, they can be viewed here: https://quantas.github.io/shark-ng-table-samples/
+
+Source code for the samples is available here: https://github.com/Quantas/shark-ng-table-samples/
+
+We also have a running example over on [Plunker](https://embed.plnkr.co/Xus5zm/)
 
 ## Installing
 

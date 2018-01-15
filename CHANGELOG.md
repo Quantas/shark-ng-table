@@ -1,3 +1,25 @@
+<a name="0.0.22"></a>
+## [0.0.22](https://github.com/Quantas/shark-ng-table/compare/0.0.21...0.0.22) (2018-01-15)
+
+
+### Bug Fixes
+
+* **sorting:** When Page is used as input, update sorts accordingly ([02d8d21](https://github.com/Quantas/shark-ng-table/commit/02d8d21)), closes [#35](https://github.com/Quantas/shark-ng-table/issues/35)
+
+
+### Features
+
+* **pagination:** Configurable page size ([c088cf3](https://github.com/Quantas/shark-ng-table/commit/c088cf3)), closes [#29](https://github.com/Quantas/shark-ng-table/issues/29)
+* **style:** Update stylinlg  ([fbc90e9](https://github.com/Quantas/shark-ng-table/commit/fbc90e9))
+* **testing:** Move spec files into test folder ([e8f195e](https://github.com/Quantas/shark-ng-table/commit/e8f195e))
+
+
+### BREAKING CHANGES
+
+* **style:** Table defaults to 100% width now
+
+
+
 <a name="0.0.21"></a>
 ## [0.0.21](https://github.com/Quantas/shark-ng-table/compare/0.0.20...0.0.21) (2018-01-10)
 
