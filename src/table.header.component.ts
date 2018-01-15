@@ -5,16 +5,9 @@ import {Page} from './page';
 
 @Component({
     selector: '[shark-table-header]',
-    template: `
-        <tr role="row" *ngIf="columnFiltering && filterable">
-            <th *ngIf="childRows"></th>
-            <th *ngFor="let column of columns; let i = index" scope="col" role="columnheader">
-                <label [for]="'column' + i" class="screen-reader">{{ column.header }} filter</label>
-                <input type="text" name="column{{i}}" [id]="'column' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
-            </th>
-        </tr>
-        <tr role="row">
-            <th *ngIf="childRows"></th>
+    template: `      
+        <tr role="row" class="header-row">
+            <th *ngIf="childRows" class="child-spacer"></th>
             <ng-container *ngIf="sortable">
                 <th class="pointer" [ngClass]="{'right': column.alignRight }"
                     *ngFor="let column of columns"
@@ -36,6 +29,13 @@ import {Page} from './page';
                     {{ column.header }}
                 </th>
             </ng-container>
+        </tr>
+        <tr role="row" *ngIf="columnFiltering && filterable" class="header-row">
+          <th *ngIf="childRows"></th>
+          <th *ngFor="let column of columns; let i = index" scope="col" role="columnheader" class="header-row">
+            <label [for]="'column' + i" class="screen-reader">{{ column.header }} filter</label>
+            <input type="text" name="column{{i}}" [id]="'column' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
+          </th>
         </tr>
     `
 })

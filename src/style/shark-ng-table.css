@@ -12,9 +12,12 @@
     overflow: auto;
 }
 
-.controls button,
-.controls form {
+.controls .filter-box {
     float: left;
+}
+
+.controls .local-paging-options {
+    float: right;
 }
 
 .controls button {
@@ -28,6 +31,7 @@
 table {
     margin-bottom: 0.5rem;
     border-collapse: collapse;
+    width: 100%;
 }
 
 table .right {
@@ -41,6 +45,34 @@ th, td {
 th {
     background-color: #4CAF50;
     color: white;
+}
+
+.header-row > th {
+    border-right: 1px solid white;
+}
+
+.header-row > th:last-child {
+    border-right: none;
+}
+
+.data-row.even > td {
+    border-right: 1px solid #f2f2f2;
+}
+
+.data-row.rowOpen > td {
+    border-right: 1px solid #e8e8e8;
+}
+
+.data-row > td:last-child {
+    border-right: none;
+}
+
+.child-spacer {
+    width: 1rem;
+}
+
+.info-footer {
+    border-top: 1px solid white;
 }
 
 .even {

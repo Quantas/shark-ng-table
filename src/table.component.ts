@@ -22,11 +22,17 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
       <div class="table-wrapper">
           <div class="controls">
               <form #filterForm="ngForm">
-                  <label for="filter" class="screen-reader">Filter Results (all column search)</label>
-                  <input *ngIf="filterable && !columnFiltering" type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
-                  <select *ngIf="localPaging && showLocalPagingOptions" [(ngModel)]="localPagingSize" (change)="emitCurrent()" name="localPagingSize">
-                    <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
-                  </select>
+                  <span class="filter-box" *ngIf="filterable && !columnFiltering">
+                    <label for="filter" class="screen-reader">Filter Results (all column search)</label>
+                    <input type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
+                  </span>
+                  <label class="local-paging-options" *ngIf="localPaging && showLocalPagingOptions">
+                    Show
+                    <select [(ngModel)]="localPagingSize" (change)="emitCurrent()" name="localPagingSize">
+                      <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
+                    </select>
+                    rows
+                  </label>
               </form>
               <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
           </div>

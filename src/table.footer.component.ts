@@ -5,8 +5,9 @@ import { SharkTableUtils } from './table.utils';
 
 @Component({
   selector: '[shark-table-footer]',
-  template: `<tr>
-    <th *ngIf="childRows"></th>
+  template: `
+  <tr class="info-footer">
+    <th *ngIf="childRows" class="child-spacer"></th>
     <th [attr.colspan]="columns.length">
       Showing {{ start }} to {{ end }} of {{ total }} rows {{ filtered ? '(Filtered)' : '' }}
     </th>

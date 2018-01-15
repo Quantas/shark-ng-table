@@ -10,7 +10,7 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
 @Component({
     selector: '[shark-table-row]',
     template: `        
-        <tr role="row" [ngClass]="{ odd: odd, even: even, rowLink: linkTarget, rowOpen: childShown }" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" [attr.tabindex]="linkTarget ? 0 : ''">
+        <tr role="row" class="data-row" [ngClass]="{ odd: odd, even: even, rowLink: linkTarget, rowOpen: childShown }" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" [attr.tabindex]="linkTarget ? 0 : ''">
             <td role="gridcell" class="childButton pointer" *ngIf="childRows" [ngClass]="{ 'open': childShown, 'closed': !childShown }" (click)="toggleChild()" (keyup.enter)="toggleChild()" tabindex="0">
               <i class="fas fa-fw" [ngClass]="{ 'open': childShown, 'closed': !childShown, 'fa-caret-down': childShown, 'fa-caret-right': !childShown }"></i>
             </td>
@@ -20,7 +20,7 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
                 </td>
             </ng-container>
         </tr>
-        <tr *ngIf="childRows" [ngClass]="{ odd: odd, even: even, rowOpen: childShown }" [hidden]="!childShown">
+        <tr *ngIf="childRows" class="data-row child-row" [ngClass]="{ odd: odd, even: even, rowOpen: childShown }" [hidden]="!childShown">
             <td></td>
             <td [attr.colspan]="columns.length" role="gridcell">
                 <shark-child [component]="childComponent" [row]="row"></shark-child>
