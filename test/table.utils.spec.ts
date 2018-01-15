@@ -1,7 +1,6 @@
 import { async } from '@angular/core/testing';
-import { SharkColumn } from './column';
-import { SharkTableUtils } from './table.utils';
 import { UpperCasePipe } from '@angular/common';
+import { SharkColumn, SharkTableUtils } from '../src';
 
 describe('SharkTableUtils', () => {
 

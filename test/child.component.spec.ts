@@ -1,10 +1,7 @@
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-import { SharkTableComponent } from './table.component';
 import { Component, NgModule } from '@angular/core';
-import { SharkDynamicContents } from './dynamic/dynamic.contents';
-import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
-import { SharkChildComponent } from './child.component';
-import { SharkTableUtils } from './table.utils';
+import { SharkTableComponent, SharkDynamicContents, SharkChildComponent, SharkTableUtils } from '../src';
+import { SharkDynamicContentsDirective } from '../src/dynamic/dynamic.contents.directive';
 
 describe('SharkTableComponent', () => {
 

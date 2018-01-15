@@ -1,9 +1,7 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SharkTableComponent } from './table.component';
-import { SharkTableModule } from './table.module';
 import { Component, ViewChild } from '@angular/core';
-import { SharkColumn } from './column';
+import { SharkTableComponent, SharkTableModule, SharkColumn } from '../src';
 
 describe('SharkTableComponentNoPaging', () => {
 
