@@ -465,8 +465,54 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         this.localSubscription = this.pageChange.subscribe((event) => this.calculateLocalPage(event));
+    } else if (this.localFilter) {
+      const total = (this.data as any[]).length;
+
+      this.page = {
+        number: 0,
+        totalPages: 1,
+        totalElements: total,
+        first: true,
+        last: false,
+        numberOfElements: total,
+        content: this.data as any[]
+      };
+
+      if (this.localSubscription) {
+        this.localSubscription.unsubscribe();
+      }
+
+      this.localSubscription = this.pageChange.subscribe((event) => this.calculateLocalPageNoPagination(event));
     } else {
       this.page = {content: this.data as any[]};
+    }
+  }
+
+  private calculateLocalPageNoPagination(event: SharkPageChangeEvent): void {
+    if (((event.filter && event.filter.length > 0)) || this.tableUtils.hasFilter(event.columns)) {
+      const filteredContent = this.tableUtils.filter(this.data, this.columns, this.columnFiltering, event.filter);
+
+      this.page = {
+        number: 0,
+        totalPages: 1,
+        totalElements: filteredContent.length,
+        first: true,
+        last: false,
+        numberOfElements: filteredContent.length,
+        content: filteredContent
+      };
+    } else {
+      const total = (this.data as any[]).length;
+
+      this.page = {
+        number: 0,
+        totalPages: 1,
+        totalElements: total,
+        first: true,
+        last: false,
+        numberOfElements: total,
+        content: this.data as any[]
+      };
     }
   }
 
