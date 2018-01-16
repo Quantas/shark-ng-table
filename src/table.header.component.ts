@@ -9,7 +9,7 @@ import {Page} from './page';
 @Component({
     selector: '[shark-table-header]',
     template: `
-        <tr class="info-header" *ngIf="!footer && (refreshButton || filterable || (localPaging && showLocalPagingOptions))">
+        <tr class="info-header" *ngIf="!footer && (refreshButton || (filterable && !columnFiltering) || (localPaging && showLocalPagingOptions))">
           <th [attr.colspan]="childRows ? columns.length + 1 : columns.length">
             <div class="controls">
               <button *ngIf="refreshButton" (click)="fireFilterChange()">&#x21bb;</button>
