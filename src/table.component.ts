@@ -433,8 +433,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private createLocalPage(): Page {
-    const total = (this.data as any[]).length;
+  private createLocalPage(data?: any[]): Page {
+    const total = (data ? data : this.data as any[]).length;
 
     return {
       number: 0,
@@ -443,7 +443,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
       first: true,
       last: true,
       numberOfElements: total,
-      content: this.data as any[]
+      content: data ? data : this.data as any[]
     };
   }
 
@@ -535,7 +535,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
     this.dataSubscription = (this.data as Observable<Page | any[]>).subscribe((data: Page | any[]) => {
       if (data.constructor === Array) {
-        this.page = this.createLocalPage();
+        this.page = this.createLocalPage(data as any[]);
       } else {
         this.page = data as Page;
       }
