@@ -433,6 +433,20 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  private createLocalPage(): Page {
+    const total = (this.data as any[]).length;
+
+    return {
+      number: 0,
+      totalPages: 1,
+      totalElements: total,
+      first: true,
+      last: true,
+      numberOfElements: total,
+      content: this.data as any[]
+    };
+  }
+
   private setupPageArray(): void {
     if (this.localPaging) {
         const total = (this.data as any[]).length;
@@ -454,17 +468,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
         this.localSubscription = this.pageChange.subscribe((event) => this.calculateLocalPage(event));
     } else if (this.localFilter) {
-      const total = (this.data as any[]).length;
-
-      this.page = {
-        number: 0,
-        totalPages: 1,
-        totalElements: total,
-        first: true,
-        last: false,
-        numberOfElements: total,
-        content: this.data as any[]
-      };
+      this.page = this.createLocalPage();
 
       if (this.localSubscription) {
         this.localSubscription.unsubscribe();
@@ -472,7 +476,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       this.localSubscription = this.pageChange.subscribe((event) => this.calculateLocalPageNoPagination(event));
     } else {
-      this.page = {content: this.data as any[]};
+      this.page = this.createLocalPage();
     }
   }
 
@@ -490,17 +494,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         content: filteredContent
       };
     } else {
-      const total = (this.data as any[]).length;
-
-      this.page = {
-        number: 0,
-        totalPages: 1,
-        totalElements: total,
-        first: true,
-        last: false,
-        numberOfElements: total,
-        content: this.data as any[]
-      };
+      this.page = this.createLocalPage();
     }
   }
 
@@ -541,18 +535,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
     this.dataSubscription = (this.data as Observable<Page | any[]>).subscribe((data: Page | any[]) => {
       if (data.constructor === Array) {
-        const content = data as any[];
-
-        this.page = {
-          number: 0,
-          first: true,
-          last: false,
-          totalElements: content.length,
-          totalPages: 1,
-          numberOfElements: content.length,
-          content: content
-        };
-
+        this.page = this.createLocalPage();
       } else {
         this.page = data as Page;
       }
