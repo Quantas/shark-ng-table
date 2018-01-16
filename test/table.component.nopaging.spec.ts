@@ -28,7 +28,7 @@ describe('SharkTableComponentNoPaging', () => {
   it('should filter results down to 1', async(() => {
     expect(component.sharkTable.page.number).toEqual(0);
 
-    component.sharkTable.filterForm.setValue({filter: '10'});
+    component.sharkTable.headerComponent.filterForm.setValue({filter: '10'});
     fixture.detectChanges();
 
     expect(component.sharkTable.page.number).toEqual(0);
@@ -52,7 +52,7 @@ describe('SharkTableComponentNoPaging', () => {
 
     expect(component.sharkTable.page.number).toEqual(0);
 
-    component.sharkTable.filterForm.setValue({filter: 'c'});
+    component.sharkTable.headerComponent.filterForm.setValue({filter: 'c'});
     fixture.detectChanges();
 
     expect(component.sharkTable.page.number).toEqual(0);

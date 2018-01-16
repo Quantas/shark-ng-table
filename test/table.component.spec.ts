@@ -51,7 +51,7 @@ describe('SharkTableComponent', () => {
     it('should filter results down to 1', async(() => {
         expect(component.sharkTable.page.number).toEqual(0);
 
-        component.sharkTable.filterForm.setValue({filter: '10', localPagingSize: 5});
+        component.sharkTable.headerComponent.filterForm.setValue({filter: '10', localPagingSize: 5});
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);
@@ -70,7 +70,7 @@ describe('SharkTableComponent', () => {
 
         expect(component.sharkTable.page.number).toEqual(0);
 
-        component.sharkTable.filterForm.setValue({filter: 'c', localPagingSize: 5});
+        component.sharkTable.headerComponent.filterForm.setValue({filter: 'c', localPagingSize: 5});
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);

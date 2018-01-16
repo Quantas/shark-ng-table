@@ -1,11 +1,34 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 import {SharkColumn} from './column';
 import {SharkSortType} from './sort.type';
 import {Page} from './page';
 
+
 @Component({
     selector: '[shark-table-header]',
-    template: `      
+    template: `
+        <tr class="info-header" *ngIf="!footer && (refreshButton || filterable || (localPaging && showLocalPagingOptions))">
+          <th [attr.colspan]="childRows ? columns.length + 1 : columns.length">
+            <div class="controls">
+              <button *ngIf="refreshButton" (click)="fireFilterChange()">&#x21bb;</button>
+              <form #filterForm="ngForm">
+                <span class="filter-box" *ngIf="filterable && !columnFiltering">
+                  <label for="filter" class="screen-reader">Filter Results (all column search)</label>
+                  <input type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" placeholder="Filter Results" />
+                </span>
+                <label class="local-paging-options" *ngIf="localPaging && showLocalPagingOptions">
+                  Show
+                  <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize">
+                    <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
+                  </select>
+                  rows
+                </label>
+              </form>
+            </div>
+          </th>
+        </tr>
         <tr role="row" class="header-row">
             <th *ngIf="childRows" class="child-spacer"></th>
             <ng-container *ngIf="sortable">
@@ -41,6 +64,9 @@ import {Page} from './page';
 })
 export class SharkTableHeaderComponent {
 
+    @ViewChild('filterForm')
+    filterForm: NgForm;
+
     @Input()
     sortable: boolean;
 
@@ -57,10 +83,28 @@ export class SharkTableHeaderComponent {
     page: Page;
 
     @Input()
+    footer = false;
+
+    @Input()
     filterable: boolean;
 
     @Input()
-    columnFiltering;
+    columnFiltering: boolean;
+
+    @Input()
+    localPaging: boolean;
+
+    @Input()
+    localPagingSize: number;
+
+    @Input()
+    localPagingOptions: number[];
+
+    @Input()
+    showLocalPagingOptions: boolean;
+
+    @Input()
+    filter: string;
 
     /**
      * {@link SharkSortChangeEvent} events are emitted from here
@@ -70,7 +114,7 @@ export class SharkTableHeaderComponent {
     sortChange = new EventEmitter<SharkSortChangeEvent>();
 
     @Output()
-    filterChange = new EventEmitter<SharkColumn[]>();
+    filterChange = new EventEmitter<SharkHeaderFilterChange>();
 
     changeSort(property: string, sortType: SharkSortType): void {
         this.sortChange.emit({
@@ -80,11 +124,21 @@ export class SharkTableHeaderComponent {
     }
 
     fireFilterChange(): void {
-        this.filterChange.emit(this.columns);
+        this.filterChange.emit({
+          columns: this.columns,
+          filter: this.filter,
+          localPagingSize: this.localPagingSize
+        });
     }
 }
 
 export interface SharkSortChangeEvent {
     property: string;
     sortType: SharkSortType;
+}
+
+export interface SharkHeaderFilterChange {
+  columns: SharkColumn[];
+  filter: string;
+  localPagingSize: number;
 }

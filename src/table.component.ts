@@ -2,7 +2,6 @@ import {
   Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, Type,
   ViewChild
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -15,29 +14,14 @@ import { SharkCurrentSort, SharkSortType } from './sort.type';
 import { SharkTableUtils } from './table.utils';
 import { SharkTablePaginationComponent } from './table.pagination.component';
 import { SharkDynamicContents } from './dynamic/dynamic.contents';
+import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.header.component';
 
 @Component({
   selector: 'shark-table',
   template: `
       <div class="table-wrapper">
-          <div class="controls">
-              <form #filterForm="ngForm">
-                  <span class="filter-box" *ngIf="filterable && !columnFiltering">
-                    <label for="filter" class="screen-reader">Filter Results (all column search)</label>
-                    <input type="text" name="filter" id="filter" [(ngModel)]="filter" placeholder="Filter Results" />
-                  </span>
-                  <label class="local-paging-options" *ngIf="localPaging && showLocalPagingOptions">
-                    Show
-                    <select [(ngModel)]="localPagingSize" (change)="emitCurrent()" name="localPagingSize">
-                      <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
-                    </select>
-                    rows
-                  </label>
-              </form>
-              <button *ngIf="refreshButton" (click)="emitCurrent()">&#x21bb;</button>
-          </div>
-          <table *ngIf="page" role="grid">
-              <thead shark-table-header #sharkTableHeader
+          <table role="grid">
+              <thead shark-table-header
                      [sortable]="sortable"
                      [columns]="columns"
                      [childRows]="childRows"
@@ -45,8 +29,13 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
                      [page]="page"
                      [filterable]="filterable"
                      [columnFiltering]="columnFiltering"
+                     [localPaging]="localPaging"
+                     [localPagingSize]="localPagingSize"
+                     [localPagingOptions]="localPagingOptions"
+                     [showLocalPagingOptions]="showLocalPagingOptions"
+                     [filter]="filter"
                      (sortChange)="changeSort($event.property, $event.sortType)"
-                     (filterChange)="columnFilteringChange()"
+                     (filterChange)="headerChange($event)"
               ></thead>
               <ng-container *ngIf="page.content">
                   <tbody shark-table-row *ngFor="let row of (page.content | localfilter:columns:localFilter:localPaging:columnFiltering:filter); let e = even; let o = odd"
@@ -71,20 +60,21 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
                      [page]="page"
                      [filterable]="filterable"
                      [columnFiltering]="columnFiltering && footerColumnFiltering"
+                     [footer]="true"
                      (sortChange)="changeSort($event.property, $event.sortType)"
-                     (filterChange)="columnFilteringChange()"
+                     (filterChange)="headerChange($event)"
               ></tfoot>
           </table>
-          <shark-table-pagination #paginationComponent [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
+          <shark-table-pagination [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
       </div>
   `
 })
 export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
-  @ViewChild('filterForm')
-  filterForm: NgForm;
+  @ViewChild(SharkTableHeaderComponent)
+  headerComponent: SharkTableHeaderComponent;
 
-  @ViewChild('paginationComponent')
+  @ViewChild(SharkTablePaginationComponent)
   paginationComponent: SharkTablePaginationComponent;
 
   /**
@@ -263,12 +253,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.updatePage();
-
-    this.filterForm.valueChanges.subscribe((data) => {
-      if (data.filter !== undefined && this.page && this.filterable) {
-        this.emitCurrent();
-      }
-    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -304,6 +288,14 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
       sorts: this.generateSortArray(),
       filter: this.filter
     });
+  }
+
+  headerChange(event: SharkHeaderFilterChange): void {
+    this.columns = event.columns;
+    this.filter = event.filter;
+    this.localPagingSize = event.localPagingSize;
+
+    this.emitCurrent();
   }
 
   changePage(pageNo: number): void {
@@ -359,16 +351,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         filter: this.filter
       });
     }
-  }
-
-  columnFilteringChange(): void {
-      this.pageChange.emit({
-         pageNo: this.page.number,
-         columns: this.columns,
-         sortString: this.generateSortString(),
-         sorts: this.generateSortArray(),
-         filter: this.filter
-      });
   }
 
   private generateSortString(): string {

@@ -8,7 +8,6 @@
 }
 
 .controls {
-    margin-bottom: 0.5rem;
     overflow: auto;
 }
 
@@ -45,6 +44,10 @@ th, td {
 th {
     background-color: #4CAF50;
     color: white;
+}
+
+.info-header {
+  border-bottom: 1px solid white;
 }
 
 .header-row > th {
