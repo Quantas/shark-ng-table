@@ -1,3 +1,20 @@
+<a name="0.0.24"></a>
+## [0.0.24](https://github.com/Quantas/shark-ng-table/compare/0.0.23...0.0.24) (2018-01-16)
+
+
+### Bug Fixes
+
+* **init:** Create universal way to create temp Page object ([9366824](https://github.com/Quantas/shark-ng-table/commit/9366824)), closes [#38](https://github.com/Quantas/shark-ng-table/issues/38)
+* **init:** Make Observable<any[]> work again ([1e0651d](https://github.com/Quantas/shark-ng-table/commit/1e0651d)), closes [#37](https://github.com/Quantas/shark-ng-table/issues/37)
+* **styling:** Don't show empty header row ([404eec6](https://github.com/Quantas/shark-ng-table/commit/404eec6)), closes [#39](https://github.com/Quantas/shark-ng-table/issues/39)
+
+
+### Features
+
+* **styling:** Move table header controls into <thead> ([19aefbf](https://github.com/Quantas/shark-ng-table/commit/19aefbf)), closes [#36](https://github.com/Quantas/shark-ng-table/issues/36)
+
+
+
 <a name="0.0.23"></a>
 ## [0.0.23](https://github.com/Quantas/shark-ng-table/compare/0.0.22...0.0.23) (2018-01-15)
 
