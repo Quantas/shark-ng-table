@@ -540,8 +540,19 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.dataSubscription = (this.data as Observable<Page | any[]>).subscribe((data: Page | any[]) => {
-      if (this.data.constructor === Array) {
-        this.page = {content: data as any[]};
+      if (data.constructor === Array) {
+        const content = data as any[];
+
+        this.page = {
+          number: 0,
+          first: true,
+          last: false,
+          totalElements: content.length,
+          totalPages: 1,
+          numberOfElements: content.length,
+          content: content
+        };
+
       } else {
         this.page = data as Page;
       }
