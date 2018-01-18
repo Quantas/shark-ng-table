@@ -1,7 +1,7 @@
 {
   "name": "shark-ng-table",
-  "version": "0.0.24",
-  "description": "A Table for Angular that supports filtering/sorting/pagination",
+  "version": "0.0.25",
+  "description": "A robust table for Angular.",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist/bundles dist/src dist/README.md dist/shark-ng-table.css dist/shark-ng-table.min.css",
@@ -11,6 +11,7 @@
     "minify-css": "minify --output dist/shark-ng-table.min.css src/style/shark-ng-table.css",
     "copy": "copyfiles README.md dist/ && copyfiles -f src/style/shark-ng-table.css dist/",
     "build": "npm run clean && npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
+    "build:noclean": "npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
     "test": "karma start --single-run",
     "test:always": "karma start",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"

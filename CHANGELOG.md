@@ -1,3 +1,15 @@
+<a name="0.0.25"></a>
+## [0.0.25](https://github.com/Quantas/shark-ng-table/compare/0.0.24...0.0.25) (2018-01-18)
+
+
+### Features
+
+* **columns:** Clean up table when all columns are unchecked ([b142633](https://github.com/Quantas/shark-ng-table/commit/b142633))
+* **columns:** Create a Column Picker ([5bfda99](https://github.com/Quantas/shark-ng-table/commit/5bfda99)), closes [#40](https://github.com/Quantas/shark-ng-table/issues/40)
+* **columns:** Create a method for reordering columns ([b309e94](https://github.com/Quantas/shark-ng-table/commit/b309e94)), closes [#41](https://github.com/Quantas/shark-ng-table/issues/41)
+
+
+
 <a name="0.0.24"></a>
 ## [0.0.24](https://github.com/Quantas/shark-ng-table/compare/0.0.23...0.0.24) (2018-01-16)
 

@@ -1,7 +1,7 @@
 {
   "name": "shark-ng-table",
-  "version": "0.0.24",
-  "description": "A Table for Angular that supports filtering/sorting/pagination",
+  "version": "0.0.25",
+  "description": "A robust table for Angular.",
   "main": "bundles/sharktable.umd.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",

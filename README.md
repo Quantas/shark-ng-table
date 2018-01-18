@@ -10,7 +10,7 @@
 
 [npm-badge-url]: https://www.npmjs.com/package/shark-ng-table
 
-A Table for Angular that supports filtering/sorting/pagination
+A robust table for Angular.
 
 ## Samples
 
@@ -19,6 +19,17 @@ There are a number of samples available in our test project, they can be viewed 
 Source code for the samples is available here: https://github.com/Quantas/shark-ng-table-samples/
 
 We also have a running example over on [Plunker](https://embed.plnkr.co/Xus5zm/)
+
+## Features
+
+- Filtering (Global and Column Specific)
+- Sorting
+- Pagination
+- Footer Headers
+- Informational Footer
+- Column reordering
+- Column hide/show
+- Custom cell rendering with user provided Component or Pipe
 
 ## Installing
 
