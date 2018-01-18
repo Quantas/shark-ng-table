@@ -51,4 +51,6 @@ export interface SharkColumn {
    * The current filter string for this column
    */
   filter?: string;
+
+  displayed?: boolean;
 }

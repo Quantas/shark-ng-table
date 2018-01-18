@@ -23,7 +23,9 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
           <table role="grid">
               <thead shark-table-header
                      [sortable]="sortable"
-                     [columns]="columns"
+                     [columns]="currentColumns"
+                     [allColumns]="columns"
+                     [columnPicker]="columnPicker"
                      [childRows]="childRows"
                      [refreshButton]="refreshButton"
                      [page]="page"
@@ -36,10 +38,11 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                      [filter]="filter"
                      (sortChange)="changeSort($event.property, $event.sortType)"
                      (filterChange)="headerChange($event)"
+                     (columnChange)="updateCurrentColumns($event)"
               ></thead>
               <ng-container *ngIf="page.content">
-                  <tbody shark-table-row *ngFor="let row of (page.content | localfilter:columns:localFilter:localPaging:columnFiltering:filter); let e = even; let o = odd"
-                         [columns]="columns"
+                  <tbody shark-table-row *ngFor="let row of (page.content | localfilter:currentColumns:localFilter:localPaging:columnFiltering:filter); let e = even; let o = odd"
+                         [columns]="currentColumns"
                          [childRows]="childRows"
                          [childComponent]="childComponent"
                          [linkTarget]="linkTarget" [linkKey]="linkKey"
@@ -48,13 +51,13 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
               </ng-container>
               <ng-container *ngIf="!page.content || page.content.length == 0">
                   <tbody>
-                    <tr><td [attr.colspan]="columns.length">This table contains no rows</td></tr>
+                    <tr><td [attr.colspan]="currentColumns.length">This table contains no rows</td></tr>
                   </tbody>
               </ng-container>
-              <tfoot shark-table-footer *ngIf="footer" [page]="page" [columns]="columns" [filter]="filter" [childRows]="childRows"></tfoot>
+              <tfoot shark-table-footer *ngIf="footer" [page]="page" [columns]="currentColumns" [filter]="filter" [childRows]="childRows"></tfoot>
               <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
                      [sortable]="sortable"
-                     [columns]="columns"
+                     [columns]="currentColumns"
                      [childRows]="childRows"
                      [refreshButton]="refreshButton"
                      [page]="page"
@@ -88,6 +91,11 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   columns: SharkColumn[];
+
+  @Input()
+  columnPicker = false;
+
+  currentColumns: SharkColumn[] = [];
 
   /**
    * The destination page for the call to `router.navigate` when the row is clicked.
@@ -259,10 +267,17 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     const dataChange = changes['data'];
     const columnChange = changes['columns'];
 
+    if (columnChange && columnChange.isFirstChange()) {
+      this.columns = columnChange.currentValue;
+      this.columns.forEach((column: SharkColumn) => column.displayed = true);
+      this.currentColumns = this.columns;
+    }
+
     if (dataChange && !dataChange.isFirstChange()) {
       this.updatePage();
     } else if (columnChange && !columnChange.isFirstChange()) {
-        this.emitCurrent();
+      this.currentColumns = columnChange.currentValue;
+      this.emitCurrent();
     }
   }
 
@@ -276,6 +291,11 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  updateCurrentColumns(newColumns: SharkColumn[]) {
+    this.currentColumns = newColumns.filter((value: SharkColumn) => value.displayed);
+    this.emitCurrent();
+  }
+
   /**
    * Emits a {@link SharkPageChangeEvent} with the current information. This event should be consumed by the host
    * component and sent to a REST endpoint to update the data.
@@ -283,7 +303,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   emitCurrent(): void {
     this.pageChange.emit({
       pageNo: this.page.number,
-      columns: this.columns,
+      columns: this.currentColumns,
       sortString: this.generateSortString(),
       sorts: this.generateSortArray(),
       filter: this.filter
@@ -292,6 +312,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   headerChange(event: SharkHeaderFilterChange): void {
     this.columns = event.columns;
+    this.currentColumns = this.columns.filter((value: SharkColumn) => value.displayed);
+
     this.filter = event.filter;
     this.localPagingSize = event.localPagingSize;
 
@@ -301,7 +323,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   changePage(pageNo: number): void {
     this.pageChange.emit({
       pageNo: pageNo,
-      columns: this.columns,
+      columns: this.currentColumns,
       sortString: this.generateSortString(),
       sorts: this.generateSortArray(),
       filter: this.filter
@@ -310,7 +332,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   changeSort(columnProperty: string, sortType: SharkSortType): void {
     if (this.sortable) {
-      this.columns.forEach((column: SharkColumn) => {
+      this.currentColumns.forEach((column: SharkColumn) => {
 
         if (column.property === columnProperty) {
           // State Machine
@@ -345,7 +367,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       this.pageChange.emit({
         pageNo: this.page.number,
-        columns: this.columns,
+        columns: this.currentColumns,
         sortString: this.generateSortString(),
         sorts: sorts,
         filter: this.filter
@@ -356,7 +378,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private generateSortString(): string {
     let sortString = '';
 
-    this.columns.forEach((column: SharkColumn) => {
+    this.currentColumns.forEach((column: SharkColumn) => {
       switch (column.sortType) {
         case SharkSortType.ASC: {
           sortString += '' + column.property + ';';
@@ -378,7 +400,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private generateSortArray(): SharkCurrentSort[] {
     const currentSorts: SharkCurrentSort[] = [];
 
-    this.columns.forEach((column: SharkColumn) => {
+    this.currentColumns.forEach((column: SharkColumn) => {
       switch (column.sortType) {
         case SharkSortType.ASC:
         case SharkSortType.DESC: {
@@ -482,7 +504,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   private calculateLocalPageNoPagination(event: SharkPageChangeEvent): void {
     if (((event.filter && event.filter.length > 0)) || this.tableUtils.hasFilter(event.columns)) {
-      const filteredContent = this.tableUtils.filter(this.data, this.columns, this.columnFiltering, event.filter);
+      const filteredContent = this.tableUtils.filter(this.data, this.currentColumns, this.columnFiltering, event.filter);
 
       this.page = {
         number: 0,
@@ -502,7 +524,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
       let content;
 
       if (this.localFilter && ((event.filter && event.filter.length > 0)) || this.tableUtils.hasFilter(event.columns)) {
-        content = this.tableUtils.filter(this.data, this.columns, this.columnFiltering, event.filter);
+        content = this.tableUtils.filter(this.data, this.currentColumns, this.columnFiltering, event.filter);
       } else {
         content = (this.data as any[]);
       }
@@ -511,7 +533,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
       const total = content.length;
       // IntelliJ claims this * 1 call is useless, but we need to make sure it's a number
       const pageSize: number = (this.localPagingSize > content.length ? content.length : this.localPagingSize) * 1;
-      const pageCount = Math.ceil(total / pageSize);
+      const pageCount = total === 0 ? 0 : Math.ceil(total / pageSize);
       const pageNo = event.pageNo > pageCount || content.length <= pageSize ? 0 : event.pageNo;
       const sliceRange = pageSize * pageNo + pageSize;
       const displayedContent = content.slice((pageSize * pageNo), sliceRange);

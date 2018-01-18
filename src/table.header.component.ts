@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import {SharkColumn} from './column';
 import {SharkSortType} from './sort.type';
 import {Page} from './page';
+import { SharkColumnDropdownComponent } from './column-dropdown.component';
 
 
 @Component({
@@ -13,6 +14,7 @@ import {Page} from './page';
           <th [attr.colspan]="childRows ? columns.length + 1 : columns.length">
             <div class="controls">
               <button *ngIf="refreshButton" (click)="fireFilterChange()">&#x21bb;</button>
+              <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
               <form #filterForm="ngForm">
                 <span class="filter-box" *ngIf="filterable && !columnFiltering">
                   <label for="filter" class="screen-reader">Filter Results (all column search)</label>
@@ -67,11 +69,20 @@ export class SharkTableHeaderComponent {
     @ViewChild('filterForm')
     filterForm: NgForm;
 
+    @ViewChild(SharkColumnDropdownComponent)
+    columnPickerComponent: SharkColumnDropdownComponent;
+
     @Input()
     sortable: boolean;
 
     @Input()
     columns: SharkColumn[];
+
+    @Input()
+    allColumns: SharkColumn[];
+
+    @Input()
+    columnPicker: boolean;
 
     @Input()
     childRows: boolean;
@@ -116,6 +127,9 @@ export class SharkTableHeaderComponent {
     @Output()
     filterChange = new EventEmitter<SharkHeaderFilterChange>();
 
+    @Output()
+    columnChange = new EventEmitter<SharkColumn[]>();
+
     changeSort(property: string, sortType: SharkSortType): void {
         this.sortChange.emit({
             property: property,
@@ -129,6 +143,10 @@ export class SharkTableHeaderComponent {
           filter: this.filter,
           localPagingSize: this.localPagingSize
         });
+    }
+
+    fireColumnChange(event: SharkColumn[]): void {
+      this.columnChange.emit(event);
     }
 }
 

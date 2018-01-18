@@ -15,6 +15,10 @@
     float: left;
 }
 
+.controls .column-picker {
+    float: left
+}
+
 .controls .local-paging-options {
     float: right;
 }
@@ -90,6 +94,43 @@ th {
     cursor: pointer;
 }
 
+/* Column Picker */
+.toggle-dropdown {
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    text-align: left;
+}
+
+.column-picker {
+    width: 10rem;
+}
+
+.column-picker .dropdown {
+    border: 1px solid #DDDDDD;
+    background-color: white;
+    color: black;
+    font-weight: normal;
+    z-index: 100;
+    position: absolute;
+    padding: 4px;
+    width: 7.75rem;
+    left: 2.45rem;
+}
+
+.column-picker .dropdown label {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.column-picker .dropdown label input {
+    vertical-align: top;
+}
+
+.column-picker .dropdown label span {
+    display: inline-block;
+}
 /* Pagination */
 .pagination-wrapper {
     float: left;

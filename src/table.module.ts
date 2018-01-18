@@ -13,6 +13,7 @@ import { SharkTableRowComponent } from './table.row.component';
 import { SharkTableHeaderComponent } from './table.header.component';
 import { SharkTableFooterComponent } from './table.footer.component';
 import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
+import { SharkColumnDropdownComponent } from './column-dropdown.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.direct
     SharkTableFooterComponent,
     SharkTablePaginationComponent,
     SharkTableRowComponent,
-    LocalFilterPipe
+    LocalFilterPipe,
+    SharkColumnDropdownComponent
   ],
   exports: [
     SharkTableComponent,
