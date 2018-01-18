@@ -34,24 +34,28 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
         <tr role="row" class="header-row" *ngIf="columns.length > 0">
             <th *ngIf="childRows" class="child-spacer"></th>
             <ng-container *ngIf="sortable">
-                <th class="pointer" [ngClass]="{'right': column.alignRight }"
-                    *ngFor="let column of columns"
-                    (click)="changeSort(column.property, column.sortType)"
-                    (keyup.enter)="changeSort(column.property, column.sortType)"
-                    scope="col" role="columnheader" tabindex="0">
-                    {{ column.header }} <i class="sorting fas fa-fw" [ngClass]="{ 
-                      'none': !column.sortType || column.sortType === 0,
-                      'fa-sort': !column.sortType || column.sortType === 0, 
-                      'asc': column.sortType === 1, 
-                      'fa-sort-up': column.sortType === 1,                       
-                      'desc': column.sortType === 2,
-                      'fa-sort-down': column.sortType === 2  
-                    }"></i>
+                <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
+                    *ngFor="let column of columns; let i = index; let f = first; let l = last;"
+                    scope="col" role="columnheader">
+                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)"><i class="fa fa-fw fa-angle-left"></i></button>
+                    <button (click)="changeSort(column.property, column.sortType)">
+                      {{ column.header }} <i class="sorting fas fa-fw" [ngClass]="{ 
+                        'none': !column.sortType || column.sortType === 0,
+                        'fa-sort': !column.sortType || column.sortType === 0, 
+                        'asc': column.sortType === 1, 
+                        'fa-sort-up': column.sortType === 1,                       
+                        'desc': column.sortType === 2,
+                        'fa-sort-down': column.sortType === 2  
+                      }"></i>
+                    </button>
+                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)"><i class="fa fa-fw fa-angle-right"></i></button>
                 </th>
             </ng-container>
             <ng-container *ngIf="!sortable">
-                <th [ngClass]="{'right': column.alignRight }" *ngFor="let column of columns" scope="col" role="columnheader">
+                <th class="header-buttons" [ngClass]="{'right': column.alignRight }" *ngFor="let column of columns; let i = index; let f = first; let l = last;" scope="col" role="columnheader">
+                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)"><i class="fa fa-fw fa-angle-left"></i></button>
                     {{ column.header }}
+                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)"><i class="fa fa-fw fa-angle-right"></i></button>
                 </th>
             </ng-container>
         </tr>
@@ -83,6 +87,9 @@ export class SharkTableHeaderComponent {
 
     @Input()
     columnPicker: boolean;
+
+    @Input()
+    columnOrdering: boolean;
 
     @Input()
     childRows: boolean;
@@ -147,6 +154,23 @@ export class SharkTableHeaderComponent {
 
     fireColumnChange(event: SharkColumn[]): void {
       this.columnChange.emit(event);
+    }
+
+    moveColumnForward(index: number): void {
+      this.move(index, 1);
+    }
+
+    moveColumnBackward(index: number): void {
+      this.move(index, -1);
+    }
+
+    private move(index: number, offset: number): void {
+      const newIndex = index + offset;
+      if (newIndex > -1 && newIndex < this.columns.length) {
+        const removedElement = this.columns.splice(index, 1)[0];
+        this.columns.splice(newIndex, 0, removedElement);
+      }
+
     }
 }
 

@@ -6,6 +6,8 @@
     * The table column definitions
 * columnPicker - `boolean` - `false`
     * Allow users to turn columns on and off
+* columnOrdering - `boolean` - `false`
+    * Allow users to reorder columns with header buttons
 * linkTarget - `string`
     * The destination page for the call to `router.navigate` when the row is clicked.
 * linkKey - `string`

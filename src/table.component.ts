@@ -26,6 +26,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                      [columns]="currentColumns"
                      [allColumns]="columns"
                      [columnPicker]="columnPicker"
+                     [columnOrdering]="columnOrdering"
                      [childRows]="childRows"
                      [refreshButton]="refreshButton"
                      [page]="page"
@@ -63,6 +64,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
               <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
                      [sortable]="sortable"
                      [columns]="currentColumns"
+                     [columnOrdering]="columnOrdering"
                      [childRows]="childRows"
                      [refreshButton]="refreshButton"
                      [page]="page"
@@ -97,6 +99,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   columns: SharkColumn[];
 
+  currentColumns: SharkColumn[] = [];
+
   /**
    * Allow users to turn columns on and off
    * @type {boolean}
@@ -104,7 +108,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   columnPicker = false;
 
-  currentColumns: SharkColumn[] = [];
+  /**
+   * Allow users to reorder columns with header buttons
+   * @type {boolean}
+   */
+  @Input()
+  columnOrdering = false;
 
   /**
    * The destination page for the call to `router.navigate` when the row is clicked.

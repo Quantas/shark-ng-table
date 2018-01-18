@@ -62,6 +62,15 @@ th {
     border-right: none;
 }
 
+.header-buttons > button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .data-row.even > td {
     border-right: 1px solid #f2f2f2;
 }
@@ -99,6 +108,7 @@ th {
     border: 1px solid #CCCCCC;
     background-color: white;
     text-align: left;
+    cursor: pointer;
 }
 
 .column-picker {
