@@ -40,7 +40,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                      (filterChange)="headerChange($event)"
                      (columnChange)="updateCurrentColumns($event)"
               ></thead>
-              <ng-container *ngIf="page.content">
+              <ng-container *ngIf="page.content && currentColumns.length > 0">
                   <tbody shark-table-row *ngFor="let row of (page.content | localfilter:currentColumns:localFilter:localPaging:columnFiltering:filter); let e = even; let o = odd"
                          [columns]="currentColumns"
                          [childRows]="childRows"
@@ -49,12 +49,17 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                          [row]="row" [odd]="o" [even]="e"
                   ></tbody>
               </ng-container>
-              <ng-container *ngIf="!page.content || page.content.length == 0">
+              <ng-container *ngIf="currentColumns.length === 0">
                   <tbody>
-                    <tr><td [attr.colspan]="currentColumns.length">This table contains no rows</td></tr>
+                    <tr><td [attr.colspan]="childRows ? columns.length + 1 : columns.length">There are no columns selected</td></tr>
                   </tbody>
               </ng-container>
-              <tfoot shark-table-footer *ngIf="footer" [page]="page" [columns]="currentColumns" [filter]="filter" [childRows]="childRows"></tfoot>
+              <ng-container *ngIf="(!page.content || page.content.length == 0) && currentColumns.length > 0">
+                  <tbody>
+                    <tr><td [attr.colspan]="childRows ? currentColumns.length + 1 : currentColumns.length">This table contains no rows</td></tr>
+                  </tbody>
+              </ng-container>
+              <tfoot shark-table-footer *ngIf="footer && currentColumns.length > 0" [page]="page" [columns]="currentColumns" [filter]="filter" [childRows]="childRows"></tfoot>
               <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
                      [sortable]="sortable"
                      [columns]="currentColumns"
@@ -68,7 +73,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                      (filterChange)="headerChange($event)"
               ></tfoot>
           </table>
-          <shark-table-pagination [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
+          <shark-table-pagination *ngIf="currentColumns.length > 0" [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
       </div>
   `
 })

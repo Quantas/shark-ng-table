@@ -16,11 +16,11 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
               <button *ngIf="refreshButton" (click)="fireFilterChange()">&#x21bb;</button>
               <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
               <form #filterForm="ngForm">
-                <span class="filter-box" *ngIf="filterable && !columnFiltering">
+                <span class="filter-box" *ngIf="filterable && !columnFiltering && columns.length > 0">
                   <label for="filter" class="screen-reader">Filter Results (all column search)</label>
                   <input type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" placeholder="Filter Results" />
                 </span>
-                <label class="local-paging-options" *ngIf="localPaging && showLocalPagingOptions">
+                <label class="local-paging-options" *ngIf="localPaging && showLocalPagingOptions && columns.length > 0">
                   Show
                   <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize">
                     <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
@@ -31,7 +31,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
             </div>
           </th>
         </tr>
-        <tr role="row" class="header-row">
+        <tr role="row" class="header-row" *ngIf="columns.length > 0">
             <th *ngIf="childRows" class="child-spacer"></th>
             <ng-container *ngIf="sortable">
                 <th class="pointer" [ngClass]="{'right': column.alignRight }"
