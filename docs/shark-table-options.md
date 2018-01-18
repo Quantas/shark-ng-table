@@ -4,6 +4,8 @@
     * The raw table data
 * columns - `SharkColumn[]`
     * The table column definitions
+* columnPicker - `boolean` - `false`
+    * Allow users to turn columns on and off
 * linkTarget - `string`
     * The destination page for the call to `router.navigate` when the row is clicked.
 * linkKey - `string`

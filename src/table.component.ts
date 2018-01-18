@@ -97,6 +97,10 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   columns: SharkColumn[];
 
+  /**
+   * Allow users to turn columns on and off
+   * @type {boolean}
+   */
   @Input()
   columnPicker = false;
 
