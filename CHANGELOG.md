@@ -1,3 +1,24 @@
+<a name="0.0.26"></a>
+## [0.0.26](https://github.com/Quantas/shark-ng-table/compare/0.0.25...0.0.26) (2018-01-19)
+
+
+### Bug Fixes
+
+* **accessibility:** Many updates for table accessibility ([65164ef](https://github.com/Quantas/shark-ng-table/commit/65164ef)), closes [#42](https://github.com/Quantas/shark-ng-table/issues/42)
+
+
+### Features
+
+* **child:** Add callback for when child is open/closed ([eaecc1c](https://github.com/Quantas/shark-ng-table/commit/eaecc1c)), closes [#43](https://github.com/Quantas/shark-ng-table/issues/43)
+* **child:** Add docs for childOpen function ([774f2bd](https://github.com/Quantas/shark-ng-table/commit/774f2bd))
+
+
+### BREAKING CHANGES
+
+* **child:** The SharkDynamicContents interface now requires an implementation of the childOpen(boolean) method
+
+
+
 <a name="0.0.25"></a>
 ## [0.0.25](https://github.com/Quantas/shark-ng-table/compare/0.0.24...0.0.25) (2018-01-18)
 
