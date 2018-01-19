@@ -39,6 +39,10 @@ describe('SharkTableCellComponent', () => {
 })
 export class TableCellComponent implements SharkDynamicContents {
   data: any;
+
+  childOpen(value: boolean): void {
+    console.log(value);
+  }
 }
 
 @NgModule({

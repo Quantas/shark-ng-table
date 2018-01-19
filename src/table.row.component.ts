@@ -26,7 +26,7 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
         <tr *ngIf="childRows" class="data-row child-row" [ngClass]="{ odd: odd, even: even, rowOpen: childShown }" [hidden]="!childShown">
             <td></td>
             <td [attr.colspan]="columns.length" role="gridcell">
-                <shark-child [component]="childComponent" [row]="row"></shark-child>
+                <shark-child [component]="childComponent" [row]="row" [childOpen]="childShown"></shark-child>
             </td>
         </tr>
     `

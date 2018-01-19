@@ -9,4 +9,10 @@ export interface SharkDynamicContents {
    * data, for a table cell, it will just be the data for that cell.
    */
   data: any;
+
+  /**
+   * This is called when a child row is opened, if you need to retrieve more data, etc.
+   * @param {boolean} value
+   */
+  childOpen(value: boolean): void;
 }

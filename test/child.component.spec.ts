@@ -37,6 +37,9 @@ describe('SharkTableComponent', () => {
 })
 export class ChildDataComponent implements SharkDynamicContents {
   data: any;
+  childOpen(value: boolean): void {
+    console.log(value);
+  }
 }
 
 @NgModule({

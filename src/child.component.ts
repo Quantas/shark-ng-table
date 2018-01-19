@@ -1,4 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, Input, Type, ViewChild } from '@angular/core';
+import {
+  AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ComponentRef, Input, OnChanges, SimpleChanges,
+  Type, ViewChild
+} from '@angular/core';
 import { SharkTableUtils } from './table.utils';
 import { SharkDynamicContents } from './dynamic/dynamic.contents';
 import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
@@ -12,7 +15,7 @@ import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.direct
       <ng-template sharkDynamicContents></ng-template>
   `
 })
-export class SharkChildComponent implements AfterViewInit {
+export class SharkChildComponent implements AfterViewInit, OnChanges {
 
   /**
    * Your custom component which extends {@link SharkDynamicContents} that will be used
@@ -28,8 +31,16 @@ export class SharkChildComponent implements AfterViewInit {
   @Input()
   row: any;
 
+  /**
+   * True if the child row is open, false if closed
+   */
+  @Input()
+  childOpen: boolean;
+
   @ViewChild(SharkDynamicContentsDirective)
   childContentsDirective: SharkDynamicContentsDirective;
+
+  componentRef: ComponentRef<SharkDynamicContents>;
 
   constructor(private tableUtils: SharkTableUtils, private componentFactoryResolver: ComponentFactoryResolver,
               private changeDetectorRef: ChangeDetectorRef) {}
@@ -38,13 +49,19 @@ export class SharkChildComponent implements AfterViewInit {
     this.loadComponent();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('childOpen') && !changes['childOpen'].isFirstChange()) {
+      this.componentRef.instance.childOpen(changes['childOpen'].currentValue);
+    }
+  }
+
   private loadComponent(): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
     const viewContainerRef = this.childContentsDirective.viewContainerRef;
     viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<SharkDynamicContents>componentRef.instance).data = this.row;
+    this.componentRef = viewContainerRef.createComponent(componentFactory);
+    this.componentRef.instance.data = this.row;
 
     // without this, everything went boom
     this.changeDetectorRef.detectChanges();
