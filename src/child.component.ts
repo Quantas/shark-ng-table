@@ -51,6 +51,7 @@ export class SharkChildComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('childOpen') && !changes['childOpen'].isFirstChange()) {
+      this.childOpen = changes['childOpen'].currentValue;
       this.componentRef.instance.childOpen(changes['childOpen'].currentValue);
     }
   }

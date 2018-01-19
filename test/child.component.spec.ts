@@ -26,6 +26,48 @@ describe('SharkTableComponent', () => {
     expect(fixture.nativeElement.querySelector('tr').innerHTML).toEqual('<td>1</td><td>b</td><td>c</td>');
   });
 
+  it('should open the child row', () => {
+    component.component = TestBed.createComponent(ChildDataComponent).componentRef.componentType;
+    component.row = {col1: '1', col2: 'b', col3: 'c' };
+
+    fixture.detectChanges();
+
+    component.ngOnChanges({
+      'childOpen': {
+        previousValue: false,
+        currentValue: true,
+        firstChange: false,
+        isFirstChange() { return false; }
+      }
+    });
+
+    fixture.detectChanges();
+
+    expect(component.childOpen).toEqual(true);
+  });
+
+  it('should not open on firstChange', () => {
+    component.component = TestBed.createComponent(ChildDataComponent).componentRef.componentType;
+    component.row = {col1: '1', col2: 'b', col3: 'c' };
+
+    fixture.detectChanges();
+
+    component.childOpen = false;
+
+    component.ngOnChanges({
+      'childOpen': {
+        previousValue: undefined,
+        currentValue: false,
+        firstChange: true,
+        isFirstChange() { return true; }
+      }
+    });
+
+    fixture.detectChanges();
+
+    expect(component.childOpen).toEqual(false);
+  });
+
 });
 
 @Component({
