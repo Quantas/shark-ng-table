@@ -19,12 +19,17 @@ import { SharkDynamicContents } from 'shark-ng-table';
 })
 export class ChildDataComponent implements SharkDynamicContents {
   data: any;
+  
+  childOpen(value: boolean): void {
+  }
 }
 ```
 
 This example would render your entire row as a table inside the child row.
 
 To enable child rows, you will need to set 2 properties to your `<shark-table>` declaration, `childRows` and `childComponent`. To set `childComponent` we need to add an instance variable to the Component that is rendering this template:
+
+There is also a function, childOpen, that will be called by the table when your child row is open, if you need to call a service or something to get more data.
 
 ```typescript
 
