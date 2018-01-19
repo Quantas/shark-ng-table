@@ -51,7 +51,7 @@ th {
 }
 
 .info-header {
-  border-bottom: 1px solid white;
+    border-bottom: 1px solid white;
 }
 
 .header-row > th {
@@ -63,12 +63,16 @@ th {
 }
 
 .header-buttons > button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header-buttons > button.black-arrow {
+    color: black;
 }
 
 .data-row.even > td {

@@ -11,8 +11,11 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
     selector: '[shark-table-row]',
     template: `        
         <tr role="row" class="data-row" [ngClass]="{ odd: odd, even: even, rowLink: linkTarget, rowOpen: childShown }" (click)="rowClick(row)" (keyup.enter)="rowClick(row)" [attr.tabindex]="linkTarget ? 0 : ''">
-            <td role="gridcell" class="childButton pointer" *ngIf="childRows" [ngClass]="{ 'open': childShown, 'closed': !childShown }" (click)="toggleChild()" (keyup.enter)="toggleChild()" tabindex="0">
-              <i class="fas fa-fw" [ngClass]="{ 'open': childShown, 'closed': !childShown, 'fa-caret-down': childShown, 'fa-caret-right': !childShown }"></i>
+            <td role="gridcell" class="header-buttons" *ngIf="childRows">
+              <button class="black-arrow" (click)="toggleChild()" [value]="'Click to ' + (childShown ? 'close' : 'open') + ' this child row.'">
+                <i class="fas fa-fw" [ngClass]="{ 'open': childShown, 'closed': !childShown, 'fa-caret-down': childShown, 'fa-caret-right': !childShown }"></i>
+                <span class="screen-reader">{{ 'Click to ' + (childShown ? 'close' : 'open') + ' this child row.' }}</span>
+              </button>
             </td>
             <ng-container *ngFor="let column of columns">
                 <td role="gridcell" [ngClass]="{'right': column.alignRight }">

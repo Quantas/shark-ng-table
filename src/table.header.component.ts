@@ -32,13 +32,21 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
           </th>
         </tr>
         <tr role="row" class="header-row" *ngIf="columns.length > 0">
-            <th *ngIf="childRows" class="child-spacer"></th>
+            <th *ngIf="childRows" class="child-spacer"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
             <ng-container *ngIf="sortable">
                 <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
                     *ngFor="let column of columns; let i = index; let f = first; let l = last;"
                     scope="col" role="columnheader">
-                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)"><i class="fa fa-fw fa-angle-left"></i></button>
-                    <button (click)="changeSort(column.property, column.sortType)">
+                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [value]="'Move the ' + column.header + ' column left'">
+                      <i class="fa fa-fw fa-angle-left"></i>
+                      <span class="screen-reader">{{ 'Move the ' + column.header + ' column left' }}</span>
+                    </button>
+                    <button (click)="changeSort(column.property, column.sortType)" [value]="
+                      'Sorting ' + column.header + ' as ' +
+                        (column.sortType === 0 ? 'None' : column.sortType === 1 ? 'Ascending'  : 'Descending') +
+                        ', Click to change sort for the ' + column.header + ' to ' +
+                        (column.sortType === 0 ? 'Ascending' : column.sortType === 1 ? 'Descending' : 'None')
+                    ">
                       {{ column.header }} <i class="sorting fas fa-fw" [ngClass]="{ 
                         'none': !column.sortType || column.sortType === 0,
                         'fa-sort': !column.sortType || column.sortType === 0, 
@@ -47,23 +55,33 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                         'desc': column.sortType === 2,
                         'fa-sort-down': column.sortType === 2  
                       }"></i>
+                      <span class="screen-reader">{{ 'Sorting ' + column.header + ' as ' + (column.sortType === 0 ? 'None' : column.sortType === 1 ? 'Ascending'  : 'Descending') }}</span>
                     </button>
-                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)"><i class="fa fa-fw fa-angle-right"></i></button>
+                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" [value]="'Move the ' + column.header + ' column right'">
+                      <i class="fa fa-fw fa-angle-right"></i>
+                      <span class="screen-reader">{{ 'Move the ' + column.header + ' column right' }}</span>
+                    </button>
                 </th>
             </ng-container>
             <ng-container *ngIf="!sortable">
                 <th class="header-buttons" [ngClass]="{'right': column.alignRight }" *ngFor="let column of columns; let i = index; let f = first; let l = last;" scope="col" role="columnheader">
-                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)"><i class="fa fa-fw fa-angle-left"></i></button>
+                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [value]="'Move the ' + column.header + ' column left'">
+                      <i class="fa fa-fw fa-angle-left"></i>
+                      <span class="screen-reader">{{ 'Move the ' + column.header + ' column left' }}</span>
+                    </button>
                     {{ column.header }}
-                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)"><i class="fa fa-fw fa-angle-right"></i></button>
+                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" [value]="'Move the ' + column.header + ' column right'">
+                      <i class="fa fa-fw fa-angle-right"></i>
+                      <span class="screen-reader">{{ 'Move the ' + column.header + ' column right' }}</span>
+                    </button>
                 </th>
             </ng-container>
         </tr>
         <tr role="row" *ngIf="columnFiltering && filterable" class="header-row">
-          <th *ngIf="childRows"></th>
+          <th *ngIf="childRows"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
           <th *ngFor="let column of columns; let i = index" scope="col" role="columnheader" class="header-row">
-            <label [for]="'column' + i" class="screen-reader">{{ column.header }} filter</label>
-            <input type="text" name="column{{i}}" [id]="'column' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
+            <label [for]="(footer ? 'footer' : '') + '-column-' + i" class="screen-reader">{{ column.header }} filter</label>
+            <input type="text" name="column{{i}}" [id]="(footer ? 'footer' : '') + '-column-' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
           </th>
         </tr>
     `
