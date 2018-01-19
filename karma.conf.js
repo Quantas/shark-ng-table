@@ -42,6 +42,7 @@ module.exports = function (config) {
             useBrowserName: false
         },
 
-        browsers: ['PhantomJS']
+        browsers: ['PhantomJS'],
+        browserNoActivityTimeout: 1000000
     });
 };
