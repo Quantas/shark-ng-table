@@ -10,7 +10,7 @@
 
 [npm-badge-url]: https://www.npmjs.com/package/shark-ng-table
 
-A robust table for Angular.
+A robust table for Angular built with Accessibility in mind.
 
 ## Samples
 

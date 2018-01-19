@@ -37,11 +37,11 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                 <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
                     *ngFor="let column of columns; let i = index; let f = first; let l = last;"
                     scope="col" role="columnheader">
-                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [value]="'Move the ' + column.header + ' column left'">
+                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [title]="'Move the ' + column.header + ' column left'">
                       <i class="fa fa-fw fa-angle-left"></i>
                       <span class="screen-reader">{{ 'Move the ' + column.header + ' column left' }}</span>
                     </button>
-                    <button (click)="changeSort(column.property, column.sortType)" [value]="
+                    <button (click)="changeSort(column.property, column.sortType)" [title]="
                       'Sorting ' + column.header + ' as ' +
                         (column.sortType === 0 ? 'None' : column.sortType === 1 ? 'Ascending'  : 'Descending') +
                         ', Click to change sort for the ' + column.header + ' to ' +
@@ -57,7 +57,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                       }"></i>
                       <span class="screen-reader">{{ 'Sorting ' + column.header + ' as ' + (column.sortType === 0 ? 'None' : column.sortType === 1 ? 'Ascending'  : 'Descending') }}</span>
                     </button>
-                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" [value]="'Move the ' + column.header + ' column right'">
+                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" [title]="'Move the ' + column.header + ' column right'">
                       <i class="fa fa-fw fa-angle-right"></i>
                       <span class="screen-reader">{{ 'Move the ' + column.header + ' column right' }}</span>
                     </button>
@@ -65,12 +65,12 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
             </ng-container>
             <ng-container *ngIf="!sortable">
                 <th class="header-buttons" [ngClass]="{'right': column.alignRight }" *ngFor="let column of columns; let i = index; let f = first; let l = last;" scope="col" role="columnheader">
-                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [value]="'Move the ' + column.header + ' column left'">
+                    <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [title]="'Move the ' + column.header + ' column left'">
                       <i class="fa fa-fw fa-angle-left"></i>
                       <span class="screen-reader">{{ 'Move the ' + column.header + ' column left' }}</span>
                     </button>
                     {{ column.header }}
-                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" [value]="'Move the ' + column.header + ' column right'">
+                    <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" [title]="'Move the ' + column.header + ' column right'">
                       <i class="fa fa-fw fa-angle-right"></i>
                       <span class="screen-reader">{{ 'Move the ' + column.header + ' column right' }}</span>
                     </button>

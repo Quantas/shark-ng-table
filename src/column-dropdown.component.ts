@@ -7,7 +7,7 @@ import { SharkColumn } from './column';
   selector: 'shark-column-dropdown',
   template: `
     <span class="column-picker">
-        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" value="Click to show the column picker dropdown">
+        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" title="Click to show the column picker dropdown">
           <span>Choose Columns</span>
           <i class="fa fa-fw fa-angle-down"></i>
         </button>
@@ -16,7 +16,7 @@ import { SharkColumn } from './column';
             <input type="checkbox"
                    [(ngModel)]="column.displayed"
                    (ngModelChange)="emitSelected()"
-                   [value]="'Click to ' + (column.displayed ? 'hide' : 'show') + ' the ' + column.header + ' column'" 
+                   [title]="'Click to ' + (column.displayed ? 'hide' : 'show') + ' the ' + column.header + ' column'" 
             />
             <span>{{ column.header }}</span>
           </label>
