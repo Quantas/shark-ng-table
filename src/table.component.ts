@@ -20,7 +20,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
   selector: 'shark-table',
   template: `
       <div class="table-wrapper">
-          <table role="grid">
+          <table role="grid" *ngIf="page">
               <thead shark-table-header
                      [sortable]="sortable"
                      [columns]="currentColumns"
@@ -28,7 +28,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                      [columnPicker]="columnPicker"
                      [columnOrdering]="columnOrdering"
                      [childRows]="childRows"
-                     [refreshButton]="refreshButton"
+                     [serverSideData]="serverSideData"
                      [page]="page"
                      [filterable]="filterable"
                      [columnFiltering]="columnFiltering"
@@ -66,7 +66,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                      [columns]="currentColumns"
                      [columnOrdering]="columnOrdering"
                      [childRows]="childRows"
-                     [refreshButton]="refreshButton"
+                     [serverSideData]="serverSideData"
                      [page]="page"
                      [filterable]="filterable"
                      [columnFiltering]="columnFiltering && footerColumnFiltering"
@@ -188,7 +188,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    * @type {boolean}
    */
   @Input()
-  refreshButton = false;
+  serverSideData = false;
 
   /**
    * The initial sortString
@@ -378,7 +378,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
       const sorts = this.generateSortArray();
 
-      if (!this.refreshButton) {
+      if (!this.serverSideData) {
         // sort internally
         this.sort(this.page.content, sorts);
       }
@@ -624,7 +624,9 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         });
       });
 
-      this.changeSort('', undefined);
+      if (!this.serverSideData) {
+        this.changeSort('', undefined);
+      }
     }
   }
 }

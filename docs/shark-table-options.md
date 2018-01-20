@@ -26,9 +26,9 @@
     * The size of each page
 * localPagingOptions - `Number[]` - `[10, 20, 100]`
     * The supported page sizes
-* showLocalPagingOptions - `boolean`
+* showLocalPagingOptions - `boolean` - `true`
     * Enables the drop down for changing the page size
-* refreshButton - `boolean` - `false`
+* serverSideData - `boolean` - `false`
     * Shows a button that when clicked, emits a `SharkPageChangeEvent`
 * initialSort - `string`
     * The initial sortString

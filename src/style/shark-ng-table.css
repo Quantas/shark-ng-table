@@ -19,6 +19,10 @@
     float: left
 }
 
+.controls .server-refresh {
+    float: left;
+}
+
 .controls .local-paging-options {
     float: right;
 }

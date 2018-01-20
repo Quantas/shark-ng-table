@@ -10,10 +10,10 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
 @Component({
     selector: '[shark-table-header]',
     template: `
-        <tr class="info-header" *ngIf="!footer && (refreshButton || (filterable && !columnFiltering) || (localPaging && showLocalPagingOptions))">
+        <tr class="info-header" *ngIf="!footer && (serverSideData || (filterable && !columnFiltering) || (localPaging && showLocalPagingOptions))">
           <th [attr.colspan]="childRows ? columns.length + 1 : columns.length">
             <div class="controls">
-              <button *ngIf="refreshButton" (click)="fireFilterChange()">&#x21bb;</button>
+              <button class="server-refresh" *ngIf="serverSideData" (click)="fireFilterChange()">&#x21bb;</button>
               <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
               <form #filterForm="ngForm">
                 <span class="filter-box" *ngIf="filterable && !columnFiltering && columns.length > 0">
@@ -113,7 +113,7 @@ export class SharkTableHeaderComponent {
     childRows: boolean;
 
     @Input()
-    refreshButton: boolean;
+    serverSideData: boolean;
 
     @Input()
     page: Page;

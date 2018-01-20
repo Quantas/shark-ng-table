@@ -9,3 +9,4 @@ export { SharkTableCellComponent } from './table.cell.component';
 export { SharkTableComponent } from './table.component';
 export { SharkTablePaginationComponent } from './table.pagination.component';
 export { SharkTableUtils } from './table.utils';
+export { Page } from './page';
