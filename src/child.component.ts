@@ -31,14 +31,16 @@ export class SharkChildComponent implements AfterViewInit, OnChanges {
   @Input()
   row: any;
 
-  /**
-   * True if the child row is open, false if closed
-   */
   @Input()
-  childOpen: boolean;
+  rowIndex: number;
+
+  @Input()
+  openChildren: number[];
 
   @ViewChild(SharkDynamicContentsDirective)
   childContentsDirective: SharkDynamicContentsDirective;
+
+  childOpen: boolean;
 
   componentRef: ComponentRef<SharkDynamicContents>;
 
@@ -50,9 +52,9 @@ export class SharkChildComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('childOpen') && !changes['childOpen'].isFirstChange()) {
-      this.childOpen = changes['childOpen'].currentValue;
-      this.componentRef.instance.childOpen(changes['childOpen'].currentValue);
+    if (changes.hasOwnProperty('openChildren') && !changes['openChildren'].isFirstChange()) {
+      this.childOpen = changes['openChildren'].currentValue.indexOf(this.rowIndex) > -1;
+      this.componentRef.instance.childOpen(this.childOpen);
     }
   }
 

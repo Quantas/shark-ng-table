@@ -83,6 +83,10 @@ th {
     border-right: 1px solid #f2f2f2;
 }
 
+.data-row.odd > td {
+    border-right: 1px solid white;
+}
+
 .data-row.rowOpen > td {
     border-right: 1px solid #e8e8e8;
 }

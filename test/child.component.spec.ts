@@ -29,13 +29,14 @@ describe('SharkTableComponent', () => {
   it('should open the child row', () => {
     component.component = TestBed.createComponent(ChildDataComponent).componentRef.componentType;
     component.row = {col1: '1', col2: 'b', col3: 'c' };
+    component.rowIndex = 0;
 
     fixture.detectChanges();
 
     component.ngOnChanges({
-      'childOpen': {
-        previousValue: false,
-        currentValue: true,
+      'openChildren': {
+        previousValue: [],
+        currentValue: [ 0 ],
         firstChange: false,
         isFirstChange() { return false; }
       }
@@ -49,17 +50,41 @@ describe('SharkTableComponent', () => {
   it('should not open on firstChange', () => {
     component.component = TestBed.createComponent(ChildDataComponent).componentRef.componentType;
     component.row = {col1: '1', col2: 'b', col3: 'c' };
+    component.rowIndex = 0;
 
     fixture.detectChanges();
 
     component.childOpen = false;
 
     component.ngOnChanges({
-      'childOpen': {
+      'openChildren': {
         previousValue: undefined,
-        currentValue: false,
+        currentValue: [ ],
         firstChange: true,
         isFirstChange() { return true; }
+      }
+    });
+
+    fixture.detectChanges();
+
+    expect(component.childOpen).toEqual(false);
+  });
+
+  it('should not open on wrong index', () => {
+    component.component = TestBed.createComponent(ChildDataComponent).componentRef.componentType;
+    component.row = {col1: '1', col2: 'b', col3: 'c' };
+    component.rowIndex = 0;
+
+    fixture.detectChanges();
+
+    component.childOpen = false;
+
+    component.ngOnChanges({
+      'openChildren': {
+        previousValue: [],
+        currentValue: [ 1 ],
+        firstChange: false,
+        isFirstChange() { return false; }
       }
     });
 

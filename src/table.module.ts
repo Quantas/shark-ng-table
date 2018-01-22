@@ -9,7 +9,7 @@ import { LocalFilterPipe } from './localfilter.pipe';
 import { SharkTableUtils } from './table.utils';
 import { SharkTableCellComponent } from './table.cell.component';
 import { SharkChildComponent } from './child.component';
-import { SharkTableRowComponent } from './table.row.component';
+import { SharkTableBodyComponent } from './table.body.component';
 import { SharkTableHeaderComponent } from './table.header.component';
 import { SharkTableFooterComponent } from './table.footer.component';
 import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
@@ -29,7 +29,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
     SharkTableHeaderComponent,
     SharkTableFooterComponent,
     SharkTablePaginationComponent,
-    SharkTableRowComponent,
+    SharkTableBodyComponent,
     LocalFilterPipe,
     SharkColumnDropdownComponent
   ],
