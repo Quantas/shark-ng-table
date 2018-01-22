@@ -58,6 +58,19 @@ th {
     border-bottom: 1px solid white;
 }
 
+.info-header > td {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.info-footer > td {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
 .header-row > th {
     border-right: 1px solid white;
 }
@@ -136,7 +149,7 @@ th {
     position: absolute;
     padding: 4px;
     width: 7.75rem;
-    left: 2.45rem;
+    left: 1.8rem;
 }
 
 .column-picker .dropdown label {
@@ -153,6 +166,7 @@ th {
 .column-picker .dropdown label span {
     display: inline-block;
 }
+
 /* Pagination */
 .pagination-wrapper {
     float: left;
@@ -162,36 +176,37 @@ th {
     display: inline-block;
 }
 
-.pagination a:hover:not(.active) {
+.pagination button:hover {
     background-color: #ddd;
 }
 
-.pagination a.active,
-.pagination span.active {
+.pagination button.active {
     background-color: #4CAF50;
     color: white;
 }
 
-.pagination a,
-.pagination span {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
+.pagination button {
+    background-color: white;
     border: 1px solid #ddd;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    float: left;
+    padding: 4px 16px;
     transition: background-color .3s;
 }
 
 .pagination .inactive {
-  color: gray;
+    color: gray;
+    cursor: auto;
 }
 
 /* Accessibility */
 .screen-reader {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }

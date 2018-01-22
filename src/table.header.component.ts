@@ -11,7 +11,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
     selector: '[shark-table-header]',
     template: `
         <tr class="info-header" *ngIf="!footer && (serverSideData || (filterable && !columnFiltering) || (localPaging && showLocalPagingOptions))">
-          <th [attr.colspan]="childRows ? columns.length + 1 : columns.length">
+          <td [attr.colspan]="childRows ? columns.length + 1 : columns.length">
             <div class="controls">
               <button class="server-refresh" *ngIf="serverSideData" (click)="fireFilterChange()">&#x21bb;</button>
               <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
@@ -29,14 +29,14 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                 </label>
               </form>
             </div>
-          </th>
+          </td>
         </tr>
-        <tr role="row" class="header-row" *ngIf="columns.length > 0">
-            <th *ngIf="childRows" class="child-spacer"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
+        <tr class="header-row" *ngIf="columns.length > 0">
+            <th *ngIf="childRows" class="child-spacer" scope="col"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
             <ng-container *ngIf="sortable">
                 <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
-                    *ngFor="let column of columns; let i = index; let f = first; let l = last;"
-                    scope="col" role="columnheader">
+                    *ngFor="let column of columns; let i = index; let f = first; let l = last;" 
+                    scope="col">
                     <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [title]="'Move the ' + column.header + ' column left'">
                       <i class="fa fa-fw fa-angle-left"></i>
                       <span class="screen-reader">{{ 'Move the ' + column.header + ' column left' }}</span>
@@ -64,7 +64,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                 </th>
             </ng-container>
             <ng-container *ngIf="!sortable">
-                <th class="header-buttons" [ngClass]="{'right': column.alignRight }" *ngFor="let column of columns; let i = index; let f = first; let l = last;" scope="col" role="columnheader">
+                <th class="header-buttons" [ngClass]="{'right': column.alignRight }" *ngFor="let column of columns; let i = index; let f = first; let l = last;" scope="col">
                     <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" [title]="'Move the ' + column.header + ' column left'">
                       <i class="fa fa-fw fa-angle-left"></i>
                       <span class="screen-reader">{{ 'Move the ' + column.header + ' column left' }}</span>
@@ -77,9 +77,9 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                 </th>
             </ng-container>
         </tr>
-        <tr role="row" *ngIf="columnFiltering && filterable" class="header-row">
-          <th *ngIf="childRows"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
-          <th *ngFor="let column of columns; let i = index" scope="col" role="columnheader" class="header-row">
+        <tr *ngIf="columnFiltering && filterable" class="header-row">
+          <th *ngIf="childRows" scope="col"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
+          <th *ngFor="let column of columns; let i = index" scope="col" class="header-row">
             <label [for]="(footer ? 'footer' : '') + '-column-' + i" class="screen-reader">{{ column.header }} filter</label>
             <input type="text" name="column{{i}}" [id]="(footer ? 'footer' : '') + '-column-' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
           </th>

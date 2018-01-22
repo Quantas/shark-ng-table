@@ -6,22 +6,15 @@ import { Page } from './page';
   template: `
       <div class="pagination-wrapper" *ngIf="pageCount.length > 1">
           <div class="pagination">
-              <span *ngIf="first" class="inactive">First</span>
-              <a *ngIf="!first" (click)="!!changePage(0)" role="button" href>First</a>
-            
-              <span *ngIf="!previous" class="inactive">Previous</span>
-              <a *ngIf="previous" (click)="!!changePage(page.number - 1)" role="button" href>Previous</a>
+              <button [attr.disabled]="first ? 'disabled' : null" [ngClass]="{'inactive': first}" (click)="changePage(0)">First</button>
+              <button [attr.disabled]="!previous ? 'disabled' : null" [ngClass]="{'inactive': !previous}" (click)="changePage(page.number - 1)">Previous</button>
             
               <ng-container *ngFor="let num of displayedPages">
-                <span *ngIf="num === page.number" [ngClass]="{'active': true}">{{ num + 1 }}</span>
-                <a *ngIf="num !== page.number" (click)="!!changePage(num)" role="button" href>{{ num + 1 }}</a>
+                <button [ngClass]="{'active': num === page.number }" (click)="changePage(num)">{{ num + 1 }}</button>
               </ng-container>
             
-              <span *ngIf="!next" class="inactive">Next</span>
-              <a *ngIf="next" (click)="!!changePage(page.number + 1)" role="button" href>Next</a>
-            
-              <span *ngIf="last" class="inactive">Last</span>
-              <a *ngIf="!last" (click)="!!changePage(pageCount.length - 1)" role="button" href>Last</a>
+              <button [attr.disabled]="!next ? 'disabled' : null" [ngClass]="{'inactive': !next}" (click)="changePage(page.number + 1)">Next</button>
+              <button [attr.disabled]="last ? 'disabled' : null" [ngClass]="{'inactive': last}" (click)="changePage(pageCount.length - 1)">Last</button>
           </div>
       </div>
   `

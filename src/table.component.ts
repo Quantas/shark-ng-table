@@ -20,7 +20,7 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
   selector: 'shark-table',
   template: `
       <div class="table-wrapper">
-          <table role="grid" *ngIf="page">
+          <table *ngIf="page">
               <thead shark-table-header
                      [sortable]="sortable"
                      [columns]="currentColumns"

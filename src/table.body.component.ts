@@ -13,26 +13,26 @@ import { Page } from './page';
     template: `
         <ng-container *ngIf="page.content && currentColumns.length > 0">
           <ng-container *ngFor="let row of (page.content | localfilter:currentColumns:localFilter:localPaging:columnFiltering:filter); let e = even; let o = odd; let i = index;">
-            <tr role="row" class="data-row"
+            <tr class="data-row"
                 [ngClass]="{ odd: o, even: e, rowLink: linkTarget, rowOpen: childOpen(i) }"
                 (click)="rowClick(row)" (keyup.enter)="rowClick(row)"
-                [attr.tabindex]="linkTarget ? 0 : ''"
+                [attr.tabindex]="linkTarget ? 0 : null"
             >
-                <td role="gridcell" class="header-buttons" *ngIf="childRows">
+                <td class="header-buttons" *ngIf="childRows">
                   <button class="black-arrow" (click)="toggleChild(i)" [title]="'Click to ' + (childOpen(i) ? 'close' : 'open') + ' this child row.'">
                     <i class="fas fa-fw" [ngClass]="{ 'open': childOpen(i), 'closed': !childOpen(i), 'fa-caret-down': childOpen(i), 'fa-caret-right': !childOpen(i) }"></i>
                     <span class="screen-reader">{{ 'Click to ' + (childOpen(i) ? 'close' : 'open') + ' this child row.' }}</span>
                   </button>
                 </td>
                 <ng-container *ngFor="let column of currentColumns">
-                    <td role="gridcell" [ngClass]="{'right': column.alignRight }">
+                    <td [ngClass]="{'right': column.alignRight }">
                         <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
                     </td>
                 </ng-container>
             </tr>
             <tr *ngIf="childRows" class="data-row child-row" [ngClass]="{ odd: o, even: e, rowOpen: childOpen(i) }" [hidden]="!childOpen(i)">
                 <td></td>
-                <td [attr.colspan]="currentColumns.length" role="gridcell">
+                <td [attr.colspan]="currentColumns.length">
                     <shark-child [component]="childComponent" [row]="row" [rowIndex]="i" [openChildren]="openChildren"></shark-child>
                 </td>
             </tr>

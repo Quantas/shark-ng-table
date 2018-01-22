@@ -7,10 +7,9 @@ import { SharkTableUtils } from './table.utils';
   selector: '[shark-table-footer]',
   template: `
   <tr class="info-footer">
-    <th *ngIf="childRows" class="child-spacer"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
-    <th [attr.colspan]="columns.length">
+    <td [attr.colspan]="childRows ? columns.length + 1 : columns.length">
       Showing {{ start }} to {{ end }} of {{ total }} rows {{ filtered ? '(Filtered)' : '' }}
-    </th>
+    </td>
   </tr>`
 })
 export class SharkTableFooterComponent implements OnChanges {
