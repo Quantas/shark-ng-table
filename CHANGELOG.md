@@ -1,3 +1,26 @@
+<a name="0.0.28"></a>
+## [0.0.28](https://github.com/Quantas/shark-ng-table/compare/0.0.27...0.0.28) (2018-01-23)
+
+
+### Bug Fixes
+
+* **accessibility:** A number of a11y updates ([b8d2a26](https://github.com/Quantas/shark-ng-table/commit/b8d2a26))
+* **rows:** Stop creating excessive tbody tags ([90fd34b](https://github.com/Quantas/shark-ng-table/commit/90fd34b)), closes [#46](https://github.com/Quantas/shark-ng-table/issues/46)
+* **sorting:** Rename refreshButton to serverSideData, fix infinite loop ([dfc08d2](https://github.com/Quantas/shark-ng-table/commit/dfc08d2)), closes [#45](https://github.com/Quantas/shark-ng-table/issues/45)
+
+
+### Features
+
+* **accessibility:** Add automated aXe testing ([de0bb3a](https://github.com/Quantas/shark-ng-table/commit/de0bb3a))
+* **styling:** Allow users to provide row and cell styling functions ([442959a](https://github.com/Quantas/shark-ng-table/commit/442959a)), closes [#47](https://github.com/Quantas/shark-ng-table/issues/47)
+
+
+### BREAKING CHANGES
+
+* **sorting:** renamed refreshButton to serverSideData
+
+
+
 <a name="0.0.26"></a>
 ## [0.0.26](https://github.com/Quantas/shark-ng-table/compare/0.0.25...0.0.26) (2018-01-19)
 
