@@ -15,6 +15,7 @@ import { Page } from './page';
           <ng-container *ngFor="let row of (page.content | localfilter:currentColumns:localFilter:localPaging:columnFiltering:filter); let e = even; let o = odd; let i = index;">
             <tr class="data-row"
                 [ngClass]="{ odd: o, even: e, rowLink: linkTarget, rowOpen: childOpen(i) }"
+                [ngStyle]="rowStylingFunction(row)"
                 (click)="rowClick(row)" (keyup.enter)="rowClick(row)"
                 [attr.tabindex]="linkTarget ? 0 : null"
             >
@@ -25,7 +26,7 @@ import { Page } from './page';
                   </button>
                 </td>
                 <ng-container *ngFor="let column of currentColumns">
-                    <td [ngClass]="{'right': column.alignRight }">
+                    <td [ngClass]="{'right': column.alignRight }" [ngStyle]="addStyleToCell(row, column)">
                         <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
                     </td>
                 </ng-container>
@@ -64,6 +65,12 @@ export class SharkTableBodyComponent implements OnChanges {
     filter: string;
 
     @Input()
+    rowStylingFunction: RowStyleFunction;
+
+    @Input()
+    cellStylingFunction: CellStyleFunction;
+
+    @Input()
     childRows: boolean;
 
     @Input()
@@ -86,6 +93,15 @@ export class SharkTableBodyComponent implements OnChanges {
       if (changes.hasOwnProperty('page') && !changes['page'].isFirstChange()) {
         this.openChildren = [];
       }
+    }
+
+    addStyleToCell(row: any, column: SharkColumn): { [key: string]: string; } | {} {
+      if (this.cellStylingFunction) {
+        const cellData = this.tableUtils.retrieveCell(row, column);
+        return this.cellStylingFunction(row, column, cellData);
+      }
+
+      return null;
     }
 
     childOpen(index: number) {
@@ -114,4 +130,30 @@ export class SharkTableBodyComponent implements OnChanges {
             this.router.navigate([this.linkTarget, this.tableUtils.findValue(row, this.linkKey)]);
         }
     }
+}
+
+export interface RowStyleFunction {
+
+  /**
+   * Sends in the current row data and returns an object to be
+   * used in conjunction with NgStyle with the format like:
+   *
+   * { 'background-color': 'red' }
+   */
+  (row: any): {
+    [key: string]: string;
+  } | {};
+}
+
+export interface CellStyleFunction {
+
+  /**
+   * Sends in the current row data and returns an object to be
+   * used in conjunction with NgStyle with the format like:
+   *
+   * { 'background-color': 'red' }
+   */
+  (row: any, column: SharkColumn, cell: any): {
+    [key: string]: string;
+  } | {};
 }

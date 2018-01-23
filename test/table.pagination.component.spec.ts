@@ -1,5 +1,5 @@
 import { async } from '@angular/core/testing';
-import { SharkColumn, SharkTablePaginationComponent, SharkTableUtils } from '../src';
+import { SharkTablePaginationComponent, SharkTableUtils } from '../src';
 
 describe('SharkTableUtils', () => {
 

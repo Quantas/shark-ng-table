@@ -15,6 +15,7 @@ import { SharkTableUtils } from './table.utils';
 import { SharkTablePaginationComponent } from './table.pagination.component';
 import { SharkDynamicContents } from './dynamic/dynamic.contents';
 import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.header.component';
+import { CellStyleFunction, RowStyleFunction } from './table.body.component';
 
 @Component({
   selector: 'shark-table',
@@ -51,6 +52,8 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
                      [childComponent]="childComponent"
                      [linkTarget]="linkTarget" [linkKey]="linkKey"
                      [page]="page"
+                     [rowStylingFunction]="rowStylingFunction"
+                     [cellStylingFunction]="cellStylingFunction"
               ></tbody>
               <tfoot shark-table-footer *ngIf="footer && currentColumns.length > 0" [page]="page" [columns]="currentColumns" [filter]="filter" [childRows]="childRows"></tfoot>
               <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
@@ -187,6 +190,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   initialSort: string;
+
+  @Input()
+  rowStylingFunction: RowStyleFunction = row => { return {}; };
+
+  @Input()
+  cellStylingFunction: CellStyleFunction;
 
   /**
    * Enables children rows
