@@ -6,15 +6,27 @@ import { Page } from './page';
   template: `
       <div class="pagination-wrapper" *ngIf="pageCount.length > 1">
           <div class="pagination">
-              <button [attr.disabled]="first ? 'disabled' : null" [ngClass]="{'inactive': first}" (click)="changePage(0)">First</button>
-              <button [attr.disabled]="!previous ? 'disabled' : null" [ngClass]="{'inactive': !previous}" (click)="changePage(page.number - 1)">Previous</button>
+              <button *ngIf="!first" (click)="changePage(0)" title="Go To First Page">
+                <i class="fa fa-angle-double-left"></i>
+                <span class="screen-reader">Go To First Page</span>
+              </button>
+              <button *ngIf="previous" (click)="changePage(page.number - 1)" title="Go To Previous Page">
+                <i class="fa fa-angle-left"></i>
+                <span class="screen-reader">Go To Previous Page</span>
+              </button>
             
               <ng-container *ngFor="let num of displayedPages">
-                <button [ngClass]="{'active': num === page.number }" (click)="changePage(num)">{{ num + 1 }}</button>
+                <button [ngClass]="{'active': num === page.number }" (click)="changePage(num)" [attr.title]="num !== page.number ? 'Go To Page ' + (num + 1) : null">{{ num + 1 }}</button>
               </ng-container>
             
-              <button [attr.disabled]="!next ? 'disabled' : null" [ngClass]="{'inactive': !next}" (click)="changePage(page.number + 1)">Next</button>
-              <button [attr.disabled]="last ? 'disabled' : null" [ngClass]="{'inactive': last}" (click)="changePage(pageCount.length - 1)">Last</button>
+              <button *ngIf="next" (click)="changePage(page.number + 1)" title="Go To Next Page">
+                <i class="fa fa-angle-right"></i>
+                <span class="screen-reader">Go To Next Page</span>
+              </button>
+              <button *ngIf="!last" (click)="changePage(pageCount.length - 1)" title="Go To Last Page">
+                <i class="fa fa-angle-double-right"></i>
+                <span class="screen-reader">Go To Last Page</span>
+              </button>
           </div>
       </div>
   `

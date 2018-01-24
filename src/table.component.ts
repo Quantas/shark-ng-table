@@ -12,10 +12,10 @@ import { SharkColumn } from './column';
 import { SharkPageChangeEvent } from './page.change.event';
 import { SharkCurrentSort, SharkSortType } from './sort.type';
 import { SharkTableUtils } from './table.utils';
-import { SharkTablePaginationComponent } from './table.pagination.component';
 import { SharkDynamicContents } from './dynamic/dynamic.contents';
 import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.header.component';
 import { CellStyleFunction, RowStyleFunction } from './table.body.component';
+import { SharkTableFooterComponent } from './table.footer.component';
 
 @Component({
   selector: 'shark-table',
@@ -33,10 +33,7 @@ import { CellStyleFunction, RowStyleFunction } from './table.body.component';
                      [page]="page"
                      [filterable]="filterable"
                      [columnFiltering]="columnFiltering"
-                     [localPaging]="localPaging"
                      [localPagingSize]="localPagingSize"
-                     [localPagingOptions]="localPagingOptions"
-                     [showLocalPagingOptions]="showLocalPagingOptions"
                      [filter]="filter"
                      (sortChange)="changeSort($event.property, $event.sortType)"
                      (filterChange)="headerChange($event)"
@@ -55,7 +52,18 @@ import { CellStyleFunction, RowStyleFunction } from './table.body.component';
                      [rowStylingFunction]="rowStylingFunction"
                      [cellStylingFunction]="cellStylingFunction"
               ></tbody>
-              <tfoot shark-table-footer *ngIf="footer && currentColumns.length > 0" [page]="page" [columns]="currentColumns" [filter]="filter" [childRows]="childRows"></tfoot>
+              <tfoot shark-table-footer *ngIf="footer && currentColumns.length > 0" 
+                     [page]="page"
+                     [columns]="currentColumns"
+                     [filter]="filter"
+                     [childRows]="childRows"
+                     [localPaging]="localPaging"
+                     [localPagingSize]="localPagingSize"
+                     [localPagingOptions]="localPagingOptions"
+                     [showLocalPagingOptions]="showLocalPagingOptions"
+                     (filterChange)="headerChange($event)"
+                     (paginationChange)="changePage($event)"
+              ></tfoot>
               <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
                      [sortable]="sortable"
                      [columns]="currentColumns"
@@ -70,7 +78,6 @@ import { CellStyleFunction, RowStyleFunction } from './table.body.component';
                      (filterChange)="headerChange($event)"
               ></tfoot>
           </table>
-          <shark-table-pagination *ngIf="currentColumns.length > 0" [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
       </div>
   `
 })
@@ -79,8 +86,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild(SharkTableHeaderComponent)
   headerComponent: SharkTableHeaderComponent;
 
-  @ViewChild(SharkTablePaginationComponent)
-  paginationComponent: SharkTablePaginationComponent;
+  @ViewChild(SharkTableFooterComponent)
+  footerComponent: SharkTableFooterComponent;
 
   /**
    * The raw table data

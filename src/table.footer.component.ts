@@ -1,14 +1,25 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Page } from './page';
 import { SharkColumn } from './column';
 import { SharkTableUtils } from './table.utils';
+import { SharkHeaderFilterChange } from './table.header.component';
+import { SharkTablePaginationComponent } from './table.pagination.component';
 
 @Component({
   selector: '[shark-table-footer]',
   template: `
   <tr class="info-footer">
     <td [attr.colspan]="childRows ? columns.length + 1 : columns.length">
-      Showing {{ start }} to {{ end }} of {{ total }} rows {{ filtered ? '(Filtered)' : '' }}
+      <div class="page-size-controls" *ngIf="localPaging && showLocalPagingOptions && columns.length > 0">
+        <label for="local-paging-size" class="local-paging-options">
+          Rows per page:
+        </label>
+        <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize" id="local-paging-size">
+          <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
+        </select>
+        <span>{{ start }} - {{ end }} of {{ total }} {{ filtered ? '(Filtered)' : '' }}</span>
+      </div>
+      <shark-table-pagination *ngIf="columns.length > 0" [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
     </td>
   </tr>`
 })
@@ -18,6 +29,21 @@ export class SharkTableFooterComponent implements OnChanges {
   end = 0;
   total = 0;
   filtered = false;
+
+  @ViewChild(SharkTablePaginationComponent)
+  paginationComponent: SharkTablePaginationComponent;
+
+  @Input()
+  localPaging: boolean;
+
+  @Input()
+  localPagingSize: number;
+
+  @Input()
+  localPagingOptions: number[];
+
+  @Input()
+  showLocalPagingOptions: boolean;
 
   /**
    * The current {@link Page}
@@ -43,6 +69,12 @@ export class SharkTableFooterComponent implements OnChanges {
   @Input()
   childRows: boolean;
 
+  @Output()
+  filterChange = new EventEmitter<SharkHeaderFilterChange>();
+
+  @Output()
+  paginationChange = new EventEmitter<number>();
+
   constructor(private tableUtils: SharkTableUtils) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -66,6 +98,18 @@ export class SharkTableFooterComponent implements OnChanges {
 
     this.filtered = (this.filter && this.filter.length > 0) || this.tableUtils.hasFilter(this.columns);
 
+  }
+
+  fireFilterChange(): void {
+    this.filterChange.emit({
+      columns: this.columns,
+      filter: this.filter,
+      localPagingSize: this.localPagingSize
+    });
+  }
+
+  changePage(pageNo: number): void {
+    this.paginationChange.emit(pageNo);
   }
 
 }

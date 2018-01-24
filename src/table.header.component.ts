@@ -10,7 +10,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
 @Component({
     selector: '[shark-table-header]',
     template: `
-        <tr class="info-header" *ngIf="!footer && (serverSideData || (filterable && !columnFiltering) || (localPaging && showLocalPagingOptions))">
+        <tr class="info-header" *ngIf="!footer && (serverSideData || (filterable && !columnFiltering) || columnPicker)">
           <td [attr.colspan]="childRows ? columns.length + 1 : columns.length">
             <div class="controls">
               <button class="server-refresh" *ngIf="serverSideData" (click)="fireFilterChange()">&#x21bb;</button>
@@ -20,13 +20,6 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                   <label for="filter" class="screen-reader">Filter Results (all column search)</label>
                   <input type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" placeholder="Filter Results" />
                 </span>
-                <label class="local-paging-options" *ngIf="localPaging && showLocalPagingOptions && columns.length > 0">
-                  Show
-                  <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize">
-                    <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
-                  </select>
-                  rows
-                </label>
               </form>
             </div>
           </td>
@@ -43,9 +36,9 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                     </button>
                     <button (click)="changeSort(column.property, column.sortType)" [title]="
                       'Sorting ' + column.header + ' as ' +
-                        (column.sortType === 0 ? 'None' : column.sortType === 1 ? 'Ascending'  : 'Descending') +
-                        ', Click to change sort for the ' + column.header + ' to ' +
-                        (column.sortType === 0 ? 'Ascending' : column.sortType === 1 ? 'Descending' : 'None')
+                       ((!column.sortType || column.sortType === 0) ? 'None' : column.sortType === 1 ? 'Ascending'  : 'Descending') +
+                        ', Click to change sort for the ' + column.header + ' column to ' +
+                        ((!column.sortType || column.sortType === 0) ? 'Ascending' : column.sortType === 1 ? 'Descending' : 'None')
                     ">
                       {{ column.header }} <i class="sorting fas fa-fw" [ngClass]="{ 
                         'none': !column.sortType || column.sortType === 0,
@@ -128,19 +121,10 @@ export class SharkTableHeaderComponent {
     columnFiltering: boolean;
 
     @Input()
-    localPaging: boolean;
+    filter: string;
 
     @Input()
     localPagingSize: number;
-
-    @Input()
-    localPagingOptions: number[];
-
-    @Input()
-    showLocalPagingOptions: boolean;
-
-    @Input()
-    filter: string;
 
     /**
      * {@link SharkSortChangeEvent} events are emitted from here
