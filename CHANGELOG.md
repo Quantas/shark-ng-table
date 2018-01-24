@@ -1,3 +1,15 @@
+<a name="0.0.29"></a>
+## [0.0.29](https://github.com/Quantas/shark-ng-table/compare/0.0.28...0.0.29) (2018-01-24)
+
+
+### Features
+
+* **docs:** Create community docs for GitHub ([d2022e8](https://github.com/Quantas/shark-ng-table/commit/d2022e8)), closes [#19](https://github.com/Quantas/shark-ng-table/issues/19)
+* **styling:** black and white ([0b4ce51](https://github.com/Quantas/shark-ng-table/commit/0b4ce51)), closes [#51](https://github.com/Quantas/shark-ng-table/issues/51)
+* **styling:** Tighten up table as a whole ([c776ea8](https://github.com/Quantas/shark-ng-table/commit/c776ea8))
+
+
+
 <a name="0.0.28"></a>
 ## [0.0.28](https://github.com/Quantas/shark-ng-table/compare/0.0.27...0.0.28) (2018-01-23)
 
