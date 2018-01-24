@@ -7,11 +7,11 @@ import { Page } from './page';
       <div class="pagination-wrapper" *ngIf="pageCount.length > 1">
           <div class="pagination">
               <button *ngIf="!first" (click)="changePage(0)" title="Go To First Page">
-                <i class="fa fa-angle-double-left"></i>
+                <i class="fa fa-fw fa-angle-double-left"></i>
                 <span class="screen-reader">Go To First Page</span>
               </button>
               <button *ngIf="previous" (click)="changePage(page.number - 1)" title="Go To Previous Page">
-                <i class="fa fa-angle-left"></i>
+                <i class="fa fa-fw fa-angle-left"></i>
                 <span class="screen-reader">Go To Previous Page</span>
               </button>
             
@@ -20,11 +20,11 @@ import { Page } from './page';
               </ng-container>
             
               <button *ngIf="next" (click)="changePage(page.number + 1)" title="Go To Next Page">
-                <i class="fa fa-angle-right"></i>
+                <i class="fa fa-fw fa-angle-right"></i>
                 <span class="screen-reader">Go To Next Page</span>
               </button>
               <button *ngIf="!last" (click)="changePage(pageCount.length - 1)" title="Go To Last Page">
-                <i class="fa fa-angle-double-right"></i>
+                <i class="fa fa-fw fa-angle-double-right"></i>
                 <span class="screen-reader">Go To Last Page</span>
               </button>
           </div>

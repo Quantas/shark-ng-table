@@ -12,8 +12,11 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
     template: `
         <tr class="info-header" *ngIf="!footer && (serverSideData || (filterable && !columnFiltering) || columnPicker)">
           <td [attr.colspan]="childRows ? columns.length + 1 : columns.length">
-            <div class="controls">
-              <button class="server-refresh" *ngIf="serverSideData" (click)="fireFilterChange()">&#x21bb;</button>
+            <div class="controls header-buttons">
+              <button class="server-refresh" *ngIf="serverSideData" (click)="fireFilterChange()">
+                <i class="fa fa-fw fa-sync"></i>
+                <span class="screen-reader">Click to refresh server data</span>
+              </button>
               <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
               <form #filterForm="ngForm">
                 <span class="filter-box" *ngIf="filterable && !columnFiltering && columns.length > 0">
@@ -24,7 +27,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
             </div>
           </td>
         </tr>
-        <tr class="header-row" *ngIf="columns.length > 0">
+        <tr class="header-row" *ngIf="columns.length > 0" [ngClass]="{ 'footer': footer, 'header': !footer, 'header-border': !columnFiltering || (columnFiltering && footer) }">
             <th *ngIf="childRows" class="child-spacer" scope="col"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
             <ng-container *ngIf="sortable">
                 <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
@@ -70,7 +73,7 @@ import { SharkColumnDropdownComponent } from './column-dropdown.component';
                 </th>
             </ng-container>
         </tr>
-        <tr *ngIf="columnFiltering && filterable" class="header-row">
+        <tr *ngIf="columnFiltering && filterable" class="header-row" [ngClass]="{ 'footer': footer, 'header': !footer, 'header-border': (!footer && columnFiltering && filterable) }">
           <th *ngIf="childRows" scope="col"><span class="screen-reader">Empty column header to offset the child row button.</span></th>
           <th *ngFor="let column of columns; let i = index" scope="col" class="header-row">
             <label [for]="(footer ? 'footer' : '') + '-column-' + i" class="screen-reader">{{ column.header }} filter</label>

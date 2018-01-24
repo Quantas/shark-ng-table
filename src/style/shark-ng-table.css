@@ -12,7 +12,7 @@
 }
 
 .controls .filter-box {
-  float: left;
+  float: right;
 }
 
 .controls .column-picker {
@@ -45,44 +45,31 @@ th, td {
   padding: 0.25rem 1rem 0.25rem 1rem;
 }
 
-th {
-  background-color: #4CAF50;
-  color: white;
-}
-
 .info-header {
-  border-bottom: 1px solid white;
-}
-
-.info-header > td {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.info-footer > td {
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
+  border-bottom: 1px solid black;
 }
 
 .header-row > th {
-  border-right: 1px solid white;
+  border-right: 1px solid black;
 }
 
 .header-row > th:last-child {
   border-right: none;
 }
 
+.header-row.header-border.header {
+  border-bottom: 1px solid black;
+}
+
+.header-row.header-border.footer {
+  border-top: 1px solid black;
+}
+
 .header-buttons > button {
   background: none;
   border: none;
-  color: white;
   font-size: 16px;
   cursor: pointer;
-}
-
-.header-buttons > button.black-arrow {
-  color: black;
 }
 
 .data-row.even > td {
@@ -106,7 +93,7 @@ th {
 }
 
 .info-footer {
-  border-top: 1px solid white;
+  border-top: 1px solid black;
 }
 
 .page-size-controls {
@@ -131,10 +118,13 @@ th {
 
 /* Column Picker */
 .toggle-dropdown {
-  border: 1px solid #CCCCCC;
+  border: none;
   background-color: white;
   text-align: left;
   cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 8.5rem;
 }
 
 .column-picker {
@@ -148,9 +138,9 @@ th {
   font-weight: normal;
   z-index: 100;
   position: absolute;
-  padding: 4px;
-  width: 7.75rem;
-  left: 1.8rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  min-width: 7rem;
 }
 
 .column-picker .dropdown label {
@@ -177,18 +167,14 @@ th {
   display: inline-block;
 }
 
-.pagination button:hover {
-  background-color: #75d178;
-}
-
+.pagination button:hover,
 .pagination button.active {
-  background-color: #75d178;
+  background-color: #DDDDDD;
 }
 
 .pagination button {
-  background-color: #4CAF50;
   border: none;
-  color: white;
+  background-color: white;
   cursor: pointer;
   float: left;
   padding: 4px 16px;
