@@ -1,3 +1,25 @@
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/Quantas/shark-ng-table/compare/0.0.29...0.1.0) (2018-01-26)
+
+
+### Bug Fixes
+
+* **accessibility:** Additional changes from ADA testing ([d4cb788](https://github.com/Quantas/shark-ng-table/commit/d4cb788)), closes [#48](https://github.com/Quantas/shark-ng-table/issues/48)
+* **accessibility:** Major changes for accessibility ([98da734](https://github.com/Quantas/shark-ng-table/commit/98da734)), closes [#48](https://github.com/Quantas/shark-ng-table/issues/48)
+
+
+### Features
+
+* **caption:** Update docs for table caption ([c5bf2e3](https://github.com/Quantas/shark-ng-table/commit/c5bf2e3)), closes [#52](https://github.com/Quantas/shark-ng-table/issues/52)
+
+
+### BREAKING CHANGES
+
+* **accessibility:** Removes headersInFooter and footerColumnFiltering as well as footer (headers) as this was an Accessibility concern
+* **caption:** <caption> is now displayed by default, there is an option to hide it to screen readerse only.
+
+
+
 <a name="0.0.29"></a>
 ## [0.0.29](https://github.com/Quantas/shark-ng-table/compare/0.0.28...0.0.29) (2018-01-24)
 

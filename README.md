@@ -13,6 +13,8 @@
 
 A robust table for Angular built with Accessibility in mind.
 
+Section508 and WCAG 2.0 AA compliant.
+
 ## Samples
 
 There are a number of samples available in our test project, they can be viewed here: https://quantas.github.io/shark-ng-table-samples/
