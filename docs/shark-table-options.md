@@ -4,6 +4,10 @@
     * The raw table data
 * columns - `SharkColumn[]`
     * The table column definitions
+* caption - `string` - `A Data Table`
+    * The <caption> text for this table
+* hideCaption - `boolean` - `false`
+    * Whether or not the table <caption> should be hidden (screen-reader only).
 * columnPicker - `boolean` - `false`
     * Allow users to turn columns on and off
 * columnOrdering - `boolean` - `false`

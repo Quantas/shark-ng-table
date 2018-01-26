@@ -103,9 +103,17 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   currentColumns: SharkColumn[] = [];
 
+  /**
+   * The <caption> text for this table
+   * @type {string}
+   */
   @Input()
   caption = 'A Data Table';
 
+  /**
+   * Whether or not the table <caption> should be hidden (screen-reader) only.
+   * @type {boolean}
+   */
   @Input()
   hideCaption = false;
 
