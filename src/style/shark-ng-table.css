@@ -5,6 +5,7 @@
 
 .table-wrapper {
   overflow: auto;
+  width: 100%;
 }
 
 .controls {
@@ -45,24 +46,34 @@ th, td {
   padding: 0.25rem 1rem 0.25rem 1rem;
 }
 
-.info-header {
-  border-bottom: 1px solid black;
-}
-
-.header-row > th {
+.header-filter-row > th,
+.header-filter-row > td,
+.header-row > th,
+.header-row > td {
   border-right: 1px solid black;
 }
 
-.header-row > th:last-child {
+.header-filter-row > th:last-child,
+.header-filter-row > td:last-child,
+.header-row > th:last-child,
+.header-row > td:last-child {
   border-right: none;
 }
 
-.header-row.header-border.header {
+.header-filter-row > td {
+  text-align: center;
+}
+
+.header-row {
+  border-top: 1px solid black;
+}
+
+.header-filter-row.header-border {
   border-bottom: 1px solid black;
 }
 
-.header-row.header-border.footer {
-  border-top: 1px solid black;
+.header-row.header-border {
+  border-bottom: 1px solid black;
 }
 
 .header-buttons > button {
@@ -90,10 +101,6 @@ th, td {
 
 .child-spacer {
   width: 1rem;
-}
-
-.info-footer {
-  border-top: 1px solid black;
 }
 
 .page-size-controls {
@@ -172,6 +179,10 @@ th, td {
   background-color: #DDDDDD;
 }
 
+.pagination button.active {
+  cursor: default;
+}
+
 .pagination button {
   border: none;
   background-color: white;
@@ -179,6 +190,10 @@ th, td {
   float: left;
   padding: 4px 16px;
   transition: background-color .3s;
+}
+
+.pagination button.fa {
+  padding: 6px 16px;
 }
 
 /* Accessibility */
@@ -189,4 +204,11 @@ th, td {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+.screen-reader-button-label {
+  font-size: 0;
+  height: 1px;
+  overflow: hidden;
+  display: block;
 }

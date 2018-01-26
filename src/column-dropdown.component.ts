@@ -7,7 +7,7 @@ import { SharkColumn } from './column';
   selector: 'shark-column-dropdown',
   template: `
     <span class="column-picker">
-        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" title="Click to show the column picker dropdown">
+        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" type="button">
           <span>Choose Columns</span>
           <i class="fa fa-fw fa-angle-down"></i>
         </button>

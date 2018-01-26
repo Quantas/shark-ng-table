@@ -2,6 +2,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, ViewChild } from '@angular/core';
 import { SharkTableComponent, SharkTableModule, SharkColumn, SharkSortType } from '../src';
+import { By } from '@angular/platform-browser';
 
 describe('SharkTableComponent', () => {
 
@@ -51,7 +52,11 @@ describe('SharkTableComponent', () => {
     it('should filter results down to 1', async(() => {
         expect(component.sharkTable.page.number).toEqual(0);
 
-        component.sharkTable.headerComponent.filterForm.setValue({filter: '10'});
+        const inputDe = fixture.debugElement.query(By.css('input[name="filter"]'));
+        const inputEl = inputDe.nativeElement;
+
+        inputEl.value = '10';
+        inputEl.dispatchEvent(new Event('input'));
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);
@@ -70,7 +75,11 @@ describe('SharkTableComponent', () => {
 
         expect(component.sharkTable.page.number).toEqual(0);
 
-        component.sharkTable.headerComponent.filterForm.setValue({filter: 'c'});
+        const inputDe = fixture.debugElement.query(By.css('input[name="filter"]'));
+        const inputEl = inputDe.nativeElement;
+
+        inputEl.value = 'c';
+        inputEl.dispatchEvent(new Event('input'));
         fixture.detectChanges();
 
         expect(component.sharkTable.page.number).toEqual(0);

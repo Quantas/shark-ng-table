@@ -6,22 +6,20 @@ import { SharkHeaderFilterChange } from './table.header.component';
 import { SharkTablePaginationComponent } from './table.pagination.component';
 
 @Component({
-  selector: '[shark-table-footer]',
+  selector: 'shark-table-footer',
   template: `
-  <tr class="info-footer">
-    <td [attr.colspan]="childRows ? columns.length + 1 : columns.length">
-      <div class="page-size-controls" *ngIf="localPaging && showLocalPagingOptions && columns.length > 0">
-        <label for="local-paging-size" class="local-paging-options">
-          Rows per page:
-        </label>
-        <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize" id="local-paging-size">
-          <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
-        </select>
-        <span>{{ start }} - {{ end }} of {{ total }} {{ filtered ? '(Filtered)' : '' }}</span>
-      </div>
-      <shark-table-pagination *ngIf="columns.length > 0" [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
-    </td>
-  </tr>`
+  <div class="info-footer">
+    <div class="page-size-controls" *ngIf="localPaging && showLocalPagingOptions && columns.length > 0">
+      <label for="local-paging-size" class="local-paging-options">
+        Rows per page:
+      </label>
+      <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize" id="local-paging-size">
+        <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
+      </select>
+      <span>{{ start }} - {{ end }} of {{ total }} {{ filtered ? '(Filtered)' : '' }}</span>
+    </div>
+    <shark-table-pagination *ngIf="columns.length > 0" [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
+  </div>`
 })
 export class SharkTableFooterComponent implements OnChanges {
 
@@ -62,12 +60,6 @@ export class SharkTableFooterComponent implements OnChanges {
    */
   @Input()
   filter: string;
-
-  /**
-   * Are child rows enabled?
-   */
-  @Input()
-  childRows: boolean;
 
   @Output()
   filterChange = new EventEmitter<SharkHeaderFilterChange>();

@@ -6,26 +6,25 @@ import { Page } from './page';
   template: `
       <div class="pagination-wrapper" *ngIf="pageCount.length > 1">
           <div class="pagination">
-              <button *ngIf="!first" (click)="changePage(0)" title="Go To First Page">
-                <i class="fa fa-fw fa-angle-double-left"></i>
-                <span class="screen-reader">Go To First Page</span>
+              <button *ngIf="!first" (click)="changePage(0)" type="button" class="fa fa-angle-double-left">
+                <span class="screen-reader-button-label">First Page</span>
               </button>
-              <button *ngIf="previous" (click)="changePage(page.number - 1)" title="Go To Previous Page">
-                <i class="fa fa-fw fa-angle-left"></i>
-                <span class="screen-reader">Go To Previous Page</span>
+              <button *ngIf="previous" (click)="changePage(page.number - 1)" type="button" class="fa fa-angle-left">
+                <span class="screen-reader-button-label">Previous Page</span>
               </button>
             
               <ng-container *ngFor="let num of displayedPages">
-                <button [ngClass]="{'active': num === page.number }" (click)="changePage(num)" [attr.title]="num !== page.number ? 'Go To Page ' + (num + 1) : null">{{ num + 1 }}</button>
+                <button [ngClass]="{'active': num === page.number, 'inactive': num!== page.number }" (click)="changePage(num)" type="button">
+                  <span class="screen-reader-button-label">Page</span>
+                  {{ num + 1 }}
+                </button>
               </ng-container>
             
-              <button *ngIf="next" (click)="changePage(page.number + 1)" title="Go To Next Page">
-                <i class="fa fa-fw fa-angle-right"></i>
-                <span class="screen-reader">Go To Next Page</span>
+              <button *ngIf="next" (click)="changePage(page.number + 1)" type="button" class="fa fa-angle-right">
+                <span class="screen-reader-button-label">Next Page</span>
               </button>
-              <button *ngIf="!last" (click)="changePage(pageCount.length - 1)" title="Go To Last Page">
-                <i class="fa fa-fw fa-angle-double-right"></i>
-                <span class="screen-reader">Go To Last Page</span>
+              <button *ngIf="!last" (click)="changePage(pageCount.length - 1)" type="button" class="fa fa-angle-double-right">
+                <span class="screen-reader-button-label">Last Page</span>
               </button>
           </div>
       </div>

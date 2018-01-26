@@ -20,9 +20,11 @@ import { Page } from './page';
                 [attr.tabindex]="linkTarget ? 0 : null"
             >
                 <td class="header-buttons" *ngIf="childRows">
-                  <button class="black-arrow" (click)="toggleChild(i)" [title]="'Click to ' + (childOpen(i) ? 'close' : 'open') + ' this child row.'">
-                    <i class="fas fa-fw" [ngClass]="{ 'open': childOpen(i), 'closed': !childOpen(i), 'fa-caret-down': childOpen(i), 'fa-caret-right': !childOpen(i) }"></i>
-                    <span class="screen-reader">{{ 'Click to ' + (childOpen(i) ? 'close' : 'open') + ' this child row.' }}</span>
+                  <button class="black-arrow fa fa-fw"
+                          [ngClass]="{ 'open': childOpen(i), 'closed': !childOpen(i), 'fa-caret-down': childOpen(i), 'fa-caret-right': !childOpen(i) }"
+                          (click)="toggleChild(i)" type="button"
+                  >
+                    <span class="screen-reader-button-label">{{ childOpen(i) ? 'close' : 'open' }}  this child row</span>
                   </button>
                 </td>
                 <ng-container *ngFor="let column of currentColumns">

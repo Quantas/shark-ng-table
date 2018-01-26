@@ -21,63 +21,63 @@ import { SharkTableFooterComponent } from './table.footer.component';
   selector: 'shark-table',
   template: `
       <div class="table-wrapper">
-          <table *ngIf="page">
-              <thead shark-table-header
-                     [sortable]="sortable"
-                     [columns]="currentColumns"
-                     [allColumns]="columns"
-                     [columnPicker]="columnPicker"
-                     [columnOrdering]="columnOrdering"
-                     [childRows]="childRows"
-                     [serverSideData]="serverSideData"
-                     [page]="page"
-                     [filterable]="filterable"
-                     [columnFiltering]="columnFiltering"
-                     [localPagingSize]="localPagingSize"
-                     [filter]="filter"
-                     (sortChange)="changeSort($event.property, $event.sortType)"
-                     (filterChange)="headerChange($event)"
-                     (columnChange)="updateCurrentColumns($event)"
-              ></thead>
-              <tbody shark-table-body
-                     [currentColumns]="currentColumns"
-                     [localFilter]="localFilter"
-                     [localPaging]="localPaging"
-                     [columnFiltering]="columnFiltering"
-                     [filter]="filter"
-                     [childRows]="childRows"
-                     [childComponent]="childComponent"
-                     [linkTarget]="linkTarget" [linkKey]="linkKey"
-                     [page]="page"
-                     [rowStylingFunction]="rowStylingFunction"
-                     [cellStylingFunction]="cellStylingFunction"
-              ></tbody>
-              <tfoot shark-table-footer *ngIf="footer && currentColumns.length > 0" 
-                     [page]="page"
-                     [columns]="currentColumns"
-                     [filter]="filter"
-                     [childRows]="childRows"
-                     [localPaging]="localPaging"
-                     [localPagingSize]="localPagingSize"
-                     [localPagingOptions]="localPagingOptions"
-                     [showLocalPagingOptions]="showLocalPagingOptions"
-                     (filterChange)="headerChange($event)"
-                     (paginationChange)="changePage($event)"
-              ></tfoot>
-              <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
-                     [sortable]="sortable"
-                     [columns]="currentColumns"
-                     [columnOrdering]="columnOrdering"
-                     [childRows]="childRows"
-                     [serverSideData]="serverSideData"
-                     [page]="page"
-                     [filterable]="filterable"
-                     [columnFiltering]="columnFiltering && footerColumnFiltering"
-                     [footer]="true"
-                     (sortChange)="changeSort($event.property, $event.sortType)"
-                     (filterChange)="headerChange($event)"
-              ></tfoot>
-          </table>
+        <table *ngIf="page">
+            <caption [ngClass]="{'screen-reader': hideCaption}">{{ caption }}</caption>
+            <thead shark-table-header
+                   [sortable]="sortable"
+                   [columns]="currentColumns"
+                   [allColumns]="columns"
+                   [columnPicker]="columnPicker"
+                   [columnOrdering]="columnOrdering"
+                   [childRows]="childRows"
+                   [serverSideData]="serverSideData"
+                   [page]="page"
+                   [filterable]="filterable"
+                   [columnFiltering]="columnFiltering"
+                   [localPagingSize]="localPagingSize"
+                   [filter]="filter"
+                   (sortChange)="changeSort($event.property, $event.sortType)"
+                   (filterChange)="headerChange($event)"
+                   (columnChange)="updateCurrentColumns($event)"
+            ></thead>
+            <tbody shark-table-body
+                   [currentColumns]="currentColumns"
+                   [localFilter]="localFilter"
+                   [localPaging]="localPaging"
+                   [columnFiltering]="columnFiltering"
+                   [filter]="filter"
+                   [childRows]="childRows"
+                   [childComponent]="childComponent"
+                   [linkTarget]="linkTarget" [linkKey]="linkKey"
+                   [page]="page"
+                   [rowStylingFunction]="rowStylingFunction"
+                   [cellStylingFunction]="cellStylingFunction"
+            ></tbody>
+            <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
+                   [sortable]="sortable"
+                   [columns]="currentColumns"
+                   [columnOrdering]="columnOrdering"
+                   [childRows]="childRows"
+                   [serverSideData]="serverSideData"
+                   [page]="page"
+                   [filterable]="filterable"
+                   [columnFiltering]="columnFiltering && footerColumnFiltering"
+                   [footer]="true"
+                   (sortChange)="changeSort($event.property, $event.sortType)"
+                   (filterChange)="headerChange($event)"
+            ></tfoot>
+        </table>
+        <shark-table-footer *ngIf="footer && currentColumns.length > 0"
+                            [page]="page"
+                            [columns]="currentColumns"
+                            [filter]="filter"
+                            [localPaging]="localPaging"
+                            [localPagingSize]="localPagingSize"
+                            [localPagingOptions]="localPagingOptions"
+                            [showLocalPagingOptions]="showLocalPagingOptions"
+                            (filterChange)="headerChange($event)"
+                            (paginationChange)="changePage($event)"
+        ></shark-table-footer>
       </div>
   `
 })
@@ -102,6 +102,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   columns: SharkColumn[];
 
   currentColumns: SharkColumn[] = [];
+
+  @Input()
+  caption = 'A Data Table';
+
+  @Input()
+  hideCaption = false;
 
   /**
    * Allow users to turn columns on and off
