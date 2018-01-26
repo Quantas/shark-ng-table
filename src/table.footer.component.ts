@@ -14,7 +14,7 @@ import { SharkTablePaginationComponent } from './table.pagination.component';
         Rows per page:
       </label>
       <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize" id="local-paging-size">
-        <option *ngFor="let option of localPagingOptions" [value]="option">{{ option }}</option>
+        <option *ngFor="let option of localPagingOptions" [value]="option" [attr.selected]="option === localPagingSize ? 'selected' : null">{{ option }}</option>
       </select>
       <span>{{ start }} - {{ end }} of {{ total }} {{ filtered ? '(Filtered)' : '' }}</span>
     </div>

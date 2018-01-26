@@ -29,8 +29,8 @@ describe('SharkTableComponentColumnPicker', () => {
     expect(component.sharkTable.page.number).toEqual(0);
     fixture.detectChanges();
 
-    component.sharkTable.headerComponent.columnPickerComponent.columns[1].displayed = false;
-    component.sharkTable.headerComponent.columnPickerComponent.emitSelected();
+    component.sharkTable.headerInfoComponent.columnPickerComponent.columns[1].displayed = false;
+    component.sharkTable.headerInfoComponent.columnPickerComponent.emitSelected();
     fixture.detectChanges();
 
     expect(component.sharkTable.currentColumns).toEqual([
@@ -41,7 +41,7 @@ describe('SharkTableComponentColumnPicker', () => {
   }));
 
   it ('should open the dropdown', async(() => {
-    component.sharkTable.headerComponent.columnPickerComponent.showDropDown = true;
+    component.sharkTable.headerInfoComponent.columnPickerComponent.showDropDown = true;
     fixture.detectChanges();
 
     const eventTarget: EventTarget = {
@@ -50,7 +50,7 @@ describe('SharkTableComponentColumnPicker', () => {
       dispatchEvent: () => true
     };
 
-    component.sharkTable.headerComponent.columnPickerComponent.closeDropDown({
+    component.sharkTable.headerInfoComponent.columnPickerComponent.closeDropDown({
       bubbles: true,
       target: eventTarget,
       cancelable: false,
@@ -76,7 +76,7 @@ describe('SharkTableComponentColumnPicker', () => {
 
     fixture.detectChanges();
 
-    expect(component.sharkTable.headerComponent.columnPickerComponent.showDropDown).toEqual(false);
+    expect(component.sharkTable.headerInfoComponent.columnPickerComponent.showDropDown).toEqual(false);
   }));
 
 });

@@ -33,6 +33,7 @@
 }
 
 table {
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border-collapse: collapse;
   width: 100%;
@@ -46,15 +47,11 @@ th, td {
   padding: 0.25rem 1rem 0.25rem 1rem;
 }
 
-.header-filter-row > th,
-.header-filter-row > td,
 .header-row > th,
 .header-row > td {
   border-right: 1px solid black;
 }
 
-.header-filter-row > th:last-child,
-.header-filter-row > td:last-child,
 .header-row > th:last-child,
 .header-row > td:last-child {
   border-right: none;
@@ -65,15 +62,8 @@ th, td {
 }
 
 .header-row {
+  border-bottom: 1px solid black;
   border-top: 1px solid black;
-}
-
-.header-filter-row.header-border {
-  border-bottom: 1px solid black;
-}
-
-.header-row.header-border {
-  border-bottom: 1px solid black;
 }
 
 .header-buttons > button {

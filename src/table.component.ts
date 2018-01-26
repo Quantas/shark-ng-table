@@ -16,21 +16,31 @@ import { SharkDynamicContents } from './dynamic/dynamic.contents';
 import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.header.component';
 import { CellStyleFunction, RowStyleFunction } from './table.body.component';
 import { SharkTableFooterComponent } from './table.footer.component';
+import { SharkTableInfoHeaderComponent } from './table.info.header.component';
 
 @Component({
   selector: 'shark-table',
   template: `
-      <div class="table-wrapper">
-        <table *ngIf="page">
+      <div class="table-wrapper" *ngIf="page">
+        <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker)"
+                                 [serverSideData]="serverSideData"
+                                 [filterable]="filterable"
+                                 [columnFiltering]="columnFiltering"
+                                 [columnPicker]="columnPicker"
+                                 [columns]="currentColumns"
+                                 [allColumns]="columns"
+                                 [filter]="filter"
+                                 [localPagingSize]="localPagingSize"
+                                 (filterChange)="headerChange($event)"
+                                 (columnChange)="updateCurrentColumns($event)"
+        ></shark-table-info-header>
+        <table>
             <caption [ngClass]="{'screen-reader': hideCaption}">{{ caption }}</caption>
             <thead shark-table-header
                    [sortable]="sortable"
                    [columns]="currentColumns"
-                   [allColumns]="columns"
-                   [columnPicker]="columnPicker"
                    [columnOrdering]="columnOrdering"
                    [childRows]="childRows"
-                   [serverSideData]="serverSideData"
                    [page]="page"
                    [filterable]="filterable"
                    [columnFiltering]="columnFiltering"
@@ -53,19 +63,6 @@ import { SharkTableFooterComponent } from './table.footer.component';
                    [rowStylingFunction]="rowStylingFunction"
                    [cellStylingFunction]="cellStylingFunction"
             ></tbody>
-            <tfoot shark-table-header #sharkTableHeaderFooter *ngIf="footer && headersInFooter"
-                   [sortable]="sortable"
-                   [columns]="currentColumns"
-                   [columnOrdering]="columnOrdering"
-                   [childRows]="childRows"
-                   [serverSideData]="serverSideData"
-                   [page]="page"
-                   [filterable]="filterable"
-                   [columnFiltering]="columnFiltering && footerColumnFiltering"
-                   [footer]="true"
-                   (sortChange)="changeSort($event.property, $event.sortType)"
-                   (filterChange)="headerChange($event)"
-            ></tfoot>
         </table>
         <shark-table-footer *ngIf="footer && currentColumns.length > 0"
                             [page]="page"
@@ -82,6 +79,9 @@ import { SharkTableFooterComponent } from './table.footer.component';
   `
 })
 export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
+
+  @ViewChild(SharkTableInfoHeaderComponent)
+  headerInfoComponent: SharkTableInfoHeaderComponent;
 
   @ViewChild(SharkTableHeaderComponent)
   headerComponent: SharkTableHeaderComponent;
@@ -274,22 +274,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   footer = true;
-
-  /**
-   * Repeat the headers in the footer
-   *
-   * @type {boolean}
-   */
-  @Input()
-  headersInFooter = false;
-
-  /**
-   * Show the columnFiltering elements in the footer
-   *
-   * @type {boolean}
-   */
-  @Input()
-  footerColumnFiltering = false;
 
   page: Page;
 

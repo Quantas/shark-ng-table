@@ -46,7 +46,3 @@
     * The current filter value
 * footer - `boolean` - `true`
     * Displays an informative footer:  'Showing `x` through `y` of `z` rows`
-* headersInFooter - `boolean` - `false`
-    * Repeat the headers in the footer
-* footerColumnFiltering - `boolean` - `false`
-    * Show the columnFiltering elements in the footer as well    
