@@ -18,21 +18,20 @@ import { Page } from './page';
                     <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" type="button" class="fa fa-angle-left">
                       <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column left' }}</span>
                     </button>
-                    <button (click)="changeSort(column.property, column.sortType)" type="button">
-                      <span class="screen-reader-button-label">Sorting</span>
-                      {{ column.header }} <i class="sorting fas fa-fw" [ngClass]="{ 
+                    <button [name]="column.header" (click)="changeSort(column.property, column.sortType)" type="button" (focus)="headerFocus($event, column)" (blur)="headerBlur($event)">
+                      {{ column.header }}
+                      <i class="sorting fas fa-fw" [ngClass]="{ 
                         'unsorted': !column.sortType || column.sortType === 0,
-                        'fa-sort': !column.sortType || column.sortType === 0, 
-                        'asc': column.sortType === 1, 
-                        'fa-sort-up': column.sortType === 1,                       
+                        'fa-sort': !column.sortType || column.sortType === 0,
+                        'asc': column.sortType === 1,
+                        'fa-sort-up': column.sortType === 1,                      
                         'desc': column.sortType === 2,
-                        'fa-sort-down': column.sortType === 2  
+                        'fa-sort-down': column.sortType === 2
                       }"></i>
-                      <span class="screen-reader-button-label">{{ 
-                        ((!column.sortType || column.sortType === 0) ? 'Unsorted' : column.sortType === 1 ? 'Ascending'  : 'Descending') +
-                        ', Click to change sort for the ' + column.header + ' column to ' +
-                        ((!column.sortType || column.sortType === 0) ? 'Ascending' : column.sortType === 1 ? 'Descending' : 'Unsorted') }}
+                      <span class="screen-reader-button-label">
+                        {{ ((!column.sortType || column.sortType === 0) ? 'Unsorted' : column.sortType === 1 ? 'Ascending'  : 'Descending') }}
                       </span>
+                      <span class="screen-reader-button-label focus-text"></span>
                     </button>
                     <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" type="button" class="fa fa-angle-right">
                       <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column right' }}</span>
@@ -98,6 +97,21 @@ export class SharkTableHeaderComponent {
 
     @Output()
     columnChange = new EventEmitter<SharkColumn[]>();
+
+    headerFocus(event: FocusEvent, column: SharkColumn): void {
+      const target: HTMLElement = <HTMLElement>event.target;
+      const focusText: Element = target.querySelector('.focus-text');
+      const newSort = (!column.sortType || column.sortType === 0) ? 'Ascending' : column.sortType === 1 ? 'Descending'  : 'Unsorted';
+
+      focusText.innerHTML = ', Click to change sort to ' + newSort;
+    }
+
+    headerBlur(event: FocusEvent): void {
+      const target: HTMLElement = <HTMLElement>event.target;
+      const focusText: Element = target.querySelector('.focus-text');
+
+      focusText.innerHTML = '';
+    }
 
     changeSort(property: string, sortType: SharkSortType): void {
         this.sortChange.emit({
