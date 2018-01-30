@@ -21,7 +21,7 @@ import { Page } from './page';
                     <button (click)="changeSort(column.property, column.sortType)" type="button">
                       <span class="screen-reader-button-label">Sorting</span>
                       {{ column.header }} <i class="sorting fas fa-fw" [ngClass]="{ 
-                        'none': !column.sortType || column.sortType === 0,
+                        'unsorted': !column.sortType || column.sortType === 0,
                         'fa-sort': !column.sortType || column.sortType === 0, 
                         'asc': column.sortType === 1, 
                         'fa-sort-up': column.sortType === 1,                       
@@ -29,9 +29,9 @@ import { Page } from './page';
                         'fa-sort-down': column.sortType === 2  
                       }"></i>
                       <span class="screen-reader-button-label">{{ 
-                        (column.sortType === 0 ? 'None' : column.sortType === 1 ? 'Ascending'  : 'Descending') +
+                        ((!column.sortType || column.sortType === 0) ? 'Unsorted' : column.sortType === 1 ? 'Ascending'  : 'Descending') +
                         ', Click to change sort for the ' + column.header + ' column to ' +
-                        ((!column.sortType || column.sortType === 0) ? 'Ascending' : column.sortType === 1 ? 'Descending' : 'None') }}
+                        ((!column.sortType || column.sortType === 0) ? 'Ascending' : column.sortType === 1 ? 'Descending' : 'Unsorted') }}
                       </span>
                     </button>
                     <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" type="button" class="fa fa-angle-right">
