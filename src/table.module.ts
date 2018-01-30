@@ -15,6 +15,7 @@ import { SharkTableFooterComponent } from './table.footer.component';
 import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
 import { SharkColumnDropdownComponent } from './column-dropdown.component';
 import { SharkTableInfoHeaderComponent } from './table.info.header.component';
+import { SharkTableHeaderButtonComponent } from './header-button.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { SharkTableInfoHeaderComponent } from './table.info.header.component';
     SharkDynamicContentsDirective,
     SharkTableCellComponent,
     SharkTableHeaderComponent,
+    SharkTableHeaderButtonComponent,
     SharkTableInfoHeaderComponent,
     SharkTableFooterComponent,
     SharkTablePaginationComponent,
