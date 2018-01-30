@@ -121,11 +121,6 @@ th, td {
   cursor: pointer;
   position: relative;
   display: inline-block;
-  width: 8.5rem;
-}
-
-.column-picker {
-  width: 10rem;
 }
 
 .column-picker .dropdown {

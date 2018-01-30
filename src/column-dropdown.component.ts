@@ -8,10 +8,10 @@ import { SharkColumn } from './column';
   template: `
     <span class="column-picker">
         <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" type="button">
-          <span>Choose Columns</span>
-          <i class="fa fa-fw fa-angle-down"></i>
+          <span>Choose Columns<i class="fa fa-fw fa-angle-down"></i></span>
         </button>
         <div class="dropdown" *ngIf="showDropDown">
+          <span class="screen-reader">Press Escape to close this drop down.</span>
           <label *ngFor="let column of columns">
             <input type="checkbox"
                    [(ngModel)]="column.displayed"
@@ -34,6 +34,13 @@ export class SharkColumnDropdownComponent {
   showDropDown = false;
 
   constructor(private elementRef: ElementRef) {}
+
+  @HostListener('document:keydown.escape', [])
+  closeDropDownWithEscape(): void {
+    if (this.showDropDown) {
+      this.showDropDown = false;
+    }
+  }
 
   @HostListener('document:click', [ '$event' ])
   @HostListener('document:touchstart', [ '$event' ])
