@@ -9,7 +9,7 @@ import { Page } from './page';
     template: `
         <tr class="header-row header-border" *ngIf="columns.length > 0">
             <td id="childHeader" *ngIf="childRows" class="child-spacer">
-              <span class="screen-reader">Empty column header to offset the child row button.</span>
+              <span class="screen-reader">Details</span>
             </td>
             <ng-container *ngIf="sortable">
                 <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
