@@ -5,8 +5,8 @@ import { SharkSortType } from './sort.type';
 @Component({
   selector: 'shark-table-header-button',
   template: `
-    <button [name]="column.header" (click)="changeSort(column.property, column.sortType)" type="button" (focus)="headerFocus()" (blur)="headerBlur()">
-      {{ column.header }}
+    <span class="header-text pointer" (click)="changeSort()" (keyup.enter)="changeSort()">{{ column.header }}</span>
+    <button class="sort-button" [name]="column.header" (click)="changeSort()" type="button" aria-label="Change sorting" (focus)="headerFocus()" (blur)="headerBlur()">
       <i class="sorting fas fa-fw" [ngClass]="{
         'unsorted': !column.sortType || column.sortType === 0,
         'fa-sort': !column.sortType || column.sortType === 0,
@@ -15,9 +15,6 @@ import { SharkSortType } from './sort.type';
         'desc': column.sortType === 2,
         'fa-sort-down': column.sortType === 2
       }"></i>
-      <span class="screen-reader-button-label">
-        {{ ((!column.sortType || column.sortType === 0) ? 'Unsorted' : column.sortType === 1 ? 'Ascending' : 'Descending') }}{{ focusText }}
-      </span>
     </button>
   `
 })
@@ -31,10 +28,10 @@ export class SharkTableHeaderButtonComponent {
 
   focusText: string;
 
-  changeSort(property: string, sortType: SharkSortType): void {
+  changeSort(): void {
     this.sortChange.emit({
-      property: property,
-      sortType: sortType
+      property: this.column.property,
+      sortType: this.column.sortType
     })
   }
 

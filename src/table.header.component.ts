@@ -15,7 +15,8 @@ import { NotifierService } from './notifier/notifier.service';
             </td>
             <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
                 *ngFor="let column of columns; let i = index; let f = first; let l = last;" 
-                [attr.id]="column.property">
+                [attr.id]="column.property"
+                [attr.aria-sort]="!sortable ? null : (!column.sortType || column.sortType === 0) ? 'none' : column.sortType === 1 ? 'ascending' : 'descending'">
                 <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i, column)" type="button" class="fa fa-angle-left">
                   <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column left' }}</span>
                 </button>
