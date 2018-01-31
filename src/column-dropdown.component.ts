@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, EventEmitter, HostListener, Input, Output
+  Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild
 } from '@angular/core';
 import { SharkColumn } from './column';
 import { NotifierService } from './notifier/notifier.service';
@@ -8,25 +8,25 @@ import { NotifierService } from './notifier/notifier.service';
   selector: 'shark-column-dropdown',
   template: `
     <span class="column-picker">
-        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" aria-haspopup="true" type="button">
+        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" [attr.aria-expanded]="showDropDown" aria-controls="column-picker-dropdown" type="button" #dropdownButton>
           <span>Choose Columns<i class="fa fa-fw fa-angle-down"></i></span>
         </button>
-        <ul id="column-picker-dropdown" class="dropdown" [attr.aria-hidden]="!showDropDown" aria-label="submenu" [ngStyle]="{'display': showDropDown ? 'block': 'none'}">
-          <li *ngFor="let column of columns">
-            <label>
-              <input type="checkbox"
-                     [(ngModel)]="column.displayed"
-                     (ngModelChange)="emitSelected(column)"
-                     [title]="'Click to ' + (column.displayed ? 'hide' : 'show') + ' the ' + column.header + ' column'" 
-              />
-              <span>{{ column.header }}</span>
+        <div id="column-picker-dropdown" class="dropdown" [attr.aria-hidden]="!showDropDown" aria-label="submenu" [ngStyle]="{'display': showDropDown ? 'block': 'none'}">
+          <fieldset>
+            <legend class="screen-reader">Columns to display</legend>
+            <label *ngFor="let column of columns">
+              <input type="checkbox" [(ngModel)]="column.displayed" (ngModelChange)="emitSelected(column)" />
+              {{ column.header }}
             </label>
-          </li>
-        </ul>
+          </fieldset>
+        </div>
     </span>
   `
 })
 export class SharkColumnDropdownComponent {
+  @ViewChild('dropdownButton')
+  dropdownButton: ElementRef;
+
   @Input()
   columns: SharkColumn[];
 
@@ -44,6 +44,7 @@ export class SharkColumnDropdownComponent {
   closeDropDownWithEscape(): void {
     if (this.showDropDown) {
       this.showDropDown = false;
+      this.dropdownButton.nativeElement.focus();
     }
   }
 
@@ -55,8 +56,7 @@ export class SharkColumnDropdownComponent {
     }
   }
 
-  emitSelected(column: SharkColumn): void {
-    this.notifierService.postMessage(column.header + ' column changed to ' + (column.displayed ? 'shown' : 'hidden'));
+  emitSelected(): void {
     this.columnChange.emit(this.columns);
   }
 }

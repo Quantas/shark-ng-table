@@ -142,6 +142,12 @@ th, td {
   min-width: 7rem;
 }
 
+.column-picker fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 .column-picker .dropdown li {
   list-style: none;
 }
@@ -155,10 +161,6 @@ th, td {
 
 .column-picker .dropdown label input {
   vertical-align: top;
-}
-
-.column-picker .dropdown label span {
-  display: inline-block;
 }
 
 /* Pagination */
