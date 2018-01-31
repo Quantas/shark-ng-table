@@ -21,10 +21,10 @@ import { Page } from './page';
             >
                 <td class="header-buttons" *ngIf="childRows">
                   <button class="black-arrow fa fa-fw"
+                          [attr.aria-expanded]="childOpen(i)"
                           [ngClass]="{ 'open': childOpen(i), 'closed': !childOpen(i), 'fa-caret-down': childOpen(i), 'fa-caret-right': !childOpen(i) }"
                           (click)="toggleChild(i)" type="button"
                   >
-                    <span class="screen-reader-button-label">{{ childOpen(i) ? 'close' : 'open' }}  this child row</span>
                   </button>
                 </td>
                 <ng-container *ngFor="let column of currentColumns">

@@ -11,7 +11,7 @@ import { NotifierService } from './notifier/notifier.service';
     template: `
         <tr class="header-row header-border" *ngIf="columns.length > 0">
             <td id="childHeader" *ngIf="childRows" class="child-spacer">
-              <span class="screen-reader">Details</span>
+              <span class="screen-reader">Details Row</span>
             </td>
             <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
                 *ngFor="let column of columns; let i = index; let f = first; let l = last;" 
