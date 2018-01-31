@@ -8,20 +8,21 @@ import { NotifierService } from './notifier/notifier.service';
   selector: 'shark-column-dropdown',
   template: `
     <span class="column-picker">
-        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" type="button">
+        <button class="toggle-dropdown" (click)="showDropDown = !showDropDown" aria-haspopup="true" type="button">
           <span>Choose Columns<i class="fa fa-fw fa-angle-down"></i></span>
         </button>
-        <div class="dropdown" *ngIf="showDropDown">
-          <span class="screen-reader">Press Escape to close this drop down.</span>
-          <label *ngFor="let column of columns">
-            <input type="checkbox"
-                   [(ngModel)]="column.displayed"
-                   (ngModelChange)="emitSelected(column)"
-                   [title]="'Click to ' + (column.displayed ? 'hide' : 'show') + ' the ' + column.header + ' column'" 
-            />
-            <span>{{ column.header }}</span>
-          </label>
-        </div>
+        <ul id="column-picker-dropdown" class="dropdown" [attr.aria-hidden]="!showDropDown" aria-label="submenu" [ngStyle]="{'display': showDropDown ? 'block': 'none'}">
+          <li *ngFor="let column of columns">
+            <label>
+              <input type="checkbox"
+                     [(ngModel)]="column.displayed"
+                     (ngModelChange)="emitSelected(column)"
+                     [title]="'Click to ' + (column.displayed ? 'hide' : 'show') + ' the ' + column.header + ' column'" 
+              />
+              <span>{{ column.header }}</span>
+            </label>
+          </li>
+        </ul>
     </span>
   `
 })
