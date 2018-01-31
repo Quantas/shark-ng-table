@@ -26,7 +26,7 @@ describe('SharkTableComponentColumnOrderer', () => {
   }));
 
   it('should move the columns', async(() => {
-    component.sharkTable.headerComponent.moveColumnForward(0);
+    component.sharkTable.headerComponent.moveColumnForward(0, { header: 'Col 1', property: 'col1' });
     fixture.detectChanges();
 
     expect(component.sharkTable.currentColumns).toEqual([
@@ -35,7 +35,7 @@ describe('SharkTableComponentColumnOrderer', () => {
       { header: 'Col 3', property: 'col3', displayed: true}
     ]);
 
-    component.sharkTable.headerComponent.moveColumnBackward(2);
+    component.sharkTable.headerComponent.moveColumnBackward(2, { header: 'Col 3', property: 'col3' });
     fixture.detectChanges();
 
     expect(component.sharkTable.currentColumns).toEqual([

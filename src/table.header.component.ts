@@ -4,6 +4,7 @@ import { SharkColumn } from './column';
 import { SharkSortType } from './sort.type';
 import { Page } from './page';
 import { SharkSortChangeEvent } from './header-button.component';
+import { NotifierService } from './notifier/notifier.service';
 
 @Component({
     selector: '[shark-table-header]',
@@ -15,14 +16,14 @@ import { SharkSortChangeEvent } from './header-button.component';
             <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
                 *ngFor="let column of columns; let i = index; let f = first; let l = last;" 
                 [attr.id]="column.property">
-                <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i)" type="button" class="fa fa-angle-left">
+                <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i, column)" type="button" class="fa fa-angle-left">
                   <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column left' }}</span>
                 </button>
                 <shark-table-header-button *ngIf="sortable" [column]="column" (sortChange)="dispatchSortChangeEvent($event)"></shark-table-header-button>  
                 <ng-container *ngIf="!sortable">
                   {{ column.header }}
                 </ng-container>
-                <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i)" type="button" class="fa fa-angle-right">
+                <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i, column)" type="button" class="fa fa-angle-right">
                   <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column right' }}</span>
                 </button>
                 <div *ngIf="columnFiltering && filterable">
@@ -60,6 +61,9 @@ export class SharkTableHeaderComponent {
     filter: string;
 
     @Input()
+    notifierService: NotifierService;
+
+    @Input()
     localPagingSize: number;
 
     @Output()
@@ -83,12 +87,14 @@ export class SharkTableHeaderComponent {
         });
     }
 
-    moveColumnForward(index: number): void {
+    moveColumnForward(index: number, column: SharkColumn): void {
       this.move(index, 1);
+      this.notifierService.postMessage(column.header + ' column moved to the right to position ' + (index + 2));
     }
 
-    moveColumnBackward(index: number): void {
+    moveColumnBackward(index: number, column: SharkColumn): void {
       this.move(index, -1);
+      this.notifierService.postMessage(column.header + ' column moved to the left to position ' + index);
     }
 
     private move(index: number, offset: number): void {

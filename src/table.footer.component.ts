@@ -4,6 +4,7 @@ import { SharkColumn } from './column';
 import { SharkTableUtils } from './table.utils';
 import { SharkHeaderFilterChange } from './table.header.component';
 import { SharkTablePaginationComponent } from './table.pagination.component';
+import { NotifierService } from './notifier/notifier.service';
 
 @Component({
   selector: 'shark-table-footer',
@@ -13,10 +14,10 @@ import { SharkTablePaginationComponent } from './table.pagination.component';
       <label for="local-paging-size" class="local-paging-options">
         Rows per page:
       </label>
-      <select [(ngModel)]="localPagingSize" (change)="fireFilterChange()" name="localPagingSize" id="local-paging-size">
+      <select [(ngModel)]="localPagingSize" (change)="firePageSizeChange()" name="localPagingSize" id="local-paging-size">
         <option *ngFor="let option of localPagingOptions" [value]="option" [attr.selected]="option === localPagingSize ? 'selected' : null">{{ option }}</option>
       </select>
-      <span>{{ start }} - {{ end }} of {{ total }} {{ filtered ? '(Filtered)' : '' }}</span>
+      <span>{{ currentPageInfo }}</span>
     </div>
     <shark-table-pagination *ngIf="columns.length > 0" [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
   </div>`
@@ -28,8 +29,13 @@ export class SharkTableFooterComponent implements OnChanges {
   total = 0;
   filtered = false;
 
+  currentPageInfo = '';
+
   @ViewChild(SharkTablePaginationComponent)
   paginationComponent: SharkTablePaginationComponent;
+
+  @Input()
+  notifierService: NotifierService;
 
   @Input()
   localPaging: boolean;
@@ -88,16 +94,34 @@ export class SharkTableFooterComponent implements OnChanges {
       this.end = newEnd;
     }
 
+    const wasFiltered = this.filtered;
     this.filtered = (this.filter && this.filter.length > 0) || this.tableUtils.hasFilter(this.columns);
 
+    this.currentPageInfo = this.start + ' - ' + this.end + ' of ' + this.total + (this.filtered ? ' (filtered)' : '');
+
+    if (changes.hasOwnProperty('page') && !changes['page'].isFirstChange()) {
+      const pageChange = changes['page'];
+      if (pageChange.previousValue.number !== pageChange.currentValue.number) {
+        this.notifierService.postMessage('Page changed to ' + (pageChange.currentValue.number + 1) + ' showing ' + this.currentPageInfo);
+      } else if (this.filtered || wasFiltered) {
+        this.notifierService.postMessage('Filtering changed, showing ' + this.currentPageInfo);
+      }
+    }
+    if (changes.hasOwnProperty('filter')) {
+      const filterChange = changes['filter'];
+      if (filterChange.previousValue !== filterChange.currentValue) {
+        this.notifierService.postMessage('Filtering changed, showing ' + this.currentPageInfo);
+      }
+    }
   }
 
-  fireFilterChange(): void {
+  firePageSizeChange(): void {
     this.filterChange.emit({
       columns: this.columns,
       filter: this.filter,
       localPagingSize: this.localPagingSize
     });
+    this.notifierService.postMessage('Page size changed to ' + this.localPagingSize + ', page changed to ' + (this.page.number + 1));
   }
 
   changePage(pageNo: number): void {

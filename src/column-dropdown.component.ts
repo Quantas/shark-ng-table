@@ -2,6 +2,7 @@ import {
   Component, ElementRef, EventEmitter, HostListener, Input, Output
 } from '@angular/core';
 import { SharkColumn } from './column';
+import { NotifierService } from './notifier/notifier.service';
 
 @Component({
   selector: 'shark-column-dropdown',
@@ -15,7 +16,7 @@ import { SharkColumn } from './column';
           <label *ngFor="let column of columns">
             <input type="checkbox"
                    [(ngModel)]="column.displayed"
-                   (ngModelChange)="emitSelected()"
+                   (ngModelChange)="emitSelected(column)"
                    [title]="'Click to ' + (column.displayed ? 'hide' : 'show') + ' the ' + column.header + ' column'" 
             />
             <span>{{ column.header }}</span>
@@ -27,6 +28,9 @@ import { SharkColumn } from './column';
 export class SharkColumnDropdownComponent {
   @Input()
   columns: SharkColumn[];
+
+  @Input()
+  notifierService: NotifierService;
 
   @Output()
   columnChange = new EventEmitter<SharkColumn[]>();
@@ -50,7 +54,8 @@ export class SharkColumnDropdownComponent {
     }
   }
 
-  emitSelected(): void {
+  emitSelected(column: SharkColumn): void {
+    this.notifierService.postMessage(column.header + ' column changed to ' + (column.displayed ? 'shown' : 'hidden'));
     this.columnChange.emit(this.columns);
   }
 }

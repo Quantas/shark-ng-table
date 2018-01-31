@@ -16,6 +16,7 @@ import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.direct
 import { SharkColumnDropdownComponent } from './column-dropdown.component';
 import { SharkTableInfoHeaderComponent } from './table.info.header.component';
 import { SharkTableHeaderButtonComponent } from './header-button.component';
+import { AriaNotifierComponent } from './notifier/aria-notifier.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { SharkTableHeaderButtonComponent } from './header-button.component';
     RouterModule
   ],
   declarations: [
+    AriaNotifierComponent,
     SharkTableComponent,
     SharkChildComponent,
     SharkDynamicContentsDirective,

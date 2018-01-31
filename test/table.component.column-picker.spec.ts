@@ -30,7 +30,7 @@ describe('SharkTableComponentColumnPicker', () => {
     fixture.detectChanges();
 
     component.sharkTable.headerInfoComponent.columnPickerComponent.columns[1].displayed = false;
-    component.sharkTable.headerInfoComponent.columnPickerComponent.emitSelected();
+    component.sharkTable.headerInfoComponent.columnPickerComponent.emitSelected({ header: 'Col 2', displayed: false, property: 'col2'});
     fixture.detectChanges();
 
     expect(component.sharkTable.currentColumns).toEqual([

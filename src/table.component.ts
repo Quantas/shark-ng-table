@@ -17,10 +17,12 @@ import { SharkHeaderFilterChange, SharkTableHeaderComponent } from './table.head
 import { CellStyleFunction, RowStyleFunction } from './table.body.component';
 import { SharkTableFooterComponent } from './table.footer.component';
 import { SharkTableInfoHeaderComponent } from './table.info.header.component';
+import { NotifierService } from './notifier/notifier.service';
 
 @Component({
   selector: 'shark-table',
   template: `
+      <shark-table-aria-notifier [notifierService]="notifierService"></shark-table-aria-notifier>
       <div class="table-wrapper" *ngIf="page">
         <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker)"
                                  [serverSideData]="serverSideData"
@@ -31,6 +33,7 @@ import { SharkTableInfoHeaderComponent } from './table.info.header.component';
                                  [allColumns]="columns"
                                  [filter]="filter"
                                  [localPagingSize]="localPagingSize"
+                                 [notifierService]="notifierService"
                                  (filterChange)="headerChange($event)"
                                  (columnChange)="updateCurrentColumns($event)"
         ></shark-table-info-header>
@@ -46,6 +49,7 @@ import { SharkTableInfoHeaderComponent } from './table.info.header.component';
                    [columnFiltering]="columnFiltering"
                    [localPagingSize]="localPagingSize"
                    [filter]="filter"
+                   [notifierService]="notifierService"
                    (sortChange)="changeSort($event.property, $event.sortType)"
                    (filterChange)="headerChange($event)"
                    (columnChange)="updateCurrentColumns($event)"
@@ -72,6 +76,7 @@ import { SharkTableInfoHeaderComponent } from './table.info.header.component';
                             [localPagingSize]="localPagingSize"
                             [localPagingOptions]="localPagingOptions"
                             [showLocalPagingOptions]="showLocalPagingOptions"
+                            [notifierService]="notifierService"
                             (filterChange)="headerChange($event)"
                             (paginationChange)="changePage($event)"
         ></shark-table-footer>
@@ -88,6 +93,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   @ViewChild(SharkTableFooterComponent)
   footerComponent: SharkTableFooterComponent;
+
+  notifierService = new NotifierService();
 
   /**
    * The raw table data
@@ -379,6 +386,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
               break;
             }
           }
+
+          this.notifierService.postMessage(column.header + ' column sort changed to ' + (column.sortType === SharkSortType.DESC ? 'descending' : column.sortType === SharkSortType.ASC ? 'ascending' : 'unsorted'));
         }
       });
 
