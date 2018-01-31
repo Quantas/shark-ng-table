@@ -1,3 +1,32 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/Quantas/shark-ng-table/compare/0.1.0...0.2.0) (2018-01-31)
+
+
+### Bug Fixes
+
+* **accessibility:** add fieldset to column picker, fix ARIA ([b85e3cd](https://github.com/Quantas/shark-ng-table/commit/b85e3cd)), closes [#65](https://github.com/Quantas/shark-ng-table/issues/65)
+* **accessibility:** Allow the column picker to be closed with `Escape` ([f04861d](https://github.com/Quantas/shark-ng-table/commit/f04861d)), closes [#58](https://github.com/Quantas/shark-ng-table/issues/58)
+* **accessibility:** Change filler th to "Details" ([a2c3b48](https://github.com/Quantas/shark-ng-table/commit/a2c3b48)), closes [#59](https://github.com/Quantas/shark-ng-table/issues/59)
+* **accessibility:** Correctly label the start/empty sort state ([f142a7f](https://github.com/Quantas/shark-ng-table/commit/f142a7f)), closes [#53](https://github.com/Quantas/shark-ng-table/issues/53)
+* **accessibility:** fix lost focus when moving columns ([a4dc0ab](https://github.com/Quantas/shark-ng-table/commit/a4dc0ab)), closes [#60](https://github.com/Quantas/shark-ng-table/issues/60)
+* **accessibility:** let screenreader know that picker is a popup ([2701137](https://github.com/Quantas/shark-ng-table/commit/2701137)), closes [#55](https://github.com/Quantas/shark-ng-table/issues/55)
+* **accessibility:** Make the headers less verbose to screenreaders ([54e06a0](https://github.com/Quantas/shark-ng-table/commit/54e06a0)), closes [#54](https://github.com/Quantas/shark-ng-table/issues/54)
+* **accessibility:** Notify screen reader upon various table state change ([b5f74eb](https://github.com/Quantas/shark-ng-table/commit/b5f74eb)), closes [#56](https://github.com/Quantas/shark-ng-table/issues/56) [#57](https://github.com/Quantas/shark-ng-table/issues/57) [#61](https://github.com/Quantas/shark-ng-table/issues/61) [#62](https://github.com/Quantas/shark-ng-table/issues/62)
+* **accessibility:** Update header verbosity and test ([762cc10](https://github.com/Quantas/shark-ng-table/commit/762cc10)), closes [#54](https://github.com/Quantas/shark-ng-table/issues/54)
+
+
+### Features
+
+* **accessibility:** Update sorting to use aria-sort and less words ([7d777c6](https://github.com/Quantas/shark-ng-table/commit/7d777c6)), closes [#63](https://github.com/Quantas/shark-ng-table/issues/63)
+* **accessibility:** use aria-expanded for child button ([2019518](https://github.com/Quantas/shark-ng-table/commit/2019518)), closes [#64](https://github.com/Quantas/shark-ng-table/issues/64)
+
+
+### BREAKING CHANGES
+
+* **accessibility:** The CSS with regards to header row buttons has changed.
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/Quantas/shark-ng-table/compare/0.0.29...0.1.0) (2018-01-26)
 
