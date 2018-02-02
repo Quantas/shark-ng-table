@@ -28,7 +28,7 @@ import { Page } from './page';
                   </button>
                 </td>
                 <ng-container *ngFor="let column of currentColumns">
-                    <td [ngClass]="{'right': column.alignRight }" [ngStyle]="addStyleToCell(row, column)" [headers]="column.property">
+                    <td [ngClass]="{'right': column.alignRight }" [ngStyle]="addStyleToCell(row, column)">
                         <shark-table-cell [column]="column" [row]="row"></shark-table-cell>
                     </td>
                 </ng-container>
