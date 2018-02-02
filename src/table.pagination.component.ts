@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef } from '@angular/core';
 import { Page } from './page';
 
 @Component({
@@ -6,24 +6,29 @@ import { Page } from './page';
   template: `
       <div class="pagination-wrapper" *ngIf="pageCount.length > 1">
           <div class="pagination">
-              <button *ngIf="!first" (click)="changePage(0)" type="button" class="fa fa-angle-double-left">
+              <button id="first-page-button" *ngIf="!first" (click)="changePage(0)" type="button" class="fa fa-angle-double-left">
                 <span class="screen-reader-button-label">First Page</span>
               </button>
-              <button *ngIf="previous" (click)="changePage(page.number - 1)" type="button" class="fa fa-angle-left">
+              <button id="previous-page-button" *ngIf="previous" (click)="changePage(page.number - 1)" type="button" class="fa fa-angle-left">
                 <span class="screen-reader-button-label">Previous Page</span>
               </button>
             
               <ng-container *ngFor="let num of displayedPages">
-                <button [ngClass]="{'active': num === page.number, 'inactive': num!== page.number }" [attr.aria-current]="num === page.number ? 'true' : null" (click)="changePage(num)" type="button">
+                <button 
+                  [attr.id]="num === page.number ? 'active-button' : null"
+                  [ngClass]="{'active': num === page.number, 'inactive': num!== page.number }"
+                  [attr.aria-current]="num === page.number ? 'true' : null"
+                  [attr.aria-disabled]="num === page.number ? 'true' : null"
+                  (click)="changePage(num)" type="button">
                   <span class="screen-reader-button-label">Page</span>
                   {{ num + 1 }}
                 </button>
               </ng-container>
             
-              <button *ngIf="next" (click)="changePage(page.number + 1)" type="button" class="fa fa-angle-right">
+              <button id="next-page-button" *ngIf="next" (click)="changePage(page.number + 1)" type="button" class="fa fa-angle-right">
                 <span class="screen-reader-button-label">Next Page</span>
               </button>
-              <button *ngIf="!last" (click)="changePage(pageCount.length - 1)" type="button" class="fa fa-angle-double-right">
+              <button id="last-page-button" *ngIf="!last" (click)="changePage(pageCount.length - 1)" type="button" class="fa fa-angle-double-right">
                 <span class="screen-reader-button-label">Last Page</span>
               </button>
           </div>
@@ -48,6 +53,10 @@ export class SharkTablePaginationComponent implements OnChanges {
   @Output()
   paginationChange = new EventEmitter<number>();
 
+  private lastButton;
+
+  constructor(private elementRef: ElementRef) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('page') && this.page) {
       this.pageCount = Array.from(Array(this.page.totalPages), (x, i) => i);
@@ -69,10 +78,24 @@ export class SharkTablePaginationComponent implements OnChanges {
         this.displayedPages = this.pageCount;
       }
 
+      // fix focus when a button disappears
+      if (this.lastButton) {
+        setTimeout(() => {
+          if (!this.elementRef.nativeElement.ownerDocument.getElementById(this.lastButton)) {
+            const activeButton = this.elementRef.nativeElement.ownerDocument.getElementById('active-button');
+            if (activeButton) {
+              activeButton.focus();
+            }
+          }
+
+          this.lastButton = undefined;
+        }, 100);
+      }
     }
   }
 
   changePage(pageNo: number): void {
+    this.lastButton = this.elementRef.nativeElement.ownerDocument.activeElement.id;
     this.paginationChange.emit(pageNo);
   }
 }

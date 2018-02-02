@@ -1,11 +1,12 @@
 import { async } from '@angular/core/testing';
 import { SharkTablePaginationComponent, SharkTableUtils } from '../src';
+import { ElementRef } from '@angular/core';
 
 describe('SharkTableUtils', () => {
 
   it('should have 2 pages, first page', async(() => {
 
-    const paginationComponent = new SharkTablePaginationComponent();
+    const paginationComponent = new SharkTablePaginationComponent(new MockElementRef());
 
     paginationComponent.page = {
       number: 0,
@@ -38,7 +39,7 @@ describe('SharkTableUtils', () => {
 
   it('should have 2 pages, last page', async(() => {
 
-    const paginationComponent = new SharkTablePaginationComponent();
+    const paginationComponent = new SharkTablePaginationComponent(new MockElementRef());
 
     paginationComponent.page = {
       number: 1,
@@ -61,7 +62,7 @@ describe('SharkTableUtils', () => {
   }));
 
   it('should have 5 pages, first page', async(() => {
-    const paginationComponent = new SharkTablePaginationComponent();
+    const paginationComponent = new SharkTablePaginationComponent(new MockElementRef());
 
     paginationComponent.page = {
       number: 0,
@@ -84,7 +85,7 @@ describe('SharkTableUtils', () => {
   }));
 
   it('should have 5 pages, middle page', async(() => {
-    const paginationComponent = new SharkTablePaginationComponent();
+    const paginationComponent = new SharkTablePaginationComponent(new MockElementRef());
 
     paginationComponent.page = {
       number: 3,
@@ -108,7 +109,7 @@ describe('SharkTableUtils', () => {
   }));
 
   it('should have 5 pages, last page', async(() => {
-    const paginationComponent = new SharkTablePaginationComponent();
+    const paginationComponent = new SharkTablePaginationComponent(new MockElementRef());
 
     paginationComponent.page = {
       number: 4,
@@ -131,3 +132,7 @@ describe('SharkTableUtils', () => {
   }));
 
 });
+
+export class MockElementRef extends ElementRef {
+  constructor() { super(null); }
+}
