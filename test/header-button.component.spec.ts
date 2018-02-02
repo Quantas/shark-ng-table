@@ -12,11 +12,11 @@ describe('SharkTableHeaderButtonComponent', () => {
 
     buttonComponent.headerFocus();
 
-    expect(buttonComponent.focusText).toEqual(', Click to change sort to Ascending');
+    expect(buttonComponent.ariaButtonLabel).toEqual('Click to change sort to Ascending');
 
     buttonComponent.headerBlur();
 
-    expect(buttonComponent.focusText).toEqual(undefined);
+    expect(buttonComponent.ariaButtonLabel).toEqual('Change Sorting');
   }));
 
 });

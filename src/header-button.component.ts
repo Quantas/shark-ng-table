@@ -26,7 +26,7 @@ export class SharkTableHeaderButtonComponent {
   @Output()
   sortChange = new EventEmitter<SharkSortChangeEvent>();
 
-  ariaButtonLabel: string;
+  ariaButtonLabel = 'Change Sorting';
 
   changeSort(): void {
     this.sortChange.emit({
@@ -36,7 +36,7 @@ export class SharkTableHeaderButtonComponent {
   }
 
   headerFocus(): void {
-    const newSort = (!this.column.sortType || this.column.sortType === 0) ? 'Ascending' : this.column.sortType === 1 ? 'Descending'  : 'Unsorted';
+    const newSort = (!this.column.sortType || this.column.sortType === 0) ? 'Ascending' : this.column.sortType === 1 ? 'Descending' : 'Unsorted';
     this.ariaButtonLabel = 'Click to change sort to ' + newSort;
   }
 
