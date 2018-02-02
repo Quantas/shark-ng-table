@@ -1,3 +1,23 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/Quantas/shark-ng-table/compare/0.2.0...0.2.1) (2018-02-02)
+
+
+### Bug Fixes
+
+* **accessibility:** add aria-atomic to aria-live region ([f71b90b](https://github.com/Quantas/shark-ng-table/commit/f71b90b)), closes [#66](https://github.com/Quantas/shark-ng-table/issues/66)
+* **accessibility:** add aria-current to pagination current page button ([8c23f09](https://github.com/Quantas/shark-ng-table/commit/8c23f09)), closes [#71](https://github.com/Quantas/shark-ng-table/issues/71)
+* **accessibility:** Add back in the dynamic focus text ([efb3c1a](https://github.com/Quantas/shark-ng-table/commit/efb3c1a)), closes [#70](https://github.com/Quantas/shark-ng-table/issues/70)
+* **accessibility:** fix lost focus when pagination buttons disappear ([d8b4b1a](https://github.com/Quantas/shark-ng-table/commit/d8b4b1a)), closes [#71](https://github.com/Quantas/shark-ng-table/issues/71)
+* **accessibility:** Make child header th, updated td labels ([c7ce454](https://github.com/Quantas/shark-ng-table/commit/c7ce454)), closes [#68](https://github.com/Quantas/shark-ng-table/issues/68)
+* **accessibility:** Remove headers attribute from td ([460a750](https://github.com/Quantas/shark-ng-table/commit/460a750)), closes [#69](https://github.com/Quantas/shark-ng-table/issues/69)
+
+
+### Features
+
+* **accessibility:** Shorten some of the aria-live messages ([4448911](https://github.com/Quantas/shark-ng-table/commit/4448911)), closes [#67](https://github.com/Quantas/shark-ng-table/issues/67)
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/Quantas/shark-ng-table/compare/0.1.0...0.2.0) (2018-01-31)
 
