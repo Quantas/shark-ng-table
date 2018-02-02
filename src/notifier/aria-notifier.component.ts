@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'shark-table-aria-notifier',
-  template: `<div class="notification-area screen-reader" aria-live="polite">{{ status }}</div>`
+  template: `<div class="notification-area screen-reader" aria-atomic="true" aria-live="polite">{{ status }}</div>`
 })
 export class AriaNotifierComponent implements OnChanges, OnDestroy {
 
