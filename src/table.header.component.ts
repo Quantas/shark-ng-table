@@ -92,7 +92,7 @@ export class SharkTableHeaderComponent {
 
     moveColumnForward(index: number, column: SharkColumn): void {
       this.move(index, 1);
-      this.notifierService.postMessage(column.header + ' column moved to the right to position ' + (index + 2));
+      this.notifierService.postMessage('column moved right');
 
       const newIndex = this.columns.indexOf(column);
       setTimeout(() => {
@@ -106,7 +106,7 @@ export class SharkTableHeaderComponent {
 
     moveColumnBackward(index: number, column: SharkColumn): void {
       this.move(index, -1);
-      this.notifierService.postMessage(column.header + ' column moved to the left to position ' + index);
+      this.notifierService.postMessage('column moved left');
 
       const newIndex = this.columns.indexOf(column);
       setTimeout(() => {

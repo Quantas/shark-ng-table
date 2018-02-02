@@ -387,7 +387,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
             }
           }
 
-          this.notifierService.postMessage(column.header + ' column sort changed to ' + (column.sortType === SharkSortType.DESC ? 'descending' : column.sortType === SharkSortType.ASC ? 'ascending' : 'unsorted'));
+          this.notifierService.postMessage((column.sortType === SharkSortType.DESC ? 'sorted descending' : column.sortType === SharkSortType.ASC ? 'sorted ascending' : 'unsorted'));
         }
       });
 
