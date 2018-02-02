@@ -14,7 +14,7 @@ import { Page } from './page';
               </button>
             
               <ng-container *ngFor="let num of displayedPages">
-                <button [ngClass]="{'active': num === page.number, 'inactive': num!== page.number }" (click)="changePage(num)" type="button">
+                <button [ngClass]="{'active': num === page.number, 'inactive': num!== page.number }" [attr.aria-current]="num === page.number ? 'true' : null" (click)="changePage(num)" type="button">
                   <span class="screen-reader-button-label">Page</span>
                   {{ num + 1 }}
                 </button>
