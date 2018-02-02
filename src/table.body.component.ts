@@ -23,7 +23,7 @@ import { Page } from './page';
                   <button class="black-arrow fa fa-fw"
                           [attr.aria-expanded]="childOpen(i)"
                           [ngClass]="{ 'open': childOpen(i), 'closed': !childOpen(i), 'fa-caret-down': childOpen(i), 'fa-caret-right': !childOpen(i) }"
-                          (click)="toggleChild(i)" type="button"
+                          (click)="toggleChild(i)" type="button" aria-label="Details Row"
                   >
                   </button>
                 </td>
