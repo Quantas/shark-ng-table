@@ -6,7 +6,7 @@ import { SharkSortType } from './sort.type';
   selector: 'shark-table-header-button',
   template: `
     <span class="header-text pointer" (click)="changeSort()" (keyup.enter)="changeSort()">{{ column.header }}</span>
-    <button class="sort-button" [name]="column.header" (click)="changeSort()" type="button" [attr.aria-label]="ariaButtonLabel" (focus)="headerFocus()" (blur)="headerBlur()">
+    <button class="sort-button" [name]="column.header" (click)="changeSort()" type="button" aria-label="Change Sorting">
       <i class="sorting fas fa-fw" [ngClass]="{
         'unsorted': !column.sortType || column.sortType === 0,
         'fa-sort': !column.sortType || column.sortType === 0,
@@ -35,14 +35,6 @@ export class SharkTableHeaderButtonComponent {
     })
   }
 
-  headerFocus(): void {
-    const newSort = (!this.column.sortType || this.column.sortType === 0) ? 'Ascending' : this.column.sortType === 1 ? 'Descending' : 'Unsorted';
-    this.ariaButtonLabel = 'Click to change sort to ' + newSort;
-  }
-
-  headerBlur(): void {
-    this.ariaButtonLabel = 'Change Sorting';
-  }
 }
 
 export interface SharkSortChangeEvent {
