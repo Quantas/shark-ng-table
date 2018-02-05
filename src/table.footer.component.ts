@@ -98,19 +98,20 @@ export class SharkTableFooterComponent implements OnChanges {
     this.filtered = (this.filter && this.filter.length > 0) || this.tableUtils.hasFilter(this.columns);
 
     this.currentPageInfo = this.start + ' - ' + this.end + ' of ' + this.total + (this.filtered ? ' (filtered)' : '');
+    const currentPageInfoAria = this.start + ' to ' + this.end + ' of ' + this.total + (this.filtered ? ' (filtered)' : '');
 
     if (changes.hasOwnProperty('page') && !changes['page'].isFirstChange()) {
       const pageChange = changes['page'];
       if (pageChange.previousValue.number !== pageChange.currentValue.number) {
-        this.notifierService.postMessage('Page changed to ' + (pageChange.currentValue.number + 1) + ' showing ' + this.currentPageInfo);
+        this.notifierService.postMessage('Page changed to ' + (pageChange.currentValue.number + 1) + ' showing ' + currentPageInfoAria);
       } else if (this.filtered || wasFiltered) {
-        this.notifierService.postMessage('Filtering changed, showing ' + this.currentPageInfo);
+        this.notifierService.postMessage('Filtering changed, showing ' + currentPageInfoAria);
       }
     }
     if (changes.hasOwnProperty('filter')) {
       const filterChange = changes['filter'];
       if (filterChange.previousValue !== filterChange.currentValue) {
-        this.notifierService.postMessage('Filtering changed, showing ' + this.currentPageInfo);
+        this.notifierService.postMessage('Filtering changed, showing ' + currentPageInfoAria);
       }
     }
   }

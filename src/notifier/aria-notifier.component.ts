@@ -33,6 +33,9 @@ export class AriaNotifierComponent implements OnChanges, OnDestroy {
   }
 
   private subscribeToNotifier() {
-    this.notifierSubscription = this.notifierService.messageObservable.subscribe((message) => this.status = message);
+    this.notifierSubscription = this.notifierService.messageObservable.subscribe((message) => {
+      this.status = message;
+      setTimeout(() => this.status = '', 1000);
+    });
   }
 }
