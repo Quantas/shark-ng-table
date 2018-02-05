@@ -1,3 +1,14 @@
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/Quantas/shark-ng-table/compare/0.2.1...0.2.2) (2018-02-05)
+
+
+### Bug Fixes
+
+* **accessibility:** Clear notifier box after 1 second ([a58ca0c](https://github.com/Quantas/shark-ng-table/commit/a58ca0c)), closes [#72](https://github.com/Quantas/shark-ng-table/issues/72)
+* **accessibility:** Shorten up text for sorting change button ([3d80b85](https://github.com/Quantas/shark-ng-table/commit/3d80b85)), closes [#73](https://github.com/Quantas/shark-ng-table/issues/73)
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/Quantas/shark-ng-table/compare/0.2.0...0.2.1) (2018-02-02)
 
