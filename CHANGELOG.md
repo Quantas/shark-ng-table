@@ -1,3 +1,18 @@
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/Quantas/shark-ng-table/compare/0.2.2...0.2.3) (2018-02-07)
+
+
+### Bug Fixes
+
+* **cells:** Fix Pipe rendering ([950e442](https://github.com/Quantas/shark-ng-table/commit/950e442)), closes [#74](https://github.com/Quantas/shark-ng-table/issues/74)
+
+
+### Features
+
+* **filter:** Add ability to disable the filter input placeholders ([dc49293](https://github.com/Quantas/shark-ng-table/commit/dc49293)), closes [#75](https://github.com/Quantas/shark-ng-table/issues/75)
+
+
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/Quantas/shark-ng-table/compare/0.2.1...0.2.2) (2018-02-05)
 

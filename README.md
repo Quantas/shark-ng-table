@@ -54,4 +54,5 @@ This will install the latest version of `shark-ng-table`.
  
 ## Attribution
 
-We use the classes provided by [Font Awesome](https://fontawesome.com/) to add icons to a few parts of the table, their License is [here](https://fontawesome.com/license).
+ - Developed and tested in collaboration with Great Lakes Higher Education Corporation
+ - We use the classes provided by [Font Awesome](https://fontawesome.com/) to add icons to a few parts of the table, their License is [here](https://fontawesome.com/license).

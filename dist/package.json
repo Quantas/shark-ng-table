@@ -1,7 +1,7 @@
 {
   "name": "shark-ng-table",
-  "version": "0.2.2",
-  "description": "A robust table for Angular.",
+  "version": "0.2.3",
+  "description": "A robust table for Angular built with Accessibility in mind.",
   "main": "bundles/sharktable.umd.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
