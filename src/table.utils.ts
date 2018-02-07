@@ -1,5 +1,5 @@
 import { SharkColumn } from './column';
-import { Injectable } from '@angular/core';
+import { Injectable, PipeTransform, Type } from '@angular/core';
 
 @Injectable()
 export class SharkTableUtils {
@@ -8,11 +8,15 @@ export class SharkTableUtils {
     const cell = this.findValue(row, column.property);
 
     if (column.pipe) {
-      const pipe = new column.pipe(column.pipeConstructorArgs);
-      return pipe.transform(cell, column.pipeArgs);
+      return this.applyPipe(column.pipe, cell, column.pipeArgs, column.pipeConstructorArgs);
     }
 
     return cell;
+  }
+
+  public applyPipe(pipe: Type<PipeTransform>, cell,  pipeArgs: any[], pipeConstructorArgs: any[]): string {
+    const pipeInstance = new pipe(...pipeConstructorArgs);
+    return pipeInstance.transform(cell, ...pipeArgs);
   }
 
   public filter(items: any, cols: SharkColumn[], columnFiltering: boolean, filterText: string) {

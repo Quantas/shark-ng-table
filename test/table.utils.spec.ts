@@ -1,41 +1,23 @@
 import { async } from '@angular/core/testing';
-import { UpperCasePipe } from '@angular/common';
+import { CurrencyPipe, UpperCasePipe } from '@angular/common';
 import { SharkColumn, SharkTableUtils } from '../src';
 
 describe('SharkTableUtils', () => {
 
-  // FIXME: Type disappears during karma testing in this context
-  xit('should apply a pipe', async(() => {
-
-    const data = [
-      {col1: 'a', col2: '1'},
-      {col1: 'b', col2: '2'},
-      {col1: 'c', col2: '3'}
-    ];
-
-    const columns: SharkColumn[] = [
-      {
-        header: 'Column 1',
-        property: 'col1',
-        pipe: UpperCasePipe,
-        filter: ''
-      },
-      {
-        header: 'Column 2',
-        property: 'col2',
-        filter: ''
-      }
-    ];
+  it('should apply a no args pipe', async(() => {
 
     const tableUtils = new SharkTableUtils();
 
-    expect(tableUtils.filter(data, columns, true, ''))
-      .toEqual([
-        {col1: 'A', col2: '1'},
-        {col1: 'B', col2: '2'},
-        {col1: 'C', col2: '3'}
-      ]);
+    expect(tableUtils.applyPipe(UpperCasePipe, 'a', undefined, undefined))
+      .toEqual('A');
+  }));
 
+  it('should apply an args pipe', async(() => {
+
+    const tableUtils = new SharkTableUtils();
+
+    expect(tableUtils.applyPipe(CurrencyPipe, '123.45', ['USD', true], ['en-US']))
+      .toEqual('$123.45');
   }));
 
   it('should filter by column', async(() => {
