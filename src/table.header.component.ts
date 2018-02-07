@@ -29,7 +29,7 @@ import { DOCUMENT } from '@angular/common';
                 </button>
                 <div *ngIf="columnFiltering && filterable">
                   <label [for]="'column-' + i" class="screen-reader">{{ column.header }} filter</label>
-                  <input type="text" name="column{{i}}" [id]="'column-' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" placeholder="{{ column.header }} filter" />
+                  <input type="text" name="column{{i}}" [id]="'column-' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? (column.header + ' filter') : null" />
                 </div>
             </th>
         </tr>
@@ -60,6 +60,9 @@ export class SharkTableHeaderComponent {
 
     @Input()
     filter: string;
+
+    @Input()
+    showFilterPlaceholders: boolean;
 
     @Input()
     notifierService: NotifierService;

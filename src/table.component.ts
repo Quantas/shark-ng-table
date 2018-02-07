@@ -32,6 +32,7 @@ import { NotifierService } from './notifier/notifier.service';
                                  [columns]="currentColumns"
                                  [allColumns]="columns"
                                  [filter]="filter"
+                                 [showFilterPlaceholders]="showFilterPlaceholders"
                                  [localPagingSize]="localPagingSize"
                                  [notifierService]="notifierService"
                                  (filterChange)="headerChange($event)"
@@ -49,6 +50,7 @@ import { NotifierService } from './notifier/notifier.service';
                    [columnFiltering]="columnFiltering"
                    [localPagingSize]="localPagingSize"
                    [filter]="filter"
+                   [showFilterPlaceholders]="showFilterPlaceholders"
                    [notifierService]="notifierService"
                    (sortChange)="changeSort($event.property, $event.sortType)"
                    (filterChange)="headerChange($event)"
@@ -177,6 +179,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   localFilter = true;
+
+  /**
+   * Enables the placeholder text for the filter boxes
+   * @type {boolean}
+   */
+  @Input()
+  showFilterPlaceholders = true;
 
   /**
    * Enables client-side pagination as opposed to just emitting a `SharkPageChangeEvent`

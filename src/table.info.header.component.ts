@@ -15,7 +15,7 @@ import { NotifierService } from './notifier/notifier.service';
         <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" [notifierService]="notifierService" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
         <span class="filter-box" *ngIf="filterable && !columnFiltering && columns.length > 0">
           <label for="filter" class="screen-reader">Filter Results (all column search)</label>
-          <input type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" placeholder="Filter Results" />
+          <input type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? 'Filter Results' : null" />
         </span>
       </div>
     </div>
@@ -46,6 +46,9 @@ export class SharkTableInfoHeaderComponent {
 
   @Input()
   filter: string;
+
+  @Input()
+  showFilterPlaceholders: boolean;
 
   @Input()
   localPagingSize: number;

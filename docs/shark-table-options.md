@@ -24,6 +24,8 @@
     * Enables column specific filter boxes
 * localFilter - `boolean` - `true`
     * Enables client-side filtering as opposed to just emitting a `SharkPageChangeEvent`
+* showFilterPlaceholders - `boolean` - `true`
+    * Enables the placeholder text for the filter boxes
 * localPaging - `boolean` - `true`
     * Enables client-side pagination as opposed to just emitting a `SharkPageChangeEvent`
 * localPagingSize - `Number` - `10`
