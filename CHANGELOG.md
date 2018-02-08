@@ -1,3 +1,8 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/Quantas/shark-ng-table/compare/0.2.3...1.0.0) (2018-02-08)
+
+## First official release!
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/Quantas/shark-ng-table/compare/0.2.2...0.2.3) (2018-02-07)
 
