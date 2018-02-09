@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .rowLink:hover {
   background-color: #ddd;
   cursor: pointer;
@@ -209,4 +211,71 @@ th, td {
   height: 1px;
   overflow: hidden;
   display: block;
+}
+
+/*!
+ * Font Awesome Free 5.0.3 by @fontawesome - http://fontawesome.com
+ * License - http://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+@font-face {
+  font-family: "shark-ng-table-icons";
+  src:url("fonts/shark-ng-table-icons.eot");
+  src:url("fonts/shark-ng-table-icons.eot?#iefix") format("embedded-opentype"),
+  url("fonts/shark-ng-table-icons.woff") format("woff"),
+  url("fonts/shark-ng-table-icons.ttf") format("truetype"),
+  url("fonts/shark-ng-table-icons.svg#shark-ng-table-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa, .fab, .fal, .far, .fas {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa, .far, .fas {
+  font-family: shark-ng-table-icons;
+  font-weight: 900;
+}
+
+.fa-sort:before {
+  content: "\61";
+}
+.fa-sort-up:before {
+  content: "\62";
+}
+.fa-sort-down:before {
+  content: "\63";
+}
+.fa-caret-down:before {
+  content: "\64";
+}
+.fa-caret-right:before {
+  content: "\65";
+}
+.fa-angle-down:before {
+  content: "\66";
+}
+.fa-angle-left:before {
+  content: "\67";
+}
+.fa-angle-right:before {
+  content: "\68";
+}
+.fa-angle-double-left:before {
+  content: "\69";
+}
+.fa-angle-double-right:before {
+  content: "\6a";
 }

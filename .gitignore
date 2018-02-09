@@ -35,6 +35,7 @@ dist/bundles/
 dist/src/
 dist/README.md
 dist/*.css
+dist/fonts/
 
 # Dependency directories
 node_modules/
