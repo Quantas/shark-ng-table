@@ -1,3 +1,13 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/Quantas/shark-ng-table/compare/1.0.2...1.0.3) (2018-02-09)
+
+
+### Bug Fixes
+
+* **styling:** Push those column-ordering buttons down ([47d178a](https://github.com/Quantas/shark-ng-table/commit/47d178a))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/Quantas/shark-ng-table/compare/1.0.1...1.0.2) (2018-02-09)
 
