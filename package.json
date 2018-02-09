@@ -7,11 +7,11 @@
     "clean": "rimraf dist/bundles dist/src dist/fonts dist/README.md dist/shark-ng-table.css dist/shark-ng-table.min.css",
     "transpile": "ngc",
     "package": "rollup -c",
-    "minify": "uglifyjs dist/bundles/sharktable.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/sharktable.umd.min.js",
-    "minify-css": "minify --output dist/shark-ng-table.min.css src/style/shark-ng-table.css",
+    "minify:js": "uglifyjs dist/bundles/sharktable.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/sharktable.umd.min.js",
+    "minify:css": "uglifycss --output dist/shark-ng-table.min.css --cute-comments src/style/shark-ng-table.css",
     "copy": "copyfiles README.md dist/ && copyfiles -f src/style/shark-ng-table.css dist/ && copyfiles -f src/style/fonts/* dist/fonts/",
-    "build": "npm run clean && npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
-    "build:noclean": "npm run transpile && npm run copy && npm run package && npm run minify && npm run minify-css",
+    "build": "npm run clean && npm run transpile && npm run copy && npm run package && npm run minify:js && npm run minify:css",
+    "build:noclean": "npm run transpile && npm run copy && npm run package && npm run minify:js && npm run minify:css",
     "test": "karma start --single-run",
     "test:always": "karma start",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
@@ -54,11 +54,11 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-typescript": "^3.0.9",
     "karma-typescript-angular2-transform": "^1.0.2",
-    "minifier": "^0.8.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.52.3",
     "typescript": "2.4.2",
     "uglify-js": "^3.2.2",
+    "uglifycss": "0.0.27",
     "zone.js": "^0.8.19"
   }
 }
