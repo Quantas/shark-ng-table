@@ -116,6 +116,10 @@ th, td {
   cursor: pointer;
 }
 
+.ordering-button {
+  vertical-align: middle;
+}
+
 /* Column Picker */
 .toggle-dropdown {
   border: none;
