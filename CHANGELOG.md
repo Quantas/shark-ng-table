@@ -9,12 +9,12 @@
 
 ### Bug Fixes
 
-* **cells:** Fix Pipe rendering ([950e442](https://github.com/Quantas/shark-ng-table/commit/950e442)), closes [#74](https://github.com/Quantas/shark-ng-table/issues/74)
+* **cells:** Fix Pipe rendering ([b8191f5](https://github.com/Quantas/shark-ng-table/commit/b8191f5)), closes [#74](https://github.com/Quantas/shark-ng-table/issues/74)
 
 
 ### Features
 
-* **filter:** Add ability to disable the filter input placeholders ([dc49293](https://github.com/Quantas/shark-ng-table/commit/dc49293)), closes [#75](https://github.com/Quantas/shark-ng-table/issues/75)
+* **filter:** Add ability to disable the filter input placeholders ([892f730](https://github.com/Quantas/shark-ng-table/commit/892f730)), closes [#75](https://github.com/Quantas/shark-ng-table/issues/75)
 
 
 
@@ -24,8 +24,8 @@
 
 ### Bug Fixes
 
-* **accessibility:** Clear notifier box after 1 second ([a58ca0c](https://github.com/Quantas/shark-ng-table/commit/a58ca0c)), closes [#72](https://github.com/Quantas/shark-ng-table/issues/72)
-* **accessibility:** Shorten up text for sorting change button ([3d80b85](https://github.com/Quantas/shark-ng-table/commit/3d80b85)), closes [#73](https://github.com/Quantas/shark-ng-table/issues/73)
+* **accessibility:** Clear notifier box after 1 second ([67b1b6f](https://github.com/Quantas/shark-ng-table/commit/67b1b6f)), closes [#72](https://github.com/Quantas/shark-ng-table/issues/72)
+* **accessibility:** Shorten up text for sorting change button ([551035a](https://github.com/Quantas/shark-ng-table/commit/551035a)), closes [#73](https://github.com/Quantas/shark-ng-table/issues/73)
 
 
 
@@ -35,17 +35,17 @@
 
 ### Bug Fixes
 
-* **accessibility:** add aria-atomic to aria-live region ([f71b90b](https://github.com/Quantas/shark-ng-table/commit/f71b90b)), closes [#66](https://github.com/Quantas/shark-ng-table/issues/66)
-* **accessibility:** add aria-current to pagination current page button ([8c23f09](https://github.com/Quantas/shark-ng-table/commit/8c23f09)), closes [#71](https://github.com/Quantas/shark-ng-table/issues/71)
-* **accessibility:** Add back in the dynamic focus text ([efb3c1a](https://github.com/Quantas/shark-ng-table/commit/efb3c1a)), closes [#70](https://github.com/Quantas/shark-ng-table/issues/70)
-* **accessibility:** fix lost focus when pagination buttons disappear ([d8b4b1a](https://github.com/Quantas/shark-ng-table/commit/d8b4b1a)), closes [#71](https://github.com/Quantas/shark-ng-table/issues/71)
-* **accessibility:** Make child header th, updated td labels ([c7ce454](https://github.com/Quantas/shark-ng-table/commit/c7ce454)), closes [#68](https://github.com/Quantas/shark-ng-table/issues/68)
-* **accessibility:** Remove headers attribute from td ([460a750](https://github.com/Quantas/shark-ng-table/commit/460a750)), closes [#69](https://github.com/Quantas/shark-ng-table/issues/69)
+* **accessibility:** add aria-atomic to aria-live region ([c6f152c](https://github.com/Quantas/shark-ng-table/commit/c6f152c)), closes [#66](https://github.com/Quantas/shark-ng-table/issues/66)
+* **accessibility:** add aria-current to pagination current page button ([4db8e10](https://github.com/Quantas/shark-ng-table/commit/4db8e10)), closes [#71](https://github.com/Quantas/shark-ng-table/issues/71)
+* **accessibility:** Add back in the dynamic focus text ([faf91ce](https://github.com/Quantas/shark-ng-table/commit/faf91ce)), closes [#70](https://github.com/Quantas/shark-ng-table/issues/70)
+* **accessibility:** fix lost focus when pagination buttons disappear ([d651972](https://github.com/Quantas/shark-ng-table/commit/d651972)), closes [#71](https://github.com/Quantas/shark-ng-table/issues/71)
+* **accessibility:** Make child header th, updated td labels ([627305e](https://github.com/Quantas/shark-ng-table/commit/627305e)), closes [#68](https://github.com/Quantas/shark-ng-table/issues/68)
+* **accessibility:** Remove headers attribute from td ([f6521f1](https://github.com/Quantas/shark-ng-table/commit/f6521f1)), closes [#69](https://github.com/Quantas/shark-ng-table/issues/69)
 
 
 ### Features
 
-* **accessibility:** Shorten some of the aria-live messages ([4448911](https://github.com/Quantas/shark-ng-table/commit/4448911)), closes [#67](https://github.com/Quantas/shark-ng-table/issues/67)
+* **accessibility:** Shorten some of the aria-live messages ([f6efa24](https://github.com/Quantas/shark-ng-table/commit/f6efa24)), closes [#67](https://github.com/Quantas/shark-ng-table/issues/67)
 
 
 
@@ -55,21 +55,21 @@
 
 ### Bug Fixes
 
-* **accessibility:** add fieldset to column picker, fix ARIA ([b85e3cd](https://github.com/Quantas/shark-ng-table/commit/b85e3cd)), closes [#65](https://github.com/Quantas/shark-ng-table/issues/65)
-* **accessibility:** Allow the column picker to be closed with `Escape` ([f04861d](https://github.com/Quantas/shark-ng-table/commit/f04861d)), closes [#58](https://github.com/Quantas/shark-ng-table/issues/58)
-* **accessibility:** Change filler th to "Details" ([a2c3b48](https://github.com/Quantas/shark-ng-table/commit/a2c3b48)), closes [#59](https://github.com/Quantas/shark-ng-table/issues/59)
-* **accessibility:** Correctly label the start/empty sort state ([f142a7f](https://github.com/Quantas/shark-ng-table/commit/f142a7f)), closes [#53](https://github.com/Quantas/shark-ng-table/issues/53)
-* **accessibility:** fix lost focus when moving columns ([a4dc0ab](https://github.com/Quantas/shark-ng-table/commit/a4dc0ab)), closes [#60](https://github.com/Quantas/shark-ng-table/issues/60)
-* **accessibility:** let screenreader know that picker is a popup ([2701137](https://github.com/Quantas/shark-ng-table/commit/2701137)), closes [#55](https://github.com/Quantas/shark-ng-table/issues/55)
-* **accessibility:** Make the headers less verbose to screenreaders ([54e06a0](https://github.com/Quantas/shark-ng-table/commit/54e06a0)), closes [#54](https://github.com/Quantas/shark-ng-table/issues/54)
-* **accessibility:** Notify screen reader upon various table state change ([b5f74eb](https://github.com/Quantas/shark-ng-table/commit/b5f74eb)), closes [#56](https://github.com/Quantas/shark-ng-table/issues/56) [#57](https://github.com/Quantas/shark-ng-table/issues/57) [#61](https://github.com/Quantas/shark-ng-table/issues/61) [#62](https://github.com/Quantas/shark-ng-table/issues/62)
-* **accessibility:** Update header verbosity and test ([762cc10](https://github.com/Quantas/shark-ng-table/commit/762cc10)), closes [#54](https://github.com/Quantas/shark-ng-table/issues/54)
+* **accessibility:** add fieldset to column picker, fix ARIA ([69dba73](https://github.com/Quantas/shark-ng-table/commit/69dba73)), closes [#65](https://github.com/Quantas/shark-ng-table/issues/65)
+* **accessibility:** Allow the column picker to be closed with `Escape` ([bd6ab50](https://github.com/Quantas/shark-ng-table/commit/bd6ab50)), closes [#58](https://github.com/Quantas/shark-ng-table/issues/58)
+* **accessibility:** Change filler th to "Details" ([528b5b4](https://github.com/Quantas/shark-ng-table/commit/528b5b4)), closes [#59](https://github.com/Quantas/shark-ng-table/issues/59)
+* **accessibility:** Correctly label the start/empty sort state ([46f4139](https://github.com/Quantas/shark-ng-table/commit/46f4139)), closes [#53](https://github.com/Quantas/shark-ng-table/issues/53)
+* **accessibility:** fix lost focus when moving columns ([78298d5](https://github.com/Quantas/shark-ng-table/commit/78298d5)), closes [#60](https://github.com/Quantas/shark-ng-table/issues/60)
+* **accessibility:** let screenreader know that picker is a popup ([58f48ac](https://github.com/Quantas/shark-ng-table/commit/58f48ac)), closes [#55](https://github.com/Quantas/shark-ng-table/issues/55)
+* **accessibility:** Make the headers less verbose to screenreaders ([2ae9b79](https://github.com/Quantas/shark-ng-table/commit/2ae9b79)), closes [#54](https://github.com/Quantas/shark-ng-table/issues/54)
+* **accessibility:** Notify screen reader upon various table state change ([5233f89](https://github.com/Quantas/shark-ng-table/commit/5233f89)), closes [#56](https://github.com/Quantas/shark-ng-table/issues/56) [#57](https://github.com/Quantas/shark-ng-table/issues/57) [#61](https://github.com/Quantas/shark-ng-table/issues/61) [#62](https://github.com/Quantas/shark-ng-table/issues/62)
+* **accessibility:** Update header verbosity and test ([f931b13](https://github.com/Quantas/shark-ng-table/commit/f931b13)), closes [#54](https://github.com/Quantas/shark-ng-table/issues/54)
 
 
 ### Features
 
-* **accessibility:** Update sorting to use aria-sort and less words ([7d777c6](https://github.com/Quantas/shark-ng-table/commit/7d777c6)), closes [#63](https://github.com/Quantas/shark-ng-table/issues/63)
-* **accessibility:** use aria-expanded for child button ([2019518](https://github.com/Quantas/shark-ng-table/commit/2019518)), closes [#64](https://github.com/Quantas/shark-ng-table/issues/64)
+* **accessibility:** Update sorting to use aria-sort and less words ([a994487](https://github.com/Quantas/shark-ng-table/commit/a994487)), closes [#63](https://github.com/Quantas/shark-ng-table/issues/63)
+* **accessibility:** use aria-expanded for child button ([e201607](https://github.com/Quantas/shark-ng-table/commit/e201607)), closes [#64](https://github.com/Quantas/shark-ng-table/issues/64)
 
 
 ### BREAKING CHANGES
@@ -84,13 +84,13 @@
 
 ### Bug Fixes
 
-* **accessibility:** Additional changes from ADA testing ([d4cb788](https://github.com/Quantas/shark-ng-table/commit/d4cb788)), closes [#48](https://github.com/Quantas/shark-ng-table/issues/48)
-* **accessibility:** Major changes for accessibility ([98da734](https://github.com/Quantas/shark-ng-table/commit/98da734)), closes [#48](https://github.com/Quantas/shark-ng-table/issues/48)
+* **accessibility:** Additional changes from ADA testing ([f26be6e](https://github.com/Quantas/shark-ng-table/commit/f26be6e)), closes [#48](https://github.com/Quantas/shark-ng-table/issues/48)
+* **accessibility:** Major changes for accessibility ([5263041](https://github.com/Quantas/shark-ng-table/commit/5263041)), closes [#48](https://github.com/Quantas/shark-ng-table/issues/48)
 
 
 ### Features
 
-* **caption:** Update docs for table caption ([c5bf2e3](https://github.com/Quantas/shark-ng-table/commit/c5bf2e3)), closes [#52](https://github.com/Quantas/shark-ng-table/issues/52)
+* **caption:** Update docs for table caption ([4afe205](https://github.com/Quantas/shark-ng-table/commit/4afe205)), closes [#52](https://github.com/Quantas/shark-ng-table/issues/52)
 
 
 ### BREAKING CHANGES
@@ -106,9 +106,9 @@
 
 ### Features
 
-* **docs:** Create community docs for GitHub ([d2022e8](https://github.com/Quantas/shark-ng-table/commit/d2022e8)), closes [#19](https://github.com/Quantas/shark-ng-table/issues/19)
-* **styling:** black and white ([0b4ce51](https://github.com/Quantas/shark-ng-table/commit/0b4ce51)), closes [#51](https://github.com/Quantas/shark-ng-table/issues/51)
-* **styling:** Tighten up table as a whole ([c776ea8](https://github.com/Quantas/shark-ng-table/commit/c776ea8))
+* **docs:** Create community docs for GitHub ([424207b](https://github.com/Quantas/shark-ng-table/commit/424207b)), closes [#19](https://github.com/Quantas/shark-ng-table/issues/19)
+* **styling:** black and white ([5cd29b1](https://github.com/Quantas/shark-ng-table/commit/5cd29b1)), closes [#51](https://github.com/Quantas/shark-ng-table/issues/51)
+* **styling:** Tighten up table as a whole ([8e4f1d6](https://github.com/Quantas/shark-ng-table/commit/8e4f1d6))
 
 
 
@@ -118,20 +118,30 @@
 
 ### Bug Fixes
 
-* **accessibility:** A number of a11y updates ([b8d2a26](https://github.com/Quantas/shark-ng-table/commit/b8d2a26))
-* **rows:** Stop creating excessive tbody tags ([90fd34b](https://github.com/Quantas/shark-ng-table/commit/90fd34b)), closes [#46](https://github.com/Quantas/shark-ng-table/issues/46)
-* **sorting:** Rename refreshButton to serverSideData, fix infinite loop ([dfc08d2](https://github.com/Quantas/shark-ng-table/commit/dfc08d2)), closes [#45](https://github.com/Quantas/shark-ng-table/issues/45)
+* **accessibility:** A number of a11y updates ([d20f9e4](https://github.com/Quantas/shark-ng-table/commit/d20f9e4))
+* **rows:** Stop creating excessive tbody tags ([3550c21](https://github.com/Quantas/shark-ng-table/commit/3550c21)), closes [#46](https://github.com/Quantas/shark-ng-table/issues/46)
+* **sorting:** Rename refreshButton to serverSideData, fix infinite loop ([ae05f35](https://github.com/Quantas/shark-ng-table/commit/ae05f35)), closes [#45](https://github.com/Quantas/shark-ng-table/issues/45)
 
 
 ### Features
 
-* **accessibility:** Add automated aXe testing ([de0bb3a](https://github.com/Quantas/shark-ng-table/commit/de0bb3a))
-* **styling:** Allow users to provide row and cell styling functions ([442959a](https://github.com/Quantas/shark-ng-table/commit/442959a)), closes [#47](https://github.com/Quantas/shark-ng-table/issues/47)
+* **accessibility:** Add automated aXe testing ([ad44bfa](https://github.com/Quantas/shark-ng-table/commit/ad44bfa))
+* **styling:** Allow users to provide row and cell styling functions ([415b450](https://github.com/Quantas/shark-ng-table/commit/415b450)), closes [#47](https://github.com/Quantas/shark-ng-table/issues/47)
 
 
 ### BREAKING CHANGES
 
 * **sorting:** renamed refreshButton to serverSideData
+
+
+
+<a name="0.0.27"></a>
+## [0.0.27](https://github.com/Quantas/shark-ng-table/compare/0.0.26...0.0.27) (2018-01-19)
+
+
+### Bug Fixes
+
+* **accessibility:** swap value with title ([b1f3a16](https://github.com/Quantas/shark-ng-table/commit/b1f3a16)), closes [#44](https://github.com/Quantas/shark-ng-table/issues/44)
 
 
 
@@ -141,13 +151,13 @@
 
 ### Bug Fixes
 
-* **accessibility:** Many updates for table accessibility ([65164ef](https://github.com/Quantas/shark-ng-table/commit/65164ef)), closes [#42](https://github.com/Quantas/shark-ng-table/issues/42)
+* **accessibility:** Many updates for table accessibility ([c86fb97](https://github.com/Quantas/shark-ng-table/commit/c86fb97)), closes [#42](https://github.com/Quantas/shark-ng-table/issues/42)
 
 
 ### Features
 
-* **child:** Add callback for when child is open/closed ([eaecc1c](https://github.com/Quantas/shark-ng-table/commit/eaecc1c)), closes [#43](https://github.com/Quantas/shark-ng-table/issues/43)
-* **child:** Add docs for childOpen function ([774f2bd](https://github.com/Quantas/shark-ng-table/commit/774f2bd))
+* **child:** Add callback for when child is open/closed ([3e43b53](https://github.com/Quantas/shark-ng-table/commit/3e43b53)), closes [#43](https://github.com/Quantas/shark-ng-table/issues/43)
+* **child:** Add docs for childOpen function ([64ea204](https://github.com/Quantas/shark-ng-table/commit/64ea204))
 
 
 ### BREAKING CHANGES
@@ -162,9 +172,9 @@
 
 ### Features
 
-* **columns:** Clean up table when all columns are unchecked ([b142633](https://github.com/Quantas/shark-ng-table/commit/b142633))
-* **columns:** Create a Column Picker ([5bfda99](https://github.com/Quantas/shark-ng-table/commit/5bfda99)), closes [#40](https://github.com/Quantas/shark-ng-table/issues/40)
-* **columns:** Create a method for reordering columns ([b309e94](https://github.com/Quantas/shark-ng-table/commit/b309e94)), closes [#41](https://github.com/Quantas/shark-ng-table/issues/41)
+* **columns:** Clean up table when all columns are unchecked ([65aa642](https://github.com/Quantas/shark-ng-table/commit/65aa642))
+* **columns:** Create a Column Picker ([6beaaff](https://github.com/Quantas/shark-ng-table/commit/6beaaff)), closes [#40](https://github.com/Quantas/shark-ng-table/issues/40)
+* **columns:** Create a method for reordering columns ([96010c7](https://github.com/Quantas/shark-ng-table/commit/96010c7)), closes [#41](https://github.com/Quantas/shark-ng-table/issues/41)
 
 
 
@@ -174,14 +184,14 @@
 
 ### Bug Fixes
 
-* **init:** Create universal way to create temp Page object ([9366824](https://github.com/Quantas/shark-ng-table/commit/9366824)), closes [#38](https://github.com/Quantas/shark-ng-table/issues/38)
-* **init:** Make Observable<any[]> work again ([1e0651d](https://github.com/Quantas/shark-ng-table/commit/1e0651d)), closes [#37](https://github.com/Quantas/shark-ng-table/issues/37)
-* **styling:** Don't show empty header row ([404eec6](https://github.com/Quantas/shark-ng-table/commit/404eec6)), closes [#39](https://github.com/Quantas/shark-ng-table/issues/39)
+* **init:** Create universal way to create temp Page object ([eb29b5d](https://github.com/Quantas/shark-ng-table/commit/eb29b5d)), closes [#38](https://github.com/Quantas/shark-ng-table/issues/38)
+* **init:** Make Observable<any[]> work again ([51c7fe6](https://github.com/Quantas/shark-ng-table/commit/51c7fe6)), closes [#37](https://github.com/Quantas/shark-ng-table/issues/37)
+* **styling:** Don't show empty header row ([9e19d62](https://github.com/Quantas/shark-ng-table/commit/9e19d62)), closes [#39](https://github.com/Quantas/shark-ng-table/issues/39)
 
 
 ### Features
 
-* **styling:** Move table header controls into <thead> ([19aefbf](https://github.com/Quantas/shark-ng-table/commit/19aefbf)), closes [#36](https://github.com/Quantas/shark-ng-table/issues/36)
+* **styling:** Move table header controls into <thead> ([209c758](https://github.com/Quantas/shark-ng-table/commit/209c758)), closes [#36](https://github.com/Quantas/shark-ng-table/issues/36)
 
 
 
@@ -191,7 +201,7 @@
 
 ### Features
 
-* **pagination:** Only show a maximum of 3 pages at once ([4e6ec48](https://github.com/Quantas/shark-ng-table/commit/4e6ec48)), closes [#12](https://github.com/Quantas/shark-ng-table/issues/12)
+* **pagination:** Only show a maximum of 3 pages at once ([6e29ec4](https://github.com/Quantas/shark-ng-table/commit/6e29ec4)), closes [#12](https://github.com/Quantas/shark-ng-table/issues/12)
 
 
 
@@ -201,14 +211,14 @@
 
 ### Bug Fixes
 
-* **sorting:** When Page is used as input, update sorts accordingly ([02d8d21](https://github.com/Quantas/shark-ng-table/commit/02d8d21)), closes [#35](https://github.com/Quantas/shark-ng-table/issues/35)
+* **sorting:** When Page is used as input, update sorts accordingly ([d362836](https://github.com/Quantas/shark-ng-table/commit/d362836)), closes [#35](https://github.com/Quantas/shark-ng-table/issues/35)
 
 
 ### Features
 
-* **pagination:** Configurable page size ([c088cf3](https://github.com/Quantas/shark-ng-table/commit/c088cf3)), closes [#29](https://github.com/Quantas/shark-ng-table/issues/29)
-* **style:** Update stylinlg  ([fbc90e9](https://github.com/Quantas/shark-ng-table/commit/fbc90e9))
-* **testing:** Move spec files into test folder ([e8f195e](https://github.com/Quantas/shark-ng-table/commit/e8f195e))
+* **pagination:** Configurable page size ([0e4f1e3](https://github.com/Quantas/shark-ng-table/commit/0e4f1e3)), closes [#29](https://github.com/Quantas/shark-ng-table/issues/29)
+* **style:** Update stylinlg ([35c79af](https://github.com/Quantas/shark-ng-table/commit/35c79af))
+* **testing:** Move spec files into test folder ([f664a35](https://github.com/Quantas/shark-ng-table/commit/f664a35))
 
 
 ### BREAKING CHANGES
@@ -223,7 +233,7 @@
 
 ### Features
 
-* Replace *Contents interfaces with single interface/directive ([f6efb9a](https://github.com/Quantas/shark-ng-table/commit/f6efb9a)), closes [#33](https://github.com/Quantas/shark-ng-table/issues/33)
+* Replace *Contents interfaces with single interface/directive ([bfff483](https://github.com/Quantas/shark-ng-table/commit/bfff483)), closes [#33](https://github.com/Quantas/shark-ng-table/issues/33)
 
 
 ### BREAKING CHANGES
@@ -238,12 +248,12 @@
 
 ### Bug Fixes
 
-* **filtering:** Fix bug where a filtered table would not sort ([f38b8d7](https://github.com/Quantas/shark-ng-table/commit/f38b8d7)), closes [#31](https://github.com/Quantas/shark-ng-table/issues/31)
+* **filtering:** Fix bug where a filtered table would not sort ([8bf8db6](https://github.com/Quantas/shark-ng-table/commit/8bf8db6)), closes [#31](https://github.com/Quantas/shark-ng-table/issues/31)
 
 
 ### Features
 
-* Swap Unicode icons with Font Awesome classes ([c161790](https://github.com/Quantas/shark-ng-table/commit/c161790)), closes [#32](https://github.com/Quantas/shark-ng-table/issues/32)
+* Swap Unicode icons with Font Awesome classes ([faa6ca1](https://github.com/Quantas/shark-ng-table/commit/faa6ca1)), closes [#32](https://github.com/Quantas/shark-ng-table/issues/32)
 
 
 
@@ -253,15 +263,15 @@
 
 ### Bug Fixes
 
-* **filtering:** Correct bug in multiple column filtering  ([a8c0bb6](https://github.com/Quantas/shark-ng-table/commit/a8c0bb6)), closes [#30](https://github.com/Quantas/shark-ng-table/issues/30)
+* **filtering:** Correct bug in multiple column filtering ([5fbc819](https://github.com/Quantas/shark-ng-table/commit/5fbc819)), closes [#30](https://github.com/Quantas/shark-ng-table/issues/30)
 
 
 ### Features
 
-* **filtering:** Add Column Specific Filtering ([12402b9](https://github.com/Quantas/shark-ng-table/commit/12402b9)), closes [#27](https://github.com/Quantas/shark-ng-table/issues/27)
-* **footer:** Add some table footer elements ([3bf6294](https://github.com/Quantas/shark-ng-table/commit/3bf6294)), closes [#28](https://github.com/Quantas/shark-ng-table/issues/28)
-* Make local filtering and local paging default ([109fe11](https://github.com/Quantas/shark-ng-table/commit/109fe11))
-* Refactor table cell classes into a folder ([3de9341](https://github.com/Quantas/shark-ng-table/commit/3de9341))
+* **filtering:** Add Column Specific Filtering ([c2a5936](https://github.com/Quantas/shark-ng-table/commit/c2a5936)), closes [#27](https://github.com/Quantas/shark-ng-table/issues/27)
+* **footer:** Add some table footer elements ([46e15ec](https://github.com/Quantas/shark-ng-table/commit/46e15ec)), closes [#28](https://github.com/Quantas/shark-ng-table/issues/28)
+* Make local filtering and local paging default ([e39025f](https://github.com/Quantas/shark-ng-table/commit/e39025f))
+* Refactor table cell classes into a folder ([945111e](https://github.com/Quantas/shark-ng-table/commit/945111e))
 
 
 
@@ -271,15 +281,15 @@
 
 ### Bug Fixes
 
-* **accessibility:** Update role attrs, tabindex and click handlers ([ede10b5](https://github.com/Quantas/shark-ng-table/commit/ede10b5)), closes [#24](https://github.com/Quantas/shark-ng-table/issues/24) [#25](https://github.com/Quantas/shark-ng-table/issues/25) [#26](https://github.com/Quantas/shark-ng-table/issues/26)
-* **rows:** Make sure rows are shown regardless of childRows var ([974c73d](https://github.com/Quantas/shark-ng-table/commit/974c73d)), closes [#23](https://github.com/Quantas/shark-ng-table/issues/23)
+* **accessibility:** Update role attrs, tabindex and click handlers ([6743bf5](https://github.com/Quantas/shark-ng-table/commit/6743bf5)), closes [#24](https://github.com/Quantas/shark-ng-table/issues/24) [#25](https://github.com/Quantas/shark-ng-table/issues/25) [#26](https://github.com/Quantas/shark-ng-table/issues/26)
+* **rows:** Make sure rows are shown regardless of childRows var ([5ff62e2](https://github.com/Quantas/shark-ng-table/commit/5ff62e2)), closes [#23](https://github.com/Quantas/shark-ng-table/issues/23)
 
 
 ### Features
 
-* extract header into separate component ([d56610c](https://github.com/Quantas/shark-ng-table/commit/d56610c))
-* starting the developer documentation ([4fa0af9](https://github.com/Quantas/shark-ng-table/commit/4fa0af9))
-* Switch to Coveralls, Use CircleCI Only ([e25b226](https://github.com/Quantas/shark-ng-table/commit/e25b226))
+* extract header into separate component ([3ba780f](https://github.com/Quantas/shark-ng-table/commit/3ba780f))
+* starting the developer documentation ([b2ab925](https://github.com/Quantas/shark-ng-table/commit/b2ab925))
+* Switch to Coveralls, Use CircleCI Only ([5e2c87b](https://github.com/Quantas/shark-ng-table/commit/5e2c87b))
 
 
 
@@ -289,16 +299,15 @@
 
 ### Bug Fixes
 
-* Add SharkTableCellContents to index.ts ([7e3e015](https://github.com/Quantas/shark-ng-table/commit/7e3e015)), closes [#21](https://github.com/Quantas/shark-ng-table/issues/21)
+* Add SharkTableCellContents to index.ts ([c45d9bb](https://github.com/Quantas/shark-ng-table/commit/c45d9bb)), closes [#21](https://github.com/Quantas/shark-ng-table/issues/21)
 
 
 ### Features
 
-* **style:** Add Style Info to README and update arrows ([37ccf1c](https://github.com/Quantas/shark-ng-table/commit/37ccf1c))
-* Create Initial CHANGELOG.md and setup plugin ([8b62adb](https://github.com/Quantas/shark-ng-table/commit/8b62adb)), closes [#18](https://github.com/Quantas/shark-ng-table/issues/18)
-* Create Table Row Component ([de10f95](https://github.com/Quantas/shark-ng-table/commit/de10f95)), closes [#22](https://github.com/Quantas/shark-ng-table/issues/22)
-* Unit testing for the shark-table-pagination component ([fbe4f12](https://github.com/Quantas/shark-ng-table/commit/fbe4f12))
-
+* **style:** Add Style Info to README and update arrows ([27ae62a](https://github.com/Quantas/shark-ng-table/commit/27ae62a))
+* Create Initial CHANGELOG.md and setup plugin ([11dd985](https://github.com/Quantas/shark-ng-table/commit/11dd985)), closes [#18](https://github.com/Quantas/shark-ng-table/issues/18)
+* Create Table Row Component ([902192b](https://github.com/Quantas/shark-ng-table/commit/902192b)), closes [#22](https://github.com/Quantas/shark-ng-table/issues/22)
+* Unit testing for the shark-table-pagination component ([5c5ddf2](https://github.com/Quantas/shark-ng-table/commit/5c5ddf2))
 
 
 <a name="0.0.16"></a>
@@ -307,12 +316,12 @@
 
 ### Bug Fixes
 
-* Fix undefined error in pagination component ([8d3e1a9](https://github.com/Quantas/shark-ng-table/commit/8d3e1a9aa034d1171758af8b515611d0da32a9fc)), closes [#20](https://github.com/Quantas/shark-ng-table/issues/20)
+* Fix undefined error in pagination component ([fa0e65a](https://github.com/Quantas/shark-ng-table/commit/fa0e65aca7f4f390efc7c5031848d61c80226ab9)), closes [#20](https://github.com/Quantas/shark-ng-table/issues/20)
 
 
 ### Features
 
-* Add Plunker link to README.md ([d1d1a3d](https://github.com/Quantas/shark-ng-table/commit/d1d1a3de1976470787c614ee8d946b753bf1e2a8))
+* Add Plunker link to README.md ([e1e9a21](https://github.com/Quantas/shark-ng-table/commit/e1e9a21d26eec0c5c7e1a67041d96a9c0924327d))
 
 
 <a name="0.0.15"></a>
@@ -321,12 +330,12 @@
 
 ### Bug Fixes
 
-* Replace splice/copy with slice ([03df219](https://github.com/Quantas/shark-ng-table/commit/03df21942fe7550f6bfee72e85efa6e49ba813fc)), closes [#17](https://github.com/Quantas/shark-ng-table/issues/17)
+* Replace splice/copy with slice ([992179f](https://github.com/Quantas/shark-ng-table/commit/992179f44460168dde41fde857ed982652ee37e6)), closes [#17](https://github.com/Quantas/shark-ng-table/issues/17)
 
 
 ### Features
 
-* Implement Child Row Feature  ([1156421](https://github.com/Quantas/shark-ng-table/commit/1156421f5d03778e032fb698ae6ad46c88d869ee)), closes [#16](https://github.com/Quantas/shark-ng-table/issues/16)
+* Implement Child Row Feature  ([8405a95](https://github.com/Quantas/shark-ng-table/commit/8405a9524a64922fc20766867f3a74b729f68526)), closes [#16](https://github.com/Quantas/shark-ng-table/issues/16)
 
 
 <a name="0.0.14"></a>
@@ -335,7 +344,7 @@
 
 ### Bug Fixes
 
-* Replace splice/copy with slice ([2e255b6](https://github.com/Quantas/shark-ng-table/commit/2e255b6308b0b9691ce6dc857480bb74563df78f)), closes [#15](https://github.com/Quantas/shark-ng-table/issues/15)
+* Add some documentation, fix number sorting ([5bdb4e3](https://github.com/Quantas/shark-ng-table/commit/5bdb4e35fbb4614e83cb473bd6fcccdd0e007250)), closes [#15](https://github.com/Quantas/shark-ng-table/issues/15)
 
 
 <a name="0.0.12"></a>
@@ -344,7 +353,7 @@
 
 ### Bug Fixes
 
-* Name CSS properly and fix pagination links  ([5cf33e2](https://github.com/Quantas/shark-ng-table/commit/2e255b6308b0b9691ce6dc857480bb74563df78f)), closes [#13](https://github.com/Quantas/shark-ng-table/issues/13), [#14](https://github.com/Quantas/shark-ng-table/issues/14)
+* Name CSS properly and fix pagination links  ([77cef99](https://github.com/Quantas/shark-ng-table/commit/77cef9948ab7d21ff43dd0bc5f86d1b2348eae20)), closes [#13](https://github.com/Quantas/shark-ng-table/issues/13), [#14](https://github.com/Quantas/shark-ng-table/issues/14)
 
 
 <a name="0.0.11"></a>
@@ -353,7 +362,7 @@
 
 ### Bug Fixes
 
-* Add missing CSS (and minified) to published artifact   ([004d946](https://github.com/Quantas/shark-ng-table/commit/004d9461279303f2dc13d87dc559dba90b6c2386)), closes [#11](https://github.com/Quantas/shark-ng-table/issues/11)
+* Add missing CSS (and minified) to published artifact  ([0c29805](https://github.com/Quantas/shark-ng-table/commit/0c298056032e0f6d77eb6be9406420c2e8b37774)), closes [#11](https://github.com/Quantas/shark-ng-table/issues/11)
 
 
 <a name="0.0.10"></a>
@@ -362,7 +371,7 @@
 
 ### Bug Fixes
 
-* Don't create link for current page  ([4c3612d](https://github.com/Quantas/shark-ng-table/commit/4c3612d7f426f1626f318a356adac4007574141f)), closes [#11](https://github.com/Quantas/shark-ng-table/issues/11)
+* Don't create link for current page  ([f5f9b12](https://github.com/Quantas/shark-ng-table/commit/f5f9b12480ab2912cdcbc97b4a3202d596b6e225)), closes [#11](https://github.com/Quantas/shark-ng-table/issues/11)
 
 
 ### Features
