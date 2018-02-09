@@ -1,3 +1,13 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/Quantas/shark-ng-table/compare/1.0.1...1.0.2) (2018-02-09)
+
+
+### Bug Fixes
+
+* **build:** Use a better minifier ([e3c2933](https://github.com/Quantas/shark-ng-table/commit/e3c2933)), closes [#76](https://github.com/Quantas/shark-ng-table/issues/76)
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/Quantas/shark-ng-table/compare/1.0.0...1.0.1) (2018-02-09)
 
