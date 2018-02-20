@@ -1,3 +1,18 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/Quantas/shark-ng-table/compare/1.0.2...1.0.4) (2018-02-20)
+
+
+### Bug Fixes
+
+* **styling:** Push those column-ordering buttons down ([47d178a](https://github.com/Quantas/shark-ng-table/commit/47d178a))
+
+
+### Features
+
+* **export:** Add way to export current state ([48db65f](https://github.com/Quantas/shark-ng-table/commit/48db65f)), closes [#77](https://github.com/Quantas/shark-ng-table/issues/77)
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/Quantas/shark-ng-table/compare/1.0.2...1.0.3) (2018-02-09)
 
