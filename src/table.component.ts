@@ -18,6 +18,7 @@ import { CellStyleFunction, RowStyleFunction } from './table.body.component';
 import { SharkTableFooterComponent } from './table.footer.component';
 import { SharkTableInfoHeaderComponent } from './table.info.header.component';
 import { NotifierService } from './notifier/notifier.service';
+import { SharkTableCurrentDataEvent } from './current.data.event';
 
 @Component({
   selector: 'shark-table',
@@ -414,6 +415,26 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         sorts: sorts,
         filter: this.filter
       });
+    }
+  }
+
+  /**
+   * Currently only works if your input is an any[], returns the current "view" into the table with filtering/column selection
+   * @returns {SharkTableCurrentDataEvent}
+   */
+  exportCurrentData(): SharkTableCurrentDataEvent {
+    if (this.localFilter && (this.columnFiltering && this.tableUtils.hasFilter(this.currentColumns) || (this.filter && this.filter.length > 0))) {
+      const currentData = this.tableUtils.filter(this.data, this.currentColumns, this.columnFiltering, this.filter);
+      this.sort(currentData, this.generateSortArray());
+      return {
+        data: currentData,
+        columns: this.currentColumns
+      };
+    } else {
+      return {
+        data: this.data as any[],
+        columns: this.currentColumns
+      };
     }
   }
 
