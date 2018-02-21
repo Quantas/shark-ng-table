@@ -59,6 +59,7 @@ import { SharkTableCurrentDataEvent } from './current.data.event';
             ></thead>
             <tbody shark-table-body
                    [currentColumns]="currentColumns"
+                   [columns]="columns"
                    [localFilter]="localFilter"
                    [localPaging]="localPaging"
                    [columnFiltering]="columnFiltering"

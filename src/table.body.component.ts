@@ -55,6 +55,9 @@ export class SharkTableBodyComponent implements OnChanges {
     currentColumns: SharkColumn[];
 
     @Input()
+    columns: SharkColumn[];
+
+    @Input()
     localFilter: boolean;
 
     @Input()
