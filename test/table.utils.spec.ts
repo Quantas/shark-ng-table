@@ -83,4 +83,26 @@ describe('SharkTableUtils', () => {
       .toEqual([ {col1: '1', col2: 'a', col3: 'z'} ]);
   }));
 
+  it('should export un-rendered data', async(() => {
+
+    const columns: SharkColumn[] = [
+      {
+        header: 'Column 1',
+        property: 'col1',
+        filter: '',
+        displayed: true
+      },
+      {
+        header: 'Column 2',
+        property: 'col2',
+        filter: '',
+        displayed: true
+      }
+    ];
+
+    const tableUtils = new SharkTableUtils();
+
+    expect(tableUtils.exportRow({col1: '1', col2: 'a', col3: 'z'}, columns, false)).toEqual({col1: '1', col2: 'a'});
+  }));
+
 });

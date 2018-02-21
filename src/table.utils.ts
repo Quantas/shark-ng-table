@@ -4,10 +4,23 @@ import { Injectable, PipeTransform, Type } from '@angular/core';
 @Injectable()
 export class SharkTableUtils {
 
-  public retrieveCell(row: Object, column: SharkColumn): string {
+  public exportRow(row: Object, columns: SharkColumn[], rendered: boolean): Object {
+    let newRow = {};
+
+    Object.keys(row).forEach(key => {
+      const col = columns.filter(col => col.displayed).find(col => col.property === key);
+      if (col) {
+        newRow[ key ] = this.retrieveCell(row, col, rendered);
+      }
+    });
+
+    return newRow;
+  }
+
+  public retrieveCell(row: Object, column: SharkColumn, rendered: boolean = true): string {
     const cell = this.findValue(row, column.property);
 
-    if (column.pipe) {
+    if (column.pipe && rendered) {
       return this.applyPipe(column.pipe, cell, column.pipeArgs, column.pipeConstructorArgs);
     }
 

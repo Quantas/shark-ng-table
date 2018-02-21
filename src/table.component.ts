@@ -420,22 +420,30 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Currently only works if your input is an any[], returns the current "view" into the table with filtering/column selection
+   * @param {boolean} rendered If you would like inline pipes to be applied to the exported data
+   * 
    * @returns {SharkTableCurrentDataEvent}
    */
-  exportCurrentData(): SharkTableCurrentDataEvent {
+  exportCurrentData(rendered: boolean = true): SharkTableCurrentDataEvent {
+    let currentData: any[];
     if (this.localFilter && (this.columnFiltering && this.tableUtils.hasFilter(this.currentColumns) || (this.filter && this.filter.length > 0))) {
-      const currentData = this.tableUtils.filter(this.data, this.currentColumns, this.columnFiltering, this.filter);
+      currentData = this.tableUtils.filter(this.data, this.currentColumns, this.columnFiltering, this.filter);
       this.sort(currentData, this.generateSortArray());
-      return {
-        data: currentData,
-        columns: this.currentColumns
-      };
     } else {
-      return {
-        data: this.data as any[],
-        columns: this.currentColumns
-      };
+      currentData = this.data as any[];
     }
+
+    if (this.currentColumns.length === 0) {
+      return {
+        data: [],
+        columns: []
+      }
+    }
+
+    return {
+      data: currentData.map(row => this.tableUtils.exportRow(row, this.currentColumns, rendered)),
+      columns: this.currentColumns
+    };
   }
 
   private generateSortString(): string {
