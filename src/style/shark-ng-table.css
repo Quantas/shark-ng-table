@@ -24,6 +24,7 @@
 
 .controls .server-refresh {
   float: left;
+  padding-top: 0.3rem;
 }
 
 .controls button {
