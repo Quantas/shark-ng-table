@@ -1,3 +1,14 @@
+<a name="1.0.6"></a>
+## [1.0.6](https://github.com/Quantas/shark-ng-table/compare/1.0.5...1.0.6) (2018-02-24)
+
+
+### Bug Fixes
+
+* **icons:** Add missing refresh icon ([7e93546](https://github.com/Quantas/shark-ng-table/commit/7e93546)), closes [#80](https://github.com/Quantas/shark-ng-table/issues/80)
+* **icons:** Fix CSS for refresh icon ([93b4035](https://github.com/Quantas/shark-ng-table/commit/93b4035))
+
+
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/Quantas/shark-ng-table/compare/1.0.4...1.0.5) (2018-02-21)
 
