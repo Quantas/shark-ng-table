@@ -278,3 +278,6 @@ th, td {
 .fa-angle-double-right:before {
   content: "\6a";
 }
+.fa-sync:before {
+  content: "\6b";
+}
