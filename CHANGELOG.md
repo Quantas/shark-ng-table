@@ -1,3 +1,13 @@
+<a name="1.0.7"></a>
+## [1.0.7](https://github.com/Quantas/shark-ng-table/compare/1.0.6...1.0.7) (2018-04-06)
+
+
+### Features
+
+* **columns:** Option to dispable sorting on a per column basis ([fd5455e](https://github.com/Quantas/shark-ng-table/commit/fd5455e))
+
+
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/Quantas/shark-ng-table/compare/1.0.5...1.0.6) (2018-02-24)
 
