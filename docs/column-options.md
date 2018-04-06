@@ -18,3 +18,5 @@
   * If the column should be aligned to the right in the cell.
 * filter - `string`
   * The current filter string for this column
+* unsortable - `boolean` - `false`
+  * If this column should not be sortable

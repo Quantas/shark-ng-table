@@ -52,5 +52,10 @@ export interface SharkColumn {
    */
   filter?: string;
 
+  /**
+   * If this column should not be sortable
+   */
+  unsortable?: boolean;
+
   displayed?: boolean;
 }

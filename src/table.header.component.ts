@@ -16,12 +16,12 @@ import { DOCUMENT } from '@angular/common';
             <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
                 *ngFor="let column of columns; let i = index; let f = first; let l = last;" 
                 [attr.id]="column.property"
-                [attr.aria-sort]="!sortable ? null : (!column.sortType || column.sortType === 0) ? 'none' : column.sortType === 1 ? 'ascending' : 'descending'">
+                [attr.aria-sort]="(!sortable || column.unsortable) ? null : (!column.sortType || column.sortType === 0) ? 'none' : column.sortType === 1 ? 'ascending' : 'descending'">
                 <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i, column)" type="button" class="ordering-button fa fa-angle-left" [id]="column.property + '-left'">
                   <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column left' }}</span>
                 </button>
-                <shark-table-header-button *ngIf="sortable" [column]="column" (sortChange)="dispatchSortChangeEvent($event)"></shark-table-header-button>  
-                <ng-container *ngIf="!sortable">
+                <shark-table-header-button *ngIf="sortable && !column.unsortable" [column]="column" (sortChange)="dispatchSortChangeEvent($event)"></shark-table-header-button>
+                <ng-container *ngIf="!sortable || column.unsortable">
                   {{ column.header }}
                 </ng-container>
                 <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i, column)" type="button" class="ordering-button fa fa-angle-right" [id]="column.property + '-right'">
