@@ -50,6 +50,7 @@ export class SharkTableCellComponent implements AfterViewInit {
 
       const componentRef = viewContainerRef.createComponent(componentFactory);
       (<SharkDynamicContents>componentRef.instance).data = contents;
+      (<SharkDynamicContents>componentRef.instance).row = this.row;
     } else {
       this.noComponentContents = this.retrieveCell(this.row, this.column);
     }

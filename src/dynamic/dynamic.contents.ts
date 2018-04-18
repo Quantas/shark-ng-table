@@ -11,6 +11,12 @@ export interface SharkDynamicContents {
   data: any;
 
   /**
+   * The row that was used to render this instance of SharkDynamicContents. For a Child row, this field won't
+   * be set as it's redundant with this.data. (Optional)
+   */
+  row?: any[];
+
+  /**
    * This is called when a child row is opened, if you need to retrieve more data, etc.
    * @param {boolean} value
    */
