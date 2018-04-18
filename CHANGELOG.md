@@ -1,3 +1,13 @@
+<a name="1.0.9"></a>
+## [1.0.9](https://github.com/Quantas/shark-ng-table/compare/1.0.8...1.0.9) (2018-04-18)
+
+
+### Bug Fixes
+
+* **columns:** row should have been any instead of any[] ([cdcefbb](https://github.com/Quantas/shark-ng-table/commit/cdcefbb)), closes [#84](https://github.com/Quantas/shark-ng-table/issues/84)
+
+
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://github.com/Quantas/shark-ng-table/compare/1.0.7...1.0.8) (2018-04-18)
 
