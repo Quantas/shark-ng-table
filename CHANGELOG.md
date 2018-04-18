@@ -1,3 +1,13 @@
+<a name="1.0.8"></a>
+## [1.0.8](https://github.com/Quantas/shark-ng-table/compare/1.0.7...1.0.8) (2018-04-18)
+
+
+### Features
+
+* **columns:** Add row context to custom column component ([c3ee981](https://github.com/Quantas/shark-ng-table/commit/c3ee981)), closes [#83](https://github.com/Quantas/shark-ng-table/issues/83)
+
+
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://github.com/Quantas/shark-ng-table/compare/1.0.6...1.0.7) (2018-04-06)
 

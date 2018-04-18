@@ -1,6 +1,6 @@
 {
   "name": "shark-ng-table",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A robust table for Angular built with Accessibility in mind.",
   "main": "index.js",
   "scripts": {
