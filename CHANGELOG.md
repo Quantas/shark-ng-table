@@ -1,3 +1,13 @@
+<a name="1.0.11"></a>
+## [1.0.11](https://github.com/Quantas/shark-ng-table/compare/1.0.10...1.0.11) (2018-05-17)
+
+
+### Features
+
+* **table:** Allow empty message to be configured ([65b44ce](https://github.com/Quantas/shark-ng-table/commit/65b44ce)), closes [#86](https://github.com/Quantas/shark-ng-table/issues/86)
+
+
+
 <a name="1.0.10"></a>
 ## [1.0.10](https://github.com/Quantas/shark-ng-table/compare/1.0.9...1.0.10) (2018-05-11)
 
