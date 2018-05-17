@@ -68,6 +68,7 @@ import { SharkTableCurrentDataEvent } from './current.data.event';
                    [childComponent]="childComponent"
                    [linkTarget]="linkTarget" [linkKey]="linkKey"
                    [page]="page"
+                   [tableEmptyMessage]="tableEmptyMessage"
                    [rowStylingFunction]="rowStylingFunction"
                    [cellStylingFunction]="cellStylingFunction"
             ></tbody>
@@ -293,6 +294,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   footer = true;
 
+  /**
+   * Message to show when the table is empty
+   */
+  @Input()
+  tableEmptyMessage = 'This table contains no rows';
+
   page: Page;
 
   private dataSubscription: Subscription;
@@ -422,7 +429,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Currently only works if your input is an any[], returns the current "view" into the table with filtering/column selection
    * @param {boolean} rendered If you would like inline pipes to be applied to the exported data
-   * 
+   *
    * @returns {SharkTableCurrentDataEvent}
    */
   exportCurrentData(rendered: boolean = true): SharkTableCurrentDataEvent {

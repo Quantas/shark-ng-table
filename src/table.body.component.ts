@@ -45,7 +45,7 @@ import { Page } from './page';
           <tr><td [attr.colspan]="childRows ? columns.length + 1 : columns.length">There are no columns selected</td></tr>
         </ng-container>
         <ng-container *ngIf="(!page.content || page.content.length == 0) && currentColumns.length > 0">
-          <tr><td [attr.colspan]="childRows ? currentColumns.length + 1 : currentColumns.length">This table contains no rows</td></tr>
+          <tr><td [attr.colspan]="childRows ? currentColumns.length + 1 : currentColumns.length">{{ tableEmptyMessage }}</td></tr>
         </ng-container>
     `
 })
@@ -86,6 +86,9 @@ export class SharkTableBodyComponent implements OnChanges {
 
     @Input()
     linkKey: string;
+
+    @Input()
+    tableEmptyMessage: string;
 
     @Input()
     page: Page;

@@ -48,3 +48,5 @@
     * The current filter value
 * footer - `boolean` - `true`
     * Displays an informative footer:  'Showing `x` through `y` of `z` rows`
+* tableEmptyMessage - `string` - `This table contains no rows`
+    * Message to show when the table is empty
