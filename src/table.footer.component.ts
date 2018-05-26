@@ -77,8 +77,9 @@ export class SharkTableFooterComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.total = this.page.totalElements;
+    const size = this.page.size ? this.page.size : this.page.numberOfElements;
 
-    let newStart = this.page.number * this.page.numberOfElements + 1;
+    let newStart = this.page.number * size + 1;
 
     if (newStart > this.total) {
       this.start = 0;
@@ -86,7 +87,7 @@ export class SharkTableFooterComponent implements OnChanges {
       this.start = newStart;
     }
 
-    let newEnd = this.page.number * this.page.numberOfElements + this.page.numberOfElements;
+    let newEnd = this.page.number * size + this.page.numberOfElements;
 
     if (newEnd > this.total) {
       this.end = this.total;
