@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { SharkColumnDropdownComponent } from './column-dropdown.component';
 import { SharkColumn } from './column';
 import { SharkHeaderFilterChange } from './table.header.component';
@@ -15,7 +15,7 @@ import { NotifierService } from './notifier/notifier.service';
         <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" [notifierService]="notifierService" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
         <span class="filter-box" *ngIf="filterable && !columnFiltering && columns.length > 0">
           <label for="filter" class="screen-reader">Filter Results (all column search)</label>
-          <input type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? 'Filter Results' : null" />
+          <input #filterInput type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? 'Filter Results' : null" />
         </span>
       </div>
     </div>
@@ -25,6 +25,9 @@ export class SharkTableInfoHeaderComponent {
 
   @ViewChild(SharkColumnDropdownComponent)
   columnPickerComponent: SharkColumnDropdownComponent;
+
+  @ViewChild('filterInput')
+  filterInput: ElementRef;
 
   @Input()
   columns: SharkColumn[];
@@ -72,5 +75,17 @@ export class SharkTableInfoHeaderComponent {
 
   fireColumnChange(event: SharkColumn[]): void {
     this.columnChange.emit(event);
+  }
+
+  /**
+   * Put focus on the filter input box
+   * @param {number} timeout this is passed to the setTimeout call
+   */
+  focusFilterInput(timeout: number): void {
+    if (this.filterInput) {
+      setTimeout(() => {
+        this.filterInput.nativeElement.focus();
+      }, timeout);
+    }
   }
 }
