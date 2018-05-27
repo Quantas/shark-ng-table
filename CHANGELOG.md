@@ -1,3 +1,13 @@
+<a name="1.0.13"></a>
+## [1.0.13](https://github.com/Quantas/shark-ng-table/compare/1.0.12...1.0.13) (2018-05-27)
+
+
+### Features
+
+* **filter:** Ability to put focus on the filter input ([2a4d5fe](https://github.com/Quantas/shark-ng-table/commit/2a4d5fe)), closes [#88](https://github.com/Quantas/shark-ng-table/issues/88)
+
+
+
 <a name="1.0.12"></a>
 ## [1.0.12](https://github.com/Quantas/shark-ng-table/compare/1.0.11...1.0.12) (2018-05-26)
 
