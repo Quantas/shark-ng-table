@@ -454,14 +454,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     };
   }
 
-  /**
-   * Put focus on the filter input box
-   * @param {number} timeout this is passed to the setTimeout call
-   */
-  focusFilterInput(timeout = 100): void {
-    this.headerInfoComponent.focusFilterInput(timeout);
-  }
-
   private generateSortString(): string {
     let sortString = '';
 

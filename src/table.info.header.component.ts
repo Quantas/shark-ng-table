@@ -77,15 +77,4 @@ export class SharkTableInfoHeaderComponent {
     this.columnChange.emit(event);
   }
 
-  /**
-   * Put focus on the filter input box
-   * @param {number} timeout this is passed to the setTimeout call
-   */
-  focusFilterInput(timeout: number): void {
-    if (this.filterInput) {
-      setTimeout(() => {
-        this.filterInput.nativeElement.focus();
-      }, timeout);
-    }
-  }
 }
