@@ -1,3 +1,13 @@
+<a name="1.0.14"></a>
+## [1.0.14](https://github.com/Quantas/shark-ng-table/compare/1.0.13...1.0.14) (2018-05-28)
+
+
+### Bug Fixes
+
+* **filter:** Remove broken filter focus function ([2ec87a9](https://github.com/Quantas/shark-ng-table/commit/2ec87a9)), closes [#89](https://github.com/Quantas/shark-ng-table/issues/89)
+
+
+
 <a name="1.0.13"></a>
 ## [1.0.13](https://github.com/Quantas/shark-ng-table/compare/1.0.12...1.0.13) (2018-05-27)
 
