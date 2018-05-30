@@ -43,6 +43,14 @@ export interface SharkColumn {
   sortType?: SharkSortType;
 
   /**
+   * Provide a custom column sorting function.
+   * @param left
+   * @param right
+   * @returns {boolean}
+   */
+  ascendingSortFunction?: (left: any, right: any) => number;
+
+  /**
    * If the column should be aligned to the right in the cell.
    */
   alignRight?: boolean;

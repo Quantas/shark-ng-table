@@ -14,6 +14,8 @@
   * A Component to use for rendering the column.
 * sortType - `SharkSortType`
   * The current sort type for this column
+* ascendingSortFunction - `(left: any, right: any) => number`
+  * Provide a custom column sorting function
 * alignRight - `boolean` - `false`
   * If the column should be aligned to the right in the cell.
 * filter - `string`

@@ -493,6 +493,9 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private sort(content: any[], sorts: SharkCurrentSort[]): void {
+    const columnCache = {};
+    this.columns.forEach(column => columnCache[column.property] = column);
+
     content.sort((a, b) => {
       let result = 0;
 
@@ -501,7 +504,10 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
           const aVal = this.tableUtils.findValue(a, sort.property);
           const bVal = this.tableUtils.findValue(b, sort.property);
 
-          if (!isNaN(Number(aVal)) && !isNaN(Number(bVal))) {
+          const sortFunction = columnCache[sort.property].ascendingSortFunction;
+          if (!!sortFunction) {
+            result = sortFunction(aVal, bVal);
+          } else if (!isNaN(Number(aVal)) && !isNaN(Number(bVal))) {
             result = aVal - bVal;
           } else {
             result = (aVal < bVal) ? -1 : (aVal > bVal) ? 1 : 0;
