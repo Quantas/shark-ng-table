@@ -1,3 +1,13 @@
+<a name="1.0.15"></a>
+## [1.0.15](https://github.com/Quantas/shark-ng-table/compare/1.0.14...1.0.15) (2018-05-30)
+
+
+### Features
+
+* **columns:** Allow users to provide custom column sorting function ([760348e](https://github.com/Quantas/shark-ng-table/commit/760348e)), closes [#90](https://github.com/Quantas/shark-ng-table/issues/90)
+
+
+
 <a name="1.0.14"></a>
 ## [1.0.14](https://github.com/Quantas/shark-ng-table/compare/1.0.13...1.0.14) (2018-05-28)
 
