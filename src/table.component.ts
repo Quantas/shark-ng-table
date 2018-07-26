@@ -325,7 +325,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         }
       });
 
-      this.updateCurrentColumns(this.columns);
+      this.updateCurrentColumns(this.columns, false);
     }
 
     if (dataChange && !dataChange.isFirstChange()) {
@@ -345,9 +345,11 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  updateCurrentColumns(newColumns: SharkColumn[]) {
+  updateCurrentColumns(newColumns: SharkColumn[], emit = true): void {
     this.currentColumns = newColumns.filter((value: SharkColumn) => value.displayed);
-    this.emitCurrent();
+    if (emit) {
+      this.emitCurrent();
+    }
   }
 
   /**
