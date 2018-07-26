@@ -318,7 +318,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
     if (columnChange && columnChange.isFirstChange()) {
       this.columns = columnChange.currentValue;
-      this.columns.forEach((column: SharkColumn) => column.displayed = true);
+
+      this.columns.forEach((column: SharkColumn) => {
+        if (!column.hasOwnProperty('displayed')) {
+          column.displayed = true;
+        }
+      });
+
       this.currentColumns = this.columns;
     }
 
