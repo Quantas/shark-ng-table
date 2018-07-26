@@ -325,8 +325,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     if (dataChange && !dataChange.isFirstChange()) {
       this.updatePage();
     } else if (columnChange && !columnChange.isFirstChange()) {
-      this.currentColumns = columnChange.currentValue;
-      this.emitCurrent();
+      this.updateCurrentColumns(columnChange.currentValue);
     }
   }
 
