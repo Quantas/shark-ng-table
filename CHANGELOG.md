@@ -1,3 +1,15 @@
+<a name="1.0.16"></a>
+## [1.0.16](https://github.com/Quantas/shark-ng-table/compare/1.0.15...1.0.16) (2018-07-26)
+
+
+### Bug Fixes
+
+* **columns:** Allow column visibility to be altered externally ([5f69367](https://github.com/Quantas/shark-ng-table/commit/5f69367)), closes [#91](https://github.com/Quantas/shark-ng-table/issues/91)
+* **columns:** don't override column.displayed if it exists already ([38e26e4](https://github.com/Quantas/shark-ng-table/commit/38e26e4)), closes [#93](https://github.com/Quantas/shark-ng-table/issues/93)
+* **columns:** fix sorting on first column update ([59fbb12](https://github.com/Quantas/shark-ng-table/commit/59fbb12)), closes [#93](https://github.com/Quantas/shark-ng-table/issues/93)
+
+
+
 <a name="1.0.15"></a>
 ## [1.0.15](https://github.com/Quantas/shark-ng-table/compare/1.0.14...1.0.15) (2018-05-30)
 
