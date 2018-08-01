@@ -19,8 +19,6 @@ Section508 and WCAG 2.0 AA compliant.
 
 There are a number of samples available in our test project, they can be viewed here: https://quantas.github.io/shark-ng-table/
 
-Source code for the samples is available here: https://github.com/Quantas/shark-ng-table-samples/
-
 We also have a running example over on [Plunker](https://embed.plnkr.co/Xus5zm/)
 
 ## Features
