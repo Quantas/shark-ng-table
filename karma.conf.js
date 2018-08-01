@@ -9,6 +9,7 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-phantomjs-launcher'),
       require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-coveralls'),
       require('karma-junit-reporter'),
@@ -24,7 +25,7 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
-    reporters: ['progress', 'kjhtml', 'coveralls', 'junit'],
+    reporters: ['progress', 'kjhtml', 'coverage', 'coveralls', 'junit'],
     junitReporter: {
       outputDir: 'coverage/junit',
       outputFile: 'test-results.xml',
