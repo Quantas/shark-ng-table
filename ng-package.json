@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "name": "shark-ng-table",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    }
+  }
+
+}
