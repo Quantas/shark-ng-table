@@ -7,7 +7,7 @@
     "clean": "rimraf dist/ && rimraf dist.tgz && rimraf docs/",
     "minify:css": "uglifycss --output dist/shark-ng-table.min.css --cute-comments src/app/table/style/shark-ng-table.css",
     "packagr": "ng-packagr -p ng-package.json",
-    "copy": "copyfiles README.md dist/ && copyfiles -f src/app/table/style/shark-ng-table.css dist/ && copyfiles -f src/app/table/style/fonts/* dist/",
+    "copy": "copyfiles README.md dist/ && copyfiles -f src/app/table/style/shark-ng-table.css dist/ && copyfiles -f src/app/table/style/fonts/* dist/fonts/",
     "build": "npm run clean && npm run test && npm run build:package",
     "build:notest": "npm run clean && npm run build:package",
     "build:package": "npm run packagr && npm run copy && npm run minify:css",
