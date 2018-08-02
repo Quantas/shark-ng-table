@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TableDataService} from '../data.service';
-import {SharkColumn} from '../table';
+import {SharkColumn, SharkTableComponent} from '../table';
 import {ChildRowRenderingComponent} from './child-rows-rendering.component';
 import {MakeComponent} from './custom-cell.component';
 
@@ -8,7 +8,7 @@ import {MakeComponent} from './custom-cell.component';
   template: `
     <h1>Everything (except row links)</h1>
     <div style="width: 55rem">
-      <shark-table
+      <shark-table #sharkTable
         [data]="testData"
         [columns]="tableColumns"
         [columnPicker]="true"
@@ -19,6 +19,8 @@ import {MakeComponent} from './custom-cell.component';
       >
       </shark-table>
     </div>
+    <br />
+    <button (click)="exportData()">Export Data (Check Console)</button>
 
     <h2>HTML</h2>
     <pre>
@@ -36,6 +38,9 @@ import {MakeComponent} from './custom-cell.component';
 })
 export class EverythingComponent implements OnInit {
 
+  @ViewChild(SharkTableComponent)
+  sharkTable: SharkTableComponent;
+
   testData = [];
 
   childComponent = ChildRowRenderingComponent;
@@ -50,6 +55,10 @@ export class EverythingComponent implements OnInit {
 
   ngOnInit(): void {
     this.testData = this.tableDataService.getTestData();
+  }
+  
+  exportData(): void {
+      console.log(this.sharkTable.exportCurrentData());
   }
 
 }
