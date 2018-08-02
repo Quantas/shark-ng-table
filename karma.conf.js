@@ -1,48 +1,42 @@
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/1.0/config/configuration-file.html
+
 module.exports = function (config) {
-    config.set({
-
-        basePath: '',
-
-        frameworks: ['jasmine', 'karma-typescript'],
-
-        files: [
-            {pattern: 'base.spec.ts'},
-            {pattern: 'src/**/**.ts'},
-            {pattern: 'test/**/**.ts'}
-        ],
-
-        preprocessors: {
-            '**/*.ts': ['karma-typescript']
-        },
-
-        karmaTypescriptConfig: {
-            bundlerOptions: {
-                entrypoints: /\.spec\.ts$/,
-                transforms: [
-                    require('karma-typescript-angular2-transform')
-                ]
-            },
-            compilerOptions: {
-                lib: ['ES2015', 'DOM']
-            },
-            reports: {
-                "text-summary": "",
-                "lcovonly": {
-                    "directory": "coverage",
-                    "filename": "lcov.info"
-                }
-            }
-        },
-
-        reporters: ['progress', 'karma-typescript', 'coverage', 'coveralls', 'junit'],
-
-        junitReporter: {
-            outputDir: 'coverage/junit',
-            outputFile: 'test-results.xml',
-            useBrowserName: false
-        },
-
-        browsers: ['PhantomJS'],
-        browserNoActivityTimeout: 1000000
-    });
+  config.set({
+    basePath: '',
+    frameworks: ['jasmine', '@angular/cli'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-phantomjs-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
+      require('karma-coverage-istanbul-reporter'),
+      require('karma-coveralls'),
+      require('karma-junit-reporter'),
+      require('@angular/cli/plugins/karma')
+    ],
+    client:{
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
+    },
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true
+    },
+    angularCli: {
+      environment: 'dev'
+    },
+    reporters: ['progress', 'kjhtml', 'coverage', 'coveralls', 'junit'],
+    junitReporter: {
+      outputDir: 'coverage/junit',
+      outputFile: 'test-results.xml',
+      useBrowserName: false
+    },
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ['PhantomJS'],
+    browserNoActivityTimeout: 300000,
+    singleRun: true
+  });
 };

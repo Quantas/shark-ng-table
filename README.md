@@ -17,9 +17,7 @@ Section508 and WCAG 2.0 AA compliant.
 
 ## Samples
 
-There are a number of samples available in our test project, they can be viewed here: https://quantas.github.io/shark-ng-table-samples/
-
-Source code for the samples is available here: https://github.com/Quantas/shark-ng-table-samples/
+There are a number of samples available that can be viewed here: https://quantas.github.io/shark-ng-table/
 
 We also have a running example over on [Plunker](https://embed.plnkr.co/Xus5zm/)
 
@@ -44,12 +42,12 @@ This will install the latest version of `shark-ng-table`.
 
 ## Documentation
 
- - [Setup <shark-table>](docs/setup.md)
- - [Styling <shark-table>](docs/styling.md)
- - [<shark-table> Options](docs/shark-table-options.md)
- - [Column Options](docs/column-options.md)
- - [Child Rows](docs/child-rows.md)
- - [Developer Guide](docs/developers.md)
+ - [Setup <shark-table>](usage/setup.md)
+ - [Styling <shark-table>](usage/styling.md)
+ - [<shark-table> Options](usage/shark-table-options.md)
+ - [Column Options](usage/column-options.md)
+ - [Child Rows](usage/child-rows.md)
+ - [Developer Guide](usage/developers.md)
  - [Change Log](CHANGELOG.md)
  
 ## Attribution
