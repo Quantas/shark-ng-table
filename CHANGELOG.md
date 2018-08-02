@@ -1,3 +1,22 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/Quantas/shark-ng-table/compare/1.0.16...1.1.0) (2018-08-02)
+
+
+### Bug Fixes
+
+* **export:** export by header instad of by row ([0537709](https://github.com/Quantas/shark-ng-table/commit/0537709)), closes [#96](https://github.com/Quantas/shark-ng-table/issues/96)
+
+
+### Features
+
+* **build:** Converting to Angular CLI and ng-packagr ([fc02f82](https://github.com/Quantas/shark-ng-table/commit/fc02f82)), closes [#94](https://github.com/Quantas/shark-ng-table/issues/94)
+* **build:** Moving samples into this repository ([3872d5e](https://github.com/Quantas/shark-ng-table/commit/3872d5e)), closes [#94](https://github.com/Quantas/shark-ng-table/issues/94)
+
+### BREAKING CHANGES
+
+* Angular 4.x is no longer supported.
+
+
 <a name="1.0.16"></a>
 ## [1.0.16](https://github.com/Quantas/shark-ng-table/compare/1.0.15...1.0.16) (2018-07-26)
 
