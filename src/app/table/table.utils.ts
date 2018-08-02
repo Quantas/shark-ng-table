@@ -7,11 +7,8 @@ export class SharkTableUtils {
   public exportRow(row: Object, columns: SharkColumn[], rendered: boolean): Object {
     let newRow = {};
 
-    Object.keys(row).forEach(key => {
-      const col = columns.filter(col => col.displayed).find(col => col.property === key);
-      if (col) {
-        newRow[ key ] = this.retrieveCell(row, col, rendered);
-      }
+    columns.filter(col => col.displayed).forEach(col => {
+       newRow[col.property] = this.retrieveCell(row, col, rendered);
     });
 
     return newRow;
