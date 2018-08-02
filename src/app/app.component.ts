@@ -39,7 +39,6 @@ import { Component } from '@angular/core';
         background-color: #4CAF50;
         color: white;
         font-weight: bold;
-        padding-top: 0.5rem;
         padding-left: 0.5rem;
       }
       .title {
