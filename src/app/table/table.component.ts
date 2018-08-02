@@ -417,6 +417,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Currently only works if your input is an any[], returns the current "view" into the table with filtering/column selection
+   * 
+   * @param rendered If you would like inline pipes to be applied to the exported data
    */
   exportCurrentData(rendered: boolean = true): SharkTableCurrentDataEvent {
     let currentData: any[];
