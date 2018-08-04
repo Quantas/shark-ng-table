@@ -3,11 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'shark-root',
   template: `
-    <header>
-      <div class="title">
-        shark-ng-table Samples
-      </div>
-    </header>
+    <mat-toolbar color="primary">
+      <span>shark-ng-table Samples</span>
+    </mat-toolbar>
     <div class="wrapper">
       <div class="menu">
         <ul>
@@ -31,20 +29,6 @@ import { Component } from '@angular/core';
   `,
   styles: [
     `
-      header {
-        width: 99%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: #4CAF50;
-        color: white;
-        font-weight: bold;
-        padding-left: 0.5rem;
-      }
-      .title {
-        padding: 8px 16px;
-        font-size: 1.5rem;
-      }
       li {
         list-style: none;
       }
@@ -52,16 +36,13 @@ import { Component } from '@angular/core';
         padding-left: 1rem;
       }
       .wrapper {
-        margin-top: 4rem;
+        margin-top: 1rem;
+        display: flex;
       }
       .menu {
-        float: left;
         margin-right: 2rem;
         height: 100%;
         width: 12rem;
-      }
-      .main {
-        float: left;
       }
     `
   ]

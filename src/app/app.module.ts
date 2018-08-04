@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -18,9 +19,12 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { MatToolbarModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
+
     BasicComponent,
     CellStyleComponent,
     EverythingComponent,
@@ -34,11 +38,15 @@ import { AppRoutingModule } from './app-routing.module';
     ChildRowRenderingComponent,
     CustomCellsComponent,
     MakeComponent
+
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    SharkTableModule
+    SharkTableModule,
+
+    MatToolbarModule
   ],
   entryComponents: [ ChildRowRenderingComponent, MakeComponent ],
   providers: [ TableDataService ],
