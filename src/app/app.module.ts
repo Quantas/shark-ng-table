@@ -19,7 +19,9 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { MatToolbarModule } from '@angular/material';
+import { MatListModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 
 @NgModule({
   declarations: [
@@ -46,10 +48,14 @@ import { MatToolbarModule } from '@angular/material';
     AppRoutingModule,
     SharkTableModule,
 
+    HighlightJsModule,
+
+    MatListModule,
+    MatTabsModule,
     MatToolbarModule
   ],
   entryComponents: [ ChildRowRenderingComponent, MakeComponent ],
-  providers: [ TableDataService ],
+  providers: [ TableDataService, HighlightJsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

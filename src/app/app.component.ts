@@ -8,19 +8,19 @@ import { Component } from '@angular/core';
     </mat-toolbar>
     <div class="wrapper">
       <div class="menu">
-        <ul>
-          <li><a [routerLink]="['basic']">Basic</a></li>
-          <li><a [routerLink]="['everything']">Everything</a></li>
-          <li><a [routerLink]="['cellstyle']">Cell Styling</a></li>
-          <li><a [routerLink]="['filterable']">Filterable</a></li>
-          <li><a [routerLink]="['pageable']">Pageable</a></li>
-          <li><a [routerLink]="['paging-filtering']">Paging and Filtering</a></li>
-          <li><a [routerLink]="['column-filtering']">Column Filtering</a></li>
-          <li><a [routerLink]="['column-ordering']">Column Ordering</a></li>
-          <li><a [routerLink]="['column-picker']">Column Picker</a></li>
-          <li><a [routerLink]="['child-rows']">Child Rows</a></li>
-          <li><a [routerLink]="['custom-cells']">Custom Cells</a></li>
-        </ul>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="['basic']">Basic</a>
+          <a mat-list-item [routerLink]="['everything']">Everything</a>
+          <a mat-list-item [routerLink]="['cellstyle']">Cell Styling</a>
+          <a mat-list-item [routerLink]="['filterable']">Filterable</a>
+          <a mat-list-item [routerLink]="['pageable']">Pageable</a>
+          <a mat-list-item [routerLink]="['paging-filtering']">Paging and Filtering</a>
+          <a mat-list-item [routerLink]="['column-filtering']">Column Filtering</a>
+          <a mat-list-item [routerLink]="['column-ordering']">Column Ordering</a>
+          <a mat-list-item [routerLink]="['column-picker']">Column Picker</a>
+          <a mat-list-item [routerLink]="['child-rows']">Child Rows</a>
+          <a mat-list-item [routerLink]="['custom-cells']">Custom Cells</a>
+        </mat-nav-list>
       </div>
       <div class="main">
         <router-outlet></router-outlet>

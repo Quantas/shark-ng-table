@@ -16,19 +16,49 @@ import {SharkColumn} from '../table';
       </shark-table>
     </div>
 
-    <h2>HTML</h2>
-    <pre>
-      &lt;shark-table
-        [data]="testData"
-        [columns]="tableColumns"
-        [filterable]="false"
-        [localPaging]="false"
-        [hideCaption]="true"&gt;
-      &lt;/shark-table&gt;
-    </pre>
-  `
+    <mat-tab-group>
+      <mat-tab label="HTML">
+        <div highlight-js-content=".highlight">
+          <pre [innerHTML]="htmlSample" class="highlight"></pre>
+        </div>
+      </mat-tab>
+      <mat-tab label="TS">
+        <div highlight-js-content=".highlight">
+          <pre [innerHTML]="tsSample" class="highlight typescript"></pre>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  `,
+  styles: [
+    `
+      mat-tab-group {
+        height: 250px
+      }
+    `
+  ]
 })
 export class BasicComponent implements OnInit {
+
+  htmlSample = `
+    &lt;shark-table
+      [data]="testData"
+      [columns]="tableColumns"
+      [filterable]="false"
+      [localPaging]="false"
+      [hideCaption]="true"
+    &gt;&lt;/shark-table&gt;
+  `;
+
+  tsSample = `
+    // Populate with objects matching the column properties
+    testData = [];
+
+    tableColumns: SharkColumn[] = [
+      { header: 'Year', property: 'year' },
+      { header: 'Make', property: 'make' },
+      { header: 'Model', property: 'model' }
+    ];
+  `;
 
   testData = [];
 
