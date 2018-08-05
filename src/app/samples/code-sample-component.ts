@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'shark-table-code-sample',
   template: `
+    <h1>{{ pageTitle }}</h1>
     <mat-tab-group>
       <mat-tab label="HTML" *ngIf="htmlSample">
         <div highlight-js-content=".highlight">
@@ -20,16 +21,26 @@ import { Component, Input } from '@angular/core';
         </div>
       </mat-tab>
     </mat-tab-group>
+    <div class="table-wrapper">
+      <ng-content></ng-content>
+    </div>
   `,
   styles: [
     `
       mat-tab-group {
-        height: 250px
+        min-height: 250px
+      }
+
+      .table-wrapper {
+        min-width: 55rem;
       }
     `
   ]
 })
 export class CodeSampleComponent {
+
+  @Input()
+  pageTitle: string;
 
   @Input()
   htmlSample;

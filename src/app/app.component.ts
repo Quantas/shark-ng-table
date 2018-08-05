@@ -37,6 +37,7 @@ import { Component } from '@angular/core';
       }
       .wrapper {
         margin-top: 1rem;
+        margin-bottom: 2rem;
         display: flex;
       }
       .menu {

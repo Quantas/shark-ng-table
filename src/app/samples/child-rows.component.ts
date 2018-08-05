@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {TableDataService} from '../data.service';
-import {SharkColumn} from '../table';
-import {ChildRowRenderingComponent} from './child-rows-rendering.component';
+import { Component, OnInit } from '@angular/core';
+import { TableDataService } from '../data.service';
+import { SharkColumn } from '../table';
+import { ChildRowRenderingComponent } from './child-rows-rendering.component';
 
 @Component({
   template: `
-    <h1>Child Rows</h1>
-    <div style="width: 55rem">
+    <shark-table-code-sample pageTitle="Child Rows" [htmlSample]="htmlSample" [tsSample]="tsSample">
       <shark-table
         [data]="testData"
         [columns]="tableColumns"
@@ -16,11 +15,13 @@ import {ChildRowRenderingComponent} from './child-rows-rendering.component';
         [hideCaption]="true"
       >
       </shark-table>
-    </div>
+    </shark-table-code-sample>
+  `
+})
+export class ChildRowsComponent implements OnInit {
 
-    <h2>HTML</h2>
-    <pre>
-      &lt;shark-table
+  htmlSample = `
+    &lt;shark-table
         [data]="testData"
         [columns]="tableColumns"
         [columnFiltering]="true"
@@ -28,10 +29,34 @@ import {ChildRowRenderingComponent} from './child-rows-rendering.component';
         [childComponent]="childComponent"
         [hideCaption]="true"
       &gt;&lt;/shark-table&gt;
-    </pre>
-  `
-})
-export class ChildRowsComponent implements OnInit {
+  `;
+
+  tsSample = `
+    // 1. Create a SharkDynamicContents Component
+
+    import { Component } from '@angular/core';
+    import { SharkDynamicContents } from '../table';
+
+    @Component({
+      template: \`
+        VIN: {{ data.vin }}
+      \`
+    })
+    export class ChildRowRenderingComponent implements SharkDynamicContents {
+      data: any;
+
+      childOpen(value: boolean): void {
+        console.log(value);
+      }
+    }
+
+    // 2. Add Component to "entryComponents" and "declarations" in your NgModule
+    // 3. Store a reference in your Component where you use &lt;shark-table&gt;
+    childComponent = ChildRowRenderingComponent;
+
+    // 4. Use "childComponent" as a prameter to your shark-table as seen in the HTML portion of the sample
+
+  `;
 
   childComponent = ChildRowRenderingComponent;
 

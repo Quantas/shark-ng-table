@@ -4,8 +4,7 @@ import { SharkColumn } from '../table';
 
 @Component({
   template: `
-    <h1>Basic Table</h1>
-    <div style="width: 37rem">
+    <shark-table-code-sample pageTitle="Basic Table" [htmlSample]="htmlSample" [tsSample]="tsSample">
       <shark-table
         [data]="testData"
         [columns]="tableColumns"
@@ -14,9 +13,7 @@ import { SharkColumn } from '../table';
         [hideCaption]="true"
       >
       </shark-table>
-    </div>
-
-    <shark-table-code-sample [htmlSample]="htmlSample" [tsSample]="tsSample"></shark-table-code-sample>
+    </shark-table-code-sample>
   `
 })
 export class BasicComponent implements OnInit {

@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {TableDataService} from '../data.service';
-import {CellStyleFunction, SharkColumn} from '../table';
+import { Component, OnInit } from '@angular/core';
+import { TableDataService } from '../data.service';
+import { CellStyleFunction, SharkColumn } from '../table';
 
 @Component({
   template: `
-    <h1>Cell Styling</h1>
-    <div style="width: 35rem">
+    <shark-table-code-sample pageTitle="Cell Styling" [htmlSample]="htmlSample" [tsSample]="tsSample">
       <shark-table
         [data]="testData"
         [columns]="tableColumns"
@@ -15,11 +14,13 @@ import {CellStyleFunction, SharkColumn} from '../table';
         [hideCaption]="true"
       >
       </shark-table>
-    </div>
+    </shark-table-code-sample>
+  `
+})
+export class CellStyleComponent implements OnInit {
 
-    <h2>HTML</h2>
-    <pre>
-      &lt;shark-table
+  htmlSample = `
+    &lt;shark-table
         [data]="testData"
         [columns]="tableColumns"
         [filterable]="false"
@@ -28,10 +29,23 @@ import {CellStyleFunction, SharkColumn} from '../table';
         [hideCaption]="true"
       &gt;
       &lt;/shark-table&gt;
-    </pre>
-  `
-})
-export class CellStyleComponent implements OnInit {
+  `;
+
+  tsSample = `
+    // Populate with objects matching the column properties
+    testData = [];
+
+    tableColumns: SharkColumn[] = [
+      { header: 'Year', property: 'year' },
+      { header: 'Make', property: 'make' },
+      { header: 'Model', property: 'model' }
+    ];
+
+    cellStylingFunction: CellStyleFunction = (row: any, column: SharkColumn,  cell: any) => {
+      const color = column.property === 'year' ? 'red' : column.property === 'make' ? 'white' : 'blue';
+      return {'background-color': color };
+    };
+  `;
 
   testData = [];
 
