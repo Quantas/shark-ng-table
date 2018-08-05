@@ -22,10 +22,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatListModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { CodeSampleComponent } from './samples/code-sample-component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
+    CodeSampleComponent,
 
     BasicComponent,
     CellStyleComponent,

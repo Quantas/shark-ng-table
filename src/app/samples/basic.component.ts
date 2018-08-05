@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {TableDataService} from '../data.service';
-import {SharkColumn} from '../table';
+import { Component, OnInit } from '@angular/core';
+import { TableDataService } from '../data.service';
+import { SharkColumn } from '../table';
 
 @Component({
   template: `
@@ -16,26 +16,8 @@ import {SharkColumn} from '../table';
       </shark-table>
     </div>
 
-    <mat-tab-group>
-      <mat-tab label="HTML">
-        <div highlight-js-content=".highlight">
-          <pre [innerHTML]="htmlSample" class="highlight"></pre>
-        </div>
-      </mat-tab>
-      <mat-tab label="TS">
-        <div highlight-js-content=".highlight">
-          <pre [innerHTML]="tsSample" class="highlight typescript"></pre>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  `,
-  styles: [
-    `
-      mat-tab-group {
-        height: 250px
-      }
-    `
-  ]
+    <shark-table-code-sample [htmlSample]="htmlSample" [tsSample]="tsSample"></shark-table-code-sample>
+  `
 })
 export class BasicComponent implements OnInit {
 
