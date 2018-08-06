@@ -45,6 +45,9 @@ import 'rxjs/add/operator/takeUntil';
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
+    <mat-toolbar class="footer" color="primary">
+      &copy; 2018 Andrew Landsverk and Nelnet Inc. and Affiliates.
+    </mat-toolbar>
   `,
   styles: [
     `
@@ -64,6 +67,12 @@ import 'rxjs/add/operator/takeUntil';
 
       .toolbar-filler {
         flex: 1 1 auto;
+      }
+
+      .footer {
+        font-size: 12px;
+        font-weight: normal;
+        height: 2rem;
       }
     `
   ]
