@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -9,7 +10,7 @@ import { SharkTableModule } from './table';
 import { TableDataService } from './data.service';
 import { ColumnFilteringComponent } from './samples/column-filtering.component';
 import { ChildRowsComponent } from './samples/child-rows.component';
-import { ChildRowRenderingComponent } from './samples/child-rows-rendering.component';
+import { ChildRowRenderingComponent } from './samples/shared/child-rows-rendering.component';
 import { CustomCellsComponent, MakeComponent } from './samples/custom-cell.component';
 import { PagingAndFilteringComponent } from './samples/paging-filtering.component';
 import { ColumnOrderingComponent } from './samples/column-ordering.component';
@@ -18,11 +19,22 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTabsModule, MatToolbarModule} from '@angular/material';
+
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { CodeSampleComponent } from './samples/shared/code-sample-component';
+import { DataExportComponent } from './samples/data-export.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 @NgModule({
   declarations: [
     AppComponent,
+
+    CodeSampleComponent,
+
     BasicComponent,
     CellStyleComponent,
+    DataExportComponent,
     EverythingComponent,
     FilterableComponent,
     PageableComponent,
@@ -34,14 +46,26 @@ import { AppRoutingModule } from './app-routing.module';
     ChildRowRenderingComponent,
     CustomCellsComponent,
     MakeComponent
+
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
     AppRoutingModule,
-    SharkTableModule
+    SharkTableModule,
+
+    HighlightJsModule,
+
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatToolbarModule
   ],
   entryComponents: [ ChildRowRenderingComponent, MakeComponent ],
-  providers: [ TableDataService ],
+  providers: [ TableDataService, HighlightJsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
