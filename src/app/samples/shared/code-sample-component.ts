@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SharkColumn } from '../../table';
 import { TableDataService } from '../../data.service';
 
+import 'rxjs/add/operator/takeUntil';
+
 @Component({
   selector: 'shark-table-code-sample',
   template: `
@@ -36,10 +38,6 @@ import { TableDataService } from '../../data.service';
         min-height: 250px;
         border: 1px solid gray;
       }
-
-      .table-wrapper {
-        min-width: 55rem;
-      }
     `
   ]
 })
@@ -56,6 +54,8 @@ export class CodeSampleComponent implements OnInit {
 
   @Input()
   cssSample;
+
+  size: string;
 
   testData = [];
 

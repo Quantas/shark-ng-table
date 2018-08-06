@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'shark-root',
@@ -9,7 +11,7 @@ import { Subscription } from 'rxjs';
       <button mat-icon-button (click)="sidenav.toggle()" fxShow.sm="true" fxShow.gt-sm="false">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>shark-ng-table Samples</span>
+      <span>shark-ng-table samples</span>
     </mat-toolbar>
     <mat-sidenav-container>
       <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="bottom-to-top">
@@ -48,15 +50,15 @@ import { Subscription } from 'rxjs';
     `
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
 
-  watcher: Subscription;
+  destroy = new Subject<boolean>();
   opened = false;
   over: string;
 
   constructor(media: ObservableMedia) {
-    this.watcher = media.subscribe((change: MediaChange) => {
-      if (change.mqAlias === 'ssss' || change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+    media.asObservable().takeUntil(this.destroy).subscribe((change: MediaChange) => {
+      if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.opened = false;
         this.over = 'over';
       } else {
@@ -64,5 +66,10 @@ export class AppComponent {
         this.over = 'side';
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next(true);
+    this.destroy.unsubscribe();
   }
 }
