@@ -29,8 +29,12 @@ import { TableDataService } from '../../data.service';
   `,
   styles: [
     `
+      h1 {
+        margin-top: 0;
+      }
       mat-tab-group {
-        min-height: 250px
+        min-height: 250px;
+        border: 1px solid gray;
       }
 
       .table-wrapper {

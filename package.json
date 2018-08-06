@@ -42,6 +42,7 @@
     "@angular/compiler": "5.2.4",
     "@angular/compiler-cli": "5.2.4",
     "@angular/core": "5.2.4",
+    "@angular/flex-layout": "^5.0.0-beta.15",
     "@angular/forms": "5.2.4",
     "@angular/http": "5.2.4",
     "@angular/language-service": "5.2.4",

@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'shark-root',
   template: `
     <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow.sm="true" fxShow.gt-sm="false">
+        <mat-icon>menu</mat-icon>
+      </button>
       <span>shark-ng-table Samples</span>
     </mat-toolbar>
-    <div class="wrapper">
-      <div class="menu">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="bottom-to-top">
         <mat-nav-list>
           <a mat-list-item [routerLink]="['basic']">Basic</a>
           <a mat-list-item [routerLink]="['cellstyle']">Cell Styling</a>
@@ -22,31 +27,42 @@ import { Component } from '@angular/core';
           <a mat-list-item [routerLink]="['pageable']">Pageable</a>
           <a mat-list-item [routerLink]="['paging-filtering']">Paging and Filtering</a>
         </mat-nav-list>
-      </div>
-      <div class="main">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="wrapper">
+          <div class="main">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   `,
   styles: [
     `
-      li {
-        list-style: none;
-      }
-      ul {
-        padding-left: 1rem;
-      }
       .wrapper {
         margin-top: 1rem;
+        margin-left: 1rem;
         margin-bottom: 2rem;
         display: flex;
-      }
-      .menu {
-        margin-right: 2rem;
-        height: 100%;
-        width: 12rem;
       }
     `
   ]
 })
-export class AppComponent {}
+export class AppComponent {
+
+  watcher: Subscription;
+  opened = false;
+  over: string;
+
+  constructor(media: ObservableMedia) {
+    this.watcher = media.subscribe((change: MediaChange) => {
+      if (change.mqAlias === 'ssss' || change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+        this.opened = false;
+        this.over = 'over';
+      } else {
+        this.opened = true;
+        this.over = 'side';
+      }
+    });
+  }
+}

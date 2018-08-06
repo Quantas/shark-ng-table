@@ -19,11 +19,12 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { MatButtonModule, MatListModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTabsModule, MatToolbarModule} from '@angular/material';
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 import { CodeSampleComponent } from './samples/shared/code-sample-component';
 import { DataExportComponent } from './samples/data-export.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -50,13 +51,16 @@ import { DataExportComponent } from './samples/data-export.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     AppRoutingModule,
     SharkTableModule,
 
     HighlightJsModule,
 
     MatButtonModule,
+    MatIconModule,
     MatListModule,
+    MatSidenavModule,
     MatTabsModule,
     MatToolbarModule
   ],
