@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { TableDataService } from '../data.service';
-import { SharkColumn } from '../table';
-import { ChildRowRenderingComponent } from './child-rows-rendering.component';
+import { Component } from '@angular/core';
+import { ChildRowRenderingComponent } from './shared/child-rows-rendering.component';
 
 @Component({
   template: `
-    <shark-table-code-sample pageTitle="Child Rows" [htmlSample]="htmlSample" [tsSample]="tsSample">
+    <shark-table-code-sample pageTitle="Child Rows" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
-        [data]="testData"
-        [columns]="tableColumns"
+        [data]="parent.testData"
+        [columns]="parent.tableColumns"
         [columnFiltering]="true"
         [childRows]="true"
         [childComponent]="childComponent"
@@ -18,17 +16,17 @@ import { ChildRowRenderingComponent } from './child-rows-rendering.component';
     </shark-table-code-sample>
   `
 })
-export class ChildRowsComponent implements OnInit {
+export class ChildRowsComponent {
 
   htmlSample = `
     &lt;shark-table
-        [data]="testData"
-        [columns]="tableColumns"
-        [columnFiltering]="true"
-        [childRows]="true"
-        [childComponent]="childComponent"
-        [hideCaption]="true"
-      &gt;&lt;/shark-table&gt;
+      [data]="testData"
+      [columns]="tableColumns"
+      [columnFiltering]="true"
+      [childRows]="true"
+      [childComponent]="childComponent"
+      [hideCaption]="true"
+    &gt;&lt;/shark-table&gt;
   `;
 
   tsSample = `
@@ -59,19 +57,5 @@ export class ChildRowsComponent implements OnInit {
   `;
 
   childComponent = ChildRowRenderingComponent;
-
-  testData = [];
-
-  tableColumns: SharkColumn[] = [
-    { header: 'Year', property: 'year' },
-    { header: 'Make', property: 'make' },
-    { header: 'Model', property: 'model' }
-  ];
-
-  constructor(private tableDataService: TableDataService) {}
-
-  ngOnInit(): void {
-    this.testData = this.tableDataService.getTestData();
-  }
 
 }

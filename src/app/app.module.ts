@@ -10,7 +10,7 @@ import { SharkTableModule } from './table';
 import { TableDataService } from './data.service';
 import { ColumnFilteringComponent } from './samples/column-filtering.component';
 import { ChildRowsComponent } from './samples/child-rows.component';
-import { ChildRowRenderingComponent } from './samples/child-rows-rendering.component';
+import { ChildRowRenderingComponent } from './samples/shared/child-rows-rendering.component';
 import { CustomCellsComponent, MakeComponent } from './samples/custom-cell.component';
 import { PagingAndFilteringComponent } from './samples/paging-filtering.component';
 import { ColumnOrderingComponent } from './samples/column-ordering.component';
@@ -22,7 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatListModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
-import { CodeSampleComponent } from './samples/code-sample-component';
+import { CodeSampleComponent } from './samples/shared/code-sample-component';
 
 @NgModule({
   declarations: [

@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { TableDataService } from '../data.service';
+import { Component } from '@angular/core';
 import { CellStyleFunction, SharkColumn } from '../table';
 
 @Component({
   template: `
-    <shark-table-code-sample pageTitle="Cell Styling" [htmlSample]="htmlSample" [tsSample]="tsSample">
+    <shark-table-code-sample pageTitle="Cell Styling" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
-        [data]="testData"
-        [columns]="tableColumns"
+        [data]="parent.testData"
+        [columns]="parent.tableColumns"
         [filterable]="false"
         [localPaging]="false"
         [cellStylingFunction]="cellStylingFunction"
@@ -17,18 +16,18 @@ import { CellStyleFunction, SharkColumn } from '../table';
     </shark-table-code-sample>
   `
 })
-export class CellStyleComponent implements OnInit {
+export class CellStyleComponent {
 
   htmlSample = `
     &lt;shark-table
-        [data]="testData"
-        [columns]="tableColumns"
-        [filterable]="false"
-        [localPaging]="false"
-        [cellStylingFunction]="cellStylingFunction"
-        [hideCaption]="true"
-      &gt;
-      &lt;/shark-table&gt;
+      [data]="testData"
+      [columns]="tableColumns"
+      [filterable]="false"
+      [localPaging]="false"
+      [cellStylingFunction]="cellStylingFunction"
+      [hideCaption]="true"
+    &gt;
+    &lt;/shark-table&gt;
   `;
 
   tsSample = `
@@ -46,20 +45,6 @@ export class CellStyleComponent implements OnInit {
       return {'background-color': color };
     };
   `;
-
-  testData = [];
-
-  tableColumns: SharkColumn[] = [
-    { header: 'Year', property: 'year' },
-    { header: 'Make', property: 'make' },
-    { header: 'Model', property: 'model' }
-  ];
-
-  constructor(private tableDataService: TableDataService) {}
-
-  ngOnInit(): void {
-    this.testData = this.tableDataService.getTestData();
-  }
 
   cellStylingFunction: CellStyleFunction = (row: any, column: SharkColumn,  cell: any) => {
 

@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SharkColumn } from '../../table';
+import { TableDataService } from '../../data.service';
 
 @Component({
   selector: 'shark-table-code-sample',
@@ -37,7 +39,7 @@ import { Component, Input } from '@angular/core';
     `
   ]
 })
-export class CodeSampleComponent {
+export class CodeSampleComponent implements OnInit {
 
   @Input()
   pageTitle: string;
@@ -51,4 +53,17 @@ export class CodeSampleComponent {
   @Input()
   cssSample;
 
+  testData = [];
+
+  tableColumns: SharkColumn[] = [
+    { header: 'Year', property: 'year' },
+    { header: 'Make', property: 'make' },
+    { header: 'Model', property: 'model' }
+  ];
+
+  constructor(private tableDataService: TableDataService) {}
+
+  ngOnInit(): void {
+    this.testData = this.tableDataService.getTestData();
+  }
 }

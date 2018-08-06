@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TableDataService} from '../data.service';
 import {SharkColumn, SharkTableComponent} from '../table';
-import {ChildRowRenderingComponent} from './child-rows-rendering.component';
+import {ChildRowRenderingComponent} from './shared/child-rows-rendering.component';
 import {MakeComponent} from './custom-cell.component';
 
 @Component({

@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { TableDataService } from '../data.service';
-import { SharkColumn } from '../table';
+import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <shark-table-code-sample pageTitle="Basic Table" [htmlSample]="htmlSample" [tsSample]="tsSample">
+    <shark-table-code-sample pageTitle="Basic Table" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
-        [data]="testData"
-        [columns]="tableColumns"
+        [data]="parent.testData"
+        [columns]="parent.tableColumns"
         [filterable]="false"
         [localPaging]="false"
         [hideCaption]="true"
@@ -16,7 +14,7 @@ import { SharkColumn } from '../table';
     </shark-table-code-sample>
   `
 })
-export class BasicComponent implements OnInit {
+export class BasicComponent {
 
   htmlSample = `
     &lt;shark-table
@@ -38,19 +36,5 @@ export class BasicComponent implements OnInit {
       { header: 'Model', property: 'model' }
     ];
   `;
-
-  testData = [];
-
-  tableColumns: SharkColumn[] = [
-    { header: 'Year', property: 'year' },
-    { header: 'Make', property: 'make' },
-    { header: 'Model', property: 'model' }
-  ];
-
-  constructor(private tableDataService: TableDataService) {}
-
-  ngOnInit(): void {
-    this.testData = this.tableDataService.getTestData();
-  }
 
 }

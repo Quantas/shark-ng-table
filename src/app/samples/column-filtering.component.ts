@@ -1,40 +1,40 @@
-import {Component, OnInit} from '@angular/core';
-import {TableDataService} from '../data.service';
-import {SharkColumn} from '../table';
+import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <h1>Column Filtering</h1>
-    <div style="width: 50rem">
+    <shark-table-code-sample pageTitle="Column Filtering" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
-        [data]="testData"
-        [columns]="tableColumns"
-        [columnFiltering]="true"
+        [data]="parent.testData"
+        [columns]="parent.tableColumns"
+        [filterable]="false"
+        [localPaging]="false"
         [hideCaption]="true"
       >
       </shark-table>
-    </div>
-
-    <h2>HTML</h2>
-    <pre>
-      &lt;shark-table [data]="testData" [columns]="tableColumns" [columnFiltering]="true" [hideCaption]="true"&gt;&lt;/shark-table&gt;
-    </pre>
+    </shark-table-code-sample>
   `
 })
-export class ColumnFilteringComponent implements OnInit {
+export class ColumnFilteringComponent {
 
-  testData = [];
+  htmlSample = `
+    &lt;shark-table
+      [data]="testData"
+      [columns]="tableColumns"
+      [columnFiltering]="true"
+      [hideCaption]="true"
+    &gt;
+    &lt;/shark-table&gt;
+  `;
 
-  tableColumns: SharkColumn[] = [
-    { header: 'Year', property: 'year' },
-    { header: 'Make', property: 'make' },
-    { header: 'Model', property: 'model' }
-  ];
+  tsSample = `
+    // Populate with objects matching the column properties
+    testData = [];
 
-  constructor(private tableDataService: TableDataService) {}
-
-  ngOnInit(): void {
-    this.testData = this.tableDataService.getTestData();
-  }
+    tableColumns: SharkColumn[] = [
+      { header: 'Year', property: 'year' },
+      { header: 'Make', property: 'make' },
+      { header: 'Model', property: 'model' }
+    ];
+  `;
 
 }

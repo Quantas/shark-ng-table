@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharkDynamicContents } from '../table';
+import { SharkDynamicContents } from '../../table';
 
 @Component({
   template: `
