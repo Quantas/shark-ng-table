@@ -14,10 +14,12 @@ import { NotifierService } from './notifier/notifier.service';
         <div id="column-picker-dropdown" class="dropdown" [attr.aria-hidden]="!showDropDown" aria-label="submenu" [ngStyle]="{'display': showDropDown ? 'block': 'none'}">
           <fieldset>
             <legend class="screen-reader">Columns to display</legend>
-            <label *ngFor="let column of columns">
-              <input type="checkbox" [(ngModel)]="column.displayed" (ngModelChange)="emitSelected(column)" />
-              {{ column.header }}
-            </label>
+            <div class="column-wrapper">
+              <label *ngFor="let column of columns">
+                <input type="checkbox" [(ngModel)]="column.displayed" (ngModelChange)="emitSelected(column)" />
+                {{ column.header }}
+              </label>
+              </div>
           </fieldset>
         </div>
     </span>

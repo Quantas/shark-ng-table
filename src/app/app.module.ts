@@ -19,12 +19,13 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTabsModule, MatToolbarModule} from '@angular/material';
+import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 import { CodeSampleComponent } from './samples/shared/code-sample-component';
 import { DataExportComponent } from './samples/data-export.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LargeComponent } from './samples/large.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ColumnPickerComponent,
     ChildRowsComponent,
     ChildRowRenderingComponent,
+    LargeComponent,
     CustomCellsComponent,
     MakeComponent
 

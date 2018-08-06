@@ -12,6 +12,7 @@ import { ColumnPickerComponent } from './samples/column-picker.component';
 import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { DataExportComponent } from './samples/data-export.component';
+import { LargeComponent } from './samples/large.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -28,10 +29,11 @@ const routes: Routes = [
   { path: 'column-picker', component: ColumnPickerComponent },
   { path: 'child-rows', component: ChildRowsComponent },
   { path: 'custom-cells', component: CustomCellsComponent },
+  { path: 'large', component: LargeComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes, { useHash: true }) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
