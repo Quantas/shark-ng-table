@@ -9,7 +9,7 @@ import { TableDataService } from '../../data.service';
     <mat-tab-group>
       <mat-tab label="HTML" *ngIf="htmlSample">
         <div highlight-js-content=".highlight">
-          <pre [innerHTML]="htmlSample" class="highlight"></pre>
+          <pre [innerHTML]="htmlSample" class="highlight html"></pre>
         </div>
       </mat-tab>
       <mat-tab label="TS" *ngIf="tsSample">

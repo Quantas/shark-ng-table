@@ -16,6 +16,7 @@ import { Component } from '@angular/core';
           <a mat-list-item [routerLink]="['column-ordering']">Column Ordering</a>
           <a mat-list-item [routerLink]="['column-picker']">Column Picker</a>
           <a mat-list-item [routerLink]="['custom-cells']">Custom Cells</a>
+          <a mat-list-item [routerLink]="['data-export']">Data Export</a>
           <a mat-list-item [routerLink]="['everything']">Everything</a>
           <a mat-list-item [routerLink]="['filterable']">Filterable</a>
           <a mat-list-item [routerLink]="['pageable']">Pageable</a>

@@ -11,12 +11,14 @@ import { ColumnOrderingComponent } from './samples/column-ordering.component';
 import { ColumnPickerComponent } from './samples/column-picker.component';
 import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
+import { DataExportComponent } from './samples/data-export.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
 
   { path: 'basic', component: BasicComponent },
   { path: 'cellstyle', component: CellStyleComponent },
+  { path: 'data-export', component: DataExportComponent },
   { path: 'everything', component: EverythingComponent },
   { path: 'filterable', component: FilterableComponent },
   { path: 'pageable', component: PageableComponent },

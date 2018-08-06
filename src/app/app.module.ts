@@ -19,10 +19,11 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { MatListModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatListModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 import { CodeSampleComponent } from './samples/shared/code-sample-component';
+import { DataExportComponent } from './samples/data-export.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CodeSampleComponent } from './samples/shared/code-sample-component';
 
     BasicComponent,
     CellStyleComponent,
+    DataExportComponent,
     EverythingComponent,
     FilterableComponent,
     PageableComponent,
@@ -53,6 +55,7 @@ import { CodeSampleComponent } from './samples/shared/code-sample-component';
 
     HighlightJsModule,
 
+    MatButtonModule,
     MatListModule,
     MatTabsModule,
     MatToolbarModule
