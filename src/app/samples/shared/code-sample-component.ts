@@ -2,8 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SharkColumn } from '../../table';
 import { TableDataService } from '../../data.service';
 
-import 'rxjs/add/operator/takeUntil';
-
 @Component({
   selector: 'shark-table-code-sample',
   template: `
@@ -25,15 +23,14 @@ import 'rxjs/add/operator/takeUntil';
         </div>
       </mat-tab>
     </mat-tab-group>
-    <div class="table-wrapper">
-      <ng-content></ng-content>
-    </div>
+    <ng-content></ng-content>
   `,
   styles: [
     `
       h1 {
         margin-top: 0;
       }
+
       mat-tab-group {
         min-height: 250px;
         border: 1px solid gray;

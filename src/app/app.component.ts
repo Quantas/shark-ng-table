@@ -7,11 +7,18 @@ import 'rxjs/add/operator/takeUntil';
 @Component({
   selector: 'shark-root',
   template: `
-    <mat-toolbar color="primary">
+    <mat-toolbar class="header" color="primary">
       <button mat-icon-button (click)="sidenav.toggle()" fxShow.sm="true" fxShow.gt-sm="false">
         <mat-icon>menu</mat-icon>
       </button>
       <span>shark-ng-table samples</span>
+      <span class="toolbar-filler"></span>
+      <a href="https://github.com/Quantas/shark-ng-table" target="_blank" mat-button>
+        <span>
+          <img class="header-logo" src="assets/github-circle-white-transparent.svg">
+          <span fxShow.lt-md="false" fxShow.gt-sm="true">GitHub</span>
+        </span>
+      </a>
     </mat-toolbar>
     <mat-sidenav-container>
       <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="bottom-to-top">
@@ -42,10 +49,21 @@ import 'rxjs/add/operator/takeUntil';
   styles: [
     `
       .wrapper {
-        margin-top: 1rem;
-        margin-left: 1rem;
-        margin-bottom: 2rem;
-        display: flex;
+        margin: 1rem 2rem 2rem 2rem;
+      }
+
+      .header {
+        font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+      }
+
+      .header-logo {
+        height: 26px;
+        margin: 0 4px 3px 0;
+        vertical-align: middle;
+      }
+
+      .toolbar-filler {
+        flex: 1 1 auto;
       }
     `
   ]
