@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild
+  Component, EventEmitter, Input, Output
 } from '@angular/core';
 import { SharkColumn } from './column';
 import { NotifierService } from './notifier/notifier.service';
@@ -27,8 +27,6 @@ import { v4 as uuid } from 'uuid';
   `
 })
 export class SharkColumnDropdownComponent {
-  @ViewChild('dropdownButton')
-  dropdownButton: ElementRef;
 
   @Input()
   columns: SharkColumn[];
@@ -42,24 +40,6 @@ export class SharkColumnDropdownComponent {
   contentId = uuid().substring(0, 5);
 
   showDropDown = false;
-
-  constructor(private elementRef: ElementRef) {}
-
-  @HostListener('document:keydown.escape', [])
-  closeDropDownWithEscape(): void {
-    if (this.showDropDown) {
-      this.showDropDown = false;
-      this.dropdownButton.nativeElement.focus();
-    }
-  }
-
-  @HostListener('document:click', [ '$event' ])
-  @HostListener('document:touchstart', [ '$event' ])
-  closeDropDown(event: Event): void {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      this.showDropDown = false;
-    }
-  }
 
   emitSelected(): void {
     this.columnChange.emit(this.columns);
