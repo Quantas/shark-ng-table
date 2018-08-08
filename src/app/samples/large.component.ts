@@ -7,8 +7,8 @@ import { SharkColumn } from '../table';
       <shark-table
         [data]="testData"
         [columns]="tableColumns"
-        [filterable]="false"
-        [localPaging]="false"
+        [filterable]="true"
+        [localPaging]="true"
         [hideCaption]="true"
         [columnPicker]="true"
       >
@@ -22,8 +22,8 @@ export class LargeComponent {
     &lt;shark-table
       [data]="testData"
       [columns]="tableColumns"
-      [filterable]="false"
-      [localPaging]="false"
+      [filterable]="true"
+      [localPaging]="true"
       [hideCaption]="true"
       [columnPicker]="true"
     &gt;
@@ -54,16 +54,25 @@ export class LargeComponent {
       { header: 'Col 20', property: 'col1' }
     ];
 
-    testData = [
+    baseData = [
       {col1: '1234'},
       {col1: '1234'},
       {col1: '1234'},
       {col1: '1234'},
-      {col1: '1234'},
+      {col1: '1235'},
       {col1: '1234'},
       {col1: '1234'},
       {col1: '1234'}
     ];
+
+    testData: any[];
+
+    constructor() {
+      this.testData = [];
+      for (let i = 0; i < 200; i++) {
+        this.testData.push(...this.baseData);
+      }
+    }
   `;
 
   tableColumns: SharkColumn[] = [
@@ -89,15 +98,24 @@ export class LargeComponent {
     { header: 'Col 20', property: 'col1' }
   ];
 
-  testData = [
+  baseData = [
     {col1: '1234'},
     {col1: '1234'},
     {col1: '1234'},
     {col1: '1234'},
-    {col1: '1234'},
+    {col1: '1235'},
     {col1: '1234'},
     {col1: '1234'},
     {col1: '1234'}
   ];
+
+  testData: any[];
+
+  constructor() {
+    this.testData = [];
+    for (let i = 0; i < 200; i++) {
+      this.testData.push(...this.baseData);
+    }
+  }
 
 }
