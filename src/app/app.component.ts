@@ -33,6 +33,7 @@ import 'rxjs/add/operator/takeUntil';
           <a mat-list-item [routerLink]="['data-export']">Data Export</a>
           <a mat-list-item [routerLink]="['everything']">Everything</a>
           <a mat-list-item [routerLink]="['filterable']">Filterable</a>
+          <a mat-list-item [routerLink]="['large']">Large</a>
           <a mat-list-item [routerLink]="['pageable']">Pageable</a>
           <a mat-list-item [routerLink]="['paging-filtering']">Paging and Filtering</a>
         </mat-nav-list>

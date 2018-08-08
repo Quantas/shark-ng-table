@@ -36,45 +36,6 @@ describe('SharkTableComponentColumnPicker', () => {
 
   }));
 
-  it ('should open the dropdown', async(() => {
-    component.sharkTable.headerInfoComponent.columnPickerComponent.showDropDown = true;
-    fixture.detectChanges();
-
-    const eventTarget: EventTarget = {
-      addEventListener: () => {},
-      removeEventListener: () =>  {},
-      dispatchEvent: () => true
-    };
-
-    component.sharkTable.headerInfoComponent.columnPickerComponent.closeDropDown({
-      bubbles: true,
-      target: eventTarget,
-      cancelable: false,
-      cancelBubble: false,
-      currentTarget: undefined,
-      defaultPrevented: false,
-      eventPhase: undefined,
-      isTrusted: true,
-      returnValue: undefined,
-      srcElement: undefined,
-      timeStamp: 123123123123,
-      type: undefined,
-      scoped: false,
-      initEvent: undefined,
-      preventDefault: () => {},
-      stopImmediatePropagation: () => {},
-      stopPropagation: () => {},
-      deepPath: undefined,
-      AT_TARGET: 1,
-      BUBBLING_PHASE: 1,
-      CAPTURING_PHASE: 1
-    });
-
-    fixture.detectChanges();
-
-    expect(component.sharkTable.headerInfoComponent.columnPickerComponent.showDropDown).toEqual(false);
-  }));
-
 });
 
 @Component({
