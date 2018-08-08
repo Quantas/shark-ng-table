@@ -130,9 +130,6 @@ th, td {
   border: none;
   background-color: white;
   text-align: left;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
 }
 
 .column-picker .dropdown {
