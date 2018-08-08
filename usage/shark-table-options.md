@@ -1,5 +1,7 @@
 # shark-table options
 
+* tableId - `string` - `uuid.substring(0, 5)`
+    * An ID for this table
 * data - `any[]` or `Observable<Page>` or `Observable<any[]>`
     * The raw table data
 * columns - `SharkColumn[]`

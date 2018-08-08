@@ -20,11 +20,13 @@ import { SharkTableInfoHeaderComponent } from './table.info.header.component';
 import { NotifierService } from './notifier/notifier.service';
 import { SharkTableCurrentDataEvent } from './current.data.event';
 
+import { v4 as uuid } from 'uuid';
+
 @Component({
   selector: 'shark-table',
   template: `
-      <shark-table-aria-notifier [notifierService]="notifierService"></shark-table-aria-notifier>
-      <div class="table-wrapper" *ngIf="page">
+      <shark-table-aria-notifier [notifierService]="notifierService" [tableId]="tableId"></shark-table-aria-notifier>
+      <div class="table-wrapper" id="shark-table-{{ tableId }}" *ngIf="page">
         <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker)"
                                  [serverSideData]="serverSideData"
                                  [filterable]="filterable"
@@ -36,6 +38,7 @@ import { SharkTableCurrentDataEvent } from './current.data.event';
                                  [showFilterPlaceholders]="showFilterPlaceholders"
                                  [localPagingSize]="localPagingSize"
                                  [notifierService]="notifierService"
+                                 [tableId]="tableId"
                                  (filterChange)="headerChange($event)"
                                  (columnChange)="updateCurrentColumns($event)"
         ></shark-table-info-header>
@@ -82,6 +85,7 @@ import { SharkTableCurrentDataEvent } from './current.data.event';
                             [localPagingOptions]="localPagingOptions"
                             [showLocalPagingOptions]="showLocalPagingOptions"
                             [notifierService]="notifierService"
+                            [tableId]="tableId"
                             (filterChange)="headerChange($event)"
                             (paginationChange)="changePage($event)"
         ></shark-table-footer>
@@ -100,6 +104,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   footerComponent: SharkTableFooterComponent;
 
   notifierService = new NotifierService();
+
+  /**
+   * An ID for this table, defaults to `uuid.substring(0, 5)`
+   */
+  @Input()
+  tableId = uuid().substring(0, 5);
 
   /**
    * The raw table data
@@ -417,7 +427,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Currently only works if your input is an any[], returns the current "view" into the table with filtering/column selection
-   * 
+   *
    * @param rendered If you would like inline pipes to be applied to the exported data
    */
   exportCurrentData(rendered: boolean = true): SharkTableCurrentDataEvent {

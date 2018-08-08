@@ -10,7 +10,7 @@ import { DOCUMENT } from '@angular/common';
     selector: '[shark-table-header]',
     template: `
         <tr class="header-row header-border" *ngIf="columns.length > 0">
-            <th id="childHeader" *ngIf="childRows" class="child-spacer">
+            <th *ngIf="childRows" class="childHeader child-spacer">
               <span class="screen-reader">Details</span>
             </th>
             <th class="header-buttons" [ngClass]="{'right': column.alignRight }"

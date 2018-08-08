@@ -11,15 +11,15 @@ import { NotifierService } from './notifier/notifier.service';
   template: `
   <div class="info-footer">
     <div class="page-size-controls" *ngIf="localPaging && showLocalPagingOptions && columns.length > 0">
-      <label for="local-paging-size" class="local-paging-options">
+      <label for="local-paging-size-{{ tableId }}" class="local-paging-options">
         Rows per page:
       </label>
-      <select [(ngModel)]="localPagingSize" (change)="firePageSizeChange()" name="localPagingSize" id="local-paging-size">
+      <select [(ngModel)]="localPagingSize" (change)="firePageSizeChange()" name="localPagingSize" class="local-paging-size" id="local-paging-size-{{ tableId }}">
         <option *ngFor="let option of localPagingOptions" [value]="option" [attr.selected]="option === localPagingSize ? 'selected' : null">{{ option }}</option>
       </select>
       <span>{{ currentPageInfo }}</span>
     </div>
-    <shark-table-pagination *ngIf="columns.length > 0" [page]="page" (paginationChange)="changePage($event)"></shark-table-pagination>
+    <shark-table-pagination *ngIf="columns.length > 0" [page]="page" [tableId]="tableId" (paginationChange)="changePage($event)"></shark-table-pagination>
   </div>`
 })
 export class SharkTableFooterComponent implements OnChanges {
@@ -66,6 +66,9 @@ export class SharkTableFooterComponent implements OnChanges {
    */
   @Input()
   filter: string;
+
+  @Input()
+  tableId: string;
 
   @Output()
   filterChange = new EventEmitter<SharkHeaderFilterChange>();
