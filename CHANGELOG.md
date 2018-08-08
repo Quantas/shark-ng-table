@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/Quantas/shark-ng-table/compare/1.1.0...1.1.1) (2018-08-08)
+
+
+### Bug Fixes
+
+* **columns:** Make column picker a flexbox to reduce column length ([59c06c5](https://github.com/Quantas/shark-ng-table/commit/59c06c5)), closes [#99](https://github.com/Quantas/shark-ng-table/issues/99)
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/Quantas/shark-ng-table/compare/1.0.16...1.1.0) (2018-08-02)
 
