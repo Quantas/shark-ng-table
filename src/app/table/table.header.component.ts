@@ -10,32 +10,35 @@ import { DOCUMENT } from '@angular/common';
     selector: '[shark-table-header]',
     template: `
         <tr class="header-row header-border" *ngIf="columns.length > 0">
-            <th id="childHeader" *ngIf="childRows" class="child-spacer">
+            <th *ngIf="childRows" class="childHeader child-spacer">
               <span class="screen-reader">Details</span>
             </th>
             <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
                 *ngFor="let column of columns; let i = index; let f = first; let l = last;" 
-                [attr.id]="column.property"
+                [attr.id]="'column' + tableId + '-' + i + '-' + column.property"
                 [attr.aria-sort]="(!sortable || column.unsortable) ? null : (!column.sortType || column.sortType === 0) ? 'none' : column.sortType === 1 ? 'ascending' : 'descending'">
-                <button *ngIf="columnOrdering && !f" (click)="moveColumnBackward(i, column)" type="button" class="ordering-button fa fa-angle-left" [id]="column.property + '-left'">
+                <button *ngIf="columnOrdering && !f && !column.disableOrdering" (click)="moveColumnBackward(i, column)" type="button" class="ordering-button fa fa-angle-left" [id]="'order-' + tableId + '-' + column.property + '-left'">
                   <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column left' }}</span>
                 </button>
                 <shark-table-header-button *ngIf="sortable && !column.unsortable" [column]="column" (sortChange)="dispatchSortChangeEvent($event)"></shark-table-header-button>
                 <ng-container *ngIf="!sortable || column.unsortable">
                   {{ column.header }}
                 </ng-container>
-                <button *ngIf="columnOrdering && !l" (click)="moveColumnForward(i, column)" type="button" class="ordering-button fa fa-angle-right" [id]="column.property + '-right'">
+                <button *ngIf="columnOrdering && !l  && !column.disableOrdering" (click)="moveColumnForward(i, column)" type="button" class="ordering-button fa fa-angle-right" [id]="'order-' + tableId + '-' + column.property + '-right'">
                   <span class="screen-reader-button-label">{{ 'Move the ' + column.header + ' column right' }}</span>
                 </button>
-                <div *ngIf="columnFiltering && filterable">
-                  <label [for]="'column-' + i" class="screen-reader">{{ column.header }} filter</label>
-                  <input type="text" name="column{{i}}" [id]="'column-' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? (column.header + ' filter') : null" />
+                <div *ngIf="columnFiltering && filterable  && !column.hideHeaderFilter">
+                  <label [for]="'column-filter-' + tableId + '-' + i" class="screen-reader">{{ column.header }} filter</label>
+                  <input type="text" name="column{{i}}" [id]="'column-filter-' + tableId + '-' + i" [(ngModel)]="column.filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? (column.header + ' filter') : null" />
                 </div>
             </th>
         </tr>
     `
 })
 export class SharkTableHeaderComponent {
+
+    @Input()
+    tableId: string;
 
     @Input()
     sortable: boolean;

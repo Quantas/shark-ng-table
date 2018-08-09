@@ -6,16 +6,16 @@ import { Page } from './page';
   template: `
       <div class="pagination-wrapper" *ngIf="pageCount.length > 1">
           <div class="pagination">
-              <button id="first-page-button" *ngIf="!first" (click)="changePage(0)" type="button" class="fa fa-angle-double-left">
+              <button *ngIf="!first" (click)="changePage(0)" type="button" class="fa fa-angle-double-left first-page-button">
                 <span class="screen-reader-button-label">First Page</span>
               </button>
-              <button id="previous-page-button" *ngIf="previous" (click)="changePage(page.number - 1)" type="button" class="fa fa-angle-left">
+              <button *ngIf="previous" (click)="changePage(page.number - 1)" type="button" class="fa fa-angle-left previous-page-button">
                 <span class="screen-reader-button-label">Previous Page</span>
               </button>
-            
+
               <ng-container *ngFor="let num of displayedPages">
                 <button 
-                  [attr.id]="num === page.number ? 'active-button' : null"
+                  [attr.id]="num === page.number ? ('active-button-' + tableId) : null"
                   [ngClass]="{'active': num === page.number, 'inactive': num!== page.number }"
                   [attr.aria-current]="num === page.number ? 'true' : null"
                   [attr.aria-disabled]="num === page.number ? 'true' : null"
@@ -24,11 +24,11 @@ import { Page } from './page';
                   {{ num + 1 }}
                 </button>
               </ng-container>
-            
-              <button id="next-page-button" *ngIf="next" (click)="changePage(page.number + 1)" type="button" class="fa fa-angle-right">
+
+              <button *ngIf="next" (click)="changePage(page.number + 1)" type="button" class="fa fa-angle-right next-page-button">
                 <span class="screen-reader-button-label">Next Page</span>
               </button>
-              <button id="last-page-button" *ngIf="!last" (click)="changePage(pageCount.length - 1)" type="button" class="fa fa-angle-double-right">
+              <button *ngIf="!last" (click)="changePage(pageCount.length - 1)" type="button" class="fa fa-angle-double-right last-page-button">
                 <span class="screen-reader-button-label">Last Page</span>
               </button>
           </div>
@@ -49,6 +49,9 @@ export class SharkTablePaginationComponent implements OnChanges {
 
   @Input()
   page: Page;
+
+  @Input()
+  tableId: string;
 
   @Output()
   paginationChange = new EventEmitter<number>();

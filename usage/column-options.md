@@ -22,3 +22,9 @@
   * The current filter string for this column
 * unsortable - `boolean` - `false`
   * If this column should not be sortable
+* displayed - `boolean` - `true`
+  * If this column is currently shown
+* hideHeaderFilter - `boolean` - `false`
+  * Disable filtering for this column
+* disableOrdering - `boolean` - `false`
+  * Disable column re-ordering for this column

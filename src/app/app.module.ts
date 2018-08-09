@@ -26,6 +26,7 @@ import { CodeSampleComponent } from './samples/shared/code-sample-component';
 import { DataExportComponent } from './samples/data-export.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LargeComponent } from './samples/large.component';
+import { TwoTablesComponent } from "./samples/two-tables.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { LargeComponent } from './samples/large.component';
     ChildRowRenderingComponent,
     LargeComponent,
     CustomCellsComponent,
-    MakeComponent
+    MakeComponent,
+    TwoTablesComponent
 
   ],
   imports: [

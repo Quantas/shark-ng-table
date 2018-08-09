@@ -24,7 +24,7 @@ export class SharkTableUtils {
     return cell;
   }
 
-  public applyPipe(pipe: Type<PipeTransform>, cell,  pipeArgs: any[], pipeConstructorArgs: any[]): string {
+  public applyPipe(pipe: Type<PipeTransform>, cell,  pipeArgs: any[] = [], pipeConstructorArgs: any[] = []): string {
     const pipeInstance = new pipe(...pipeConstructorArgs);
     return pipeInstance.transform(cell, ...pipeArgs);
   }

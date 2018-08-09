@@ -1,3 +1,33 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/Quantas/shark-ng-table/compare/1.1.1...1.2.0) (2018-08-09)
+
+
+### Bug Fixes
+
+* **pipes:** set defaults on arrays for the spread operator ([61dbe20](https://github.com/Quantas/shark-ng-table/commit/61dbe20))
+* **table:** Replacing or adding dynamic "id" elements to support multiple tables on the same page ([5c3f571](https://github.com/Quantas/shark-ng-table/commit/5c3f571)), closes [#101](https://github.com/Quantas/shark-ng-table/issues/101)
+* **table:** Updating elements to have unique ids, allows for multiple tables on the same page ([aaf8e50](https://github.com/Quantas/shark-ng-table/commit/aaf8e50)), closes [#104](https://github.com/Quantas/shark-ng-table/issues/104) [#101](https://github.com/Quantas/shark-ng-table/issues/101)
+
+
+### BREAKING CHANGES
+
+* **table:** IDs have been updated table-wide. `{tableId}` is the ID of this table, `{column-property}` is the property of the given column, `{columnIndex}` is the current index of the column.
+Some IDs have become classes instead.
+CSS has been updated accordingly.
+
+* id `#local-paging-size` > id `#local-paging-size-{tableId}`
+* id `#childHeader` > class `.childHeader`
+* id `#first-page-button` > class `.first-page-button`
+* id `#previous-page-button` > class `.previous-page-button`
+* id `#active-button` > id `#active-button-{tableId}`
+* id `#next-page-button` > class `.next-page-button`
+* id `#last-page-button` > class `.last-page-button`
+* id `#{column.property}` > id `#column-{tableId}-{columnIndex}-{column.property}`
+* id `#column-{columnIndex}` > id `#column-filter-{tableId}-{columnIndex}`
+* id `#filter` > id `#filter-{tableId}`
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/Quantas/shark-ng-table/compare/1.1.0...1.1.1) (2018-08-08)
 

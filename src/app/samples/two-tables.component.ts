@@ -5,7 +5,7 @@ import { MakeComponent } from './custom-cell.component';
 
 @Component({
   template: `
-    <shark-table-code-sample pageTitle="Everything (except row links)" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample pageTitle="Two Tables" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table #sharkTable
          [data]="parent.testData"
          [columns]="tableColumns"
@@ -16,11 +16,21 @@ import { MakeComponent } from './custom-cell.component';
          [childComponent]="childComponent"
       >
       </shark-table>
-      <button mat-raised-button (click)="exportData()">Export Data (Check Console)</button>
+      <br />
+      <shark-table #sharkTable
+         [data]="parent.testData"
+         [columns]="tableColumnsTwo"
+         [columnPicker]="true"
+         [columnOrdering]="true"
+         [columnFiltering]="true"
+         [childRows]="true"
+         [childComponent]="childComponent"
+      >
+      </shark-table>
     </shark-table-code-sample>
   `
 })
-export class EverythingComponent {
+export class TwoTablesComponent {
 
   @ViewChild(SharkTableComponent)
   sharkTable: SharkTableComponent;
@@ -29,6 +39,15 @@ export class EverythingComponent {
     &lt;shark-table
       [data]="testData"
       [columns]="tableColumns"
+      [columnPicker]="true"
+      [columnOrdering]="true"
+      [columnFiltering]="true"
+      [childRows]="true"
+      [childComponent]="childComponent"
+    &lt;/shark-table&gt;
+    &lt;shark-table
+      [data]="testData"
+      [columns]="tableColumnsTwo"
       [columnPicker]="true"
       [columnOrdering]="true"
       [columnFiltering]="true"
@@ -44,13 +63,19 @@ export class EverythingComponent {
   childComponent = ChildRowRenderingComponent;
 
   tableColumns: SharkColumn[] = [
-    { header: 'Year', property: 'year', hideHeaderFilter: true, disableOrdering: true, unsortable: true },
+    { header: 'Year', property: 'year' },
+    { header: 'Make', property: 'make', component: MakeComponent },
+    { header: 'Model', property: 'model' }
+  ];
+
+  tableColumnsTwo: SharkColumn[] = [
+    { header: 'Year', property: 'year' },
     { header: 'Make', property: 'make', component: MakeComponent },
     { header: 'Model', property: 'model' }
   ];
 
   exportData(): void {
-      console.log(this.sharkTable.exportCurrentData());
+    console.log(this.sharkTable.exportCurrentData());
   }
 
 }

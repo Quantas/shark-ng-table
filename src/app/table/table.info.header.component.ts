@@ -12,10 +12,10 @@ import { NotifierService } from './notifier/notifier.service';
         <button class="server-refresh fa fa-sync" *ngIf="serverSideData" (click)="fireFilterChange()" type="button">
           <span class="screen-reader-button-label">Refresh Server Data</span>
         </button>
-        <shark-column-dropdown *ngIf="columnPicker" [columns]="allColumns" [notifierService]="notifierService" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
+        <shark-column-dropdown *ngIf="columnPicker" [tableId]="tableId" [columns]="allColumns" [notifierService]="notifierService" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
         <span class="filter-box" *ngIf="filterable && !columnFiltering && columns.length > 0">
           <label for="filter" class="screen-reader">Filter Results (all column search)</label>
-          <input #filterInput type="text" name="filter" id="filter" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? 'Filter Results' : null" />
+          <input #filterInput type="text" name="filter" id="filter-{{ tableId }}" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? 'Filter Results' : null" />
         </span>
       </div>
     </div>
@@ -58,6 +58,9 @@ export class SharkTableInfoHeaderComponent {
 
   @Input()
   notifierService: NotifierService;
+
+  @Input()
+  tableId: string;
 
   @Output()
   filterChange = new EventEmitter<SharkHeaderFilterChange>();
