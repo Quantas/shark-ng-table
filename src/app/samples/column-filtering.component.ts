@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
       <shark-table
         [data]="parent.testData"
         [columns]="parent.tableColumns"
-        [filterable]="false"
-        [localPaging]="false"
+        [columnFiltering]="true"
         [hideCaption]="true"
       >
       </shark-table>
