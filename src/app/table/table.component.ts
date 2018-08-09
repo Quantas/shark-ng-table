@@ -45,6 +45,7 @@ import { v4 as uuid } from 'uuid';
         <table>
             <caption [ngClass]="{'screen-reader': hideCaption}">{{ caption }}</caption>
             <thead shark-table-header
+                   [tableId]="tableId"
                    [sortable]="sortable"
                    [columns]="currentColumns"
                    [columnOrdering]="columnOrdering"

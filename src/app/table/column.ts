@@ -62,5 +62,18 @@ export interface SharkColumn {
    */
   unsortable?: boolean;
 
+  /**
+   * Disable filtering for this column
+   */
+  hideHeaderFilter?: boolean;
+
+  /**
+   * Disable column re-ordering for this column
+   */
+  disableOrdering?: boolean;
+
+  /**
+   * If this column is currently shown, Default `true`
+   */
   displayed?: boolean;
 }

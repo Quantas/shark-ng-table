@@ -13,6 +13,7 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { DataExportComponent } from './samples/data-export.component';
 import { LargeComponent } from './samples/large.component';
+import { TwoTablesComponent } from "./samples/two-tables.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'column-picker', component: ColumnPickerComponent },
   { path: 'child-rows', component: ChildRowsComponent },
   { path: 'custom-cells', component: CustomCellsComponent },
-  { path: 'large', component: LargeComponent }
+  { path: 'large', component: LargeComponent },
+  { path: 'two-tables', component: TwoTablesComponent },
 ];
 
 @NgModule({
