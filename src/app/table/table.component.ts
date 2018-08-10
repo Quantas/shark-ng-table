@@ -1,5 +1,5 @@
 import {
-  Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, Type,
+  Component, ContentChild, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef, Type,
   ViewChild
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -26,22 +26,24 @@ import { v4 as uuid } from 'uuid';
   selector: 'shark-table',
   template: `
       <shark-table-aria-notifier [notifierService]="notifierService" [tableId]="tableId"></shark-table-aria-notifier>
+      <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker)"
+                               [serverSideData]="serverSideData"
+                               [filterable]="filterable"
+                               [columnFiltering]="columnFiltering"
+                               [columnPicker]="columnPicker"
+                               [columns]="currentColumns"
+                               [allColumns]="columns"
+                               [filter]="filter"
+                               [showFilterPlaceholders]="showFilterPlaceholders"
+                               [localPagingSize]="localPagingSize"
+                               [notifierService]="notifierService"
+                               [tableId]="tableId"
+                               [leftSideHeaderTemplate]="headerLeftTemplate"
+                               [rightSideHeaderTemplate]="headerRightTemplate"
+                               (filterChange)="headerChange($event)"
+                               (columnChange)="updateCurrentColumns($event)"
+      ></shark-table-info-header>
       <div class="table-wrapper" id="shark-table-{{ tableId }}" *ngIf="page">
-        <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker)"
-                                 [serverSideData]="serverSideData"
-                                 [filterable]="filterable"
-                                 [columnFiltering]="columnFiltering"
-                                 [columnPicker]="columnPicker"
-                                 [columns]="currentColumns"
-                                 [allColumns]="columns"
-                                 [filter]="filter"
-                                 [showFilterPlaceholders]="showFilterPlaceholders"
-                                 [localPagingSize]="localPagingSize"
-                                 [notifierService]="notifierService"
-                                 [tableId]="tableId"
-                                 (filterChange)="headerChange($event)"
-                                 (columnChange)="updateCurrentColumns($event)"
-        ></shark-table-info-header>
         <table>
             <caption [ngClass]="{'screen-reader': hideCaption}">{{ caption }}</caption>
             <thead shark-table-header
@@ -77,20 +79,22 @@ import { v4 as uuid } from 'uuid';
                    [cellStylingFunction]="cellStylingFunction"
             ></tbody>
         </table>
-        <shark-table-footer *ngIf="footer && currentColumns.length > 0"
-                            [page]="page"
-                            [columns]="currentColumns"
-                            [filter]="filter"
-                            [localPaging]="localPaging"
-                            [localPagingSize]="localPagingSize"
-                            [localPagingOptions]="localPagingOptions"
-                            [showLocalPagingOptions]="showLocalPagingOptions"
-                            [notifierService]="notifierService"
-                            [tableId]="tableId"
-                            (filterChange)="headerChange($event)"
-                            (paginationChange)="changePage($event)"
-        ></shark-table-footer>
       </div>
+      <shark-table-footer *ngIf="footer && currentColumns.length > 0"
+                          [page]="page"
+                          [columns]="currentColumns"
+                          [filter]="filter"
+                          [localPaging]="localPaging"
+                          [localPagingSize]="localPagingSize"
+                          [localPagingOptions]="localPagingOptions"
+                          [showLocalPagingOptions]="showLocalPagingOptions"
+                          [notifierService]="notifierService"
+                          [tableId]="tableId"
+                          [leftSideFooterTemplate]="footerLeftTemplate"
+                          [rightSideFooterTemplate]="footerRightTemplate"
+                          (filterChange)="headerChange($event)"
+                          (paginationChange)="changePage($event)"
+      ></shark-table-footer>
   `
 })
 export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
@@ -103,6 +107,18 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
   @ViewChild(SharkTableFooterComponent)
   footerComponent: SharkTableFooterComponent;
+
+  @ContentChild('headerLeft')
+  headerLeftTemplate: TemplateRef<any>;
+
+  @ContentChild('headerRight')
+  headerRightTemplate: TemplateRef<any>;
+
+  @ContentChild('footerLeft')
+  footerLeftTemplate: TemplateRef<any>;
+
+  @ContentChild('footerRight')
+  footerRightTemplate: TemplateRef<any>;
 
   notifierService = new NotifierService();
 

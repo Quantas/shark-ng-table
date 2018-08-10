@@ -10,29 +10,38 @@
   width: 100%;
 }
 
+.flex-spacer {
+  margin-left: auto;
+}
+
 .controls {
   overflow: auto;
 }
 
-.controls .filter-box {
-  float: right;
+.controls.header-buttons {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.controls .column-picker {
-  float: left
+.info-footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.left-side-template {
+  margin-left: 0.5rem;
+}
+
+.right-side-template {
+  margin-right: 0.5rem;
 }
 
 .controls .server-refresh {
-  float: left;
   padding-top: 0.3rem;
 }
 
 .controls button {
   margin-left: 0.25rem;
-}
-
-.controls:after {
-  clear: both;
 }
 
 table {
@@ -101,10 +110,6 @@ th, td {
   width: 1rem;
 }
 
-.page-size-controls {
-  float: left;
-}
-
 .local-paging-size {
   margin-right: 1.5rem;
 }
@@ -138,9 +143,8 @@ th, td {
   color: black;
   font-weight: normal;
   padding: 0.5rem;
-  margin: 0;
-  margin-left: 0.5rem;
-  min-width: 7rem;
+  position: absolute;
+  margin-right: 2rem;
 }
 
 .column-picker .dropdown fieldset {
