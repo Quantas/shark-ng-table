@@ -27,6 +27,9 @@
     "url": "https://github.com/Quantas/shark-ng-table/issues"
   },
   "homepage": "https://github.com/Quantas/shark-ng-table",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "peerDependencies": {
     "@angular/common": "^5.0.0 || ^6.0.0",
     "@angular/core": "^5.0.0 || ^6.0.0",
