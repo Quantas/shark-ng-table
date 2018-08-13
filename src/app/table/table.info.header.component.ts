@@ -8,7 +8,7 @@ import { NotifierService } from './notifier/notifier.service';
   template: `
     <div class="info-header">
       <div class="controls header-buttons">
-        <button class="toggle-dropdown" type="button" (click)="showDropDown = !showDropDown" [attr.aria-expanded]="showDropDown" [attr.aria-controls]="'column-picker-dropdown-' + tableId" #dropdownButton>
+        <button *ngIf="columnPicker" class="toggle-dropdown" type="button" (click)="showDropDown = !showDropDown" [attr.aria-expanded]="showDropDown" [attr.aria-controls]="'column-picker-dropdown-' + tableId">
           <span>Choose Columns<i class="fa fa-fw fa-angle-down"></i></span>
         </button>
         <button class="server-refresh fa fa-sync" *ngIf="serverSideData" (click)="fireFilterChange()" type="button">
@@ -26,7 +26,7 @@ import { NotifierService } from './notifier/notifier.service';
           <input #filterInput type="text" name="filter" id="filter-{{ tableId }}" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? 'Filter Results' : null" />
         </span>
       </div>
-      <div [id]="'column-picker-dropdown-' + tableId" class="dropdown" [attr.aria-hidden]="!showDropDown" role="region" tabindex="-1" [hidden]="!showDropDown" [ngStyle]="{'display': !showDropDown ? 'none' : 'block'}">
+      <div *ngIf="columnPicker" [id]="'column-picker-dropdown-' + tableId" class="dropdown" [attr.aria-hidden]="!showDropDown" role="region" tabindex="-1" [hidden]="!showDropDown" [ngStyle]="{'display': !showDropDown ? 'none' : 'block'}">
         <fieldset>
           <legend class="screen-reader">Columns to display</legend>
           <div class="column-wrapper">
@@ -41,9 +41,6 @@ import { NotifierService } from './notifier/notifier.service';
   `
 })
 export class SharkTableInfoHeaderComponent {
-
-  @ViewChild('dropdownButton')
-  dropdownButton: ElementRef;
 
   @Input()
   leftSideHeaderTemplate: TemplateRef<any>;

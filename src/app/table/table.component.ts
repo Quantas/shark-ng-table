@@ -26,7 +26,7 @@ import { v4 as uuid } from 'uuid';
   selector: 'shark-table',
   template: `
       <shark-table-aria-notifier [notifierService]="notifierService" [tableId]="tableId"></shark-table-aria-notifier>
-      <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker)"
+      <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker || headerLeftTemplate || headerRightTemplate)"
                                [serverSideData]="serverSideData"
                                [filterable]="filterable"
                                [columnFiltering]="columnFiltering"

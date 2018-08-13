@@ -26,7 +26,8 @@ import { CodeSampleComponent } from './samples/shared/code-sample-component';
 import { DataExportComponent } from './samples/data-export.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LargeComponent } from './samples/large.component';
-import { TwoTablesComponent } from "./samples/two-tables.component";
+import { TwoTablesComponent } from './samples/two-tables.component';
+import { ContentProjectionComponent } from './samples/content-projection.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { TwoTablesComponent } from "./samples/two-tables.component";
     ColumnPickerComponent,
     ChildRowsComponent,
     ChildRowRenderingComponent,
+    ContentProjectionComponent,
     LargeComponent,
     CustomCellsComponent,
     MakeComponent,
