@@ -30,7 +30,7 @@ import { NotifierService } from './notifier/notifier.service';
         <fieldset>
           <legend class="screen-reader">Columns to display</legend>
           <div class="column-wrapper">
-            <label *ngFor="let column of columns">
+            <label *ngFor="let column of allColumns">
               <input type="checkbox" [(ngModel)]="column.displayed" (ngModelChange)="fireColumnChange()" />
               {{ column.header }}
             </label>
@@ -95,8 +95,6 @@ export class SharkTableInfoHeaderComponent {
 
   showDropDown = false;
 
-  constructor(private elementRef: ElementRef) {}
-
   fireFilterChange(): void {
     this.filterChange.emit({
       columns: this.columns,
@@ -106,7 +104,7 @@ export class SharkTableInfoHeaderComponent {
   }
 
   fireColumnChange(): void {
-    this.columnChange.emit(this.columns);
+    this.columnChange.emit(this.allColumns);
   }
 
 }
