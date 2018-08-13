@@ -13,7 +13,6 @@ import { SharkTableBodyComponent } from './table.body.component';
 import { SharkTableHeaderComponent } from './table.header.component';
 import { SharkTableFooterComponent } from './table.footer.component';
 import { SharkDynamicContentsDirective } from './dynamic/dynamic.contents.directive';
-import { SharkColumnDropdownComponent } from './column-dropdown.component';
 import { SharkTableInfoHeaderComponent } from './table.info.header.component';
 import { SharkTableHeaderButtonComponent } from './header-button.component';
 import { AriaNotifierComponent } from './notifier/aria-notifier.component';
@@ -36,8 +35,7 @@ import { AriaNotifierComponent } from './notifier/aria-notifier.component';
     SharkTableFooterComponent,
     SharkTablePaginationComponent,
     SharkTableBodyComponent,
-    LocalFilterPipe,
-    SharkColumnDropdownComponent
+    LocalFilterPipe
   ],
   exports: [
     SharkTableComponent,

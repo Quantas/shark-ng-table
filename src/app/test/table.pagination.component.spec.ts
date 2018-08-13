@@ -1,6 +1,7 @@
 import { async } from '@angular/core/testing';
-import { SharkTablePaginationComponent, SharkTableUtils } from '../table';
 import { ElementRef } from '@angular/core';
+import { SharkTableUtils } from '../table';
+import { SharkTablePaginationComponent } from "../table/table.pagination.component";
 
 describe('SharkTableUtils', () => {
 

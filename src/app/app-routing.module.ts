@@ -13,7 +13,8 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { DataExportComponent } from './samples/data-export.component';
 import { LargeComponent } from './samples/large.component';
-import { TwoTablesComponent } from "./samples/two-tables.component";
+import { TwoTablesComponent } from './samples/two-tables.component';
+import { ContentProjectionComponent } from './samples/content-projection.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'column-filtering', component: ColumnFilteringComponent },
   { path: 'column-ordering', component: ColumnOrderingComponent },
   { path: 'column-picker', component: ColumnPickerComponent },
+  { path: 'content-projection', component: ContentProjectionComponent },
   { path: 'child-rows', component: ChildRowsComponent },
   { path: 'custom-cells', component: CustomCellsComponent },
   { path: 'large', component: LargeComponent },

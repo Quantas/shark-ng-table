@@ -15,8 +15,20 @@ import { MakeComponent } from './custom-cell.component';
          [childRows]="true"
          [childComponent]="childComponent"
       >
+        <ng-template #headerLeft>
+          Left Side!
+        </ng-template>
+        <ng-template #headerRight>
+          <button (click)="exportData()">Export Data (Check Console)</button>
+        </ng-template>
+
+        <ng-template #footerLeft>
+          Left Side!
+        </ng-template>
+        <ng-template #footerRight>
+          Right Side!
+        </ng-template>
       </shark-table>
-      <button mat-raised-button (click)="exportData()">Export Data (Check Console)</button>
     </shark-table-code-sample>
   `
 })

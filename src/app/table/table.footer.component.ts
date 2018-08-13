@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { Page } from './page';
 import { SharkColumn } from './column';
 import { SharkTableUtils } from './table.utils';
@@ -19,7 +19,16 @@ import { NotifierService } from './notifier/notifier.service';
       </select>
       <span>{{ currentPageInfo }}</span>
     </div>
-    <shark-table-pagination *ngIf="columns.length > 0" [page]="page" [tableId]="tableId" (paginationChange)="changePage($event)"></shark-table-pagination>
+    <div *ngIf="leftSideFooterTemplate" class="left-side-template">
+      <ng-container *ngTemplateOutlet="leftSideFooterTemplate"></ng-container>
+    </div>
+    <div class="flex-spacer"></div>
+    <div *ngIf="rightSideFooterTemplate" class="right-side-template">
+      <ng-container *ngTemplateOutlet="rightSideFooterTemplate"></ng-container>
+    </div>
+    <div>
+      <shark-table-pagination *ngIf="columns.length > 0" [page]="page" [tableId]="tableId" (paginationChange)="changePage($event)"></shark-table-pagination>
+    </div>
   </div>`
 })
 export class SharkTableFooterComponent implements OnChanges {
@@ -33,6 +42,12 @@ export class SharkTableFooterComponent implements OnChanges {
 
   @ViewChild(SharkTablePaginationComponent)
   paginationComponent: SharkTablePaginationComponent;
+
+  @Input()
+  leftSideFooterTemplate: TemplateRef<any>;
+
+  @Input()
+  rightSideFooterTemplate: TemplateRef<any>;
 
   @Input()
   notifierService: NotifierService;

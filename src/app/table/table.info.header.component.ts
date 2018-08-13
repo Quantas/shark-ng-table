@@ -1,5 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { SharkColumnDropdownComponent } from './column-dropdown.component';
+import { Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { SharkColumn } from './column';
 import { SharkHeaderFilterChange } from './table.header.component';
 import { NotifierService } from './notifier/notifier.service';
@@ -9,22 +8,45 @@ import { NotifierService } from './notifier/notifier.service';
   template: `
     <div class="info-header">
       <div class="controls header-buttons">
+        <button *ngIf="columnPicker" class="toggle-dropdown" type="button" (click)="showDropDown = !showDropDown" [attr.aria-expanded]="showDropDown" [attr.aria-controls]="'column-picker-dropdown-' + tableId">
+          <span>Choose Columns<i class="fa fa-fw fa-angle-down"></i></span>
+        </button>
         <button class="server-refresh fa fa-sync" *ngIf="serverSideData" (click)="fireFilterChange()" type="button">
           <span class="screen-reader-button-label">Refresh Server Data</span>
         </button>
-        <shark-column-dropdown *ngIf="columnPicker" [tableId]="tableId" [columns]="allColumns" [notifierService]="notifierService" (columnChange)="fireColumnChange($event)"></shark-column-dropdown>
+        <div *ngIf="leftSideHeaderTemplate" class="left-side-template">
+          <ng-container *ngTemplateOutlet="leftSideHeaderTemplate"></ng-container>
+        </div>
+        <div class="flex-spacer"></div>
+        <div *ngIf="rightSideHeaderTemplate" class="right-side-template">
+          <ng-container *ngTemplateOutlet="rightSideHeaderTemplate"></ng-container>
+        </div>
         <span class="filter-box" *ngIf="filterable && !columnFiltering && columns.length > 0">
           <label for="filter" class="screen-reader">Filter Results (all column search)</label>
           <input #filterInput type="text" name="filter" id="filter-{{ tableId }}" [(ngModel)]="filter" (ngModelChange)="fireFilterChange()" [attr.placeholder]="showFilterPlaceholders ? 'Filter Results' : null" />
         </span>
+      </div>
+      <div *ngIf="columnPicker" [id]="'column-picker-dropdown-' + tableId" class="dropdown" [attr.aria-hidden]="!showDropDown" role="region" tabindex="-1" [hidden]="!showDropDown" [ngStyle]="{'display': !showDropDown ? 'none' : 'block'}">
+        <fieldset>
+          <legend class="screen-reader">Columns to display</legend>
+          <div class="column-wrapper">
+            <label *ngFor="let column of allColumns">
+              <input type="checkbox" [(ngModel)]="column.displayed" (ngModelChange)="fireColumnChange()" />
+              {{ column.header }}
+            </label>
+          </div>
+        </fieldset>
       </div>
     </div>
   `
 })
 export class SharkTableInfoHeaderComponent {
 
-  @ViewChild(SharkColumnDropdownComponent)
-  columnPickerComponent: SharkColumnDropdownComponent;
+  @Input()
+  leftSideHeaderTemplate: TemplateRef<any>;
+
+  @Input()
+  rightSideHeaderTemplate: TemplateRef<any>;
 
   @ViewChild('filterInput')
   filterInput: ElementRef;
@@ -68,6 +90,8 @@ export class SharkTableInfoHeaderComponent {
   @Output()
   columnChange = new EventEmitter<SharkColumn[]>();
 
+  showDropDown = false;
+
   fireFilterChange(): void {
     this.filterChange.emit({
       columns: this.columns,
@@ -76,8 +100,8 @@ export class SharkTableInfoHeaderComponent {
     });
   }
 
-  fireColumnChange(event: SharkColumn[]): void {
-    this.columnChange.emit(event);
+  fireColumnChange(): void {
+    this.columnChange.emit(this.allColumns);
   }
 
 }

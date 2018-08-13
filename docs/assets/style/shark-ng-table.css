@@ -10,20 +10,33 @@
   width: 100%;
 }
 
+.flex-spacer {
+  margin-left: auto;
+}
+
 .controls {
   overflow: auto;
 }
 
-.controls .filter-box {
-  float: right;
+.controls.header-buttons {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.controls .column-picker {
-  float: left
+.info-footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.left-side-template {
+  margin-left: 0.5rem;
+}
+
+.right-side-template {
+  margin-right: 0.5rem;
 }
 
 .controls .server-refresh {
-  float: left;
   padding-top: 0.3rem;
 }
 
@@ -31,8 +44,8 @@
   margin-left: 0.25rem;
 }
 
-.controls:after {
-  clear: both;
+.controls button.toggle-dropdown {
+  margin-left: 0;
 }
 
 table {
@@ -79,6 +92,7 @@ th, td {
   font-size: 16px;
   cursor: pointer;
   padding-left: 0;
+  padding-right: 0.25rem;
 }
 
 .data-row.even > td {
@@ -99,10 +113,6 @@ th, td {
 
 .child-spacer {
   width: 1rem;
-}
-
-.page-size-controls {
-  float: left;
 }
 
 .local-paging-size {
@@ -132,24 +142,21 @@ th, td {
   text-align: left;
 }
 
-.column-picker .dropdown {
+.dropdown {
   border: 1px solid #DDDDDD;
   background-color: white;
   color: black;
   font-weight: normal;
   padding: 0.5rem;
-  margin: 0;
-  margin-left: 0.5rem;
-  min-width: 7rem;
 }
 
-.column-picker .dropdown fieldset {
+.dropdown fieldset {
   margin: 0;
   padding: 0;
   border: none;
 }
 
-.column-picker .dropdown .column-wrapper {
+.dropdown .column-wrapper {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -157,7 +164,7 @@ th, td {
   align-content: flex-start;
 }
 
-.column-picker .dropdown label {
+.dropdown label {
   cursor: pointer;
   display: block;
   text-align: left;
@@ -165,7 +172,7 @@ th, td {
   min-width: 13rem;
 }
 
-.column-picker .dropdown label input {
+.dropdown label input {
   vertical-align: top;
 }
 
