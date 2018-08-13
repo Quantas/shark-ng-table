@@ -25,8 +25,8 @@ describe('SharkTableComponentColumnPicker', () => {
     expect(component.sharkTable.page.number).toEqual(0);
     fixture.detectChanges();
 
-    component.sharkTable.headerInfoComponent.columnPickerComponent.columns[1].displayed = false;
-    component.sharkTable.headerInfoComponent.columnPickerComponent.emitSelected();
+    component.sharkTable.headerInfoComponent.columns[1].displayed = false;
+    component.sharkTable.headerInfoComponent.fireColumnChange();
     fixture.detectChanges();
 
     expect(component.sharkTable.currentColumns).toEqual([
