@@ -1,3 +1,21 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/Quantas/shark-ng-table/compare/1.2.0...1.3.0) (2018-08-13)
+
+
+### Features
+
+* Allow content projection into the header/footer, don't let controls scroll horiz ([e30a7ee](https://github.com/Quantas/shark-ng-table/commit/e30a7ee)), closes [#105](https://github.com/Quantas/shark-ng-table/issues/105) [#106](https://github.com/Quantas/shark-ng-table/issues/106)
+* Place the column picker below the content projection flexbox ([8b30930](https://github.com/Quantas/shark-ng-table/commit/8b30930)), closes [#105](https://github.com/Quantas/shark-ng-table/issues/105)
+
+
+### BREAKING CHANGES
+
+* The `.column-picker` CSS wrapper has been removed and the elements are one up in the DOM again.
+* The `shark-table-pagination` component is no longer exposed in index.ts (this was never intended)
+* The info header and footer are now outside the table-wrapper so that they don't scroll with the table contents
+* The info header and footer are now flexbox instead of floats
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/Quantas/shark-ng-table/compare/1.1.1...1.2.0) (2018-08-09)
 
