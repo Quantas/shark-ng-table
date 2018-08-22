@@ -14,6 +14,7 @@ import { MakeComponent } from './custom-cell.component';
          [columnFiltering]="true"
          [childRows]="true"
          [childComponent]="childComponent"
+         (columnChange)="columnChange($event)"
       >
         <ng-template #headerLeft>
           Left Side!
@@ -76,7 +77,11 @@ export class EverythingComponent {
   ];
 
   exportData(): void {
-      console.log(this.sharkTable.exportCurrentData());
+    console.log(this.sharkTable.exportCurrentData());
+  }
+
+  columnChange(newColumns: SharkColumn[]): void {
+    console.log(newColumns);
   }
 
 }

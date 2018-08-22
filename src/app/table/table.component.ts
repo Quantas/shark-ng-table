@@ -296,6 +296,12 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   pageChange = new EventEmitter<SharkPageChangeEvent>();
 
   /**
+   * The column metadata is emitted from here whenever it changes
+   */
+  @Output()
+  columnChange = new EventEmitter<SharkColumn[]>();
+
+  /**
    * The current filter value
    */
   @Input()
@@ -358,11 +364,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  updateCurrentColumns(newColumns: SharkColumn[], emit = true): void {
+  updateCurrentColumns(newColumns: SharkColumn[], emitPageEvent = true): void {
     this.currentColumns = newColumns.filter((value: SharkColumn) => value.displayed);
-    if (emit) {
+    this.columns = newColumns;
+    if (emitPageEvent) {
       this.emitCurrent();
     }
+    this.columnChange.emit(this.columns);
   }
 
   /**
@@ -443,6 +451,8 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         sorts: sorts,
         filter: this.filter
       });
+
+      this.columnChange.emit(this.columns);
     }
   }
 
@@ -473,7 +483,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     };
   }
 
-  private generateSortString(): string {
+  public generateSortString(): string {
     let sortString = '';
 
     this.currentColumns.forEach((column: SharkColumn) => {

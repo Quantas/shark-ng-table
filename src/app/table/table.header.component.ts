@@ -136,6 +136,7 @@ export class SharkTableHeaderComponent {
       if (newIndex > -1 && newIndex < this.columns.length) {
         const removedElement = this.columns.splice(index, 1)[0];
         this.columns.splice(newIndex, 0, removedElement);
+        this.columnChange.emit(this.columns);
       }
 
     }
