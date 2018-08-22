@@ -23,7 +23,8 @@ export class BasicComponent {
       [filterable]="false"
       [localPaging]="false"
       [hideCaption]="true"
-    &gt;&lt;/shark-table&gt;
+    &gt;
+    &lt;/shark-table&gt;
   `;
 
   tsSample = `

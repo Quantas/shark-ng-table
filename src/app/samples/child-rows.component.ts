@@ -26,7 +26,8 @@ export class ChildRowsComponent {
       [childRows]="true"
       [childComponent]="childComponent"
       [hideCaption]="true"
-    &gt;&lt;/shark-table&gt;
+    &gt;
+    &lt;/shark-table&gt;
   `;
 
   tsSample = `

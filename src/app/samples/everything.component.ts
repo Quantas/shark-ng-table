@@ -46,6 +46,20 @@ export class EverythingComponent {
       [columnFiltering]="true"
       [childRows]="true"
       [childComponent]="childComponent"
+    &gt;
+      &lt;ng-template #headerLeft&gt;
+        Left Side!
+      &lt;/ng-template&gt;
+      &lt;ng-template #headerRight&gt;
+        &lt;button (click)="exportData()"&gt;Export Data (Check Console)&lt;/button&gt;
+      &lt;/ng-template&gt;
+
+      &lt;ng-template #footerLeft&gt;
+        Left Side!
+      &lt;/ng-template&gt;
+      &lt;ng-template #footerRight&gt;
+        Right Side!
+      &lt;/ng-template&gt;
     &lt;/shark-table&gt;
   `;
 

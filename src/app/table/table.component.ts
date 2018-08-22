@@ -25,76 +25,80 @@ import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'shark-table',
   template: `
-      <shark-table-aria-notifier [notifierService]="notifierService" [tableId]="tableId"></shark-table-aria-notifier>
-      <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker || headerLeftTemplate || headerRightTemplate)"
-                               [serverSideData]="serverSideData"
-                               [filterable]="filterable"
-                               [columnFiltering]="columnFiltering"
-                               [columnPicker]="columnPicker"
-                               [columns]="currentColumns"
-                               [allColumns]="columns"
-                               [filter]="filter"
-                               [showFilterPlaceholders]="showFilterPlaceholders"
-                               [localPagingSize]="localPagingSize"
-                               [notifierService]="notifierService"
-                               [tableId]="tableId"
-                               [leftSideHeaderTemplate]="headerLeftTemplate"
-                               [rightSideHeaderTemplate]="headerRightTemplate"
-                               (filterChange)="headerChange($event)"
-                               (columnChange)="updateCurrentColumns($event)"
-      ></shark-table-info-header>
-      <div class="table-wrapper" id="shark-table-{{ tableId }}" *ngIf="page">
-        <table>
-            <caption [ngClass]="{'screen-reader': hideCaption}">{{ caption }}</caption>
-            <thead shark-table-header
-                   [tableId]="tableId"
-                   [sortable]="sortable"
-                   [columns]="currentColumns"
-                   [columnOrdering]="columnOrdering"
-                   [childRows]="childRows"
-                   [page]="page"
-                   [filterable]="filterable"
-                   [columnFiltering]="columnFiltering"
-                   [localPagingSize]="localPagingSize"
-                   [filter]="filter"
-                   [showFilterPlaceholders]="showFilterPlaceholders"
-                   [notifierService]="notifierService"
-                   (sortChange)="changeSort($event.property, $event.sortType)"
-                   (filterChange)="headerChange($event)"
-                   (columnChange)="updateCurrentColumns($event)"
-            ></thead>
-            <tbody shark-table-body
-                   [currentColumns]="currentColumns"
-                   [columns]="columns"
-                   [localFilter]="localFilter"
-                   [localPaging]="localPaging"
-                   [columnFiltering]="columnFiltering"
-                   [filter]="filter"
-                   [childRows]="childRows"
-                   [childComponent]="childComponent"
-                   [linkTarget]="linkTarget" [linkKey]="linkKey"
-                   [page]="page"
-                   [tableEmptyMessage]="tableEmptyMessage"
-                   [rowStylingFunction]="rowStylingFunction"
-                   [cellStylingFunction]="cellStylingFunction"
-            ></tbody>
-        </table>
+      <div class="shark-table" id="shark-table-{{ tableId }}">
+        <ng-container *ngIf="page">
+          <shark-table-aria-notifier [notifierService]="notifierService" [tableId]="tableId"></shark-table-aria-notifier>
+          <shark-table-info-header *ngIf="(serverSideData || (filterable && !columnFiltering) || columnPicker || headerLeftTemplate || headerRightTemplate)"
+                                   [serverSideData]="serverSideData"
+                                   [filterable]="filterable"
+                                   [columnFiltering]="columnFiltering"
+                                   [columnPicker]="columnPicker"
+                                   [columns]="currentColumns"
+                                   [allColumns]="columns"
+                                   [filter]="filter"
+                                   [showFilterPlaceholders]="showFilterPlaceholders"
+                                   [localPagingSize]="localPagingSize"
+                                   [notifierService]="notifierService"
+                                   [tableId]="tableId"
+                                   [leftSideHeaderTemplate]="headerLeftTemplate"
+                                   [rightSideHeaderTemplate]="headerRightTemplate"
+                                   (filterChange)="headerChange($event)"
+                                   (columnChange)="updateCurrentColumns($event)"
+          ></shark-table-info-header>
+          <div class="table-wrapper">
+            <table>
+                <caption [ngClass]="{'screen-reader': hideCaption}">{{ caption }}</caption>
+                <thead shark-table-header
+                       [tableId]="tableId"
+                       [sortable]="sortable"
+                       [columns]="currentColumns"
+                       [columnOrdering]="columnOrdering"
+                       [childRows]="childRows"
+                       [page]="page"
+                       [filterable]="filterable"
+                       [columnFiltering]="columnFiltering"
+                       [localPagingSize]="localPagingSize"
+                       [filter]="filter"
+                       [showFilterPlaceholders]="showFilterPlaceholders"
+                       [notifierService]="notifierService"
+                       (sortChange)="changeSort($event.property, $event.sortType)"
+                       (filterChange)="headerChange($event)"
+                       (columnChange)="updateCurrentColumns($event)"
+                ></thead>
+                <tbody shark-table-body
+                       [currentColumns]="currentColumns"
+                       [columns]="columns"
+                       [localFilter]="localFilter"
+                       [localPaging]="localPaging"
+                       [columnFiltering]="columnFiltering"
+                       [filter]="filter"
+                       [childRows]="childRows"
+                       [childComponent]="childComponent"
+                       [linkTarget]="linkTarget" [linkKey]="linkKey"
+                       [page]="page"
+                       [tableEmptyMessage]="tableEmptyMessage"
+                       [rowStylingFunction]="rowStylingFunction"
+                       [cellStylingFunction]="cellStylingFunction"
+                ></tbody>
+            </table>
+          </div>
+          <shark-table-footer *ngIf="footer && currentColumns.length > 0"
+                              [page]="page"
+                              [columns]="currentColumns"
+                              [filter]="filter"
+                              [localPaging]="localPaging"
+                              [localPagingSize]="localPagingSize"
+                              [localPagingOptions]="localPagingOptions"
+                              [showLocalPagingOptions]="showLocalPagingOptions"
+                              [notifierService]="notifierService"
+                              [tableId]="tableId"
+                              [leftSideFooterTemplate]="footerLeftTemplate"
+                              [rightSideFooterTemplate]="footerRightTemplate"
+                              (filterChange)="headerChange($event)"
+                              (paginationChange)="changePage($event)"
+          ></shark-table-footer>
+        </ng-container>
       </div>
-      <shark-table-footer *ngIf="footer && currentColumns.length > 0"
-                          [page]="page"
-                          [columns]="currentColumns"
-                          [filter]="filter"
-                          [localPaging]="localPaging"
-                          [localPagingSize]="localPagingSize"
-                          [localPagingOptions]="localPagingOptions"
-                          [showLocalPagingOptions]="showLocalPagingOptions"
-                          [notifierService]="notifierService"
-                          [tableId]="tableId"
-                          [leftSideFooterTemplate]="footerLeftTemplate"
-                          [rightSideFooterTemplate]="footerRightTemplate"
-                          (filterChange)="headerChange($event)"
-                          (paginationChange)="changePage($event)"
-      ></shark-table-footer>
   `
 })
 export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {

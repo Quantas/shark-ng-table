@@ -1,3 +1,18 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/Quantas/shark-ng-table/compare/1.3.0...2.0.0) (2018-08-22)
+
+
+### Bug Fixes
+
+* **styles:** Wrap table in a `.shark-table` div and prefix all CSS classes ([67d2c11](https://github.com/Quantas/shark-ng-table/commit/67d2c11)), closes [#108](https://github.com/Quantas/shark-ng-table/issues/108)
+
+
+### BREAKING CHANGES
+
+* **styles:** * All CSS is now prefixed with `shark-table` and there is a wrapper div with the same class on it
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/Quantas/shark-ng-table/compare/1.2.0...1.3.0) (2018-08-13)
 

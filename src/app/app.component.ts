@@ -22,7 +22,7 @@ import 'rxjs/add/operator/takeUntil';
     </mat-toolbar>
     <mat-sidenav-container>
       <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="bottom-to-top">
-        <mat-nav-list>
+        <mat-nav-list (click)="closeNav()">
           <a mat-list-item [routerLink]="['basic']">Basic</a>
           <a mat-list-item [routerLink]="['cellstyle']">Cell Styling</a>
           <a mat-list-item [routerLink]="['child-rows']">Child Rows</a>
@@ -101,5 +101,11 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.destroy.next(true);
     this.destroy.unsubscribe();
+  }
+
+  closeNav(): void {
+    if (this.over === 'over') {
+      this.opened = false;
+    }
   }
 }

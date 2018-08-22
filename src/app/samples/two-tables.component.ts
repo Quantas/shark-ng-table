@@ -44,6 +44,7 @@ export class TwoTablesComponent {
       [columnFiltering]="true"
       [childRows]="true"
       [childComponent]="childComponent"
+    &gt;
     &lt;/shark-table&gt;
     &lt;shark-table
       [data]="testData"
@@ -53,6 +54,7 @@ export class TwoTablesComponent {
       [columnFiltering]="true"
       [childRows]="true"
       [childComponent]="childComponent"
+    &gt;
     &lt;/shark-table&gt;
   `;
 
