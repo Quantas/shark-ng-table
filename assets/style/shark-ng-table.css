@@ -1,92 +1,93 @@
 @charset "UTF-8";
 
-.rowLink:hover {
+.shark-table .rowLink:hover {
   background-color: #ddd;
   cursor: pointer;
 }
 
-.table-wrapper {
+.shark-table .table-wrapper {
   overflow: auto;
-  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
-.flex-spacer {
+.shark-table .flex-spacer {
   margin-left: auto;
 }
 
-.controls {
+.shark-table .controls {
   overflow: auto;
 }
 
-.controls.header-buttons {
+.shark-table .controls.header-buttons {
   display: flex;
   flex-wrap: wrap;
 }
 
-.info-footer {
+.shark-table .info-footer {
   display: flex;
   flex-wrap: wrap;
 }
 
-.left-side-template {
+.shark-table .left-side-template {
   margin-left: 0.5rem;
 }
 
-.right-side-template {
+.shark-table .right-side-template {
   margin-right: 0.5rem;
 }
 
-.controls .server-refresh {
+.shark-table .controls .server-refresh {
   padding-top: 0.3rem;
 }
 
-.controls button {
+.shark-table .controls button {
   margin-left: 0.25rem;
 }
 
-.controls button.toggle-dropdown {
+.shark-table .controls button.toggle-dropdown {
   margin-left: 0;
 }
 
-table {
+.shark-table .table-wrapper table {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border-collapse: collapse;
   width: 100%;
 }
 
-table .right {
+.shark-table .table-wrapper table .right {
   text-align: right;
 }
 
-th, td {
+.shark-table .table-wrapper th,
+.shark-table .table-wrapper td {
   padding: 0.25rem 1rem 0.25rem 1rem;
 }
 
-.header-row > th {
+.shark-table .header-row > th {
   white-space: nowrap;
 }
 
-.header-row > th,
-.header-row > td {
+.shark-table .header-row > th,
+.shark-table .header-row > td {
   border-right: 1px solid black;
 }
 
-.header-row > th:last-child,
-.header-row > td:last-child {
+.shark-table .header-row > th:last-child,
+.shark-table .header-row > td:last-child {
   border-right: none;
 }
 
-.header-filter-row > td {
+.shark-table .header-filter-row > td {
   text-align: center;
 }
 
-.header-row {
+.shark-table .header-row {
   border-bottom: 1px solid black;
   border-top: 1px solid black;
 }
 
-.header-buttons button {
+.shark-table .header-buttons button {
   background: none;
   border: none;
   font-size: 16px;
@@ -95,54 +96,54 @@ th, td {
   padding-right: 0.25rem;
 }
 
-.data-row.even > td {
+.shark-table .data-row.even > td {
   border-right: 1px solid #f2f2f2;
 }
 
-.data-row.odd > td {
+.shark-table .data-row.odd > td {
   border-right: 1px solid white;
 }
 
-.data-row.rowOpen > td {
+.shark-table .data-row.rowOpen > td {
   border-right: 1px solid #e8e8e8;
 }
 
-.data-row > td:last-child {
+.shark-table .data-row > td:last-child {
   border-right: none;
 }
 
-.child-spacer {
+.shark-table .child-spacer {
   width: 1rem;
 }
 
-.local-paging-size {
+.shark-table .local-paging-size {
   margin-right: 1.5rem;
 }
 
-.even {
+.shark-table .even {
   background-color: #f2f2f2;
 }
 
-.rowOpen {
+.shark-table .rowOpen {
   background-color: #e8e8e8;
 }
 
-.pointer {
+.shark-table .pointer {
   cursor: pointer;
 }
 
-.ordering-button {
+.shark-table .ordering-button {
   vertical-align: middle;
 }
 
 /* Column Picker */
-.toggle-dropdown {
+.shark-table .toggle-dropdown {
   border: none;
   background-color: white;
   text-align: left;
 }
 
-.dropdown {
+.shark-table .dropdown {
   border: 1px solid #DDDDDD;
   background-color: white;
   color: black;
@@ -150,13 +151,13 @@ th, td {
   padding: 0.5rem;
 }
 
-.dropdown fieldset {
+.shark-table .dropdown fieldset {
   margin: 0;
   padding: 0;
   border: none;
 }
 
-.dropdown .column-wrapper {
+.shark-table .dropdown .column-wrapper {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -164,7 +165,7 @@ th, td {
   align-content: flex-start;
 }
 
-.dropdown label {
+.shark-table .dropdown label {
   cursor: pointer;
   display: block;
   text-align: left;
@@ -172,29 +173,29 @@ th, td {
   min-width: 13rem;
 }
 
-.dropdown label input {
+.shark-table .dropdown label input {
   vertical-align: top;
 }
 
 /* Pagination */
-.pagination-wrapper {
+.shark-table .pagination-wrapper {
   float: right;
 }
 
-.pagination {
+.shark-table .pagination {
   display: inline-block;
 }
 
-.pagination button:hover,
-.pagination button.active {
+.shark-table .pagination button:hover,
+.shark-table .pagination button.active {
   background-color: #DDDDDD;
 }
 
-.pagination button.active {
+.shark-table .pagination button.active {
   cursor: default;
 }
 
-.pagination button {
+.shark-table .pagination button {
   border: none;
   background-color: white;
   cursor: pointer;
@@ -203,12 +204,12 @@ th, td {
   transition: background-color .3s;
 }
 
-.pagination button.fa {
+.shark-table .pagination button.fa {
   padding: 6px 16px;
 }
 
 /* Accessibility */
-.screen-reader {
+.shark-table .screen-reader {
   position: absolute;
   left: -10000px;
   top: auto;
@@ -217,7 +218,7 @@ th, td {
   overflow: hidden;
 }
 
-.screen-reader-button-label {
+.shark-table .screen-reader-button-label {
   font-size: 0;
   height: 1px;
   overflow: hidden;
@@ -240,7 +241,11 @@ th, td {
   font-style: normal;
 }
 
-.fa, .fab, .fal, .far, .fas {
+.shark-table .fa,
+.shark-table .fab,
+.shark-table .fal,
+.shark-table .far,
+.shark-table .fas {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -250,46 +255,58 @@ th, td {
   line-height: 1;
 }
 
-.fa-fw {
+.shark-table .fa-fw {
   text-align: center;
   width: 1.25em;
 }
 
-.fa, .far, .fas {
+.shark-table .fa,
+.shark-table .far,
+.shark-table .fas {
   font-family: shark-ng-table-icons;
   font-weight: 900;
 }
 
-.fa-sort:before {
+.shark-table .fa-sort:before {
   content: "\61";
 }
-.fa-sort-up:before {
+
+.shark-table .fa-sort-up:before {
   content: "\62";
 }
-.fa-sort-down:before {
+
+.shark-table .fa-sort-down:before {
   content: "\63";
 }
-.fa-caret-down:before {
+
+.shark-table .fa-caret-down:before {
   content: "\64";
 }
-.fa-caret-right:before {
+
+.shark-table .fa-caret-right:before {
   content: "\65";
 }
-.fa-angle-down:before {
+
+.shark-table .fa-angle-down:before {
   content: "\66";
 }
-.fa-angle-left:before {
+
+.shark-table .fa-angle-left:before {
   content: "\67";
 }
-.fa-angle-right:before {
+
+.shark-table .fa-angle-right:before {
   content: "\68";
 }
-.fa-angle-double-left:before {
+
+.shark-table .fa-angle-double-left:before {
   content: "\69";
 }
-.fa-angle-double-right:before {
+
+.shark-table .fa-angle-double-right:before {
   content: "\6a";
 }
-.fa-sync:before {
+
+.shark-table .fa-sync:before {
   content: "\6b";
 }
