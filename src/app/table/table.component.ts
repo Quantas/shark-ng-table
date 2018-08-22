@@ -19,6 +19,7 @@ import { SharkTableFooterComponent } from './table.footer.component';
 import { SharkTableInfoHeaderComponent } from './table.info.header.component';
 import { NotifierService } from './notifier/notifier.service';
 import { SharkTableCurrentDataEvent } from './current.data.event';
+import { SharkColumnChangeEvent } from './column-change-event';
 
 import { v4 as uuid } from 'uuid';
 
@@ -299,7 +300,13 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    * The column metadata is emitted from here whenever it changes
    */
   @Output()
-  columnChange = new EventEmitter<SharkColumn[]>();
+  columnChange = new EventEmitter<SharkColumnChangeEvent>();
+
+  /**
+   * Disable the column change event, if needed, for performance reasons
+   */
+  @Input()
+  disableColumnChangeEvent = false;
 
   /**
    * The current filter value
@@ -370,7 +377,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     if (emitPageEvent) {
       this.emitCurrent();
     }
-    this.columnChange.emit(this.columns);
+    this.publishColumnChangeEvent();
   }
 
   /**
@@ -452,7 +459,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
         filter: this.filter
       });
 
-      this.columnChange.emit(this.columns);
+      this.publishColumnChangeEvent();
     }
   }
 
@@ -483,7 +490,16 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
     };
   }
 
-  public generateSortString(): string {
+  private publishColumnChangeEvent(): void {
+    if (!this.disableColumnChangeEvent) {
+      this.columnChange.emit({
+        columns: this.columns,
+        currentSortString: this.generateSortString()
+      });
+    }
+  }
+
+  private generateSortString(): string {
     let sortString = '';
 
     this.currentColumns.forEach((column: SharkColumn) => {

@@ -1,5 +1,6 @@
 export { SharkChildComponent } from './child.component';
 export { SharkColumn } from './column';
+export { SharkColumnChangeEvent } from './column-change-event';
 export { SharkDynamicContents } from './dynamic/dynamic.contents';
 export { SharkPageChangeEvent } from './page.change.event';
 export { SharkCurrentSort } from './sort.type';

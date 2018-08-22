@@ -46,8 +46,10 @@
     * A custom component, which extends `SharkDynamicContents`, that will be used to render each child row. Your custom component needs to be registered in your NgModule as an `entryComponent` and in the `declarations` section.
 * pageChange - `EventEmitter<SharkPageChangeEvent>`
     * `SharkPageChangeEvent` events are emitted from here
-* columnChange - `EventEmitter<SharkColumn[]>`
+* columnChange - `EventEmitter<SharkColumnChangeEvent>`
     * The column metadata is emitted from here whenever it changes
+* disableColumnChangeEvent - `boolean` - `false`
+    * Disable the column change event, if needed, for performance reasons
 * filter - `string`
     * The current filter value
 * footer - `boolean` - `true`
