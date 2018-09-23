@@ -32,6 +32,7 @@ import { MediaChange, ObservableMedia } from '@angular/flex-layout';
           <a mat-list-item [routerLink]="['everything']">Everything</a>
           <a mat-list-item [routerLink]="['filterable']">Filterable</a>
           <a mat-list-item [routerLink]="['large']">Large</a>
+          <a mat-list-item [routerLink]="['observable']">Observable Data</a>
           <a mat-list-item [routerLink]="['pageable']">Pageable</a>
           <a mat-list-item [routerLink]="['paging-filtering']">Paging and Filtering</a>
           <a mat-list-item [routerLink]="['two-tables']">Two Tables</a>

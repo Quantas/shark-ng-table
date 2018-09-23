@@ -28,6 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LargeComponent } from './samples/large.component';
 import { TwoTablesComponent } from './samples/two-tables.component';
 import { ContentProjectionComponent } from './samples/content-projection.component';
+import { ObservableComponent } from './samples/observable.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ContentProjectionComponent } from './samples/content-projection.compone
     ChildRowRenderingComponent,
     ContentProjectionComponent,
     LargeComponent,
+    ObservableComponent,
     CustomCellsComponent,
     MakeComponent,
     TwoTablesComponent

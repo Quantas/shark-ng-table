@@ -15,6 +15,7 @@ import { DataExportComponent } from './samples/data-export.component';
 import { LargeComponent } from './samples/large.component';
 import { TwoTablesComponent } from './samples/two-tables.component';
 import { ContentProjectionComponent } from './samples/content-projection.component';
+import { ObservableComponent } from './samples/observable.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'child-rows', component: ChildRowsComponent },
   { path: 'custom-cells', component: CustomCellsComponent },
   { path: 'large', component: LargeComponent },
+  { path: 'observable', component: ObservableComponent },
   { path: 'two-tables', component: TwoTablesComponent },
 ];
 
