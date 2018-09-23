@@ -1,8 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
-import { Subject } from 'rxjs';
-
-import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'shark-root',
@@ -80,14 +77,13 @@ import 'rxjs/add/operator/takeUntil';
     `
   ]
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent {
 
-  destroy = new Subject<boolean>();
   opened = false;
   over: string;
 
   constructor(media: ObservableMedia) {
-    media.asObservable().takeUntil(this.destroy).subscribe((change: MediaChange) => {
+    media.asObservable().subscribe((change: MediaChange) => {
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.opened = false;
         this.over = 'over';
@@ -96,11 +92,6 @@ export class AppComponent implements OnDestroy {
         this.over = 'side';
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy.next(true);
-    this.destroy.unsubscribe();
   }
 
   closeNav(): void {

@@ -2,8 +2,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, NgModule, ViewChild } from '@angular/core';
 import { SharkTableComponent, SharkTableModule, SharkColumn, Page } from '../table';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 describe('SharkTableComponentObservable', () => {
 

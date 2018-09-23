@@ -4,8 +4,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
 
 import { Page, Sort } from './page';
 import { SharkColumn } from './column';
@@ -222,7 +221,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    * The size of each page
    */
   @Input()
-  localPagingSize: number = 10;
+  localPagingSize = 10;
 
   /**
    * The supported page sizes
@@ -247,9 +246,6 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
    */
   @Input()
   initialSort: string;
-
-  @Input()
-  rowStylingFunction: RowStyleFunction = row => { return {}; };
 
   @Input()
   cellStylingFunction: CellStyleFunction;
@@ -324,6 +320,9 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
   private dataSubscription: Subscription;
 
   private localSubscription: Subscription;
+
+  @Input()
+  rowStylingFunction: RowStyleFunction = row => ({})
 
   constructor(private router: Router, private tableUtils: SharkTableUtils) {}
 
@@ -474,7 +473,7 @@ export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
       return {
         data: [],
         columns: []
-      }
+      };
     }
 
     return {
