@@ -1,3 +1,27 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/Quantas/shark-ng-table/compare/2.0.0...6.0.0) (2018-10-10)
+
+
+### Bug Fixes
+
+* **events:** Export a new column change event, fix bug where it wasn't getting passed up the chain ([15ec6d2](https://github.com/Quantas/shark-ng-table/commit/15ec6d2)), closes [#110](https://github.com/Quantas/shark-ng-table/issues/110)
+
+
+### Features
+
+* **samples:** Add sample for Observable<Page> ([b8c9ca6](https://github.com/Quantas/shark-ng-table/commit/b8c9ca6))
+* 2.x.x branch deprecated ([df357d4](https://github.com/Quantas/shark-ng-table/commit/df357d4)), closes [#113](https://github.com/Quantas/shark-ng-table/issues/113)
+* add another @Output for when column metadata changes ([39c8451](https://github.com/Quantas/shark-ng-table/commit/39c8451)), closes [#110](https://github.com/Quantas/shark-ng-table/issues/110)
+* Upgrade to Angular Package Format 6.0 ([d59e50e](https://github.com/Quantas/shark-ng-table/commit/d59e50e)), closes [#113](https://github.com/Quantas/shark-ng-table/issues/113)
+
+
+### BREAKING CHANGES
+
+* The existing `columnChange` @Output now emits a `SharkColumnChangeEvent` which contains the `SharkColumn[]`
+* Minimum Angular version as of the shark-ng-table `6.0.0` release will be 6.0.0.
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/Quantas/shark-ng-table/compare/1.3.0...2.0.0) (2018-08-22)
 
