@@ -14,7 +14,7 @@
     "build:package": "npm run packagr && npm run copy && npm run minify:css",
     "samples": "rimraf docs/ && ng build --prod --output-path docs/ --base-href /shark-ng-table/ && npm run samples:style",
     "samples:style": "copyfiles -f src/app/table/style/* docs/assets/style && copyfiles -f src/app/table/style/fonts/* docs/assets/style/fonts/",
-    "ghpages": "npx ngh --dir=docs/",
+    "ghpages": "npx ngh --dir=docs/ --repo=https://GH_TOKEN@github.com/Quantas/shark-ng-table.git",
     "start": "ng serve",
     "test": "ng test --code-coverage",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
@@ -60,7 +60,7 @@
     "@types/jasmine": "2.8.3",
     "@types/jasminewd2": "2.0.2",
     "@types/node": "6.0.60",
-    "angular-cli-ghpages": "^0.5.3",
+    "angular-cli-ghpages": "0.5.3",
     "angular2-highlight-js": "6.0.1-alpha",
     "axe-core": "3.1.2",
     "codelyzer": "4.4.4",
