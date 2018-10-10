@@ -15,6 +15,14 @@ A robust table for Angular built with Accessibility in mind.
 
 Section508 and WCAG 2.0 AA compliant.
 
+## Versions
+
+The `2.x.x` branch is now deprecated. Bugs will still be addressed but features will only be on `master`/`6.x.x`.
+
+| Angular Version | shark-ng-table Version |
+| >= 6.0.0        | >= 6.0.0               |
+| < 6.0.0         | 2.x.x                  |
+
 ## Samples
 
 There are a number of samples available that can be viewed here: https://www.quantasnet.com/shark-ng-table/
