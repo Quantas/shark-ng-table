@@ -20,6 +20,7 @@ Section508 and WCAG 2.0 AA compliant.
 The `2.x.x` branch is now deprecated. Bugs will still be addressed but features will only be on `master`/`6.x.x`.
 
 | Angular Version | shark-ng-table Version |
+| --------------- | ---------------------- |
 | >= 6.0.0        | >= 6.0.0               |
 | < 6.0.0         | 2.x.x                  |
 
