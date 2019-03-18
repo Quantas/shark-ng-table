@@ -25,7 +25,7 @@ ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION.
 ## Minimal reproduction of the problem with instructions
 <!--
 For bug reports please provide the *STEPS TO REPRODUCE* and if possible a *MINIMAL DEMO* of the problem via
-https://plnkr.co or similar (you can use this template as a starting point: https://plnkr.co/edit/Xus5zm?p=info).
+https://plnkr.co or similar (you can use this template as a starting point: https://stackblitz.com/edit/shark-ng-table-demo).
 -->
 
 ## What is the motivation / use case for changing the behavior?
