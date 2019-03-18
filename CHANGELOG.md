@@ -1,3 +1,12 @@
+<a name="6.0.2"></a>
+## [6.0.2](https://github.com/Quantas/shark-ng-table/compare/6.0.1...6.0.2) (2019-03-18)
+
+
+### Bug Fixes
+
+* **columns:** Fix column re-ordering ([c963c8d](https://github.com/Quantas/shark-ng-table/commit/c963c8d)), closes [#119](https://github.com/Quantas/shark-ng-table/issues/119)
+
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://github.com/Quantas/shark-ng-table/compare/6.0.0...6.0.1) (2019-03-18)
 
