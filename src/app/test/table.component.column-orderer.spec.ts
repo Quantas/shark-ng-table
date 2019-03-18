@@ -25,8 +25,8 @@ describe('SharkTableComponentColumnOrderer', () => {
     component.sharkTable.headerComponent.moveColumnForward(0, component.sharkTable.columns[0]);
     fixture.detectChanges();
 
-    expect(component.sharkTable.currentColumns).toEqual([
-      { header: 'Col 2', property: 'col2', displayed: true},
+    expect(component.sharkTable.columns).toEqual([
+      { header: 'Col 2', property: 'col2', displayed: false},
       { header: 'Col 1', property: 'col1', displayed: true},
       { header: 'Col 3', property: 'col3', displayed: true}
     ]);
@@ -34,8 +34,8 @@ describe('SharkTableComponentColumnOrderer', () => {
     component.sharkTable.headerComponent.moveColumnBackward(2, component.sharkTable.columns[2]);
     fixture.detectChanges();
 
-    expect(component.sharkTable.currentColumns).toEqual([
-      { header: 'Col 2', property: 'col2', displayed: true},
+    expect(component.sharkTable.columns).toEqual([
+      { header: 'Col 2', property: 'col2', displayed: false},
       { header: 'Col 3', property: 'col3', displayed: true},
       { header: 'Col 1', property: 'col1', displayed: true}
     ]);
@@ -64,7 +64,7 @@ export class TableTestColumnOrdererComponent {
 
   tableColumns: SharkColumn[] = [
     { header: 'Col 1', property: 'col1'},
-    { header: 'Col 2', property: 'col2'},
+    { header: 'Col 2', property: 'col2', displayed: false},
     { header: 'Col 3', property: 'col3'}
   ];
 
