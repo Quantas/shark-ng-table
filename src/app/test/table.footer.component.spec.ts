@@ -16,7 +16,8 @@ describe('SharkTableFooterComponent', () => {
 
     const comp = new SharkTableFooterComponent(new SharkTableUtils());
     comp.page = page;
-    comp.columns = [];
+    comp.allColumns = [];
+    comp.currentColumns = [];
     comp.localPagingSize = 20;
     comp.localPaging = false;
     comp.localPagingOptions = [ 10, 20, 100 ];
@@ -41,7 +42,8 @@ describe('SharkTableFooterComponent', () => {
 
     const comp = new SharkTableFooterComponent(new SharkTableUtils());
     comp.page = page;
-    comp.columns = [];
+    comp.allColumns = [];
+    comp.currentColumns = [];
     comp.localPagingSize = 20;
     comp.localPaging = false;
     comp.localPagingOptions = [ 10, 20, 100 ];
@@ -64,7 +66,8 @@ describe('SharkTableFooterComponent', () => {
 
     const comp = new SharkTableFooterComponent(new SharkTableUtils());
     comp.page = page;
-    comp.columns = [];
+    comp.allColumns = [];
+    comp.currentColumns = [];
     comp.localPagingSize = 20;
     comp.localPaging = false;
     comp.localPagingOptions = [ 10, 20, 100 ];
