@@ -51,7 +51,8 @@ import { v4 as uuid } from 'uuid';
                 <thead shark-table-header
                        [tableId]="tableId"
                        [sortable]="sortable"
-                       [columns]="currentColumns"
+                       [allColumns]="columns"
+                       [currentColumns]="currentColumns"
                        [columnOrdering]="columnOrdering"
                        [childRows]="childRows"
                        [page]="page"
@@ -84,7 +85,8 @@ import { v4 as uuid } from 'uuid';
           </div>
           <shark-table-footer *ngIf="footer && currentColumns.length > 0"
                               [page]="page"
-                              [columns]="currentColumns"
+                              [currentColumns]="currentColumns"
+                              [allColumns]="columns"
                               [filter]="filter"
                               [localPaging]="localPaging"
                               [localPagingSize]="localPagingSize"

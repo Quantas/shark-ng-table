@@ -10,7 +10,7 @@ import { NotifierService } from './notifier/notifier.service';
   selector: 'shark-table-footer',
   template: `
   <div class="info-footer">
-    <div class="page-size-controls" *ngIf="localPaging && showLocalPagingOptions && columns.length > 0">
+    <div class="page-size-controls" *ngIf="localPaging && showLocalPagingOptions && currentColumns.length > 0">
       <label for="local-paging-size-{{ tableId }}" class="local-paging-options">
         Rows per page:
       </label>
@@ -27,7 +27,7 @@ import { NotifierService } from './notifier/notifier.service';
       <ng-container *ngTemplateOutlet="rightSideFooterTemplate"></ng-container>
     </div>
     <div>
-      <shark-table-pagination *ngIf="columns.length > 0" [page]="page" [tableId]="tableId" (paginationChange)="changePage($event)"></shark-table-pagination>
+      <shark-table-pagination *ngIf="currentColumns.length > 0" [page]="page" [tableId]="tableId" (paginationChange)="changePage($event)"></shark-table-pagination>
     </div>
   </div>`
 })
@@ -74,7 +74,13 @@ export class SharkTableFooterComponent implements OnChanges {
    * The current {@link SharkColumn}[]
    */
   @Input()
-  columns: SharkColumn[];
+  currentColumns: SharkColumn[];
+
+  /**
+   * The current {@link SharkColumn}[]
+   */
+  @Input()
+  allColumns: SharkColumn[];
 
   /**
    * The current filter string
@@ -114,7 +120,7 @@ export class SharkTableFooterComponent implements OnChanges {
     }
 
     const wasFiltered = this.filtered;
-    this.filtered = (this.filter && this.filter.length > 0) || this.tableUtils.hasFilter(this.columns);
+    this.filtered = (this.filter && this.filter.length > 0) || this.tableUtils.hasFilter(this.currentColumns);
 
     this.currentPageInfo = this.start + ' - ' + this.end + ' of ' + this.total + (this.filtered ? ' (filtered)' : '');
     const currentPageInfoAria = this.start + ' to ' + this.end + ' of ' + this.total + (this.filtered ? ' (filtered)' : '');
@@ -137,7 +143,7 @@ export class SharkTableFooterComponent implements OnChanges {
 
   firePageSizeChange(): void {
     this.filterChange.emit({
-      columns: this.columns,
+      columns: this.allColumns,
       filter: this.filter,
       localPagingSize: this.localPagingSize
     });

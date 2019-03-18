@@ -94,7 +94,7 @@ export class SharkTableInfoHeaderComponent {
 
   fireFilterChange(): void {
     this.filterChange.emit({
-      columns: this.columns,
+      columns: this.allColumns,
       filter: this.filter,
       localPagingSize: this.localPagingSize
     });

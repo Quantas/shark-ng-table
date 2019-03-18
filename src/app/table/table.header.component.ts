@@ -9,12 +9,12 @@ import { DOCUMENT } from '@angular/common';
 @Component({
     selector: '[shark-table-header]',
     template: `
-        <tr class="header-row header-border" *ngIf="columns.length > 0">
+        <tr class="header-row header-border" *ngIf="currentColumns.length > 0">
             <th *ngIf="childRows" class="childHeader child-spacer">
               <span class="screen-reader">Details</span>
             </th>
             <th class="header-buttons" [ngClass]="{'right': column.alignRight }"
-                *ngFor="let column of columns; let i = index; let f = first; let l = last;" 
+                *ngFor="let column of currentColumns; let i = index; let f = first; let l = last;" 
                 [attr.id]="'column' + tableId + '-' + i + '-' + column.property"
                 [attr.aria-sort]="(!sortable || column.unsortable) ? null : (!column.sortType || column.sortType === 0) ? 'none' : column.sortType === 1 ? 'ascending' : 'descending'">
                 <button *ngIf="columnOrdering && !f && !column.disableOrdering" (click)="moveColumnBackward(i, column)" type="button" class="ordering-button fa fa-angle-left" [id]="'order-' + tableId + '-' + column.property + '-left'">
@@ -44,7 +44,10 @@ export class SharkTableHeaderComponent {
     sortable: boolean;
 
     @Input()
-    columns: SharkColumn[];
+    allColumns: SharkColumn[];
+
+    @Input()
+    currentColumns: SharkColumn[];
 
     @Input()
     columnOrdering: boolean;
@@ -90,7 +93,7 @@ export class SharkTableHeaderComponent {
 
     fireFilterChange(): void {
         this.filterChange.emit({
-          columns: this.columns,
+          columns: this.allColumns,
           filter: this.filter,
           localPagingSize: this.localPagingSize
         });
@@ -100,9 +103,9 @@ export class SharkTableHeaderComponent {
       this.move(index, 1);
       this.notifierService.postMessage('column moved right');
 
-      const newIndex = this.columns.indexOf(column);
+      const newIndex = this.currentColumns.indexOf(column);
       setTimeout(() => {
-        if (newIndex === this.columns.length - 1) {
+        if (newIndex === this.currentColumns.length - 1) {
           this.focusButton(column, 'left');
         } else {
           this.focusButton(column, 'right');
@@ -114,7 +117,7 @@ export class SharkTableHeaderComponent {
       this.move(index, -1);
       this.notifierService.postMessage('column moved left');
 
-      const newIndex = this.columns.indexOf(column);
+      const newIndex = this.currentColumns.indexOf(column);
       setTimeout(() => {
         if (newIndex === 0) {
           this.focusButton(column, 'right');
@@ -133,10 +136,10 @@ export class SharkTableHeaderComponent {
 
     private move(index: number, offset: number): void {
       const newIndex = index + offset;
-      if (newIndex > -1 && newIndex < this.columns.length) {
-        const removedElement = this.columns.splice(index, 1)[0];
-        this.columns.splice(newIndex, 0, removedElement);
-        this.columnChange.emit(this.columns);
+      if (newIndex > -1 && newIndex < this.allColumns.length) {
+        const removedElement = this.allColumns.splice(index, 1)[0];
+        this.allColumns.splice(newIndex, 0, removedElement);
+        this.columnChange.emit(this.allColumns);
       }
 
     }
