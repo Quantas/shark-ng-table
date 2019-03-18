@@ -11,6 +11,7 @@ import { SharkColumn } from '../table';
         [localPaging]="true"
         [hideCaption]="true"
         [columnPicker]="true"
+        [columnOrdering]="true"
       >
       </shark-table>
     </shark-table-code-sample>

@@ -100,7 +100,7 @@ export class SharkTableHeaderComponent {
     }
 
     moveColumnForward(index: number, column: SharkColumn): void {
-      this.move(index, 1);
+      this.move(index, 1, column);
       this.notifierService.postMessage('column moved right');
 
       const newIndex = this.currentColumns.indexOf(column);
@@ -114,7 +114,7 @@ export class SharkTableHeaderComponent {
     }
 
     moveColumnBackward(index: number, column: SharkColumn): void {
-      this.move(index, -1);
+      this.move(index, -1, column);
       this.notifierService.postMessage('column moved left');
 
       const newIndex = this.currentColumns.indexOf(column);
@@ -134,11 +134,41 @@ export class SharkTableHeaderComponent {
       }
     }
 
-    private move(index: number, offset: number): void {
+    private move(index: number, offset: number, column: SharkColumn): void {
       const newIndex = index + offset;
-      if (newIndex > -1 && newIndex < this.allColumns.length) {
-        const removedElement = this.allColumns.splice(index, 1)[0];
-        this.allColumns.splice(newIndex, 0, removedElement);
+      if (newIndex > -1 && newIndex < this.currentColumns.length) {
+        const allStartIndex = this.allColumns.indexOf(column);
+        let start = allStartIndex;
+        let adjust = 0;
+
+        if (offset < 0) {
+          // if going backwards, look backwards for hidden
+          adjust = -1;
+          while (start >= 0) {
+            start--;
+            const col = this.allColumns[start];
+            if (col && !col.displayed) {
+              adjust--;
+            } else {
+              break;
+            }
+          }
+        } else {
+          // else look forwards for hidden
+          adjust = 1;
+          while (start >= this.allColumns.length) {
+            start++;
+            const col = this.allColumns[start];
+            if (col && !col.displayed) {
+              adjust++;
+            } else {
+              break;
+            }
+          }
+        }
+
+        const removedElementAll = this.allColumns.splice(allStartIndex, 1)[0];
+        this.allColumns.splice(allStartIndex + adjust, 0, removedElementAll);
         this.columnChange.emit(this.allColumns);
       }
 
