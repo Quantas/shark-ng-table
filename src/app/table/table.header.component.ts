@@ -148,7 +148,7 @@ export class SharkTableHeaderComponent {
             start--;
             const col = this.allColumns[start];
             if (col && !col.displayed) {
-              adjust--;
+              --adjust;
             } else {
               break;
             }
@@ -156,11 +156,11 @@ export class SharkTableHeaderComponent {
         } else {
           // else look forwards for hidden
           adjust = 1;
-          while (start >= this.allColumns.length) {
+          while (start <= this.allColumns.length) {
             start++;
             const col = this.allColumns[start];
             if (col && !col.displayed) {
-              adjust++;
+              ++adjust;
             } else {
               break;
             }
