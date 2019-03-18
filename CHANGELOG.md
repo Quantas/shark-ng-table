@@ -1,3 +1,13 @@
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/Quantas/shark-ng-table/compare/6.0.0...6.0.1) (2019-03-18)
+
+
+### Bug Fixes
+
+* **columns:** Fix Situations where hidden columns can completely disappear ([5eb8cb2](https://github.com/Quantas/shark-ng-table/commit/5eb8cb2)), closes [#118](https://github.com/Quantas/shark-ng-table/issues/118)
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/Quantas/shark-ng-table/compare/2.0.0...6.0.0) (2018-10-10)
 
