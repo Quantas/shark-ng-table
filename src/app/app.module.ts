@@ -29,6 +29,8 @@ import { LargeComponent } from './samples/large.component';
 import { TwoTablesComponent } from './samples/two-tables.component';
 import { ContentProjectionComponent } from './samples/content-projection.component';
 import { ObservableComponent } from './samples/observable.component';
+import { RowLinkComponent } from './samples/row-link.component';
+import { LinkTargetComponent } from './samples/link-target.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { ObservableComponent } from './samples/observable.component';
     ObservableComponent,
     CustomCellsComponent,
     MakeComponent,
-    TwoTablesComponent
+    TwoTablesComponent,
+    RowLinkComponent,
+    LinkTargetComponent
 
   ],
   imports: [

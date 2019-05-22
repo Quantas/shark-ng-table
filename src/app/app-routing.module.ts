@@ -16,6 +16,8 @@ import { LargeComponent } from './samples/large.component';
 import { TwoTablesComponent } from './samples/two-tables.component';
 import { ContentProjectionComponent } from './samples/content-projection.component';
 import { ObservableComponent } from './samples/observable.component';
+import { RowLinkComponent } from './samples/row-link.component';
+import { LinkTargetComponent } from './samples/link-target.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'large', component: LargeComponent },
   { path: 'observable', component: ObservableComponent },
   { path: 'two-tables', component: TwoTablesComponent },
+  { path: 'row-link', component: RowLinkComponent },
+  { path: 'link-target/:id', component: LinkTargetComponent }
 ];
 
 @NgModule({
