@@ -13,7 +13,7 @@
     "build:notest": "npm run clean && npm run build:package",
     "build:package": "npm run packagr && npm run copy && npm run minify:css",
     "samples": "rimraf docs/ && ng build --prod --output-path docs/ --base-href /shark-ng-table/ && npm run samples:style",
-    "samples:style": "copyfiles -f src/app/table/style/* docs/assets/style && copyfiles -f src/app/table/style/fonts/* docs/assets/style/fonts/",
+    "samples:style": "copyfiles -f src/app/table/style/* docs/assets/style/ && copyfiles -f src/app/table/style/fonts/* docs/assets/style/fonts/",
     "ghpages": "npx ngh --dir=docs/ --repo=https://GH_TOKEN@github.com/Quantas/shark-ng-table.git",
     "start": "ng serve",
     "test": "ng test --code-coverage",

@@ -36,7 +36,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run build
+      - run: npm run clean
+
+      - run: npm run test
+
+      - run: npm run packagr
 
       - store_test_results:
           path: ~/repo/coverage/junit
