@@ -1,3 +1,14 @@
+<a name="6.0.4"></a>
+## [6.0.4](https://github.com/Quantas/shark-ng-table/compare/6.0.3...6.0.4) (2019-08-15)
+
+
+### Features
+
+* **samples:** Adding samples for LinkTarget and LinkKey ([b1ffdde](https://github.com/Quantas/shark-ng-table/commit/b1ffdde)), closes [#121](https://github.com/Quantas/shark-ng-table/issues/121)
+* update package.json peer deps for newer ng ([525fdb0](https://github.com/Quantas/shark-ng-table/commit/525fdb0))
+
+
+
 <a name="6.0.3"></a>
 ## [6.0.3](https://github.com/Quantas/shark-ng-table/compare/6.0.2...6.0.3) (2019-03-18)
 
