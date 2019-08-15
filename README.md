@@ -55,7 +55,13 @@ This will install the latest version of `shark-ng-table`.
  - [Child Rows](usage/child-rows.md)
  - [Developer Guide](usage/developers.md)
  - [Change Log](CHANGELOG.md)
- 
+
+## Dev Environment
+
+shark-ng-table also provides a `.devcontainer` folder for support of Visual Studio Code's Remote-Container support. This will setup a full shark-ng-table dev
+environment automatically. You should be able to run `npm run start` inside the dev enviornment and expose the port, 4200, and be able to do live development
+on the table.
+
 ## Attribution
 
  - Developed and tested in collaboration with Great Lakes Higher Education Corporation and Nelnet Inc. and Affiliates

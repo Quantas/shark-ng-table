@@ -1,6 +1,6 @@
 {
   "name": "shark-ng-table",
-  "version": "6.0.3",
+  "version": "6.0.4",
   "description": "A robust table for Angular built with Accessibility in mind.",
   "main": "index.js",
   "scripts": {
@@ -33,10 +33,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
-    "@angular/forms": "^6.0.0",
-    "@angular/router": "^6.0.0",
+    "@angular/common": ">= 6.0.0",
+    "@angular/core": ">= 6.0.0",
+    "@angular/forms": ">= 6.0.0",
+    "@angular/router": ">= 6.0.0",
     "core-js": ">= 2.4.0",
     "rxjs": ">= 6.2.0"
   },
