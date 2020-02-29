@@ -37,6 +37,7 @@ import { MediaChange, ObservableMedia } from '@angular/flex-layout';
           <a mat-list-item [routerLink]="['paging-filtering']">Paging and Filtering</a>
           <a mat-list-item [routerLink]="['row-link']">Row Linking</a>
           <a mat-list-item [routerLink]="['two-tables']">Two Tables</a>
+          <a mat-list-item [routerLink]="['toggle-table']">Toggle Table</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>

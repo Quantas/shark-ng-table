@@ -31,6 +31,7 @@ import { ContentProjectionComponent } from './samples/content-projection.compone
 import { ObservableComponent } from './samples/observable.component';
 import { RowLinkComponent } from './samples/row-link.component';
 import { LinkTargetComponent } from './samples/link-target.component';
+import { ToggleTableComponent } from './samples/toggle-table.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { LinkTargetComponent } from './samples/link-target.component';
     MakeComponent,
     TwoTablesComponent,
     RowLinkComponent,
-    LinkTargetComponent
+    LinkTargetComponent,
+    ToggleTableComponent
 
   ],
   imports: [

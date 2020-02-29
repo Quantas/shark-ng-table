@@ -18,6 +18,7 @@ import { ContentProjectionComponent } from './samples/content-projection.compone
 import { ObservableComponent } from './samples/observable.component';
 import { RowLinkComponent } from './samples/row-link.component';
 import { LinkTargetComponent } from './samples/link-target.component';
+import { ToggleTableComponent } from './samples/toggle-table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'observable', component: ObservableComponent },
   { path: 'two-tables', component: TwoTablesComponent },
   { path: 'row-link', component: RowLinkComponent },
+  { path: 'toggle-table', component: ToggleTableComponent },
   { path: 'link-target/:id', component: LinkTargetComponent }
 ];
 
