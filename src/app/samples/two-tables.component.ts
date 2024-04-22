@@ -32,7 +32,7 @@ import { MakeComponent } from './custom-cell.component';
 })
 export class TwoTablesComponent {
 
-  @ViewChild(SharkTableComponent)
+  @ViewChild(SharkTableComponent, { static: true })
   sharkTable: SharkTableComponent;
 
   htmlSample = `

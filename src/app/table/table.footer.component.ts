@@ -40,7 +40,7 @@ export class SharkTableFooterComponent implements OnChanges {
 
   currentPageInfo = '';
 
-  @ViewChild(SharkTablePaginationComponent)
+  @ViewChild(SharkTablePaginationComponent, { static: false })
   paginationComponent: SharkTablePaginationComponent;
 
   @Input()

@@ -18,7 +18,7 @@ import { SharkTableComponent } from '../table';
 })
 export class DataExportComponent {
 
-  @ViewChild(SharkTableComponent)
+  @ViewChild(SharkTableComponent, { static: true })
   sharkTable: SharkTableComponent;
 
   htmlSample = `

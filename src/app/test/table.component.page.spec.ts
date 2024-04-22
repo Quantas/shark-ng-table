@@ -81,7 +81,7 @@ export class TableTestNoPagingComponent {
     { header: 'Col 3', property: 'model'}
   ];
 
-  @ViewChild('sharkTable')
+  @ViewChild('sharkTable', {static: false})
   sharkTable: SharkTableComponent;
 }
 

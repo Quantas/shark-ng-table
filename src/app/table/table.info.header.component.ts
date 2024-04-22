@@ -48,7 +48,7 @@ export class SharkTableInfoHeaderComponent {
   @Input()
   rightSideHeaderTemplate: TemplateRef<any>;
 
-  @ViewChild('filterInput')
+  @ViewChild('filterInput', { static: false })
   filterInput: ElementRef;
 
   @Input()
