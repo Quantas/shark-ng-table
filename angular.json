@@ -111,5 +111,8 @@
     "@schematics/angular:directive": {
       "prefix": "shark"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
