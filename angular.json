@@ -103,7 +103,6 @@
       }
     }
   },
-  "defaultProject": "shark-ng-table",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "shark",
