@@ -123,7 +123,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "shark",
-      "styleext": "less"
+      "style": "less"
     },
     "@schematics/angular:directive": {
       "prefix": "shark"
