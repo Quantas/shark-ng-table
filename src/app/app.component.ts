@@ -85,15 +85,17 @@ export class AppComponent {
   opened = false;
   over: string;
 
-  constructor(media: ObservableMedia) {
-    media.asObservable().subscribe((change: MediaChange) => {
-      if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
-        this.opened = false;
-        this.over = 'over';
-      } else {
-        this.opened = true;
-        this.over = 'side';
-      }
+  constructor(media: MediaObserver) {
+    media.asObservable().subscribe(changes => {
+      changes.forEach(change => {
+        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+          this.opened = false;
+          this.over = 'over';
+        } else {
+          this.opened = true;
+          this.over = 'side';
+        }
+      });
     });
   }
 
