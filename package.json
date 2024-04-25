@@ -1,6 +1,6 @@
 {
   "name": "shark-ng-table",
-  "version": "6.0.4",
+  "version": "7.0.0-SNAPSHOT",
   "description": "A robust table for Angular built with Accessibility in mind.",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "samples": "rimraf docs/ && ng build --configuration production --output-path docs/ --base-href /shark-ng-table/ && npm run samples:style",
     "samples:style": "copyfiles -f src/app/table/style/* docs/assets/style/ && copyfiles -f src/app/table/style/fonts/* docs/assets/style/fonts/",
     "ghpages": "npx ngh --dir=docs/ --repo=https://GH_TOKEN@github.com/Quantas/shark-ng-table.git",
-    "start": "ng serve --aot --watch --live-reload --poll=1000",
+    "start": "ng serve --watch --live-reload --poll=1000",
     "test": "ng test --code-coverage",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
