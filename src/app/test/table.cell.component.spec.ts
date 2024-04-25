@@ -45,10 +45,9 @@ export class TestTableCellComponent implements SharkDynamicContents {
 }
 
 @NgModule({
-  imports: [ CommonModule, SharkTableModule ],
-  exports: [ TestTableCellComponent ],
-  declarations: [ TestTableCellComponent ],
-  entryComponents: [ TestTableCellComponent ]
+    imports: [CommonModule, SharkTableModule],
+    exports: [TestTableCellComponent],
+    declarations: [TestTableCellComponent]
 })
 export class TableCellTestingModule {
 }

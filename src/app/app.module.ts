@@ -34,52 +34,46 @@ import { LinkTargetComponent } from './samples/link-target.component';
 import { ToggleTableComponent } from './samples/toggle-table.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-
-    CodeSampleComponent,
-
-    BasicComponent,
-    CellStyleComponent,
-    DataExportComponent,
-    EverythingComponent,
-    FilterableComponent,
-    PageableComponent,
-    PagingAndFilteringComponent,
-    ColumnFilteringComponent,
-    ColumnOrderingComponent,
-    ColumnPickerComponent,
-    ChildRowsComponent,
-    ChildRowRenderingComponent,
-    ContentProjectionComponent,
-    LargeComponent,
-    ObservableComponent,
-    CustomCellsComponent,
-    MakeComponent,
-    TwoTablesComponent,
-    RowLinkComponent,
-    LinkTargetComponent,
-    ToggleTableComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    AppRoutingModule,
-    SharkTableModule,
-
-    HighlightJsModule,
-
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatTabsModule,
-    MatToolbarModule
-  ],
-  entryComponents: [ ChildRowRenderingComponent, MakeComponent ],
-  providers: [ TableDataService, HighlightJsService ],
-  bootstrap: [ AppComponent ]
+    declarations: [
+        AppComponent,
+        CodeSampleComponent,
+        BasicComponent,
+        CellStyleComponent,
+        DataExportComponent,
+        EverythingComponent,
+        FilterableComponent,
+        PageableComponent,
+        PagingAndFilteringComponent,
+        ColumnFilteringComponent,
+        ColumnOrderingComponent,
+        ColumnPickerComponent,
+        ChildRowsComponent,
+        ChildRowRenderingComponent,
+        ContentProjectionComponent,
+        LargeComponent,
+        ObservableComponent,
+        CustomCellsComponent,
+        MakeComponent,
+        TwoTablesComponent,
+        RowLinkComponent,
+        LinkTargetComponent,
+        ToggleTableComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        AppRoutingModule,
+        SharkTableModule,
+        HighlightJsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatTabsModule,
+        MatToolbarModule
+    ],
+    providers: [TableDataService, HighlightJsService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
