@@ -17,13 +17,12 @@ import { SharkColumn, SharkDynamicContents } from '../table';
 export class CustomCellsComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [columnFiltering]="true"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `
@@ -31,7 +30,7 @@ export class CustomCellsComponent {
 
     @Component({
     template: \`
-      &lt;span [ngClass]="data"&gt;{{ data }}&lt;/span&gt;
+      &lt;span [ngClass]="data">{{ data }}&lt;/span>
     \`,
     styles: [
       \`

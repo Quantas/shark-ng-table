@@ -17,14 +17,13 @@ import { Component } from '@angular/core';
 export class BasicComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [filterable]="false"
       [localPaging]="false"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

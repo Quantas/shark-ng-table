@@ -19,15 +19,14 @@ import { CellStyleFunction, SharkColumn } from '../table';
 export class CellStyleComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [filterable]="false"
       [localPaging]="false"
       [cellStylingFunction]="cellStylingFunction"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

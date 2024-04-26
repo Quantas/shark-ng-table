@@ -16,9 +16,13 @@
 	// Uncomment the next line to use a non-root user. See https://aka.ms/vscode-remote/containers/non-root-user.
 	// "runArgs": [ "-u", "1000" ],
 
-	"extensions": [
-    "ms-vscode.vscode-typescript-tslint-plugin",
-    "johnpapa.angular-essentials",
-    "mhutchie.git-graph"
-	]
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.vscode-typescript-tslint-plugin",
+				"johnpapa.angular-essentials",
+				"mhutchie.git-graph"
+			]
+		}
+	}
 }

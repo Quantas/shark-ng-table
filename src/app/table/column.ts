@@ -40,7 +40,7 @@ export interface SharkColumn {
   /**
    * The current sort type for this column
    */
-  sortType?: SharkSortType;
+  sortType?: SharkSortType | number;
 
   /**
    * Provide a custom column sorting function.

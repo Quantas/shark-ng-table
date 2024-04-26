@@ -26,8 +26,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
-import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 import { CodeSampleComponent } from './samples/shared/code-sample-component';
 import { DataExportComponent } from './samples/data-export.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -71,7 +71,7 @@ import { ToggleTableComponent } from './samples/toggle-table.component';
         FlexLayoutModule,
         AppRoutingModule,
         SharkTableModule,
-        HighlightJsModule,
+        HighlightModule,
         MatButtonModule,
         MatIconModule,
         MatListModule,
@@ -79,7 +79,15 @@ import { ToggleTableComponent } from './samples/toggle-table.component';
         MatTabsModule,
         MatToolbarModule
     ],
-    providers: [TableDataService, HighlightJsService],
+    providers: [
+        TableDataService,
+        {
+            provide: HIGHLIGHT_OPTIONS,
+            useValue: {
+                fullLibraryLoader: () => import('highlight.js'),
+            }
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

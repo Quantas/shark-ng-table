@@ -20,15 +20,14 @@ import { SharkColumn } from '../table';
 export class LargeComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [filterable]="true"
       [localPaging]="true"
       [hideCaption]="true"
       [columnPicker]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

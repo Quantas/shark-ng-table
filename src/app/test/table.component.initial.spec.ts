@@ -1,4 +1,4 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, NgModule, ViewChild } from '@angular/core';
 import { SharkTableComponent, SharkTableModule, SharkColumn } from '../table';
@@ -18,7 +18,7 @@ describe('SharkTableComponentInitialSort', () => {
     {col1: '10', col2: 'j', col3: 'c' }
   ];
 
-  it('should sort DESC col1 on start', async(() => {
+  it('should sort DESC col1 on start', waitForAsync(() => {
     let fixture: ComponentFixture<TableTestNoPagingComponent>;
     let component: TableTestNoPagingComponent;
 
@@ -74,7 +74,7 @@ export class TableTestNoPagingComponent {
     { header: 'Col 3', property: 'col3'}
   ];
 
-  @ViewChild('sharkTable', {static: false})
+  @ViewChild('sharkTable', {static: true})
   sharkTable: SharkTableComponent;
 }
 

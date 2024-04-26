@@ -17,14 +17,13 @@ import { Component } from '@angular/core';
 export class ColumnOrderingComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [columnOrdering]="true"
       [filterable]="false"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

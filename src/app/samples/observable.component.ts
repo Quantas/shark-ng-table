@@ -24,15 +24,14 @@ export class ObservableComponent {
   dataObservable = this.dataSubject.asObservable();
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="dataObservable"
       [columns]="tableColumns"
       [filterable]="false"
       [localPaging]="false"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
-    &ltbutton (click)="refreshData()"&gt;Update Observable&lt/button&gt;
+    ></shark-table>
+    <button (click)="refreshData()">Update Observable</button>
   `;
 
   tsSample = `

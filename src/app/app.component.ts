@@ -49,7 +49,7 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
       </mat-sidenav-content>
     </mat-sidenav-container>
     <mat-toolbar class="footer" color="primary">
-      &copy; 2018 Andrew Landsverk and Nelnet Inc. and Affiliates.
+      &copy; 2024 Andrew Landsverk and Nelnet Inc. and Affiliates.
     </mat-toolbar>
   `,
   styles: [

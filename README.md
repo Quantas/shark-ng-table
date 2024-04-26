@@ -19,7 +19,8 @@ Section508 and WCAG 2.0 AA compliant.
 
 | Angular Version | shark-ng-table Version |
 | --------------- | ---------------------- |
-| &gt;= 6.0.0        | >= 6.0.0               |
+| &gt;= 6.0.0     | >= 6.0.0               |
+| &gt;= 16.0.0    | >= 7.0.0               |
 
 ## Samples
 

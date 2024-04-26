@@ -22,15 +22,14 @@ export class DataExportComponent {
   sharkTable: SharkTableComponent;
 
   htmlSample = `
-    &lt;button (click)="exportData()"&gt;Export Data (Check Console)&lt;/button&gt;
-    &lt;shark-table #sharkTable
+    <button (click)="exportData()"&gt;Export Data (Check Console)</button&gt;
+    <shark-table #sharkTable
       [data]="testData"
       [columns]="tableColumns"
       [filterable]="false"
       [localPaging]="false"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

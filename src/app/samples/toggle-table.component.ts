@@ -24,18 +24,17 @@ export class ToggleTableComponent {
   displayed = false;
 
   htmlSample = `
-    &lt;button mat-button (click)="displayed = !displayed"&gt;Click to Show the Table&lt;/button&gt;
-    &lt;ng-container *ngIf="displayed"&gt;
-      &lt;shark-table
+    <button mat-button (click)="displayed = !displayed">Click to Show the Table</button>
+    <ng-container *ngIf="displayed">
+      <shark-table
         [data]="testData"
         [columns]="tableColumns"
         [columnPicker]="true"
         [filterable]="false"
         [localPaging]="false"
         [hideCaption]="true"
-      &gt;
-      &lt;/shark-table&gt;
-    &lt;/ng-container&gt;
+      ></shark-table>
+    </ng-container>
   `;
 
   tsSample = `

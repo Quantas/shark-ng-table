@@ -30,27 +30,27 @@ import { Component } from '@angular/core';
 export class ContentProjectionComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [filterable]="false"
       [localPaging]="false"
       [hideCaption]="true"
-    &gt;
-      &lt;ng-template #headerLeft&gt;
+    >
+      <ng-template #headerLeft>
         Left Side!
-      &lt;/ng-template&gt;
-      &lt;ng-template #headerRight&gt;
+      </ng-template>
+      <ng-template #headerRight>
         Right Side!
-      &lt;/ng-template&gt;
+      </ng-template>
 
-      &lt;ng-template #footerLeft&gt;
+      <ng-template #footerLeft>
         Left Side!
-      &lt;/ng-template&gt;
-      &lt;ng-template #footerRight&gt;
+      </ng-template>
+      <ng-template #footerRight>
         Right Side!
-      &lt;/ng-template&gt;
-    &lt;/shark-table&gt;
+      </ng-template>
+    </shark-table>
   `;
 
   tsSample = `

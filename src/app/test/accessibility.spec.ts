@@ -1,4 +1,4 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, NgModule, ViewChild } from '@angular/core';
 import { SharkTableComponent, SharkTableModule, SharkColumn } from '../table';
@@ -10,7 +10,7 @@ describe('SharkTableAccessibilityComponent', () => {
     let fixture: ComponentFixture<TableTestAccessibilityComponent>;
     let component: TableTestAccessibilityComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [
               TestModule
@@ -23,12 +23,12 @@ describe('SharkTableAccessibilityComponent', () => {
         fixture.detectChanges();
     }));
 
-    it('should create the TableTestAccessibilityComponent', async(() => {
+    it('should create the TableTestAccessibilityComponent', waitForAsync(() => {
         expect(component).toBeTruthy();
         expect(component.sharkTable.page.totalElements).toEqual(10);
     }));
 
-    it('should have no accessibility violations', async(() => {
+    it('should have no accessibility violations', waitForAsync(() => {
       run(fixture.nativeElement, (error: Error, results: AxeResults) => {
         console.log('Accessibility Violations: ', results.violations);
         expect(error).toBe(null);
