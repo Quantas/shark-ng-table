@@ -69,6 +69,7 @@ on the table.
  - `npm run clean && npm run build`
  - Make sure the dist directory looks good by running `npm publish dist/ --dry-run`, there should be folders like `fesm2022`, `esm2022` etc.
  - Run `npm publish`
+ - Make sure to run the npm script for deploying to GitHub pages as well. TODO: make this automated
 
 ## Attribution
 
