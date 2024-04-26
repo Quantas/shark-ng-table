@@ -2,7 +2,6 @@
 
 [![CircleCI](https://circleci.com/gh/Quantas/shark-ng-table.svg?style=shield)](https://circleci.com/gh/Quantas/shark-ng-table)
 [![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
-[![Dependency Status](https://david-dm.org/quantas/shark-ng-table.svg)](https://david-dm.org/quantas/shark-ng-table)
 [![Known Vulnerabilities](https://snyk.io/test/github/Quantas/shark-ng-table/badge.svg)](https://snyk.io/test/github/Quantas/shark-ng-table)
 
 [![npm version](https://badge.fury.io/js/shark-ng-table.svg)][npm-badge-url]
