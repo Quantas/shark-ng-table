@@ -19,6 +19,14 @@
     "test": "ng test --code-coverage",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
+  "exports": {
+    "./shark-ng-table.css": {
+      "default": "./shark-ng-table.css"
+    },
+    "./shark-ng-table.min.css": {
+      "default": "./shark-ng-table.min.css"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Quantas/shark-ng-table.git"
