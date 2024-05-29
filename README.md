@@ -1,6 +1,6 @@
 # shark-ng-table
 
-![Build Status](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
+![Build Status](https://github.com/Quantas/shark-ng-table/actions/workflows/node.js.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/Quantas/shark-ng-table/badge.svg)](https://snyk.io/test/github/Quantas/shark-ng-table)
 
