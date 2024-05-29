@@ -1,6 +1,6 @@
 # shark-ng-table
 
-[![CircleCI](https://circleci.com/gh/Quantas/shark-ng-table.svg?style=shield)](https://circleci.com/gh/Quantas/shark-ng-table)
+![Build Status](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/Quantas/shark-ng-table/badge.svg)](https://snyk.io/test/github/Quantas/shark-ng-table)
 
@@ -67,7 +67,7 @@ on the table.
  - Make sure the sample site works in the VSCode devcontainer, open the container, run `npm start` and make sure the app at https://localhost:4200 works
  - `npm run clean && npm run build`
  - Make sure the dist directory looks good by running `npm publish dist/ --dry-run`, there should be folders like `fesm2022`, `esm2022` etc.
- - Run `npm publish`
+ - Run `npm publish dist/`
  - Make sure to run the npm script for deploying to GitHub pages as well. TODO: make this automated
 
 ## Attribution
