@@ -105,25 +105,25 @@ import { v4 as uuid } from 'uuid';
 })
 export class SharkTableComponent implements OnInit, OnChanges, OnDestroy {
 
-  @ViewChild(SharkTableInfoHeaderComponent)
+  @ViewChild(SharkTableInfoHeaderComponent, { static: false })
   headerInfoComponent: SharkTableInfoHeaderComponent;
 
-  @ViewChild(SharkTableHeaderComponent)
+  @ViewChild(SharkTableHeaderComponent, { static: false })
   headerComponent: SharkTableHeaderComponent;
 
-  @ViewChild(SharkTableFooterComponent)
+  @ViewChild(SharkTableFooterComponent, { static: false })
   footerComponent: SharkTableFooterComponent;
 
-  @ContentChild('headerLeft')
+  @ContentChild('headerLeft', {static: false})
   headerLeftTemplate: TemplateRef<any>;
 
-  @ContentChild('headerRight')
+  @ContentChild('headerRight', {static: false})
   headerRightTemplate: TemplateRef<any>;
 
-  @ContentChild('footerLeft')
+  @ContentChild('footerLeft', {static: false})
   footerLeftTemplate: TemplateRef<any>;
 
-  @ContentChild('footerRight')
+  @ContentChild('footerRight', {static: false})
   footerRightTemplate: TemplateRef<any>;
 
   notifierService = new NotifierService();

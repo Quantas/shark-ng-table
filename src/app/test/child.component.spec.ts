@@ -109,10 +109,9 @@ export class ChildDataComponent implements SharkDynamicContents {
 }
 
 @NgModule({
-  imports: [ SharkTableModule ],
-  exports: [ ChildDataComponent ],
-  declarations: [ ChildDataComponent ],
-  entryComponents: [ ChildDataComponent ]
+    imports: [SharkTableModule],
+    exports: [ChildDataComponent],
+    declarations: [ChildDataComponent]
 })
 export class ChildComponentTestModule {
 }

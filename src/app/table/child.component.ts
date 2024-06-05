@@ -37,7 +37,7 @@ export class SharkChildComponent implements AfterViewInit, OnChanges {
   @Input()
   openChildren: number[];
 
-  @ViewChild(SharkDynamicContentsDirective)
+  @ViewChild(SharkDynamicContentsDirective, { static: true })
   childContentsDirective: SharkDynamicContentsDirective;
 
   childOpen: boolean;

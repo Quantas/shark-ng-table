@@ -1,3 +1,13 @@
+<a name="7.0.0"></a>
+## [7.0.0](https://github.com/Quantas/shark-ng-table/compare/6.0.4...7.0.0) (2024-06-05)
+
+
+### Features
+
+* Upgrade to Angular 16 closes [#129](https://github.com/Quantas/shark-ng-table/pull/129)
+
+
+
 <a name="6.0.4"></a>
 ## [6.0.4](https://github.com/Quantas/shark-ng-table/compare/6.0.3...6.0.4) (2019-08-15)
 

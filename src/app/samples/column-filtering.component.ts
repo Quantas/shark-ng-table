@@ -16,13 +16,12 @@ import { Component } from '@angular/core';
 export class ColumnFilteringComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [columnFiltering]="true"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

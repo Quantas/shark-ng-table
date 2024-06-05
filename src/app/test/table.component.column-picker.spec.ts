@@ -62,7 +62,7 @@ export class TableTestColumnPickerComponent {
     { header: 'Col 3', property: 'col3'}
   ];
 
-  @ViewChild('sharkTable')
+  @ViewChild('sharkTable', {static: false})
   sharkTable: SharkTableComponent;
 }
 

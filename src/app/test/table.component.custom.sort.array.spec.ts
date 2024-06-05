@@ -100,7 +100,7 @@ export class TableTestComponent {
     }
   ];
 
-  @ViewChild('sharkTable')
+  @ViewChild('sharkTable', {static: false})
   sharkTable: SharkTableComponent;
 }
 

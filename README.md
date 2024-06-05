@@ -1,8 +1,7 @@
 # shark-ng-table
 
-[![CircleCI](https://circleci.com/gh/Quantas/shark-ng-table.svg?style=shield)](https://circleci.com/gh/Quantas/shark-ng-table)
+![Build Status](https://github.com/Quantas/shark-ng-table/actions/workflows/node.js.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
-[![Dependency Status](https://david-dm.org/quantas/shark-ng-table.svg)](https://david-dm.org/quantas/shark-ng-table)
 [![Known Vulnerabilities](https://snyk.io/test/github/Quantas/shark-ng-table/badge.svg)](https://snyk.io/test/github/Quantas/shark-ng-table)
 
 [![npm version](https://badge.fury.io/js/shark-ng-table.svg)][npm-badge-url]
@@ -19,7 +18,8 @@ Section508 and WCAG 2.0 AA compliant.
 
 | Angular Version | shark-ng-table Version |
 | --------------- | ---------------------- |
-| &gt;= 6.0.0        | >= 6.0.0               |
+| &gt;= 6.0.0     | >= 6.0.0               |
+| &gt;= 16.0.0    | >= 7.0.0               |
 
 ## Samples
 
@@ -61,6 +61,14 @@ This will install the latest version of `shark-ng-table`.
 shark-ng-table also provides a `.devcontainer` folder for support of Visual Studio Code's Remote-Container support. This will setup a full shark-ng-table dev
 environment automatically. You should be able to run `npm run start` inside the dev enviornment and expose the port, 4200, and be able to do live development
 on the table.
+
+## Publishing a new version
+ - Make sure all tests are passing
+ - Make sure the sample site works in the VSCode devcontainer, open the container, run `npm start` and make sure the app at https://localhost:4200 works
+ - `npm run clean && npm run build`
+ - Make sure the dist directory looks good by running `npm publish dist/ --dry-run`, there should be folders like `fesm2022`, `esm2022` etc.
+ - Run `npm publish dist/`
+ - Make sure to run the npm script for deploying to GitHub pages as well. TODO: make this automated
 
 ## Attribution
 

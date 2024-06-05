@@ -8,19 +8,13 @@ import { TableDataService } from '../../data.service';
     <h1>{{ pageTitle }}</h1>
     <mat-tab-group>
       <mat-tab label="HTML" *ngIf="htmlSample">
-        <div highlight-js-content=".highlight">
-          <pre [innerHTML]="htmlSample" class="highlight html"></pre>
-        </div>
+        <pre [highlight]="htmlSample" [languages]="html"></pre>
       </mat-tab>
       <mat-tab label="TS" *ngIf="tsSample">
-        <div highlight-js-content=".highlight">
-          <pre [innerHTML]="tsSample" class="highlight typescript"></pre>
-        </div>
+        <pre [highlight]="tsSample" [languages]="typescript"></pre>
       </mat-tab>
       <mat-tab label="CSS" *ngIf="cssSample">
-        <div highlight-js-content=".highlight">
-          <pre [innerHTML]="cssSample" class="highlight css"></pre>
-        </div>
+        <pre [highlight]="cssSample" [languages]="css"></pre>
       </mat-tab>
     </mat-tab-group>
     <ng-content></ng-content>

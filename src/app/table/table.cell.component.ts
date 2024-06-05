@@ -24,7 +24,7 @@ export class SharkTableCellComponent implements AfterViewInit {
   @Input()
   row: any;
 
-  @ViewChild(SharkDynamicContentsDirective)
+  @ViewChild(SharkDynamicContentsDirective, { static: false })
   tableCellContentsDirective: SharkDynamicContentsDirective;
 
   noComponentContents: any;

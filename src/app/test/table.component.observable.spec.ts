@@ -1,4 +1,4 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, NgModule, ViewChild } from '@angular/core';
 import { SharkTableComponent, SharkTableModule, SharkColumn, Page } from '../table';
@@ -19,7 +19,7 @@ describe('SharkTableComponentObservable', () => {
     {col1: '10', col2: 'j', col3: 'c' }
   ];
 
-  it('should sort DESC col1 on start', async(() => {
+  it('should sort DESC col1 on start', waitForAsync(() => {
     let fixture: ComponentFixture<TableTestObservableComponent>;
     let component: TableTestObservableComponent;
 
@@ -85,7 +85,7 @@ export class TableTestObservableComponent {
     { header: 'Col 3', property: 'col3'}
   ];
 
-  @ViewChild('sharkTable')
+  @ViewChild('sharkTable', {static: true})
   sharkTable: SharkTableComponent;
 }
 

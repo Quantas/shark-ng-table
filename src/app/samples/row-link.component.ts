@@ -19,14 +19,13 @@ export class RowLinkComponent {
   htmlSample = `
     // linkTarget should be an Angular router path in your app
     // linkKey should be a property name from your data
-    &lt;shark-table
+    <shark-table
         [data]="testData"
         [columns]="tableColumns"
         [linkTarget]="'/link-target'"
         [linkKey]="'id'"
         [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

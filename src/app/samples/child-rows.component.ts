@@ -19,15 +19,14 @@ import { ChildRowRenderingComponent } from './shared/child-rows-rendering.compon
 export class ChildRowsComponent {
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [columnFiltering]="true"
       [childRows]="true"
       [childComponent]="childComponent"
       [hideCaption]="true"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `
@@ -50,7 +49,7 @@ export class ChildRowsComponent {
     }
 
     // 2. Add Component to "entryComponents" and "declarations" in your NgModule
-    // 3. Store a reference in your Component where you use &lt;shark-table&gt;
+    // 3. Store a reference in your Component where you use <shark-table&gt;
     childComponent = ChildRowRenderingComponent;
 
     // 4. Use "childComponent" as a prameter to your shark-table as seen in the HTML portion of the sample

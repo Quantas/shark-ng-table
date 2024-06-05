@@ -12,3 +12,4 @@ export { SharkTableUtils } from './table.utils';
 export { Page } from './page';
 export { RowStyleFunction, CellStyleFunction } from './table.body.component';
 export { SharkTableCurrentDataEvent } from './current.data.event';
+export { SharkTablePaginationComponent } from './table.pagination.component';

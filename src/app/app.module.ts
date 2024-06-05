@@ -19,9 +19,15 @@ import { EverythingComponent } from './samples/everything.component';
 import { CellStyleComponent } from './samples/cellstyle.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTabsModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+
 import { CodeSampleComponent } from './samples/shared/code-sample-component';
 import { DataExportComponent } from './samples/data-export.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -34,52 +40,54 @@ import { LinkTargetComponent } from './samples/link-target.component';
 import { ToggleTableComponent } from './samples/toggle-table.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-
-    CodeSampleComponent,
-
-    BasicComponent,
-    CellStyleComponent,
-    DataExportComponent,
-    EverythingComponent,
-    FilterableComponent,
-    PageableComponent,
-    PagingAndFilteringComponent,
-    ColumnFilteringComponent,
-    ColumnOrderingComponent,
-    ColumnPickerComponent,
-    ChildRowsComponent,
-    ChildRowRenderingComponent,
-    ContentProjectionComponent,
-    LargeComponent,
-    ObservableComponent,
-    CustomCellsComponent,
-    MakeComponent,
-    TwoTablesComponent,
-    RowLinkComponent,
-    LinkTargetComponent,
-    ToggleTableComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    AppRoutingModule,
-    SharkTableModule,
-
-    HighlightJsModule,
-
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatTabsModule,
-    MatToolbarModule
-  ],
-  entryComponents: [ ChildRowRenderingComponent, MakeComponent ],
-  providers: [ TableDataService, HighlightJsService ],
-  bootstrap: [ AppComponent ]
+    declarations: [
+        AppComponent,
+        CodeSampleComponent,
+        BasicComponent,
+        CellStyleComponent,
+        DataExportComponent,
+        EverythingComponent,
+        FilterableComponent,
+        PageableComponent,
+        PagingAndFilteringComponent,
+        ColumnFilteringComponent,
+        ColumnOrderingComponent,
+        ColumnPickerComponent,
+        ChildRowsComponent,
+        ChildRowRenderingComponent,
+        ContentProjectionComponent,
+        LargeComponent,
+        ObservableComponent,
+        CustomCellsComponent,
+        MakeComponent,
+        TwoTablesComponent,
+        RowLinkComponent,
+        LinkTargetComponent,
+        ToggleTableComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        AppRoutingModule,
+        SharkTableModule,
+        HighlightModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatTabsModule,
+        MatToolbarModule
+    ],
+    providers: [
+        TableDataService,
+        {
+            provide: HIGHLIGHT_OPTIONS,
+            useValue: {
+                fullLibraryLoader: () => import('highlight.js'),
+            }
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

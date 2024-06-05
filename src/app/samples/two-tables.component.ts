@@ -32,11 +32,11 @@ import { MakeComponent } from './custom-cell.component';
 })
 export class TwoTablesComponent {
 
-  @ViewChild(SharkTableComponent)
+  @ViewChild(SharkTableComponent, { static: true })
   sharkTable: SharkTableComponent;
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [columnPicker]="true"
@@ -44,9 +44,9 @@ export class TwoTablesComponent {
       [columnFiltering]="true"
       [childRows]="true"
       [childComponent]="childComponent"
-    &gt;
-    &lt;/shark-table&gt;
-    &lt;shark-table
+    ></shark-table>
+
+    <shark-table
       [data]="testData"
       [columns]="tableColumnsTwo"
       [columnPicker]="true"
@@ -54,8 +54,7 @@ export class TwoTablesComponent {
       [columnFiltering]="true"
       [childRows]="true"
       [childComponent]="childComponent"
-    &gt;
-    &lt;/shark-table&gt;
+    ></shark-table>
   `;
 
   tsSample = `

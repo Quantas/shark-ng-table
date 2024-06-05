@@ -28,13 +28,13 @@ describe('SharkTableCellComponent', () => {
 
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('span').innerHTML).toEqual('<span style="color: red">1</span>');
+    expect(fixture.nativeElement.querySelector('span').innerHTML).toEqual('<span style="color: red;">1</span>');
   });
 
 });
 
 @Component({
-  template: `<span><span style="color: red">{{ data }}</span></span>`
+  template: `<span><span style="color: red;">{{ data }}</span></span>`
 })
 export class TestTableCellComponent implements SharkDynamicContents {
   data: any;
@@ -45,10 +45,9 @@ export class TestTableCellComponent implements SharkDynamicContents {
 }
 
 @NgModule({
-  imports: [ CommonModule, SharkTableModule ],
-  exports: [ TestTableCellComponent ],
-  declarations: [ TestTableCellComponent ],
-  entryComponents: [ TestTableCellComponent ]
+    imports: [CommonModule, SharkTableModule],
+    exports: [TestTableCellComponent],
+    declarations: [TestTableCellComponent]
 })
 export class TableCellTestingModule {
 }

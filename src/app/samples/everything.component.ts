@@ -35,11 +35,11 @@ import { MakeComponent } from './custom-cell.component';
 })
 export class EverythingComponent {
 
-  @ViewChild(SharkTableComponent)
+  @ViewChild(SharkTableComponent, { static: true })
   sharkTable: SharkTableComponent;
 
   htmlSample = `
-    &lt;shark-table
+    <shark-table
       [data]="testData"
       [columns]="tableColumns"
       [columnPicker]="true"
@@ -47,21 +47,21 @@ export class EverythingComponent {
       [columnFiltering]="true"
       [childRows]="true"
       [childComponent]="childComponent"
-    &gt;
-      &lt;ng-template #headerLeft&gt;
+    >
+      <ng-template #headerLeft>
         Left Side!
-      &lt;/ng-template&gt;
-      &lt;ng-template #headerRight&gt;
-        &lt;button (click)="exportData()"&gt;Export Data (Check Console)&lt;/button&gt;
-      &lt;/ng-template&gt;
+      </ng-template>
+      <ng-template #headerRight>
+        <button (click)="exportData()">Export Data (Check Console)</button>
+      </ng-template>
 
-      &lt;ng-template #footerLeft&gt;
+      <ng-template #footerLeft>
         Left Side!
-      &lt;/ng-template&gt;
-      &lt;ng-template #footerRight&gt;
+      </ng-template>
+      <ng-template #footerRight>
         Right Side!
-      &lt;/ng-template&gt;
-    &lt;/shark-table&gt;
+      </ng-template>
+    </shark-table>
   `;
 
   tsSample = `
