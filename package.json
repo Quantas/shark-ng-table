@@ -67,7 +67,7 @@
     "@types/jasmine": "2.8.3",
     "@types/jasminewd2": "2.0.2",
     "@types/node": "6.0.60",
-    "angular-cli-ghpages": "0.5.3",
+    "angular-cli-ghpages": "2.0.0",
     "axe-core": "4.9.0",
     "babel-plugin-istanbul": "^6.1.1",
     "codelyzer": "^6.0.2",
