@@ -24,9 +24,7 @@ The docs site deploys from `master` on every push via the [Docs workflow](.githu
 
 ## Code coverage
 
-CI uploads a Cobertura coverage report to GitHub Code Quality on every push to `master` (the baseline) and on pull requests from this repository (compared against the baseline). Coverage appears as a comment on each pull request.
-
-Once the first upload succeeds, set `fail-on-error: true` on the "Upload coverage to GitHub" step in `.github/workflows/ci.yml` so a broken upload fails CI.
+Every CI run writes a coverage table to its job summary (open the run in the Actions tab). Run `npm run test:coverage` to see the same numbers locally.
 
 ## Supporting a new Angular major
 

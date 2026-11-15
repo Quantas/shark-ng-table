@@ -12,9 +12,6 @@ permissions:
 jobs:
   ci:
     uses: ./.github/workflows/ci.yml
-    permissions:
-      contents: read
-      code-quality: write # required by ci.yml; no upload happens on release
 
   publish:
     needs: ci
