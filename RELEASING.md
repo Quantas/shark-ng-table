@@ -16,8 +16,8 @@ Releases are published to npm by the [Release workflow](.github/workflows/releas
 
 1. Update `version` in `projects/shark-ng-table/package.json` and add an entry to `CHANGELOG.md`.
 2. Merge to `master` and wait for CI to pass.
-3. Create a GitHub release with a tag that matches the version exactly, for example `v8.0.0`.
-   - Mark it as a **pre-release** to publish under the `next` dist-tag (for example `v8.1.0-rc.0`).
+3. Create a GitHub release with a tag that matches the version, for example `8.0.0` (earlier releases use plain versions; `v8.0.0` also works).
+   - Mark it as a **pre-release** to publish under the `next` dist-tag (for example `8.1.0-rc.0`).
 4. The Release workflow runs CI (lint, tests, Angular compatibility builds), checks the tag matches the package version, builds and publishes.
 
 The docs site deploys from `master` on every push via the [Docs workflow](.github/workflows/docs.yml) to https://shark-ng-table.sharkops.io/. The old address, www.quantasnet.com/shark-ng-table/, redirects there from the `Quantas/quantas.github.io` repository.
