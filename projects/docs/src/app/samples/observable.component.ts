@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CodeSampleComponent } from './shared/code-sample.component';
 import { BehaviorSubject } from 'rxjs';
 import { TableDataService } from '../data.service';
-import { Page } from '../table';
+import { Page, SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Observable Data" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Feed the table from an Observable of a Page or an array." pageTitle="Observable Data" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="dataObservable"
         [columns]="parent.tableColumns"
@@ -14,7 +16,7 @@ import { Page } from '../table';
         [hideCaption]="true"
       >
       </shark-table>
-      <button (click)="refreshData()">Update Observable</button>
+      <button type="button" (click)="refreshData()">Load data</button>
     </shark-table-code-sample>
   `
 })
@@ -31,7 +33,7 @@ export class ObservableComponent {
       [localPaging]="false"
       [hideCaption]="true"
     ></shark-table>
-    <button (click)="refreshData()">Update Observable</button>
+    <button type="button" (click)="refreshData()">Load data</button>
   `;
 
   tsSample = `
@@ -58,7 +60,7 @@ export class ObservableComponent {
     }
   `;
 
-  constructor(private tableDataService: TableDataService) {}
+  private readonly tableDataService = inject(TableDataService);
 
   refreshData(): void {
     const newPage: Page = {

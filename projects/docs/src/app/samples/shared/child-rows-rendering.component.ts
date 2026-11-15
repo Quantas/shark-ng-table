@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharkDynamicContents } from '../../table';
+import { SharkDynamicContents } from 'shark-ng-table';
 
 @Component({
   template: `
@@ -9,7 +9,7 @@ import { SharkDynamicContents } from '../../table';
 export class ChildRowRenderingComponent implements SharkDynamicContents {
   data: any;
 
-  childOpen(value: boolean): void {
-    console.log(value);
+  childOpen(): void {
+    // Load more data here when the row opens, if needed.
   }
 }

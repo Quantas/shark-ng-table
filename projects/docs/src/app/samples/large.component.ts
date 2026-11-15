@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { SharkColumn } from '../table';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkColumn, SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Large Table" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="A thousand rows with local paging." pageTitle="Large Table" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="testData"
         [columns]="tableColumns"

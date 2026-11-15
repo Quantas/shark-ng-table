@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { SharkTableComponent } from 'shark-ng-table';
+import { CodeSampleComponent } from './shared/code-sample.component';
 import { ChildRowRenderingComponent } from './shared/child-rows-rendering.component';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Child Rows" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Expandable detail rows rendered by your own component." pageTitle="Child Rows" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="parent.testData"
         [columns]="parent.tableColumns"
@@ -33,7 +36,7 @@ export class ChildRowsComponent {
     // 1. Create a SharkDynamicContents Component
 
     import { Component } from '@angular/core';
-    import { SharkDynamicContents } from '../table';
+    import { SharkDynamicContents } from 'shark-ng-table';
 
     @Component({
       template: \`
@@ -44,11 +47,11 @@ export class ChildRowsComponent {
       data: any;
 
       childOpen(value: boolean): void {
-        console.log(value);
+        // Load more data here when the row opens, if needed.
       }
     }
 
-    // 2. Add Component to "entryComponents" and "declarations" in your NgModule
+    // 2. Standalone components need no registration.
     // 3. Store a reference in your Component where you use <shark-table&gt;
     childComponent = ChildRowRenderingComponent;
 

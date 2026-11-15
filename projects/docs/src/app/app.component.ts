@@ -1,107 +1,76 @@
-import { Component } from '@angular/core';
-import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { Component, inject, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
+import { EXAMPLES, GUIDES } from './nav';
 
 @Component({
-  selector: 'shark-root',
+  selector: 'docs-root',
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
-    <mat-toolbar class="header" color="primary">
-      <button mat-icon-button (click)="sidenav.toggle()" fxShow.sm="true" fxShow.gt-sm="false">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>shark-ng-table samples</span>
-      <span class="toolbar-filler"></span>
-      <a href="https://github.com/Quantas/shark-ng-table" target="_blank" mat-button>
-        <span>
-          <img class="header-logo" src="assets/github-circle-white-transparent.svg">
-          <span fxShow.lt-md="false" fxShow.gt-sm="true">GitHub</span>
-        </span>
+    <a class="skip-link" href="#main" (click)="skipToMain($event)">Skip to content</a>
+
+    <header class="site-header">
+      <a routerLink="/" class="wordmark" aria-label="shark-ng-table home">
+        <svg class="fin" viewBox="0 0 32 24" aria-hidden="true"><path d="M2 22 C10 20 16 12 18 2 C21 9 25 16 30 22 Z"/></svg>
+        <span>shark-ng-table</span>
       </a>
-    </mat-toolbar>
-    <mat-sidenav-container>
-      <mat-sidenav #sidenav [(mode)]="over" [(opened)]="opened" class="bottom-to-top">
-        <mat-nav-list (click)="closeNav()">
-          <a mat-list-item [routerLink]="['basic']">Basic</a>
-          <a mat-list-item [routerLink]="['cellstyle']">Cell Styling</a>
-          <a mat-list-item [routerLink]="['child-rows']">Child Rows</a>
-          <a mat-list-item [routerLink]="['column-filtering']">Column Filtering</a>
-          <a mat-list-item [routerLink]="['column-ordering']">Column Ordering</a>
-          <a mat-list-item [routerLink]="['column-picker']">Column Picker</a>
-          <a mat-list-item [routerLink]="['content-projection']">Content Projection</a>
-          <a mat-list-item [routerLink]="['custom-cells']">Custom Cells</a>
-          <a mat-list-item [routerLink]="['data-export']">Data Export</a>
-          <a mat-list-item [routerLink]="['everything']">Everything</a>
-          <a mat-list-item [routerLink]="['filterable']">Filterable</a>
-          <a mat-list-item [routerLink]="['large']">Large</a>
-          <a mat-list-item [routerLink]="['observable']">Observable Data</a>
-          <a mat-list-item [routerLink]="['pageable']">Pageable</a>
-          <a mat-list-item [routerLink]="['paging-filtering']">Paging and Filtering</a>
-          <a mat-list-item [routerLink]="['row-link']">Row Linking</a>
-          <a mat-list-item [routerLink]="['two-tables']">Two Tables</a>
-          <a mat-list-item [routerLink]="['toggle-table']">Toggle Table</a>
-        </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <div class="wrapper">
-          <div class="main">
-            <router-outlet></router-outlet>
-          </div>
-        </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-    <mat-toolbar class="footer" color="primary">
-      &copy; 2024 Andrew Landsverk and Nelnet Inc. and Affiliates.
-    </mat-toolbar>
-  `,
-  styles: [
-    `
-      .wrapper {
-        margin: 1rem 2rem 2rem 2rem;
-      }
+      <nav class="header-links" aria-label="Project">
+        <a href="https://www.npmjs.com/package/shark-ng-table" rel="noopener">npm</a>
+        <a href="https://github.com/Quantas/shark-ng-table" rel="noopener">
+          <img src="github.svg" alt="" width="18" height="18"> GitHub
+        </a>
+      </nav>
+      <button type="button" class="menu-toggle" [attr.aria-expanded]="menuOpen()" aria-controls="site-nav" (click)="menuOpen.set(!menuOpen())">
+        {{ menuOpen() ? 'Close menu' : 'Menu' }}
+      </button>
+    </header>
 
-      .header {
-        font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-      }
+    <div class="layout">
+      <nav id="site-nav" class="sidebar" [class.open]="menuOpen()" aria-label="Documentation">
+        <h2 id="nav-guide">Guide</h2>
+        <ul aria-labelledby="nav-guide">
+          @for (guide of guides; track guide.path) {
+            <li><a [routerLink]="'/guide/' + guide.path" routerLinkActive="active" ariaCurrentWhenActive="page">{{ guide.title }}</a></li>
+          }
+        </ul>
+        <h2 id="nav-examples">Examples</h2>
+        <ul aria-labelledby="nav-examples">
+          @for (example of examples; track example.path) {
+            <li><a [routerLink]="'/' + example.path" routerLinkActive="active" ariaCurrentWhenActive="page">{{ example.title }}</a></li>
+          }
+        </ul>
+        <ul class="mobile-links" aria-label="Project">
+          <li><a href="https://www.npmjs.com/package/shark-ng-table" rel="noopener">npm</a></li>
+          <li><a href="https://github.com/Quantas/shark-ng-table" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
 
-      .header-logo {
-        height: 26px;
-        margin: 0 4px 3px 0;
-        vertical-align: middle;
-      }
+      <main id="main" tabindex="-1">
+        <router-outlet />
+      </main>
+    </div>
 
-      .toolbar-filler {
-        flex: 1 1 auto;
-      }
-
-      .footer {
-        font-size: 12px;
-        font-weight: normal;
-        height: 2rem;
-      }
-    `
-  ]
+    <footer class="site-footer">
+      <p>MIT licensed. &copy; Andrew Landsverk and Nelnet Inc. and Affiliates.</p>
+      <p>Icons from <a href="https://fontawesome.com/license" rel="noopener">Font Awesome</a>.</p>
+    </footer>
+  `
 })
 export class AppComponent {
+  readonly guides = GUIDES;
+  readonly examples = EXAMPLES;
+  readonly menuOpen = signal(false);
 
-  opened = false;
-  over: string;
-
-  constructor(media: MediaObserver) {
-    media.asObservable().subscribe(changes => {
-      changes.forEach(change => {
-        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
-          this.opened = false;
-          this.over = 'over';
-        } else {
-          this.opened = true;
-          this.over = 'side';
-        }
-      });
-    });
+  constructor() {
+    inject(Router).events
+      .pipe(filter(event => event instanceof NavigationEnd), takeUntilDestroyed())
+      .subscribe(() => this.menuOpen.set(false));
   }
 
-  closeNav(): void {
-    if (this.over === 'over') {
-      this.opened = false;
-    }
+  /** With hash routing a plain "#main" link would be treated as a route, so move focus manually. */
+  skipToMain(event: Event): void {
+    event.preventDefault();
+    document.getElementById('main')?.focus();
   }
 }

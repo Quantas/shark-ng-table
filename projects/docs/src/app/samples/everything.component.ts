@@ -1,11 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
-import { SharkColumn, SharkTableComponent } from '../table';
+import { Component, ViewChild, signal } from '@angular/core';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkColumn, SharkColumnChangeEvent, SharkTableComponent } from 'shark-ng-table';
 import { ChildRowRenderingComponent } from './shared/child-rows-rendering.component';
 import { MakeComponent } from './custom-cell.component';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Everything (except row links)" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Most features enabled at once." pageTitle="Everything (except row links)" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table #sharkTable
          [data]="parent.testData"
          [columns]="tableColumns"
@@ -17,19 +19,20 @@ import { MakeComponent } from './custom-cell.component';
          (columnChange)="columnChange($event)"
       >
         <ng-template #headerLeft>
-          Left Side!
+          Left content
         </ng-template>
         <ng-template #headerRight>
-          <button (click)="exportData()">Export Data (Check Console)</button>
+          <button type="button" (click)="exportData()">Export data</button>
         </ng-template>
 
         <ng-template #footerLeft>
-          Left Side!
+          Left content
         </ng-template>
         <ng-template #footerRight>
-          Right Side!
+          Right content
         </ng-template>
       </shark-table>
+      <p role="status" class="output-status">{{ status() }}</p>
     </shark-table-code-sample>
   `
 })
@@ -49,17 +52,17 @@ export class EverythingComponent {
       [childComponent]="childComponent"
     >
       <ng-template #headerLeft>
-        Left Side!
+        Left content
       </ng-template>
       <ng-template #headerRight>
-        <button (click)="exportData()">Export Data (Check Console)</button>
+        <button type="button" (click)="exportData()">Export data</button>
       </ng-template>
 
       <ng-template #footerLeft>
-        Left Side!
+        Left content
       </ng-template>
       <ng-template #footerRight>
-        Right Side!
+        Right content
       </ng-template>
     </shark-table>
   `;
@@ -76,12 +79,15 @@ export class EverythingComponent {
     { header: 'Model', property: 'model' }
   ];
 
+  readonly status = signal('');
+
   exportData(): void {
-    console.log(this.sharkTable.exportCurrentData());
+    const exported = this.sharkTable.exportCurrentData();
+    this.status.set(`Exported ${exported.data.length} rows with ${exported.columns.length} columns.`);
   }
 
-  columnChange(newColumns: SharkColumn[]): void {
-    console.log(newColumns);
+  columnChange(event: SharkColumnChangeEvent): void {
+    this.status.set(`Visible columns: ${event.columns.filter(c => c.displayed).map(c => c.header).join(', ')}.`);
   }
 
 }

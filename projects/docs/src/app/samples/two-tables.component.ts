@@ -1,12 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
-import { SharkColumn, SharkTableComponent } from '../table';
+import { Component } from '@angular/core';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkColumn, SharkTableComponent } from 'shark-ng-table';
 import { ChildRowRenderingComponent } from './shared/child-rows-rendering.component';
 import { MakeComponent } from './custom-cell.component';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Two Tables" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
-      <shark-table #sharkTable
+    <shark-table-code-sample description="Two independent tables on one page." pageTitle="Two Tables" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+      <shark-table
+         caption="First table"
          [data]="parent.testData"
          [columns]="tableColumns"
          [columnPicker]="true"
@@ -16,8 +19,8 @@ import { MakeComponent } from './custom-cell.component';
          [childComponent]="childComponent"
       >
       </shark-table>
-      <br />
-      <shark-table #sharkTable
+      <shark-table
+         caption="Second table"
          [data]="parent.testData"
          [columns]="tableColumnsTwo"
          [columnPicker]="true"
@@ -31,9 +34,6 @@ import { MakeComponent } from './custom-cell.component';
   `
 })
 export class TwoTablesComponent {
-
-  @ViewChild(SharkTableComponent, { static: true })
-  sharkTable: SharkTableComponent;
 
   htmlSample = `
     <shark-table
@@ -74,9 +74,5 @@ export class TwoTablesComponent {
     { header: 'Make', property: 'make', component: MakeComponent },
     { header: 'Model', property: 'model' }
   ];
-
-  exportData(): void {
-    console.log(this.sharkTable.exportCurrentData());
-  }
 
 }

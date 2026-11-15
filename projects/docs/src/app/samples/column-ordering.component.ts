@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Column Ordering" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Buttons in each header move columns left and right. Focus follows the moved column." pageTitle="Column Ordering" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="parent.testData"
         [columns]="parent.tableColumns"

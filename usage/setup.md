@@ -1,70 +1,61 @@
-# Setup
+# Getting started
 
-## Import our NgModule
+## Install
 
-Add `SharkTableModule` to your module's `import` section as below:
-
-```typescript
-import {NgModule} from '@angular/core';
-import {SharkTableModule} from 'shark-ng-table';
-
-
-@NgModule({
-  imports: [
-    SharkTableModule,
-  ]
-})
-export class MyAngularModule {}
+```bash
+npm install shark-ng-table
 ```
 
+shark-ng-table 8.x supports Angular 21 and 22. See the [README](../README.md#versions) for older Angular versions.
 
-## Setup Some Data
+## Import the component
 
-In your Component add a `SharkColumn` definition and some test data:
+`SharkTableComponent` is a standalone component. Add it to the `imports` of the component that uses it:
 
 ```typescript
 import { Component } from '@angular/core';
-
-import { SharkColumn } from 'shark-ng-table';
+import { SharkColumn, SharkTableComponent } from 'shark-ng-table';
 
 @Component({
-  templateUrl: './tabletest.component.html',
-  styleUrls: ['./tabletest.component.css']
+  selector: 'app-cars',
+  imports: [SharkTableComponent],
+  templateUrl: './cars.component.html'
 })
-export class TableTestComponent {
+export class CarsComponent {
 
-  testData = [
-    {col1: '1', col2: 'b', col3: 'c' },
-    {col1: '2', col2: 'b', col3: 'c' },
-    {col1: '3', col2: 'b', col3: 'c' },
-    {col1: '4', col2: 'b', col3: 'c' },
-    {col1: '5', col2: 'b', col3: 'c' },
-    {col1: '6', col2: 'b', col3: 'c' },
-    {col1: '7', col2: 'b', col3: 'c' },
-    {col1: '8', col2: 'b', col3: 'c' },
-    {col1: '9', col2: 'b', col3: 'c' },
-    {col1: '10', col2: 'b', col3: 'c' }
+  cars = [
+    { year: 2017, make: 'Subaru', model: 'WRX' },
+    { year: 2017, make: 'Honda', model: 'Civic' },
+    { year: 2016, make: 'Toyota', model: 'Camry' }
   ];
 
-  tableColumns: SharkColumn[] = [
-    { header: 'Col 1', property: 'col1'},
-    { header: 'Col 2', property: 'col2'},
-    { header: 'Col 3', property: 'col3'}
+  columns: SharkColumn[] = [
+    { header: 'Year', property: 'year' },
+    { header: 'Make', property: 'make' },
+    { header: 'Model', property: 'model' }
   ];
 }
 ```
 
-Then in your HTML for your component add the following:
+Still using NgModules? Import `SharkTableModule` instead; it exports the same components.
+
+## Add the table to your template
 
 ```html
 <shark-table
-  [data]="testData"
-  [localFilter]="true"
-  [columns]="tableColumns"
-  [localPaging]="true"
-  [localPagingSize]="50"
->
-</shark-table>
+  caption="Cars"
+  [data]="cars"
+  [columns]="columns"
+  [localPagingSize]="25"
+></shark-table>
 ```
 
-This will create the table with the `tableColumns` definitions and the `testData` as the source.
+Give every table a meaningful `caption`. Screen readers announce it when someone reaches the table. Use `[hideCaption]="true"` to hide it visually and keep it for assistive technology.
+
+## Add the stylesheet
+
+The table needs its stylesheet. See [Styling](styling.md).
+
+## Row links need a router
+
+Row links (`linkTarget` / `linkKey`) navigate with the Angular router, so your application needs `provideRouter(...)`. Tables without row links work without a router.

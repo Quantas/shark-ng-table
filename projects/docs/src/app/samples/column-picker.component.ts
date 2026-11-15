@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Column Picker" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Let people choose which columns are shown." pageTitle="Column Picker" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="parent.testData"
         [columns]="parent.tableColumns"

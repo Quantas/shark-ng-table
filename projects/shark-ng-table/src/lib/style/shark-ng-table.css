@@ -15,7 +15,9 @@
 }
 
 .shark-table .controls {
-  overflow: auto;
+  /* visible (not auto) so focus outlines are not clipped and controls wrap on narrow screens */
+  overflow: visible;
+  gap: 0.5rem 0;
 }
 
 .shark-table .controls.header-buttons {

@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Row Linking" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Whole rows link to another route. Middle click or Ctrl/Cmd click opens a new tab." pageTitle="Row Linking" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="parent.testData"
         [columns]="parent.tableColumns"
@@ -17,8 +20,7 @@ import {Component} from '@angular/core';
 export class RowLinkComponent {
 
   htmlSample = `
-    // linkTarget should be an Angular router path in your app
-    // linkKey should be a property name from your data
+    <!-- linkTarget is a router path in your app; linkKey is a property of each row -->
     <shark-table
         [data]="testData"
         [columns]="tableColumns"

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Toggle Table" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
-      <br />
-      <button mat-button (click)="displayed = !displayed">Click to Show the Table</button>
-      <ng-container *ngIf="displayed">
+    <shark-table-code-sample description="Create and destroy a table on demand." pageTitle="Toggle Table" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+      <button type="button" [attr.aria-expanded]="displayed" (click)="displayed = !displayed">{{ displayed ? 'Hide' : 'Show' }} the table</button>
+      @if (displayed) {
         <shark-table
           [data]="parent.testData"
           [columns]="parent.tableColumns"
@@ -15,7 +17,7 @@ import { Component } from '@angular/core';
           [hideCaption]="true"
         >
         </shark-table>
-      </ng-container>
+      }
     </shark-table-code-sample>
   `
 })
@@ -24,8 +26,10 @@ export class ToggleTableComponent {
   displayed = false;
 
   htmlSample = `
-    <button mat-button (click)="displayed = !displayed">Click to Show the Table</button>
-    <ng-container *ngIf="displayed">
+    <button type="button" [attr.aria-expanded]="displayed" (click)="displayed = !displayed">
+      {{ displayed ? 'Hide' : 'Show' }} the table
+    </button>
+    @if (displayed) {
       <shark-table
         [data]="testData"
         [columns]="tableColumns"
@@ -34,7 +38,7 @@ export class ToggleTableComponent {
         [localPaging]="false"
         [hideCaption]="true"
       ></shark-table>
-    </ng-container>
+    }
   `;
 
   tsSample = `

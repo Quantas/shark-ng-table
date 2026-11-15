@@ -1,18 +1,24 @@
-import { Component, ViewChild } from '@angular/core';
-import { SharkTableComponent } from '../table';
+import { Component, ViewChild, signal } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkTableComponent, SharkTableCurrentDataEvent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent, JsonPipe],
   template: `
-    <shark-table-code-sample pageTitle="Data Export" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
-      <button mat-raised-button (click)="exportData()">Export Data (Check Console)</button>
+    <shark-table-code-sample description="Get the filtered and sorted rows, with the visible columns, for export." pageTitle="Data Export" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+      <button type="button" (click)="exportData()">Export data</button>
       <shark-table #sharkTable
         [data]="parent.testData"
         [columns]="parent.tableColumns"
-        [filterable]="false"
-        [localPaging]="false"
+        [localPagingSize]="5"
         [hideCaption]="true"
       >
       </shark-table>
+      @if (exported()) {
+        <h3>Exported rows ({{ exported()!.data.length }})</h3>
+        <pre class="output">{{ exported()!.data | json }}</pre>
+      }
     </shark-table-code-sample>
   `
 })
@@ -22,12 +28,11 @@ export class DataExportComponent {
   sharkTable: SharkTableComponent;
 
   htmlSample = `
-    <button (click)="exportData()"&gt;Export Data (Check Console)</button&gt;
+    <button type="button" (click)="exportData()">Export data</button>
     <shark-table #sharkTable
       [data]="testData"
       [columns]="tableColumns"
-      [filterable]="false"
-      [localPaging]="false"
+      [localPagingSize]="5"
       [hideCaption]="true"
     ></shark-table>
   `;
@@ -47,12 +52,17 @@ export class DataExportComponent {
     ];
 
     exportData(): void {
-      console.log(this.sharkTable.exportCurrentData());
+      // Every row that matches the current filters, in the current sort order,
+      // with only the visible columns. Pass false to skip column pipes.
+      const { data, columns } = this.sharkTable.exportCurrentData();
+      // e.g. turn data + columns into CSV here
     }
   `;
 
+  readonly exported = signal<SharkTableCurrentDataEvent | undefined>(undefined);
+
   exportData(): void {
-    console.log(this.sharkTable.exportCurrentData());
+    this.exported.set(this.sharkTable.exportCurrentData());
   }
 
 }

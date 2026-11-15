@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { SharkColumn, SharkDynamicContents } from '../table';
+import { NgClass } from '@angular/common';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { SharkColumn, SharkDynamicContents, SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Custom Cells" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Render a cell with your own component." pageTitle="Custom Cells" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="parent.testData"
         [columns]="tableColumns"
@@ -29,21 +32,22 @@ export class CustomCellsComponent {
     // 1. Create a SharkDynamicContents Component
 
     @Component({
+  imports: [NgClass],
     template: \`
       &lt;span [ngClass]="data">{{ data }}&lt;/span>
     \`,
     styles: [
       \`
         .Subaru {
-          color: darkblue;
+          color: light-dark(#1f4e9c, #8cbcff);
         }
 
         .Honda {
-          color: gray;
+          color: light-dark(#4a5a6a, #b8c4cf);
         }
 
         .Toyota {
-          color: red;
+          color: light-dark(#b3261e, #ff8a80);
         }
       \`
     ]
@@ -55,7 +59,7 @@ export class CustomCellsComponent {
     }
   }
 
-  // 2. Add Component to "entryComponents" and "declarations" in your NgModule
+  // 2. Standalone components need no registration.
   // 3. Use in your column definition
   tableColumns: SharkColumn[] = [
     { header: 'Year', property: 'year' },
@@ -73,21 +77,22 @@ export class CustomCellsComponent {
 }
 
 @Component({
+  imports: [NgClass],
   template: `
     <span [ngClass]="data">{{ data }}</span>
   `,
   styles: [
     `
       .Subaru {
-        color: darkblue;
+        color: light-dark(#1f4e9c, #8cbcff);
       }
 
       .Honda {
-        color: gray;
+        color: light-dark(#4a5a6a, #b8c4cf);
       }
 
       .Toyota {
-        color: red;
+        color: light-dark(#b3261e, #ff8a80);
       }
     `
   ]
@@ -95,6 +100,6 @@ export class CustomCellsComponent {
 export class MakeComponent implements SharkDynamicContents {
   data: any;
 
-  childOpen(value: boolean): void {
+  childOpen(): void {
   }
 }

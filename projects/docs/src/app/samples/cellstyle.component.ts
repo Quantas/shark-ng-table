@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { CellStyleFunction, SharkColumn } from '../table';
+import { CodeSampleComponent } from './shared/code-sample.component';
+import { CellStyleFunction, SharkColumn, SharkTableComponent } from 'shark-ng-table';
 
 @Component({
+  imports: [CodeSampleComponent, SharkTableComponent],
   template: `
-    <shark-table-code-sample pageTitle="Cell Styling" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
+    <shark-table-code-sample description="Style individual cells or rows from a function." pageTitle="Cell Styling" [htmlSample]="htmlSample" [tsSample]="tsSample" #parent>
       <shark-table
         [data]="parent.testData"
         [columns]="parent.tableColumns"
@@ -39,16 +41,18 @@ export class CellStyleComponent {
       { header: 'Model', property: 'model' }
     ];
 
-    cellStylingFunction: CellStyleFunction = (row: any, column: SharkColumn,  cell: any) => {
-      const color = column.property === 'year' ? 'red' : column.property === 'make' ? 'white' : 'blue';
-      return {'background-color': color };
+    cellStylingFunction: CellStyleFunction = (row: any, column: SharkColumn) => {
+      // Set the text color too, so the cell keeps enough contrast in any theme.
+      const background = column.property === 'year' ? '#fde2e1' : column.property === 'make' ? '#ffffff' : '#dbe8fb';
+      return { 'background-color': background, 'color': '#17212b' };
     };
   `;
 
-  cellStylingFunction: CellStyleFunction = (row: any, column: SharkColumn,  cell: any) => {
+  cellStylingFunction: CellStyleFunction = (row: any, column: SharkColumn) => {
 
-    const color = column.property === 'year' ? 'red' : column.property === 'make' ? 'white' : 'blue';
-    return {'background-color': color };
+    // Set the text color too, so the cell keeps enough contrast in any theme.
+    const background = column.property === 'year' ? '#fde2e1' : column.property === 'make' ? '#ffffff' : '#dbe8fb';
+    return { 'background-color': background, 'color': '#17212b' };
   };
 
 }
