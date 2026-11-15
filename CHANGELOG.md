@@ -25,6 +25,8 @@ Supports Angular 21 and 22. See the [upgrade guide](usage/migrating.md).
 * Clicking buttons inside a linked row (such as the child row toggle) no longer navigates
 * Keyboard focus is kept after reordering columns and after paging
 * The global filter label is associated with its input; focus outlines are no longer clipped
+* Column filter inputs meet the WCAG 2.2 minimum target size (24px)
+* Transitions are disabled when the user prefers reduced motion
 
 ### BREAKING CHANGES
 

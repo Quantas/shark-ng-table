@@ -137,6 +137,52 @@
           }
         }
       }
+    },
+    "a11y-fixture": {
+      "projectType": "application",
+      "root": "projects/a11y-fixture",
+      "sourceRoot": "projects/a11y-fixture/src",
+      "prefix": "fixture",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "outputPath": "dist/a11y-fixture",
+            "browser": "projects/a11y-fixture/src/main.ts",
+            "tsConfig": "projects/a11y-fixture/tsconfig.app.json",
+            "styles": [
+              "projects/shark-ng-table/src/lib/style/shark-ng-table.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "development": {
+              "buildTarget": "a11y-fixture:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/a11y-fixture/**/*.ts"
+            ]
+          }
+        }
+      }
     }
   }
 }

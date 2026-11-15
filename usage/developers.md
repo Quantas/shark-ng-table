@@ -11,6 +11,7 @@ You need Node.js 22.22+, 24.15+ or 26+.
 npm ci
 npm start            # docs site with live reload at http://localhost:4200
 npm test             # library unit tests (Vitest)
+npm run e2e          # accessibility tests in a real browser (Playwright; run `npx playwright install chromium` once)
 npm run lint         # ESLint, including template accessibility rules
 npm run build        # builds the package into dist/shark-ng-table
 npm run build:docs   # builds the docs site into dist/docs

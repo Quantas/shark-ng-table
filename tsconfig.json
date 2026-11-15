@@ -28,6 +28,7 @@
   "references": [
     { "path": "./projects/shark-ng-table/tsconfig.lib.json" },
     { "path": "./projects/shark-ng-table/tsconfig.spec.json" },
-    { "path": "./projects/docs/tsconfig.app.json" }
+    { "path": "./projects/docs/tsconfig.app.json" },
+    { "path": "./projects/a11y-fixture/tsconfig.app.json" }
   ]
 }

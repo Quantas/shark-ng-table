@@ -80,7 +80,7 @@ a { color: var(--link); text-underline-offset: 0.18em; text-decoration-thickness
 a:hover { text-decoration-thickness: 2px; }
 
 code, kbd, pre { font-family: var(--mono); font-size: 0.9em; }
-:not(pre) > code { background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 3px; }
+:not(pre) > code { background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 3px; overflow-wrap: anywhere; }
 kbd {
   border: 1px solid var(--rule);
   border-bottom-width: 2px;

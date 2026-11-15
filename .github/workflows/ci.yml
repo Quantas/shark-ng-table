@@ -40,6 +40,29 @@ jobs:
           path: shark-ng-table-*.tgz
           if-no-files-found: error
 
+  accessibility:
+    name: Accessibility (real browser)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build:e2e
+      - run: npx playwright test
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 14
+
   compat:
     name: Builds with Angular ${{ matrix.angular }}
     needs: build

@@ -28,7 +28,7 @@ Every rule is scoped under `.shark-table`, so you can override colors from your 
 .shark-table .pagination button.active { background-color: #17212b; color: #fff; }
 ```
 
-Keep a contrast ratio of at least 4.5:1 for text and 3:1 for focus indicators so the table stays WCAG AA compliant.
+When you change colors, keep a contrast ratio of at least 4.5:1 for text and 3:1 for focus indicators and icons, so the table still meets WCAG AA. Keep interactive controls at least 24 by 24 pixels.
 
 ## Per row and per cell styles
 

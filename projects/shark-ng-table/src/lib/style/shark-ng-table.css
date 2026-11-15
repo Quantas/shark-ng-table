@@ -312,3 +312,19 @@
 .shark-table .fa-sync:before {
   content: "\6b";
 }
+
+/* Column filter inputs: at least 24px tall to meet WCAG 2.2 target size (2.5.8) */
+.shark-table .header-row input[type="text"] {
+  min-height: 24px;
+  box-sizing: border-box;
+}
+
+/* Respect the user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .shark-table *,
+  .shark-table *::before,
+  .shark-table *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

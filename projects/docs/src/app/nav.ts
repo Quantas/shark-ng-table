@@ -7,6 +7,7 @@ import columns from '../../../../usage/column-options.md';
 import childRows from '../../../../usage/child-rows.md';
 import migrating from '../../../../usage/migrating.md';
 import developers from '../../../../usage/developers.md';
+import accessibility from '../../../../ACCESSIBILITY.md';
 
 export interface GuideEntry {
   path: string;
@@ -28,6 +29,7 @@ export const GUIDES: GuideEntry[] = [
   { path: 'column-options', title: 'Column options', file: 'column-options.md', markdown: columns },
   { path: 'child-rows', title: 'Child rows', file: 'child-rows.md', markdown: childRows },
   { path: 'migrating', title: 'Upgrading to 8.0', file: 'migrating.md', markdown: migrating },
+  { path: 'accessibility', title: 'Accessibility testing', file: 'ACCESSIBILITY.md', markdown: accessibility },
   { path: 'developers', title: 'Contributing', file: 'developers.md', markdown: developers }
 ];
 

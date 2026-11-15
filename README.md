@@ -7,7 +7,7 @@
 
 [npm-badge-url]: https://www.npmjs.com/package/shark-ng-table
 
-An Angular data table built for keyboard and screen reader users. Section 508 and WCAG 2 AA compliant.
+An Angular data table built for keyboard and screen reader users. Built to meet WCAG 2.2 AA, and tested with axe-core and keyboard tests in a real browser on every change. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for what is tested and how.
 
 **Docs and live examples: https://www.quantasnet.com/shark-ng-table/**
 
@@ -67,6 +67,7 @@ The guides are on the [docs site](https://www.quantasnet.com/shark-ng-table/) an
 - [Column options](usage/column-options.md)
 - [Child rows](usage/child-rows.md)
 - [Upgrading to 8.0](usage/migrating.md)
+- [Accessibility testing](ACCESSIBILITY.md)
 - [Contributing](usage/developers.md) and [releasing](RELEASING.md)
 - [Change log](CHANGELOG.md)
 
@@ -75,7 +76,8 @@ The guides are on the [docs site](https://www.quantasnet.com/shark-ng-table/) an
 ```bash
 npm ci
 npm start      # docs site at http://localhost:4200, using the library source
-npm test       # unit and accessibility tests
+npm test       # unit tests, including axe checks
+npm run e2e    # accessibility tests in a real browser (Playwright)
 npm run lint
 npm run build  # package in dist/shark-ng-table
 ```

@@ -12,7 +12,10 @@
     "test": "ng test shark-ng-table --watch=false",
     "test:watch": "ng test shark-ng-table",
     "test:coverage": "ng test shark-ng-table --watch=false --coverage",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "build:e2e": "ng build a11y-fixture && ng build docs",
+    "e2e": "npm run build:e2e && playwright test",
+    "e2e:only": "playwright test"
   },
   "packageManager": "npm@11.19.0",
   "engines": {
@@ -28,7 +31,9 @@
     "@angular/forms": "^22.2.6",
     "@angular/platform-browser": "^22.2.6",
     "@angular/router": "^22.2.6",
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.1",
     "@vitest/coverage-v8": "^5.1.0",
     "angular-eslint": "^22.6.0",
     "axe-core": "^4.14.0",

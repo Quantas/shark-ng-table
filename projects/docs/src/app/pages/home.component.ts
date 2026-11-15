@@ -12,7 +12,7 @@ import { highlight } from '../shared/highlight';
       <h1 id="hero-title">An Angular data table that works with a keyboard and a screen reader.</h1>
       <p class="lede">
         Sorting, filtering, paging, column picking and child rows, with every change announced to assistive technology.
-        Built to meet Section 508 and WCAG 2 AA.
+        Built to meet WCAG 2.2 AA, and <a routerLink="/guide/accessibility">tested</a> with axe and keyboard tests in a real browser on every change.
       </p>
     </section>
 
