@@ -26,6 +26,8 @@ The docs site deploys from `master` on every push via the [Docs workflow](.githu
 
 Every CI run writes a coverage table to its job summary (open the run in the Actions tab). Run `npm run test:coverage` to see the same numbers locally.
 
+CI fails if coverage drops below the floors in `coverageThresholds` (in `angular.json`): 90% lines, 85% statements, 85% branches, 75% functions. Raise them as coverage improves; don't lower them to get a change through.
+
 ## Supporting a new Angular major
 
 1. Approve the Angular major update from Renovate's Dependency Dashboard issue, or run `ng update @angular/core@<major> @angular/cli@<major>` locally.

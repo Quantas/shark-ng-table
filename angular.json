@@ -41,7 +41,13 @@
             ],
             "coverageExclude": [
               "projects/shark-ng-table/src/test/**"
-            ]
+            ],
+            "coverageThresholds": {
+              "lines": 90,
+              "statements": 85,
+              "branches": 85,
+              "functions": 75
+            }
           }
         },
         "lint": {
