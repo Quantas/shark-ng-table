@@ -1,7 +1,6 @@
 # shark-ng-table
 
 [![CI](https://github.com/Quantas/shark-ng-table/actions/workflows/ci.yml/badge.svg)](https://github.com/Quantas/shark-ng-table/actions/workflows/ci.yml)
-[![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
 [![npm version](https://img.shields.io/npm/v/shark-ng-table.svg)][npm-badge-url]
 [![npm license](https://img.shields.io/npm/l/shark-ng-table.svg)][npm-badge-url]
 [![npm downloads](https://img.shields.io/npm/dm/shark-ng-table.svg)][npm-badge-url]

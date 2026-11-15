@@ -17,8 +17,14 @@ jobs:
   build:
     name: Lint, test and build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      code-quality: write # upload coverage to GitHub Code Quality
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Check out the PR head (not the merge commit) so coverage line numbers match the diff
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-node@v7
         with:
           node-version: 24
@@ -26,12 +32,19 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test:coverage
-      - name: Upload coverage to Coveralls
-        if: github.event_name != 'release'
-        uses: coverallsapp/github-action@v2
-        continue-on-error: true
+      # Pushes to master set the baseline; pull requests are compared against it.
+      # Skipped for PRs from forks, which cannot be granted code-quality: write.
+      - name: Upload coverage to GitHub
+        if: >-
+          github.event_name == 'push' ||
+          (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+        uses: actions/upload-code-coverage@v1
         with:
-          file: coverage/shark-ng-table/lcov.info
+          file: coverage/shark-ng-table/cobertura-coverage.xml
+          language: TypeScript
+          label: code-coverage/vitest
+          # Set to true once the first upload succeeds (see RELEASING.md)
+          fail-on-error: false
       - run: npm run build
       - name: Pack library
         run: npm pack --pack-destination ../..

@@ -22,6 +22,12 @@ Releases are published to npm by the [Release workflow](.github/workflows/releas
 
 The docs site deploys from `master` on every push via the [Docs workflow](.github/workflows/docs.yml).
 
+## Code coverage
+
+CI uploads a Cobertura coverage report to GitHub Code Quality on every push to `master` (the baseline) and on pull requests from this repository (compared against the baseline). Coverage appears as a comment on each pull request.
+
+Once the first upload succeeds, set `fail-on-error: true` on the "Upload coverage to GitHub" step in `.github/workflows/ci.yml` so a broken upload fails CI.
+
 ## Supporting a new Angular major
 
 1. Approve the Angular major update from Renovate's Dependency Dashboard issue, or run `ng update @angular/core@<major> @angular/cli@<major>` locally.
