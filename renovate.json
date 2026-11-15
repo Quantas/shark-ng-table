@@ -1,12 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Extends the sharkops-io org preset (1-day minimum release age, automerge for minor/patch). Rules below are specific to this Angular library.",
   "extends": [
-    "config:recommended",
-    ":semanticCommitTypeAll(chore)",
+    "local>sharkops-io/renovate-config",
     "helpers:pinGitHubActionDigestsToSemver"
   ],
-  "timezone": "America/Chicago",
-  "schedule": ["before 6am on monday"],
   "labels": ["dependencies"],
   "rangeStrategy": "bump",
   "lockFileMaintenance": {
@@ -15,10 +13,8 @@
   },
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["dependencies", "security"],
-    "schedule": ["at any time"]
+    "labels": ["dependencies", "security"]
   },
-  "ignorePaths": ["dist/**"],
   "packageRules": [
     {
       "description": "Update Angular framework, tooling and packager together",
@@ -26,26 +22,16 @@
       "groupName": "Angular"
     },
     {
-      "description": "Angular majors need `ng update` migrations and a peer range change: approve from the Dependency Dashboard",
+      "description": "Angular majors need `ng update` migrations and a peer range change: approve from the Dependency Dashboard (see RELEASING.md)",
       "matchPackageNames": ["@angular/**", "@angular-devkit/**", "@schematics/angular", "ng-packagr", "angular-eslint", "@angular-eslint/**"],
       "matchUpdateTypes": ["major"],
       "dependencyDashboardApproval": true
     },
     {
-      "description": "TypeScript is constrained by the Angular compiler; only take versions Angular supports",
+      "description": "TypeScript is constrained by the Angular compiler; take new minors/majors with an Angular update, not on their own",
       "matchPackageNames": ["typescript"],
       "matchUpdateTypes": ["major", "minor"],
       "enabled": false
-    },
-    {
-      "description": "Test tooling",
-      "matchPackageNames": ["vitest", "@vitest/**", "jsdom", "axe-core"],
-      "groupName": "test tooling"
-    },
-    {
-      "description": "Lint tooling",
-      "matchPackageNames": ["eslint", "@eslint/**", "typescript-eslint"],
-      "groupName": "lint tooling"
     },
     {
       "description": "Library peer dependency ranges are maintained by hand",
@@ -54,17 +40,19 @@
       "enabled": false
     },
     {
-      "description": "Auto-merge non-major dev tooling once CI passes",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch", "digest"],
-      "automerge": true
+      "description": "Test tooling",
+      "matchPackageNames": ["vitest", "@vitest/**", "jsdom", "axe-core", "@axe-core/**", "@playwright/test"],
+      "groupName": "test tooling"
+    },
+    {
+      "description": "Lint tooling",
+      "matchPackageNames": ["eslint", "@eslint/**", "typescript-eslint"],
+      "groupName": "lint tooling"
     },
     {
       "description": "GitHub Actions",
       "matchManagers": ["github-actions"],
-      "groupName": "GitHub Actions",
-      "automerge": true,
-      "matchUpdateTypes": ["minor", "patch", "digest"]
+      "groupName": "GitHub Actions"
     }
   ]
 }
