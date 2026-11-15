@@ -1,5 +1,5 @@
 <a name="8.0.0"></a>
-## [8.0.0](https://github.com/Quantas/shark-ng-table/compare/7.0.0...8.0.0) (unreleased)
+## [8.0.0](https://github.com/sharkops-io/shark-ng-table/compare/7.0.0...8.0.0) (2026-11-15)
 
 Supports Angular 21 and 22. See the [upgrade guide](usage/migrating.md).
 

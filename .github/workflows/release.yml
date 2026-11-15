@@ -1,6 +1,6 @@
 name: Release
 
-# Publishing a GitHub release (tag vX.Y.Z) publishes that version to npm.
+# Publishing a GitHub release (tag X.Y.Z, e.g. 8.0.0) publishes that version to npm.
 # Uses npm trusted publishing (OIDC): no NPM_TOKEN secret is needed. See RELEASING.md.
 on:
   release:
@@ -31,8 +31,9 @@ jobs:
       - name: Check the tag matches the package version
         run: |
           VERSION=$(node -p "require('./projects/shark-ng-table/package.json').version")
-          if [ "${GITHUB_REF_NAME}" != "v${VERSION}" ]; then
-            echo "::error::Release tag ${GITHUB_REF_NAME} does not match package version v${VERSION}"
+          # Tags are plain versions (8.0.0), like earlier releases; a leading "v" is also accepted.
+          if [ "${GITHUB_REF_NAME#v}" != "${VERSION}" ]; then
+            echo "::error::Release tag ${GITHUB_REF_NAME} does not match package version ${VERSION}"
             exit 1
           fi
 
