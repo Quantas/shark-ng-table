@@ -18,7 +18,7 @@ import { ThemeService } from './shared/theme.service';
       </a>
       <nav class="header-links" aria-label="Project">
         <a href="https://www.npmjs.com/package/shark-ng-table" rel="noopener">npm</a>
-        <a href="https://github.com/Quantas/shark-ng-table" rel="noopener">
+        <a href="https://github.com/sharkops-io/shark-ng-table" rel="noopener">
           <img src="github.svg" alt="" width="18" height="18"> GitHub
         </a>
       </nav>
@@ -53,7 +53,7 @@ import { ThemeService } from './shared/theme.service';
         </ul>
         <ul class="mobile-links" aria-label="Project">
           <li><a href="https://www.npmjs.com/package/shark-ng-table" rel="noopener">npm</a></li>
-          <li><a href="https://github.com/Quantas/shark-ng-table" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/sharkops-io/shark-ng-table" rel="noopener">GitHub</a></li>
         </ul>
       </nav>
 

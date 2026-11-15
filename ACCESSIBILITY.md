@@ -29,7 +29,7 @@ npm run lint
 
 ## Manual checks (before each release)
 
-Record the result in the release notes. A table configuration means default options, column filtering with ordering, child rows, row links, and server side data. The [fixture app](https://github.com/Quantas/shark-ng-table/tree/master/projects/a11y-fixture) has all of them on one page (`npx ng serve a11y-fixture`).
+Record the result in the release notes. A table configuration means default options, column filtering with ordering, child rows, row links, and server side data. The [fixture app](https://github.com/sharkops-io/shark-ng-table/tree/master/projects/a11y-fixture) has all of them on one page (`npx ng serve a11y-fixture`).
 
 ### Keyboard only
 
@@ -62,4 +62,4 @@ Test at least VoiceOver with Safari on macOS and NVDA with Firefox or Chrome on 
 
 ## Reporting a problem
 
-Open an [issue](https://github.com/Quantas/shark-ng-table/issues) with the browser, assistive technology and version, the table options used, and what you expected to happen.
+Open an [issue](https://github.com/sharkops-io/shark-ng-table/issues) with the browser, assistive technology and version, the table options used, and what you expected to happen.

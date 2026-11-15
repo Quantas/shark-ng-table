@@ -7,12 +7,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Quantas/shark-ng-table.git"
+    "url": "git+https://github.com/sharkops-io/shark-ng-table.git"
   },
   "bugs": {
-    "url": "https://github.com/Quantas/shark-ng-table/issues"
+    "url": "https://github.com/sharkops-io/shark-ng-table/issues"
   },
-  "homepage": "https://www.quantasnet.com/shark-ng-table/",
+  "homepage": "https://shark-ng-table.sharkops.io/",
   "publishConfig": {
     "access": "public",
     "provenance": true

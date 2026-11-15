@@ -47,15 +47,15 @@ We will be insisting on a minimal reproduce scenario in order to save maintainer
 
 Unfortunately we are not able to investigate / fix bugs without a minimal reproduction, so if we don't hear back from you we are going to close an issue that don't have enough info to be reproduced.
 
-You can file new issues by filling out our [new issue form](https://github.com/Quantas/shark-ng-table/issues/new).
+You can file new issues by filling out our [new issue form](https://github.com/sharkops-io/shark-ng-table/issues/new).
 
 
 ### <a name="submit-pr"></a> Submitting a Pull Request (PR)
 Before you submit your Pull Request (PR) consider the following guidelines:
 
-1. Search [GitHub](https://github.com/Quantas/shark-ng-table/pulls) for an open or closed PR
+1. Search [GitHub](https://github.com/sharkops-io/shark-ng-table/pulls) for an open or closed PR
   that relates to your submission. You don't want to duplicate effort.
-1. Fork the Quantas/shark-ng-table repo.
+1. Fork the sharkops-io/shark-ng-table repo.
 1. Make your changes in a new git branch:
 
      ```shell
@@ -158,7 +158,7 @@ to read on GitHub as well as in various git tools.
 
 Footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
-Samples: (even more [samples](https://github.com/Quantas/shark-ng-table/commits/master))
+Samples: (even more [samples](https://github.com/sharkops-io/shark-ng-table/commits/master))
 
 ```
 docs(changelog): update change log to beta.5
@@ -216,6 +216,6 @@ reference GitHub issues that this commit **Closes**.
 
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
 
-[coc]: https://github.com/Quantas/shark-ng-table/blob/master/CODE_OF_CONDUCT.md
-[github]: https://github.com/Quantas/shark-ng-table
+[coc]: https://github.com/sharkops-io/shark-ng-table/blob/master/CODE_OF_CONDUCT.md
+[github]: https://github.com/sharkops-io/shark-ng-table
 [js-style-guide]: https://google.github.io/styleguide/jsguide.html

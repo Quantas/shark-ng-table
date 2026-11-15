@@ -6,7 +6,7 @@
 npm install shark-ng-table
 ```
 
-shark-ng-table 8.x supports Angular 21 and 22. See the [README](https://github.com/Quantas/shark-ng-table#versions) for older Angular versions.
+shark-ng-table 8.x supports Angular 21 and 22. See the [README](https://github.com/sharkops-io/shark-ng-table#versions) for older Angular versions.
 
 ## Import the component
 
