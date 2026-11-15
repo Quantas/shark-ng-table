@@ -1,118 +1,100 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": false,
+    "schematicCollections": ["angular-eslint"]
+  },
   "newProjectRoot": "projects",
   "projects": {
     "shark-ng-table": {
-      "root": "",
-      "sourceRoot": "src",
-      "projectType": "application",
+      "projectType": "library",
+      "root": "projects/shark-ng-table",
+      "sourceRoot": "projects/shark-ng-table/src",
+      "prefix": "shark",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:ng-packagr",
           "options": {
-            "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ],
-            "styles": [
-              "src/styles.less"
-            ],
-            "scripts": [],
-            "aot": false,
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "project": "projects/shark-ng-table/ng-package.json"
           },
           "configurations": {
             "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+              "tsConfig": "projects/shark-ng-table/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shark-ng-table/tsconfig.lib.json"
             }
           },
-          "defaultConfiguration": ""
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "shark-ng-table:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "shark-ng-table:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "shark-ng-table:build"
-          }
+          "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              "src/styles.less"
-            ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "tsConfig": "projects/shark-ng-table/tsconfig.spec.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/shark-ng-table/**/*.ts", "projects/shark-ng-table/**/*.html"]
           }
         }
       }
     },
-    "shark-ng-table-e2e": {
-      "root": "e2e",
-      "sourceRoot": "e2e",
+    "docs": {
       "projectType": "application",
+      "root": "projects/docs",
+      "sourceRoot": "projects/docs/src",
+      "prefix": "docs",
       "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "build": {
+          "builder": "@angular/build:application",
           "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "shark-ng-table:serve"
+            "outputPath": "dist/docs",
+            "browser": "projects/docs/src/main.ts",
+            "tsConfig": "projects/docs/tsconfig.app.json",
+            "loader": {
+              ".md": "text"
+            },
+            "assets": [
+              { "glob": "**/*", "input": "projects/docs/public" },
+              { "glob": "**/*", "input": "projects/shark-ng-table/src/lib/style/fonts", "output": "fonts" }
+            ],
+            "styles": ["projects/docs/src/styles.css"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                { "type": "initial", "maximumWarning": "600kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "6kB", "maximumError": "10kB" }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": { "buildTarget": "docs:build:production" },
+            "development": { "buildTarget": "docs:build:development" }
+          },
+          "defaultConfiguration": "development"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/docs/**/*.ts", "projects/docs/**/*.html"]
           }
         }
       }
     }
-  },
-  "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "shark",
-      "style": "less"
-    },
-    "@schematics/angular:directive": {
-      "prefix": "shark"
-    }
-  },
-  "cli": {
-    "analytics": false
   }
 }

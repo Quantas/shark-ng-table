@@ -1,0 +1,14 @@
+export { SharkChildComponent } from './child.component';
+export type { SharkColumn } from './column';
+export { SharkColumnChangeEvent } from './column-change-event';
+export type { SharkDynamicContents } from './dynamic/dynamic.contents';
+export type { SharkPageChangeEvent } from './page.change.event';
+export { SharkCurrentSort, SharkSortType } from './sort.type';
+export { SharkTableModule } from './table.module';
+export { SharkTableCellComponent } from './table.cell.component';
+export { SharkTableComponent } from './table.component';
+export { SharkTableUtils } from './table.utils';
+export type { Page, Sort } from './page';
+export type { RowStyleFunction, CellStyleFunction } from './table.body.component';
+export { SharkTableCurrentDataEvent } from './current.data.event';
+export { SharkTablePaginationComponent } from './table.pagination.component';

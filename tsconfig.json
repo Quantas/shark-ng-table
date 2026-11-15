@@ -1,22 +1,33 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "downlevelIteration": true,
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
+    "paths": {
+      "shark-ng-table": ["./projects/shark-ng-table/src/public-api.ts"]
+    },
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
-    "module": "es2020",
-    "baseUrl": "./",
-    "useDefineForClassFields": false
-  }
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    { "path": "./projects/shark-ng-table/tsconfig.lib.json" },
+    { "path": "./projects/shark-ng-table/tsconfig.spec.json" },
+    { "path": "./projects/docs/tsconfig.app.json" }
+  ]
 }

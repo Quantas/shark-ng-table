@@ -1,97 +1,52 @@
 {
-  "name": "shark-ng-table",
-  "version": "7.0.0",
-  "description": "A robust table for Angular built with Accessibility in mind.",
-  "main": "index.js",
+  "name": "shark-ng-table-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Workspace for shark-ng-table (library) and its docs site.",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "clean": "rimraf dist/ && rimraf dist.tgz",
-    "minify:css": "uglifycss --output dist/shark-ng-table.min.css --cute-comments src/app/table/style/shark-ng-table.css",
-    "packagr": "ng-packagr -p ng-package.json",
-    "copy": "copyfiles README.md dist/ && copyfiles -f src/app/table/style/shark-ng-table.css dist/ && copyfiles -f src/app/table/style/fonts/* dist/fonts/",
-    "build": "npm run clean && npm run test && npm run build:package",
-    "build:notest": "npm run clean && npm run build:package",
-    "build:package": "npm run packagr && npm run copy && npm run minify:css",
-    "samples": "rimraf docs/ && ng build --configuration production --output-path docs/ --base-href /shark-ng-table/ && npm run samples:style",
-    "samples:style": "copyfiles -f src/app/table/style/* docs/assets/style/ && copyfiles -f src/app/table/style/fonts/* docs/assets/style/fonts/",
-    "ghpages": "npx ngh --dir=docs/ --repo=https://GH_TOKEN@github.com/Quantas/shark-ng-table.git",
-    "start": "ng serve --watch --live-reload --poll=1000",
-    "test": "ng test --code-coverage",
+    "start": "ng serve docs",
+    "build": "ng build shark-ng-table && node scripts/finalize-package.mjs",
+    "build:docs": "ng build docs",
+    "test": "ng test shark-ng-table --watch=false",
+    "test:watch": "ng test shark-ng-table",
+    "test:coverage": "ng test shark-ng-table --watch=false --coverage",
+    "lint": "ng lint",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
-  "exports": {
-    "./shark-ng-table.css": {
-      "default": "./shark-ng-table.css"
-    },
-    "./shark-ng-table.min.css": {
-      "default": "./shark-ng-table.min.css"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Quantas/shark-ng-table.git"
-  },
-  "author": "Andrew Landsverk",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Quantas/shark-ng-table/issues"
-  },
-  "homepage": "https://github.com/Quantas/shark-ng-table",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "peerDependencies": {
-    "@angular/common": ">= 16.0.0",
-    "@angular/core": ">= 16.0.0",
-    "@angular/forms": ">= 16.0.0",
-    "@angular/router": ">= 16.0.0",
-    "rxjs": ">= 6.2.0",
-    "core-js": ">= 3.0.0"
+  "packageManager": "npm@11.19.0",
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.2.14",
-    "@angular/animations": "16.2.12",
-    "@angular/cdk": "16.2.14",
-    "@angular/cli": "16.2.14",
-    "@angular/common": "16.2.12",
-    "@angular/compiler": "16.2.12",
-    "@angular/compiler-cli": "16.2.12",
-    "@angular/core": "16.2.12",
-    "@angular/flex-layout": "15.0.0-beta.42",
-    "@angular/forms": "16.2.12",
-    "@angular/language-service": "16.2.12",
-    "@angular/material": "16.2.14",
-    "@angular/platform-browser": "16.2.12",
-    "@angular/platform-browser-dynamic": "16.2.12",
-    "@angular/router": "16.2.12",
-    "@types/jasmine": "2.8.3",
-    "@types/jasminewd2": "2.0.2",
-    "@types/node": "6.0.60",
-    "angular-cli-ghpages": "0.5.3",
-    "axe-core": "4.9.0",
-    "babel-plugin-istanbul": "^6.1.1",
-    "codelyzer": "^6.0.2",
-    "conventional-changelog-cli": "1.3.5",
-    "copyfiles": "^2.0.0",
-    "core-js": "3.37.0",
-    "jasmine-core": "~5.1.2",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~6.4.3",
-    "karma-coverage": "^1.1.2",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-coveralls": "1.1.2",
-    "karma-firefox-launcher": "2.1.3",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "^2.1.0",
-    "karma-junit-reporter": "1.2.0",
-    "ng-packagr": "^16.2.3",
-    "ngx-highlightjs": "9.0.0",
-    "protractor": "~7.0.0",
-    "rxjs": "6.6.7",
-    "ts-node": "3.2.0",
-    "tslint": "~6.1.0",
-    "typescript": "4.9.5",
-    "uglifycss": "0.0.29",
-    "zone.js": "~0.13.3"
+    "@angular/build": "^22.2.6",
+    "@angular/cli": "^22.2.6",
+    "@angular/common": "^22.2.6",
+    "@angular/compiler": "^22.2.6",
+    "@angular/compiler-cli": "^22.2.6",
+    "@angular/core": "^22.2.6",
+    "@angular/forms": "^22.2.6",
+    "@angular/platform-browser": "^22.2.6",
+    "@angular/router": "^22.2.6",
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^5.1.0",
+    "angular-eslint": "^22.6.0",
+    "axe-core": "^4.14.0",
+    "eslint": "^10.15.0",
+    "highlight.js": "^11.12.0",
+    "jsdom": "^30.0.0",
+    "marked": "^18.2.0",
+    "ng-packagr": "^22.2.6",
+    "rxjs": "~7.8.2",
+    "tslib": "^2.9.1",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.72.2",
+    "vitest": "^5.1.0"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.8"
+    }
   }
 }
