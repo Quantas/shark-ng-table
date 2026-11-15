@@ -3,6 +3,7 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } fro
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 import { EXAMPLES, GUIDES } from './nav';
+import { ThemeService } from './shared/theme.service';
 
 @Component({
   selector: 'docs-root',
@@ -21,6 +22,16 @@ import { EXAMPLES, GUIDES } from './nav';
           <img src="github.svg" alt="" width="18" height="18"> GitHub
         </a>
       </nav>
+      <button type="button" class="theme-toggle" (click)="themes.toggle()"
+              [attr.aria-label]="themes.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+        @if (themes.theme() === 'dark') {
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="theme-label">Light theme</span>
+        } @else {
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5 8.5 8.5 0 1 0 20.5 14.6Z"/></svg>
+          <span class="theme-label">Dark theme</span>
+        }
+      </button>
       <button type="button" class="menu-toggle" [attr.aria-expanded]="menuOpen()" aria-controls="site-nav" (click)="menuOpen.set(!menuOpen())">
         {{ menuOpen() ? 'Close menu' : 'Menu' }}
       </button>
@@ -61,6 +72,7 @@ export class AppComponent {
   readonly guides = GUIDES;
   readonly examples = EXAMPLES;
   readonly menuOpen = signal(false);
+  readonly themes = inject(ThemeService);
 
   constructor() {
     inject(Router).events

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { DOCS, FIXTURE, hasVisibleFocusIndicator } from './helpers';
+import { DOCS, FIXTURE, expectNoAxeViolations, hasVisibleFocusIndicator } from './helpers';
 
 test.describe('reflow at 320 CSS pixels (WCAG 1.4.10)', () => {
   test.use({ viewport: { width: 320, height: 800 } });
@@ -41,5 +41,27 @@ test.describe('reduced motion', () => {
     await button.waitFor();
     const duration = await button.evaluate(el => getComputedStyle(el).transitionDuration);
     expect(duration.split(',').every(d => parseFloat(d) === 0)).toBe(true);
+  });
+});
+
+test.describe('docs theme switcher', () => {
+  test.use({ colorScheme: 'light' });
+
+  test('switches theme, remembers it, and follows the system again when set back', async ({ page }) => {
+    await page.goto(DOCS + '/');
+    const html = page.locator('html');
+    await expect(html).not.toHaveAttribute('data-theme', /.*/);
+
+    await page.getByRole('button', { name: 'Switch to dark theme' }).click();
+    await expect(html).toHaveAttribute('data-theme', 'dark');
+    await expectNoAxeViolations(page);
+
+    await page.reload();
+    await expect(html).toHaveAttribute('data-theme', 'dark');
+
+    // Back to light, which is the system theme here: the saved choice is cleared.
+    await page.getByRole('button', { name: 'Switch to light theme' }).click();
+    await expect(html).not.toHaveAttribute('data-theme', /.*/);
+    expect(await page.evaluate(() => localStorage.getItem('shark-docs-theme'))).toBeNull();
   });
 });
