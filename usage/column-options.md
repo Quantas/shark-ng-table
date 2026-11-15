@@ -3,7 +3,7 @@
 * header - `string`
   * Display name
 * property - `string`
-  * Property for this column from the data Object
+  * Property for this column from the data object. Use dots for nested values, for example `owner.name`.
 * pipe - `Type<PipeTransform>`
   * `PipeTransform` to use for rendering the column.
 * pipeConstructorArgs - `any[]`
@@ -15,7 +15,7 @@
 * sortType - `SharkSortType`
   * The current sort type for this column
 * ascendingSortFunction - `(left: any, right: any) => number`
-  * Provide a custom column sorting function
+  * Provide a custom column sorting function. Without one, numbers, numeric strings and dates sort numerically, other values as strings, and empty values (`null`, `undefined`, `''`) sort last.
 * alignRight - `boolean` - `false`
   * If the column should be aligned to the right in the cell.
 * filter - `string`

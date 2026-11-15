@@ -1,76 +1,90 @@
 # shark-ng-table
 
-![Build Status](https://github.com/Quantas/shark-ng-table/actions/workflows/node.js.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/Quantas/shark-ng-table/badge.svg?branch=master)](https://coveralls.io/github/Quantas/shark-ng-table?branch=master)
-[![Known Vulnerabilities](https://snyk.io/test/github/Quantas/shark-ng-table/badge.svg)](https://snyk.io/test/github/Quantas/shark-ng-table)
-
-[![npm version](https://badge.fury.io/js/shark-ng-table.svg)][npm-badge-url]
-[![npm](https://img.shields.io/npm/l/shark-ng-table.svg)][npm-badge-url]
-[![npm](https://img.shields.io/npm/dm/shark-ng-table.svg)][npm-badge-url]
+[![CI](https://github.com/Quantas/shark-ng-table/actions/workflows/ci.yml/badge.svg)](https://github.com/Quantas/shark-ng-table/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/shark-ng-table.svg)][npm-badge-url]
+[![npm license](https://img.shields.io/npm/l/shark-ng-table.svg)][npm-badge-url]
+[![npm downloads](https://img.shields.io/npm/dm/shark-ng-table.svg)][npm-badge-url]
 
 [npm-badge-url]: https://www.npmjs.com/package/shark-ng-table
 
-A robust table for Angular built with Accessibility in mind.
+An Angular data table built for keyboard and screen reader users. Built to meet WCAG 2.2 AA, and tested with axe-core and keyboard tests in a real browser on every change. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for what is tested and how.
 
-Section508 and WCAG 2.0 AA compliant.
-
-## Versions
-
-| Angular Version | shark-ng-table Version |
-| --------------- | ---------------------- |
-| &gt;= 6.0.0     | >= 6.0.0               |
-| &gt;= 16.0.0    | >= 7.0.0               |
-
-## Samples
-
-There are a number of samples available that can be viewed here: https://www.quantasnet.com/shark-ng-table/
-
-We also have a running example over on [Stackblitz](https://stackblitz.com/edit/shark-ng-table-demo)
+**Docs and live examples: https://www.quantasnet.com/shark-ng-table/**
 
 ## Features
 
-- Filtering (Global and Column Specific)
-- Sorting
-- Pagination
-- Footer Headers
-- Informational Footer
-- Column reordering
-- Column hide/show
-- Custom cell rendering with user provided Component or Pipe
+- Filtering, global or per column
+- Sorting, including multiple columns and custom sort functions
+- Client-side or server-side paging
+- Column reordering and a column picker
+- Expandable child rows
+- Custom cell rendering with your own component or pipe
+- Row links, including middle click and Ctrl/Cmd click to open a new tab
+- Every change announced to screen readers through a live region
 
-## Installing
+## Versions
+
+| Angular         | shark-ng-table |
+| --------------- | -------------- |
+| 21 and 22       | 8.x            |
+| 16 to 20        | 7.x            |
+| 6 to 15         | 6.x            |
+
+## Install
 
 ```bash
-npm install --save shark-ng-table
+npm install shark-ng-table
 ```
 
-This will install the latest version of `shark-ng-table`.
+```typescript
+import { Component } from '@angular/core';
+import { SharkColumn, SharkTableComponent } from 'shark-ng-table';
+
+@Component({
+  selector: 'app-cars',
+  imports: [SharkTableComponent],
+  template: `<shark-table caption="Cars" [data]="cars" [columns]="columns"></shark-table>`
+})
+export class CarsComponent {
+  cars = [{ year: 2017, make: 'Subaru', model: 'WRX' }];
+  columns: SharkColumn[] = [
+    { header: 'Year', property: 'year' },
+    { header: 'Make', property: 'make' },
+    { header: 'Model', property: 'model' }
+  ];
+}
+```
+
+Then add `node_modules/shark-ng-table/shark-ng-table.min.css` to the `styles` in your `angular.json`.
 
 ## Documentation
 
- - [Setup <shark-table>](usage/setup.md)
- - [Styling <shark-table>](usage/styling.md)
- - [<shark-table> Options](usage/shark-table-options.md)
- - [Column Options](usage/column-options.md)
- - [Child Rows](usage/child-rows.md)
- - [Developer Guide](usage/developers.md)
- - [Change Log](CHANGELOG.md)
+The guides are on the [docs site](https://www.quantasnet.com/shark-ng-table/) and in this repository:
 
-## Dev Environment
+- [Getting started](usage/setup.md)
+- [Styling](usage/styling.md)
+- [Table options](usage/shark-table-options.md)
+- [Column options](usage/column-options.md)
+- [Child rows](usage/child-rows.md)
+- [Upgrading to 8.0](usage/migrating.md)
+- [Accessibility testing](ACCESSIBILITY.md)
+- [Contributing](usage/developers.md) and [releasing](RELEASING.md)
+- [Change log](CHANGELOG.md)
 
-shark-ng-table also provides a `.devcontainer` folder for support of Visual Studio Code's Remote-Container support. This will setup a full shark-ng-table dev
-environment automatically. You should be able to run `npm run start` inside the dev enviornment and expose the port, 4200, and be able to do live development
-on the table.
+## Development
 
-## Publishing a new version
- - Make sure all tests are passing
- - Make sure the sample site works in the VSCode devcontainer, open the container, run `npm start` and make sure the app at https://localhost:4200 works
- - `npm run clean && npm run build`
- - Make sure the dist directory looks good by running `npm publish dist/ --dry-run`, there should be folders like `fesm2022`, `esm2022` etc.
- - Run `npm publish dist/`
- - Make sure to run the npm script for deploying to GitHub pages as well. TODO: make this automated
+```bash
+npm ci
+npm start      # docs site at http://localhost:4200, using the library source
+npm test       # unit tests, including axe checks
+npm run e2e    # accessibility tests in a real browser (Playwright)
+npm run lint
+npm run build  # package in dist/shark-ng-table
+```
+
+A [dev container](.devcontainer/devcontainer.json) is included for VS Code and GitHub Codespaces.
 
 ## Attribution
 
- - Developed and tested in collaboration with Great Lakes Higher Education Corporation and Nelnet Inc. and Affiliates
- - We use the classes provided by [Font Awesome](https://fontawesome.com/) to add icons to a few parts of the table, their License is [here](https://fontawesome.com/license).
+- Developed and tested in collaboration with Great Lakes Higher Education Corporation and Nelnet Inc. and Affiliates
+- Icons from [Font Awesome](https://fontawesome.com/), see their [license](https://fontawesome.com/license)

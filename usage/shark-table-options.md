@@ -1,9 +1,9 @@
 # shark-table options
 
-* tableId - `string` - `uuid.substring(0, 5)`
-    * An ID for this table
-* data - `any[]` or `Observable<Page>` or `Observable<any[]>`
-    * The raw table data
+* tableId - `string` - unique per table (`st1`, `st2`, ...)
+    * An ID for this table, used to build unique element ids
+* data - `any[]`, `Page`, `Observable<Page>` or `Observable<any[]>`
+    * The raw table data. Arrays (including arrays emitted by an Observable) are filtered, sorted and paged locally. The table never modifies your array.
 * columns - `SharkColumn[]`
     * The table column definitions
 * caption - `string` - `A Data Table`
@@ -15,7 +15,7 @@
 * columnOrdering - `boolean` - `false`
     * Allow users to reorder columns with header buttons
 * linkTarget - `string`
-    * The destination page for the call to `router.navigate` when the row is clicked.
+    * The destination page for the call to `router.navigate` when the row is clicked. Middle click, or Ctrl/Cmd click, opens the row in a new tab.
 * linkKey - `string`
     * The property name from the data object to pass to `router.navigate` when the rows is clicked.
 * sortable - `boolean` - `true`
@@ -39,11 +39,11 @@
 * serverSideData - `boolean` - `false`
     * Shows a button that when clicked, emits a `SharkPageChangeEvent`
 * initialSort - `string`
-    * The initial sortString
+    * The initial sort, for example `'year;-make'` (prefix a property with `-` for descending). Applied once, when data first arrives.
 * childRows - `boolean` - `false`
     * Enables child rows
-* childComponent - `SharkDynamicContents`
-    * A custom component, which extends `SharkDynamicContents`, that will be used to render each child row. Your custom component needs to be registered in your NgModule as an `entryComponent` and in the `declarations` section.
+* childComponent - `Type<SharkDynamicContents>`
+    * A custom component, which implements `SharkDynamicContents`, used to render each child row. See [Child rows](child-rows.md).
 * pageChange - `EventEmitter<SharkPageChangeEvent>`
     * `SharkPageChangeEvent` events are emitted from here
 * columnChange - `EventEmitter<SharkColumnChangeEvent>`
@@ -56,3 +56,12 @@
     * Displays an informative footer:  'Showing `x` through `y` of `z` rows`
 * tableEmptyMessage - `string` - `This table contains no rows`
     * Message to show when the table is empty
+* rowStylingFunction - `(row) => { [style: string]: string }`
+    * Returns styles (as for `ngStyle`) for a row
+* cellStylingFunction - `(row, column, cell) => { [style: string]: string }`
+    * Returns styles (as for `ngStyle`) for a cell
+
+## Methods
+
+* exportCurrentData(rendered = true) - `SharkTableCurrentDataEvent`
+    * Every row that matches the current filters, in the current sort order, with only the visible columns. For `Page` data, only the current page is available. Pass `false` to skip column pipes.

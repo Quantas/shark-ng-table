@@ -1,0 +1,330 @@
+@charset "UTF-8";
+
+.shark-table .rowLink:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.shark-table .table-wrapper {
+  overflow: auto;
+  margin-bottom: 0.5rem;
+}
+
+.shark-table .flex-spacer {
+  margin-left: auto;
+}
+
+.shark-table .controls {
+  /* visible (not auto) so focus outlines are not clipped and controls wrap on narrow screens */
+  overflow: visible;
+  gap: 0.5rem 0;
+}
+
+.shark-table .controls.header-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shark-table .info-footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shark-table .left-side-template {
+  margin-left: 0.5rem;
+}
+
+.shark-table .right-side-template {
+  margin-right: 0.5rem;
+}
+
+.shark-table .controls .server-refresh {
+  padding-top: 0.3rem;
+}
+
+.shark-table .controls button {
+  margin-left: 0.25rem;
+}
+
+.shark-table .controls button.toggle-dropdown {
+  margin-left: 0;
+}
+
+.shark-table .table-wrapper table {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.shark-table .table-wrapper table .right {
+  text-align: right;
+}
+
+.shark-table .table-wrapper th,
+.shark-table .table-wrapper td {
+  padding: 0.25rem 1rem 0.25rem 1rem;
+}
+
+.shark-table .header-row > th {
+  white-space: nowrap;
+}
+
+.shark-table .header-row > th,
+.shark-table .header-row > td {
+  border-right: 1px solid black;
+}
+
+.shark-table .header-row > th:last-child,
+.shark-table .header-row > td:last-child {
+  border-right: none;
+}
+
+.shark-table .header-filter-row > td {
+  text-align: center;
+}
+
+.shark-table .header-row {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.shark-table .header-buttons button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding-left: 0;
+  padding-right: 0.25rem;
+}
+
+.shark-table .data-row.even > td {
+  border-right: 1px solid #f2f2f2;
+}
+
+.shark-table .data-row.odd > td {
+  border-right: 1px solid white;
+}
+
+.shark-table .data-row.rowOpen > td {
+  border-right: 1px solid #e8e8e8;
+}
+
+.shark-table .data-row > td:last-child {
+  border-right: none;
+}
+
+.shark-table .child-spacer {
+  width: 1rem;
+}
+
+.shark-table .local-paging-size {
+  margin-right: 1.5rem;
+}
+
+.shark-table .even {
+  background-color: #f2f2f2;
+}
+
+.shark-table .rowOpen {
+  background-color: #e8e8e8;
+}
+
+.shark-table .pointer {
+  cursor: pointer;
+}
+
+.shark-table .ordering-button {
+  vertical-align: middle;
+}
+
+/* Column Picker */
+.shark-table .toggle-dropdown {
+  border: none;
+  background-color: white;
+  text-align: left;
+}
+
+.shark-table .dropdown {
+  border: 1px solid #DDDDDD;
+  background-color: white;
+  color: black;
+  font-weight: normal;
+  padding: 0.5rem;
+}
+
+.shark-table .dropdown fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.shark-table .dropdown .column-wrapper {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  flex-flow: row wrap;
+  align-content: flex-start;
+}
+
+.shark-table .dropdown label {
+  cursor: pointer;
+  display: block;
+  text-align: left;
+  padding: 0.25rem;
+  min-width: 13rem;
+}
+
+.shark-table .dropdown label input {
+  vertical-align: top;
+}
+
+/* Pagination */
+.shark-table .pagination-wrapper {
+  float: right;
+}
+
+.shark-table .pagination {
+  display: inline-block;
+}
+
+.shark-table .pagination button:hover,
+.shark-table .pagination button.active {
+  background-color: #DDDDDD;
+}
+
+.shark-table .pagination button.active {
+  cursor: default;
+}
+
+.shark-table .pagination button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  float: left;
+  padding: 4px 16px;
+  transition: background-color .3s;
+}
+
+.shark-table .pagination button.fa {
+  padding: 6px 16px;
+}
+
+/* Accessibility */
+.shark-table .screen-reader {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.shark-table .screen-reader-button-label {
+  font-size: 0;
+  height: 1px;
+  overflow: hidden;
+  display: block;
+}
+
+/*!
+ * Font Awesome Free 5.0.3 by @fontawesome - http://fontawesome.com
+ * License - http://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+@font-face {
+  font-family: "shark-ng-table-icons";
+  src:url("fonts/shark-ng-table-icons.eot");
+  src:url("fonts/shark-ng-table-icons.eot?#iefix") format("embedded-opentype"),
+  url("fonts/shark-ng-table-icons.woff") format("woff"),
+  url("fonts/shark-ng-table-icons.ttf") format("truetype"),
+  url("fonts/shark-ng-table-icons.svg#shark-ng-table-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.shark-table .fa,
+.shark-table .fab,
+.shark-table .fal,
+.shark-table .far,
+.shark-table .fas {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.shark-table .fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.shark-table .fa,
+.shark-table .far,
+.shark-table .fas {
+  font-family: shark-ng-table-icons;
+  font-weight: 900;
+}
+
+.shark-table .fa-sort:before {
+  content: "\61";
+}
+
+.shark-table .fa-sort-up:before {
+  content: "\62";
+}
+
+.shark-table .fa-sort-down:before {
+  content: "\63";
+}
+
+.shark-table .fa-caret-down:before {
+  content: "\64";
+}
+
+.shark-table .fa-caret-right:before {
+  content: "\65";
+}
+
+.shark-table .fa-angle-down:before {
+  content: "\66";
+}
+
+.shark-table .fa-angle-left:before {
+  content: "\67";
+}
+
+.shark-table .fa-angle-right:before {
+  content: "\68";
+}
+
+.shark-table .fa-angle-double-left:before {
+  content: "\69";
+}
+
+.shark-table .fa-angle-double-right:before {
+  content: "\6a";
+}
+
+.shark-table .fa-sync:before {
+  content: "\6b";
+}
+
+/* Column filter inputs: at least 24px tall to meet WCAG 2.2 target size (2.5.8) */
+.shark-table .header-row input[type="text"] {
+  min-height: 24px;
+  box-sizing: border-box;
+}
+
+/* Respect the user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .shark-table *,
+  .shark-table *::before,
+  .shark-table *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "shark-ng-table",
+  "version": "8.0.0",
+  "description": "A robust table for Angular built with Accessibility in mind.",
+  "keywords": ["angular", "table", "datatable", "accessibility", "a11y", "wcag", "section508"],
+  "author": "Andrew Landsverk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quantas/shark-ng-table.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Quantas/shark-ng-table/issues"
+  },
+  "homepage": "https://www.quantasnet.com/shark-ng-table/",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "peerDependencies": {
+    "@angular/common": "^21.0.0 || ^22.0.0",
+    "@angular/core": "^21.0.0 || ^22.0.0",
+    "@angular/forms": "^21.0.0 || ^22.0.0",
+    "@angular/router": "^21.0.0 || ^22.0.0",
+    "rxjs": "^7.4.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./shark-ng-table.css": {
+      "default": "./shark-ng-table.css"
+    },
+    "./shark-ng-table.min.css": {
+      "default": "./shark-ng-table.min.css"
+    },
+    "./fonts/*": {
+      "default": "./fonts/*"
+    }
+  },
+  "sideEffects": ["*.css"]
+}

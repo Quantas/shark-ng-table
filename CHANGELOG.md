@@ -1,3 +1,40 @@
+<a name="8.0.0"></a>
+## [8.0.0](https://github.com/Quantas/shark-ng-table/compare/7.0.0...8.0.0) (unreleased)
+
+Supports Angular 21 and 22. See the [upgrade guide](usage/migrating.md).
+
+### Features
+
+* Standalone components (`SharkTableModule` is kept for NgModule apps), new control flow, zoneless support
+* Middle click and Ctrl/Cmd click on linked rows open the row in a new tab, closes [#124](https://github.com/Quantas/shark-ng-table/issues/124)
+* Documentation guides now live on the docs site, closes [#115](https://github.com/Quantas/shark-ng-table/issues/115)
+* Published to npm from GitHub Actions with provenance
+
+### Bug Fixes
+
+* Sorting no longer modifies the array passed as `data`
+* `localFilter: false` is respected when column filters are set
+* Paging stays in range after page size or filter changes; `page.last` and `numberOfElements` are correct
+* `Subject`, `BehaviorSubject` and piped Observables are recognised as data sources
+* No error when an async Observable has not emitted yet; `initialSort` is applied when data arrives
+* Previous Observable subscriptions are released when `data` changes
+* Columns replaced after initialisation default to displayed
+* Empty cells no longer match the filter text "null"/"undefined" and sort last; numeric strings sort numerically
+* Cells render falsy values such as `0` and `false`
+* `exportCurrentData()` works for Observable and Page data and returns the filtered, sorted rows
+* Clicking buttons inside a linked row (such as the child row toggle) no longer navigates
+* Keyboard focus is kept after reordering columns and after paging
+* The global filter label is associated with its input; focus outlines are no longer clipped
+* Column filter inputs meet the WCAG 2.2 minimum target size (24px)
+* Transitions are disabled when the user prefers reduced motion
+
+### BREAKING CHANGES
+
+* Requires Angular 21 or 22 and RxJS 7.4+
+* See the [upgrade guide](usage/migrating.md) for behavior changes
+
+
+
 <a name="7.0.0"></a>
 ## [7.0.0](https://github.com/Quantas/shark-ng-table/compare/6.0.4...7.0.0) (2024-06-05)
 

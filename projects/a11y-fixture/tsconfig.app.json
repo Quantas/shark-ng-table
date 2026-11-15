@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/a11y-fixture",
+    "types": []
+  },
+  "include": ["src/**/*.ts"]
+}

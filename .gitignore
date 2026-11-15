@@ -47,3 +47,8 @@ testem.log
 Thumbs.db
 .ng_pkg_build/
 dist.tgz
+
+# Playwright
+/test-results
+/playwright-report
+/blob-report

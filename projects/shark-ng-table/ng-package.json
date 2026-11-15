@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/shark-ng-table",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "assets": [
+    {
+      "input": "src/lib/style",
+      "glob": "shark-ng-table.css",
+      "output": "."
+    },
+    {
+      "input": "src/lib/style/fonts",
+      "glob": "**/*",
+      "output": "fonts"
+    }
+  ]
+}

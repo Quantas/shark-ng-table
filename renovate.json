@@ -1,0 +1,70 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommitTypeAll(chore)",
+    "helpers:pinGitHubActionDigestsToSemver"
+  ],
+  "timezone": "America/Chicago",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on the first day of the month"]
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["dependencies", "security"],
+    "schedule": ["at any time"]
+  },
+  "ignorePaths": ["dist/**"],
+  "packageRules": [
+    {
+      "description": "Update Angular framework, tooling and packager together",
+      "matchPackageNames": ["@angular/**", "@angular-devkit/**", "@schematics/angular", "ng-packagr", "angular-eslint", "@angular-eslint/**"],
+      "groupName": "Angular"
+    },
+    {
+      "description": "Angular majors need `ng update` migrations and a peer range change: approve from the Dependency Dashboard",
+      "matchPackageNames": ["@angular/**", "@angular-devkit/**", "@schematics/angular", "ng-packagr", "angular-eslint", "@angular-eslint/**"],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "TypeScript is constrained by the Angular compiler; only take versions Angular supports",
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["major", "minor"],
+      "enabled": false
+    },
+    {
+      "description": "Test tooling",
+      "matchPackageNames": ["vitest", "@vitest/**", "jsdom", "axe-core"],
+      "groupName": "test tooling"
+    },
+    {
+      "description": "Lint tooling",
+      "matchPackageNames": ["eslint", "@eslint/**", "typescript-eslint"],
+      "groupName": "lint tooling"
+    },
+    {
+      "description": "Library peer dependency ranges are maintained by hand",
+      "matchFileNames": ["projects/shark-ng-table/package.json"],
+      "matchDepTypes": ["peerDependencies"],
+      "enabled": false
+    },
+    {
+      "description": "Auto-merge non-major dev tooling once CI passes",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch", "digest"]
+    }
+  ]
+}

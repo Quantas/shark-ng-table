@@ -1,18 +1,35 @@
-# Styling shark-ng-table
+# Styling
 
-If you are using Angular CLI you can simply add the following to your styles.css:
+## Include the stylesheet
+
+Add the stylesheet to the `styles` array of your application in `angular.json`:
+
+```json
+"styles": [
+  "node_modules/shark-ng-table/shark-ng-table.min.css",
+  "src/styles.css"
+]
+```
+
+Or import it from your global stylesheet:
 
 ```css
-@import "~shark-ng-table/shark-ng-table.min.css";
-
-/* Optionally, use Open Sans from Google to match our Plunker */
-body {
-  font-family: 'Open Sans', sans-serif;
-}
+@import 'shark-ng-table/shark-ng-table.min.css';
 ```
 
-If you choose to use Open Sans, you will also need to add this line to index.html:
+The stylesheet uses a small icon font for the sort, paging and child row icons. It is published next to the CSS in `fonts/`, and the Angular build copies it for you.
 
-```html
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+## Theming
+
+Every rule is scoped under `.shark-table`, so you can override colors from your own stylesheet. For example, striped rows and the active page button:
+
+```css
+.shark-table .data-row.odd { background-color: #eef3f7; }
+.shark-table .pagination button.active { background-color: #17212b; color: #fff; }
 ```
+
+When you change colors, keep a contrast ratio of at least 4.5:1 for text and 3:1 for focus indicators and icons, so the table still meets WCAG AA. Keep interactive controls at least 24 by 24 pixels.
+
+## Per row and per cell styles
+
+Use `rowStylingFunction` and `cellStylingFunction` to style individual rows or cells from your data. See the [Table options](shark-table-options.md).

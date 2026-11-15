@@ -1,20 +1,33 @@
-# shark-ng-table Development
+# Contributing
 
-Typically we generate a new project with the Angular CLI and then link the `dist` directory into it as follows:
+The repository is an Angular CLI workspace with two projects:
+
+- `projects/shark-ng-table` is the library that is published to npm
+- `projects/docs` is this documentation site
+
+You need Node.js 22.22+, 24.15+ or 26+.
 
 ```bash
-npm link ../shark-ng-table/dist
+npm ci
+npm start            # docs site with live reload at http://localhost:4200
+npm test             # library unit tests (Vitest)
+npm run e2e          # accessibility tests in a real browser (Playwright; run `npx playwright install chromium` once)
+npm run lint         # ESLint, including template accessibility rules
+npm run build        # builds the package into dist/shark-ng-table
+npm run build:docs   # builds the docs site into dist/docs
 ```
 
-Additionally, in the .angular-cli.json file you need to make sure `defaults.build.preserveSymlinks` is set to `true` as in this example:
+The docs site imports the library from source, so changes show up immediately while `npm start` runs.
 
-```json
-  "defaults": {
-    "styleExt": "css",
-    "component": {},
-    "build": {
-      "preserveSymlinks": true
-    }
+## Trying a build in another app
+
+```bash
+npm run build
+cd dist/shark-ng-table && npm pack
+# then in your app
+npm install /path/to/shark-ng-table-8.0.0.tgz
 ```
 
-Using NPM link on the dist directory means your test application will only receive updates after you run `npm run build` from the shark-ng-table project.
+## Releasing
+
+Releases are published from GitHub Actions. See [RELEASING.md](https://github.com/Quantas/shark-ng-table/blob/master/RELEASING.md).
