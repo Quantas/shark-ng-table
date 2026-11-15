@@ -29,4 +29,4 @@ npm install /path/to/shark-ng-table-8.0.0.tgz
 
 ## Releasing
 
-Releases are published from GitHub Actions. See [RELEASING.md](../RELEASING.md).
+Releases are published from GitHub Actions. See [RELEASING.md](https://github.com/Quantas/shark-ng-table/blob/master/RELEASING.md).

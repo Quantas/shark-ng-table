@@ -4,7 +4,9 @@
   "cli": {
     "packageManager": "npm",
     "analytics": false,
-    "schematicCollections": ["angular-eslint"]
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -32,13 +34,23 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/shark-ng-table/tsconfig.spec.json"
+            "tsConfig": "projects/shark-ng-table/tsconfig.spec.json",
+            "coverageReporters": [
+              "lcovonly",
+              "text-summary"
+            ],
+            "coverageExclude": [
+              "projects/shark-ng-table/src/test/**"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/shark-ng-table/**/*.ts", "projects/shark-ng-table/**/*.html"]
+            "lintFilePatterns": [
+              "projects/shark-ng-table/**/*.ts",
+              "projects/shark-ng-table/**/*.html"
+            ]
           }
         }
       }
@@ -59,16 +71,33 @@
               ".md": "text"
             },
             "assets": [
-              { "glob": "**/*", "input": "projects/docs/public" },
-              { "glob": "**/*", "input": "projects/shark-ng-table/src/lib/style/fonts", "output": "fonts" }
+              {
+                "glob": "**/*",
+                "input": "projects/docs/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/shark-ng-table/src/lib/style/fonts",
+                "output": "fonts"
+              }
             ],
-            "styles": ["projects/docs/src/styles.css"]
+            "styles": [
+              "projects/docs/src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
-                { "type": "initial", "maximumWarning": "600kB", "maximumError": "1MB" },
-                { "type": "anyComponentStyle", "maximumWarning": "6kB", "maximumError": "10kB" }
+                {
+                  "type": "initial",
+                  "maximumWarning": "600kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kB",
+                  "maximumError": "10kB"
+                }
               ],
               "outputHashing": "all"
             },
@@ -83,15 +112,22 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": { "buildTarget": "docs:build:production" },
-            "development": { "buildTarget": "docs:build:development" }
+            "production": {
+              "buildTarget": "docs:build:production"
+            },
+            "development": {
+              "buildTarget": "docs:build:development"
+            }
           },
           "defaultConfiguration": "development"
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/docs/**/*.ts", "projects/docs/**/*.html"]
+            "lintFilePatterns": [
+              "projects/docs/**/*.ts",
+              "projects/docs/**/*.html"
+            ]
           }
         }
       }

@@ -64,8 +64,9 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 
 1. Create your patch, **including appropriate test cases and documentation updates**.
 1. Follow our [Coding Rules](#rules).
-1. Run the full test suite by executing: 
+1. Run the linter and the full test suite: 
       ```shell
+      npm run lint
       npm test
       ```
 1. Commit your changes using a descriptive commit message that follows our

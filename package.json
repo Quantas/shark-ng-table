@@ -12,8 +12,7 @@
     "test": "ng test shark-ng-table --watch=false",
     "test:watch": "ng test shark-ng-table",
     "test:coverage": "ng test shark-ng-table --watch=false --coverage",
-    "lint": "ng lint",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "lint": "ng lint"
   },
   "packageManager": "npm@11.19.0",
   "engines": {
