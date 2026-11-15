@@ -22,7 +22,8 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npx ng build docs --base-href /shark-ng-table/
+      # Served from the root of https://shark-ng-table.sharkops.io/ (custom domain set in Settings → Pages)
+      - run: npx ng build docs
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist/docs/browser

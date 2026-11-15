@@ -1,6 +1,6 @@
 # shark-ng-table
 
-[![CI](https://github.com/Quantas/shark-ng-table/actions/workflows/ci.yml/badge.svg)](https://github.com/Quantas/shark-ng-table/actions/workflows/ci.yml)
+[![CI](https://github.com/sharkops-io/shark-ng-table/actions/workflows/ci.yml/badge.svg)](https://github.com/sharkops-io/shark-ng-table/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/shark-ng-table.svg)][npm-badge-url]
 [![npm license](https://img.shields.io/npm/l/shark-ng-table.svg)][npm-badge-url]
 [![npm downloads](https://img.shields.io/npm/dm/shark-ng-table.svg)][npm-badge-url]
@@ -9,7 +9,7 @@
 
 An Angular data table built for keyboard and screen reader users. Built to meet WCAG 2.2 AA, and tested with axe-core and keyboard tests in a real browser on every change. See [ACCESSIBILITY.md](ACCESSIBILITY.md) for what is tested and how.
 
-**Docs and live examples: https://www.quantasnet.com/shark-ng-table/**
+**Docs and live examples: https://shark-ng-table.sharkops.io/**
 
 ## Features
 
@@ -59,7 +59,7 @@ Then add `node_modules/shark-ng-table/shark-ng-table.min.css` to the `styles` in
 
 ## Documentation
 
-The guides are on the [docs site](https://www.quantasnet.com/shark-ng-table/) and in this repository:
+The guides are on the [docs site](https://shark-ng-table.sharkops.io/) and in this repository:
 
 - [Getting started](usage/setup.md)
 - [Styling](usage/styling.md)

@@ -5,7 +5,7 @@ Releases are published to npm by the [Release workflow](.github/workflows/releas
 ## One-time setup
 
 1. **On npmjs.com**, open the `shark-ng-table` package, go to **Settings → Trusted publishing** and add a GitHub Actions publisher:
-   - Organization or user: `Quantas`
+   - Organization or user: `sharkops-io`
    - Repository: `shark-ng-table`
    - Workflow filename: `release.yml`
    - Environment: `npm`
@@ -20,7 +20,7 @@ Releases are published to npm by the [Release workflow](.github/workflows/releas
    - Mark it as a **pre-release** to publish under the `next` dist-tag (for example `v8.1.0-rc.0`).
 4. The Release workflow runs CI (lint, tests, Angular compatibility builds), checks the tag matches the package version, builds and publishes.
 
-The docs site deploys from `master` on every push via the [Docs workflow](.github/workflows/docs.yml).
+The docs site deploys from `master` on every push via the [Docs workflow](.github/workflows/docs.yml) to https://shark-ng-table.sharkops.io/. The old address, www.quantasnet.com/shark-ng-table/, redirects there from the `Quantas/quantas.github.io` repository.
 
 ## Code coverage
 

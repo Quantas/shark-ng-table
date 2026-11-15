@@ -3,6 +3,8 @@
 
 Supports Angular 21 and 22. See the [upgrade guide](usage/migrating.md).
 
+The project moved to [sharkops-io/shark-ng-table](https://github.com/sharkops-io/shark-ng-table), and the docs to https://shark-ng-table.sharkops.io/. Old GitHub and docs links redirect.
+
 ### Features
 
 * Standalone components (`SharkTableModule` is kept for NgModule apps), new control flow, zoneless support
