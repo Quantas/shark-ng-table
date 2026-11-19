@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "SharkNgTableNgAdd",
+  "title": "shark-ng-table ng-add options",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The application to add the shark-ng-table stylesheet to.",
+      "$default": {
+        "$source": "projectName"
+      }
+    }
+  },
+  "additionalProperties": false
+}

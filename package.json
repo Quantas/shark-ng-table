@@ -7,11 +7,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve docs",
-    "build": "ng build shark-ng-table && node scripts/finalize-package.mjs",
+    "build": "ng build shark-ng-table && tsc -p projects/shark-ng-table/tsconfig.schematics.json && node scripts/finalize-package.mjs",
     "build:docs": "ng build docs",
     "test": "ng test shark-ng-table --watch=false",
     "test:watch": "ng test shark-ng-table",
     "test:coverage": "ng test shark-ng-table --watch=false --coverage",
+    "test:schematics": "npm run build && tsc -p projects/shark-ng-table/tsconfig.schematics.spec.json && node --test \"out-tsc/schematics-spec/**/*.spec.js\"",
     "lint": "ng lint",
     "build:e2e": "ng build a11y-fixture && ng build docs",
     "e2e": "npm run build:e2e && playwright test",
@@ -22,6 +23,7 @@
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
   },
   "devDependencies": {
+    "@angular-devkit/schematics": "^22.2.7",
     "@angular/build": "^22.2.7",
     "@angular/cli": "^22.2.7",
     "@angular/common": "^22.2.6",
@@ -34,6 +36,8 @@
     "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.65.1",
+    "@schematics/angular": "^22.2.7",
+    "@types/node": "^22.20.5",
     "@vitest/coverage-v8": "^5.1.1",
     "angular-eslint": "^22.8.0",
     "axe-core": "^4.14.1",
