@@ -19,5 +19,5 @@ export interface SharkDynamicContents {
   /**
    * This is called when a child row is opened, if you need to retrieve more data, etc.
    */
-  childOpen(value: boolean): void;
+  childOpen?(value: boolean): void;
 }
