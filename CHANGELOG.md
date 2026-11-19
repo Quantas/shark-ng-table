@@ -1,3 +1,19 @@
+<a name="8.1.0"></a>
+## [8.1.0](https://github.com/sharkops-io/shark-ng-table/compare/8.0.1...8.1.0) (2026-11-19)
+
+### Features
+
+* Custom cell and child row components can use signal inputs: `readonly data = input.required<any>()` and `readonly row = input<any>()`. The table sets `data` and `row` with `ComponentRef.setInput` when your component declares them as inputs (`input()`, `input.required()`, `@Input()`, or an alias), so OnPush components and `computed()` signals update when the row changes. Components with plain `data`/`row` properties work as before. Closes [#166](https://github.com/sharkops-io/shark-ng-table/issues/166)
+* `ng add shark-ng-table` installs the package and adds its stylesheet to your application's `angular.json`. Use `--project <name>` in a workspace with several applications
+* `SharkDynamicContents.childOpen` is optional
+
+### Documentation
+
+* The custom cell and child row guides and the docs-site samples use signal inputs
+* The setup guide, README and docs home page install with `ng add`
+
+
+
 <a name="8.0.1"></a>
 ## [8.0.1](https://github.com/sharkops-io/shark-ng-table/compare/8.0.0...8.0.1) (2026-11-19)
 

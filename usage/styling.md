@@ -2,7 +2,7 @@
 
 ## Include the stylesheet
 
-Add the stylesheet to the `styles` array of your application in `angular.json`:
+`ng add shark-ng-table` does this for you. To do it by hand, add the stylesheet to the `styles` array of your application in `angular.json`:
 
 ```json
 "styles": [

@@ -68,6 +68,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
       ```shell
       npm run lint
       npm test
+      npm run test:schematics
       ```
 1. Commit your changes using a descriptive commit message that follows our
   [commit message conventions](#commit). Adherence to these conventions

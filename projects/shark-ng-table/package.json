@@ -1,6 +1,6 @@
 {
   "name": "shark-ng-table",
-  "version": "8.0.1",
+  "version": "8.1.0",
   "description": "A robust table for Angular built with Accessibility in mind.",
   "keywords": ["angular", "table", "datatable", "accessibility", "a11y", "wcag", "section508"],
   "author": "Andrew Landsverk",

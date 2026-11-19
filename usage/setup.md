@@ -3,6 +3,14 @@
 ## Install
 
 ```bash
+ng add shark-ng-table
+```
+
+`ng add` installs the package and adds its stylesheet to the `styles` of your application in `angular.json`. In a workspace with more than one application, pick one with `--project <name>`.
+
+You can also install it with npm and [add the stylesheet](styling.md) yourself:
+
+```bash
 npm install shark-ng-table
 ```
 
@@ -54,7 +62,7 @@ Give every table a meaningful `caption`. Screen readers announce it when someone
 
 ## Add the stylesheet
 
-The table needs its stylesheet. See [Styling](styling.md).
+The table needs its stylesheet. `ng add` adds it for you; otherwise see [Styling](styling.md).
 
 ## Row links need a router
 

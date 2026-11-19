@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { Component, input } from '@angular/core';
 import { CodeSampleComponent } from './shared/code-sample.component';
 import { SharkColumn, SharkDynamicContents, SharkTableComponent } from 'shark-ng-table';
 
@@ -29,12 +28,12 @@ export class CustomCellsComponent {
   `;
 
   tsSample = `
-    // 1. Create a SharkDynamicContents Component
+    // 1. Create a SharkDynamicContents Component.
+    //    The table sets its "data" input to the cell value (and "row" to the whole row, if you declare it).
 
     @Component({
-  imports: [NgClass],
     template: \`
-      &lt;span [ngClass]="data">{{ data }}&lt;/span>
+      &lt;span [class]="data()">{{ data() }}&lt;/span>
     \`,
     styles: [
       \`
@@ -53,10 +52,7 @@ export class CustomCellsComponent {
     ]
   })
   export class MakeComponent implements SharkDynamicContents {
-    data: any;
-
-    childOpen(value: boolean): void {
-    }
+    readonly data = input.required<string>();
   }
 
   // 2. Standalone components need no registration.
@@ -77,9 +73,8 @@ export class CustomCellsComponent {
 }
 
 @Component({
-  imports: [NgClass],
   template: `
-    <span [ngClass]="data">{{ data }}</span>
+    <span [class]="data()">{{ data() }}</span>
   `,
   styles: [
     `
@@ -98,8 +93,5 @@ export class CustomCellsComponent {
   ]
 })
 export class MakeComponent implements SharkDynamicContents {
-  data: any;
-
-  childOpen(): void {
-  }
+  readonly data = input.required<string>();
 }
