@@ -33,8 +33,10 @@ An Angular data table built for keyboard and screen reader users. Built to meet 
 ## Install
 
 ```bash
-npm install shark-ng-table
+ng add shark-ng-table
 ```
+
+This installs the package and adds its stylesheet to your application's `angular.json`. With plain `npm install shark-ng-table`, add `node_modules/shark-ng-table/shark-ng-table.min.css` to `styles` yourself.
 
 ```typescript
 import { Component } from '@angular/core';
@@ -54,8 +56,6 @@ export class CarsComponent {
   ];
 }
 ```
-
-Then add `node_modules/shark-ng-table/shark-ng-table.min.css` to the `styles` in your `angular.json`.
 
 ## Documentation
 

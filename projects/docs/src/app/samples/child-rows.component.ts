@@ -35,16 +35,17 @@ export class ChildRowsComponent {
   tsSample = `
     // 1. Create a SharkDynamicContents Component
 
-    import { Component } from '@angular/core';
+    import { Component, input } from '@angular/core';
     import { SharkDynamicContents } from 'shark-ng-table';
 
     @Component({
       template: \`
-        VIN: {{ data.vin }}
+        VIN: {{ data().vin }}
       \`
     })
     export class ChildRowRenderingComponent implements SharkDynamicContents {
-      data: any;
+      // The table sets "data" to the whole row.
+      readonly data = input.required<{ vin: string }>();
 
       childOpen(value: boolean): void {
         // Load more data here when the row opens, if needed.
@@ -55,7 +56,7 @@ export class ChildRowsComponent {
     // 3. Store a reference in your Component where you use <shark-table&gt;
     childComponent = ChildRowRenderingComponent;
 
-    // 4. Use "childComponent" as a prameter to your shark-table as seen in the HTML portion of the sample
+    // 4. Use "childComponent" as a parameter to your shark-table as seen in the HTML portion of the sample
 
   `;
 

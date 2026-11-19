@@ -30,6 +30,8 @@ jobs:
         if: always()
         run: node scripts/coverage-summary.mjs >> "$GITHUB_STEP_SUMMARY"
       - run: npm run build
+      - name: Test the ng add schematic
+        run: npm run test:schematics
       - name: Pack library
         run: npm pack --pack-destination ../..
         working-directory: dist/shark-ng-table

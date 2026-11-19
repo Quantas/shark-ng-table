@@ -11,6 +11,7 @@ You need Node.js 22.22+, 24.15+ or 26+.
 npm ci
 npm start            # docs site with live reload at http://localhost:4200
 npm test             # library unit tests (Vitest)
+npm run test:schematics  # builds the package, then tests the `ng add` schematic (node --test)
 npm run e2e          # accessibility tests in a real browser (Playwright; run `npx playwright install chromium` once)
 npm run lint         # ESLint, including template accessibility rules
 npm run build        # builds the package into dist/shark-ng-table
@@ -25,7 +26,9 @@ The docs site imports the library from source, so changes show up immediately wh
 npm run build
 cd dist/shark-ng-table && npm pack
 # then in your app
-npm install /path/to/shark-ng-table-8.0.0.tgz
+npm install /path/to/shark-ng-table-8.1.0.tgz
+# or, to try the ng add schematic too
+ng add /path/to/shark-ng-table-8.1.0.tgz
 ```
 
 ## Releasing

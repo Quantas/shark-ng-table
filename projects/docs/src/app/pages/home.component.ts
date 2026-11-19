@@ -49,7 +49,7 @@ import { highlight } from '../shared/highlight';
     <section class="install" aria-labelledby="install-title">
       <h2 id="install-title">Install</h2>
       <pre tabindex="0"><code [innerHTML]="installHtml"></code></pre>
-      <p>Then import the standalone component and add the stylesheet. <a routerLink="/guide/setup">Read the setup guide</a>.</p>
+      <p><code>ng add</code> installs the package and adds the stylesheet to <code>angular.json</code>. Then import the standalone component. <a routerLink="/guide/setup">Read the setup guide</a>.</p>
       <pre tabindex="0"><code [innerHTML]="usageHtml"></code></pre>
     </section>
 
@@ -83,7 +83,7 @@ export class HomeComponent implements AfterViewInit {
 
   readonly announcements = signal<string[]>([]);
 
-  readonly installHtml = highlight('npm install shark-ng-table', 'bash');
+  readonly installHtml = highlight('ng add shark-ng-table', 'bash');
 
   readonly usageHtml = highlight(`import { Component } from '@angular/core';
 import { SharkColumn, SharkTableComponent } from 'shark-ng-table';

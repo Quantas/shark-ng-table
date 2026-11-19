@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ComponentRef, Input, OnChanges, OnDestroy, SimpleChanges, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { SharkDynamicContents } from './dynamic/dynamic.contents';
+import { setDynamicInput } from './dynamic/dynamic.inputs';
 
 /**
  * This Component is used to render your custom child row component.
@@ -66,7 +67,7 @@ export class SharkChildComponent implements OnChanges, OnDestroy {
       this.componentRef = this.dynamicHost.createComponent(this.component);
     }
 
-    this.componentRef!.instance.data = this.row;
+    setDynamicInput(this.componentRef!, 'data', this.row);
     this.componentRef!.injector.get(ChangeDetectorRef).detectChanges();
   }
 }
