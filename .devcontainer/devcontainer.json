@@ -1,7 +1,7 @@
 // See https://containers.dev/implementors/json_reference/
 {
   "name": "shark-ng-table",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:26",
   "forwardPorts": [4200],
   "postCreateCommand": "npm ci",
   "customizations": {
