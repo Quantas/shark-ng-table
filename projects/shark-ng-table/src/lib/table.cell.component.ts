@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ComponentRef, Input, OnChanges, OnDestroy
 import { SharkColumn } from './column';
 import { SharkTableUtils } from './table.utils';
 import { SharkDynamicContents } from './dynamic/dynamic.contents';
+import { setDynamicInput } from './dynamic/dynamic.inputs';
 
 @Component({
   selector: 'shark-table-cell',
@@ -32,8 +33,8 @@ export class SharkTableCellComponent implements OnChanges, OnDestroy {
         this.dynamicHost.clear();
         this.componentRef = this.dynamicHost.createComponent(this.column.component);
       }
-      this.componentRef.instance.data = this.contents;
-      this.componentRef.instance.row = this.row;
+      setDynamicInput(this.componentRef, 'data', this.contents);
+      setDynamicInput(this.componentRef, 'row', this.row);
       this.componentRef.injector.get(ChangeDetectorRef).detectChanges();
     } else if (this.componentRef) {
       this.dynamicHost.clear();
