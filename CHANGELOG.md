@@ -1,3 +1,15 @@
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/sharkops-io/shark-ng-table/compare/8.0.0...8.0.1) (2026-11-19)
+
+Maintenance release. No changes to the library's code or API.
+
+### Dependencies
+
+* `tslib` minimum raised to `^2.9.1`
+* Built with Angular 22.2, ng-packagr 22.3 and TypeScript 6.0.3
+
+
+
 <a name="8.0.0"></a>
 ## [8.0.0](https://github.com/sharkops-io/shark-ng-table/compare/7.0.0...8.0.0) (2026-11-15)
 
