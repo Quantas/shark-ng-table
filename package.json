@@ -17,7 +17,7 @@
     "e2e": "npm run build:e2e && playwright test",
     "e2e:only": "playwright test"
   },
-  "packageManager": "npm@11.21.3",
+  "packageManager": "npm@12.2.3",
   "engines": {
     "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
   },
