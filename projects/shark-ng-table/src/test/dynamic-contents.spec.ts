@@ -61,7 +61,10 @@ class MixedCell implements SharkDynamicContents {
   template: `<span class="cell">{{ value() }}|{{ source()?.id }}</span>`
 })
 class AliasedSignalInputCell implements SharkDynamicContents {
+  // Aliases are discouraged, but users may have them; this checks they still receive data and row.
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   readonly value = input<any>(undefined, { alias: 'data' });
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   readonly source = input<any>(undefined, { alias: 'row' });
   // SharkDynamicContents asks for a `data` member; the aliased input above is what Angular sets.
   data: any;
